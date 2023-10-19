@@ -13,7 +13,7 @@ module.exports = {
   ignorePatterns: ['dist', '.eslintrc.cjs', 'vite.config.ts'],
   parser: '@typescript-eslint/parser',
   parserOptions: { tsconfigRootDir: __dirname },
-  plugins: ['react-refresh'],
+  plugins: ['react-refresh', 'import'],
   rules: {
     'react-refresh/only-export-components': [
       'warn',
@@ -24,18 +24,28 @@ module.exports = {
       'error',
       { blankLine: 'always', prev: '*', next: 'return' },
     ],
-    // 'import/order': [
-    //   'error',
-    //   {
-    //     groups: [
-    //       ['builtin', 'external', 'internal'],
-    //       'parent',
-    //       'sibling',
-    //       'index',
-    //       'type',
-    //     ],
-    //     alphabetize: { order: 'asc', caseInsensitive: true },
-    //   },
-    // ],
+    'import/order': [
+      'error',
+      {
+        groups: [
+          'type',
+          'builtin',
+          'external',
+          'internal',
+          'parent',
+          'sibling',
+          'index',
+          'unknown',
+        ],
+        pathGroups: [
+          {
+            pattern: '~/*',
+            group: 'internal',
+            position: 'after',
+          },
+        ],
+        alphabetize: { order: 'asc', caseInsensitive: true },
+      },
+    ],
   },
 };
