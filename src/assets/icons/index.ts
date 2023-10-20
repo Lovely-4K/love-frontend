@@ -1,0 +1,14 @@
+export { default as IconActivity } from './activity.svg?react';
+export { default as IconCafe } from './cafe.svg?react';
+export { default as IconCalendar } from './calendar.svg?react';
+export { default as IconDiary } from './diary.svg?react';
+export { default as IconEtc } from './etc.svg?react';
+export { default as IconHeart } from './heart.svg?react';
+export { default as IconHome } from './home.svg?react';
+export { default as IconHotel } from './hotel.svg?react';
+export { default as IconImageAdd } from './imageAdd.svg?react';
+export { default as IconMenu } from './menu.svg?react';
+export { default as IconPlus } from './plus.svg?react';
+export { default as IconRestaurant } from './restaurant.svg?react';
+export { default as IconSearch } from './search.svg?react';
+export { default as IconStar } from './star.svg?react';

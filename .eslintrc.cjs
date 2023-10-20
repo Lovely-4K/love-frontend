@@ -19,6 +19,7 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    '@rushstack/typedef-var': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     'padding-line-between-statements': [
       'error',
