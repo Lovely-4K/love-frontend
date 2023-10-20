@@ -1,7 +1,9 @@
+import DotTag from './components/common/DotTag';
+
 const App = () => {
   return (
     <>
-      <div></div>
+      <DotTag />
     </>
   );
 };

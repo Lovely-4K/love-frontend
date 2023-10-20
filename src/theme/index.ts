@@ -1,6 +1,6 @@
 import { extendTheme, type ThemeConfig } from '@chakra-ui/react';
-import Button from './components/common/Button';
-import Menu from './components/domain/Menu';
+import colors from './colors';
+import components from './components';
 
 const config: ThemeConfig = {
   initialColorMode: 'dark',
@@ -8,21 +8,8 @@ const config: ThemeConfig = {
 };
 
 const theme = extendTheme({
-  colors: {
-    primary: '#F95656',
-  },
-  // semanticTokens: {
-  //   colors: {
-  //     darkSemantic: {
-  //       default: 'black',
-  //       _dark: 'white',
-  //     },
-  //   },
-  // },
-  components: {
-    Button,
-    Menu,
-  },
+  colors,
+  components,
   config,
 });
 
