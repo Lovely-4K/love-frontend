@@ -1,4 +1,5 @@
 import { Image, ImageProps, StyleProps } from '@chakra-ui/react';
+import { memo } from 'react';
 
 interface CustomImageProps extends ImageProps {
   type: 'rectangle' | 'square' | 'circle';
@@ -22,8 +23,8 @@ const styles: Record<CustomImageProps['type'], StyleProps> = {
   },
 };
 
-const CustomImage = ({ type = 'square', ...rest }: CustomImageProps) => {
+const CustomImage = memo(({ type = 'square', ...rest }: CustomImageProps) => {
   return <Image fit="cover" {...styles[type]} {...rest} />;
-};
+});
 
 export default CustomImage;
