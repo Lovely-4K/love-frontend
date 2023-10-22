@@ -1,11 +1,5 @@
-import DotTag from './components/common/DotTag';
-
 const App = () => {
-  return (
-    <>
-      <DotTag />
-    </>
-  );
+  return <></>;
 };
 
 export default App;
