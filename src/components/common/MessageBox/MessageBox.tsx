@@ -35,21 +35,21 @@ const MessageWrapper = styled.div<{ direction: 'left' | 'right' }>`
     border-color: rgba(255, 255, 255, 0);
     border-width: 10px;
     margin-top: -10px;
-    ${(props) =>
-      props.direction === 'left' && `left: 100%; border-left-color: white;`}
-    ${(props) =>
-      props.direction === 'right' && `right: 100%; border-right-color: white;`}
+    ${({ direction }) =>
+      direction === 'right' && `left: 100%; border-left-color: white;`}
+    ${({ direction }) =>
+      direction === 'left' && `right: 100%; border-right-color: white;`}
   }
 
   &:before {
     border-color: rgba(0, 0, 0, 0);
     border-width: 13px;
     margin-top: -13px;
-    ${(props) =>
-      props.direction === 'left' &&
+    ${({ direction }) =>
+      direction === 'right' &&
       `left: 100%; border-left-color: ${colors.grey[300]}`}
-    ${(props) =>
-      props.direction === 'right' &&
+    ${({ direction }) =>
+      direction === 'left' &&
       `right: 100%; border-right-color: ${colors.grey[300]}`}
   }
 `;

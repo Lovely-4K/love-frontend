@@ -12,5 +12,5 @@ export default meta;
 type Story = StoryObj<typeof MessageBox>;
 
 export const Default: Story = {
-  args: { direction: 'right' },
+  args: { direction: 'right', text: '세미콜론 쓰기' },
 };
