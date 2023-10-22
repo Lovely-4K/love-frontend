@@ -1,4 +1,5 @@
 import { Avatar } from '@chakra-ui/react';
+import { memo } from 'react';
 
 interface CustomAvatarProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   size?: 'extraLarge' | 'large' | 'medium' | 'small';
@@ -13,12 +14,10 @@ const sizes = {
   small: 'md',
 };
 
-const CustomAvatar = ({
-  size = 'extraLarge',
-  name = '',
-  src,
-}: CustomAvatarProps) => {
-  return <Avatar size={sizes[size]} name={name} src={src} />;
-};
+const CustomAvatar = memo(
+  ({ size = 'extraLarge', name = '', src }: CustomAvatarProps) => {
+    return <Avatar size={sizes[size]} name={name} src={src} />;
+  },
+);
 
 export default CustomAvatar;

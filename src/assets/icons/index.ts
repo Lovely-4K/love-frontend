@@ -12,3 +12,4 @@ export { default as IconPlus } from './plus.svg?react';
 export { default as IconRestaurant } from './restaurant.svg?react';
 export { default as IconSearch } from './search.svg?react';
 export { default as IconStar } from './star.svg?react';
+export { default as IconPosition } from './position.svg?react';
