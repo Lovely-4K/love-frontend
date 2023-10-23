@@ -16,10 +16,5 @@ const config: StorybookConfig = {
   docs: {
     autodocs: 'tag',
   },
-  refs: {
-    '@chakra-ui/react': {
-      disable: true,
-    },
-  },
 };
 export default config;

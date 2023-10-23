@@ -1,6 +1,4 @@
-import styled from '@emotion/styled';
 import { IconHeart } from '~/assets/icons';
-import colors from '~/theme/colors';
 
 interface TemperatureBarProps {
   percent: number;

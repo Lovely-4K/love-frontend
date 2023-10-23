@@ -19,10 +19,6 @@
     "react-router-dom": "^6.17.0"
   },
   "devDependencies": {
-    "@chakra-ui/react": "^2.8.1",
-    "@chakra-ui/storybook-addon": "^5.0.1",
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
     "@rushstack/eslint-config": "^3.4.1",
     "@storybook/addon-essentials": "^7.5.0",
     "@storybook/addon-interactions": "^7.5.0",
@@ -46,7 +42,6 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "eslint-plugin-storybook": "^0.6.15",
-    "framer-motion": "^10.16.4",
     "postcss": "^8.4.31",
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.6",
