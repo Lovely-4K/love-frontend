@@ -23,7 +23,7 @@ type Story = StoryObj<typeof CustomInput>;
 export const Default: Story = {
   args: {
     size: 'large',
-    placehodler: 'input 컴포넌트 테스트',
+    placeholder: 'input 컴포넌트 테스트',
     type: 'outline',
   },
 };

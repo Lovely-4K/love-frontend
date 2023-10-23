@@ -15,14 +15,14 @@ const sizes = {
 };
 
 const CustomInput = ({
-  placehodler,
+  placeholder,
   type = 'outline',
   size = 'medium',
   borderColor = '#eee',
-}) => {
+}: CustomInputProps) => {
   return (
     <Input
-      placeholder={placehodler}
+      placeholder={placeholder}
       variant={type}
       size={sizes[size]}
       borderColor={borderColor}
