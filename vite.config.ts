@@ -5,7 +5,7 @@ import svgr from 'vite-plugin-svgr';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), svgr(), require('daisyui')],
+  plugins: [react(), svgr()],
   resolve: {
     alias: [{ find: '~', replacement: path.resolve(__dirname, 'src') }],
   },

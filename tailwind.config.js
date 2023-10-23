@@ -1,56 +1,25 @@
-import plugin from 'tailwindcss/plugin';
+import daisyui from 'daisyui';
+import theme from 'daisyui/src/theming/themes';
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: 'class',
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    extend: {
-      colors: {
-        main: { base: '#59473C', darken: '#311B0E', lighten: '#8C6F5E' },
-        active: {
-          base: '#FF7A00',
-          darken: '#D76700',
-          lighten: '#FFC998',
-          lightest: '#FFE6CE',
-        },
-        sub: {
-          blue: '#487DAD',
-          sky: '#CCF7FA',
-          red: '#FF3D00',
-          lime: '#40DF32',
-          green: '#349E2C',
-        },
-        gray: {
-          100: '#F1F1F1',
-          200: '#DCDDDE',
-          300: '#8A8A8A',
-          400: '#5F5F5F',
-          500: '#313131',
-          600: '#B1B1B1',
-        },
-        white: '#FFFFFF',
-        black: '#000000',
-      },
-      fontFamily: { OAGothic: ['OAGothic'] },
-      screens: {
-        mobile: {},
-        tablet: {},
-        desktop: {},
-        cs: '0px',
-      },
-    },
+    extend: {},
   },
-  plugins: [
-    plugin(({ addUtilities }) => {
-      addUtilities({
-        '.no-scrollbar::-webkit-scrollbar': {
-          display: 'none',
+  plugins: [daisyui],
+  daisyui: {
+    themes: [
+      {
+        light: {
+          ...theme['[data-theme=light]'],
+          primary: '#F95656',
+          '.btn-primary': {
+            'background-color': '#F95656',
+            'border-color': '#F95656',
+            width: '100vw',
+          },
         },
-        '.no-scrollbar': {
-          scrollbarWidth: 'none',
-          '-ms-overflow-style': 'none',
-        },
-      });
-    }),
-  ],
+      },
+    ],
+  },
 };
