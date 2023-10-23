@@ -1,8 +1,10 @@
 import { Input } from '@chakra-ui/react';
 
+// todo: hover & active 처리하기
+
 interface CustomInputProps {
   placeholder: string;
-  type: 'outline' | 'flushed' | 'noneStyle';
+  type?: 'outline' | 'flushed' | 'noneStyle';
   size?: 'medium' | 'large';
   borderColor?: string;
 }
@@ -14,7 +16,7 @@ const sizes = {
 
 const CustomInput = ({
   placehodler,
-  type,
+  type = 'outline',
   size = 'medium',
   borderColor = '#eee',
 }) => {
@@ -23,7 +25,7 @@ const CustomInput = ({
       placeholder={placehodler}
       variant={type}
       size={sizes[size]}
-      borderColor={borderColor && '#eee'}
+      borderColor={borderColor}
     ></Input>
   );
 };
