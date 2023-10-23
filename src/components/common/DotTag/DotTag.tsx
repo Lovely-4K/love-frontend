@@ -1,4 +1,5 @@
 import { Icon, IconProps } from '@chakra-ui/react';
+import { memo } from 'react';
 
 interface DotTagProps {
   size?: 'sm' | 'md' | 'lg';
@@ -11,7 +12,7 @@ const sizes = {
   lg: '2rem',
 };
 
-const DotTag = ({ size = 'sm', color = 'black' }: DotTagProps) => {
+const DotTag = memo(({ size = 'sm', color = 'black' }: DotTagProps) => {
   return (
     <Icon viewBox="0 0 200 200" boxSize={sizes[size]} color={color}>
       <path
@@ -20,6 +21,6 @@ const DotTag = ({ size = 'sm', color = 'black' }: DotTagProps) => {
       />
     </Icon>
   );
-};
+});
 
 export default DotTag;
