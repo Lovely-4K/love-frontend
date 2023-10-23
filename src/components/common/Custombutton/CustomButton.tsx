@@ -13,7 +13,7 @@ interface CustomButtonProps {
   content?: string;
   contentColor?: string;
   isLoading?: true | false;
-  iconImage?: React.ReactElement | null;
+  iconImage?: React.ReactElement | undefined;
 }
 
 const sizes = {
@@ -44,13 +44,14 @@ const CustomButton = ({
   content = '',
   contentColor = '#000',
   isLoading = false,
-  iconImage = null,
+  iconImage = undefined,
 }: CustomButtonProps) => {
   const buttonWidth = type === 'origin' ? sizes[size].width : '30px';
   const buttonHeight = type === 'origin' ? sizes[size].height : '30px';
   const borderRadius = type === 'origin' ? '10px' : '50%';
   const fontSize =
     size === 'extraLarge' ? '20px' : size === 'small' ? '12px' : '14px';
+
   return (
     <Button
       width={buttonWidth}
