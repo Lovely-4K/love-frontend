@@ -1,7 +1,7 @@
-import colors from './src/theme/colors';
-import btn from './src/theme/btn';
 import daisyui from 'daisyui';
 import theme from 'daisyui/src/theming/themes';
+import btn from './src/theme/btn';
+import colors from './src/theme/colors';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -17,6 +17,8 @@ export default {
         light: {
           ...btn,
           ...theme['[data-theme=light]'],
+          primary: colors.base.primary,
+          'primary-content': colors.base.white,
         },
       },
     ],
