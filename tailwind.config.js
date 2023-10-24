@@ -1,5 +1,6 @@
 import daisyui from 'daisyui';
 import theme from 'daisyui/src/theming/themes';
+import avatar from './src/theme/avatar';
 import btn from './src/theme/btn';
 import colors from './src/theme/colors';
 
@@ -15,6 +16,7 @@ export default {
     themes: [
       {
         light: {
+          ...avatar,
           ...btn,
           ...theme['[data-theme=light]'],
         },
