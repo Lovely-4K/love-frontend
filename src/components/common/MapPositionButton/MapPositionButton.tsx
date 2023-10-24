@@ -11,7 +11,7 @@ const MapPositionButton = memo(
       <>
         <button
           onClick={onClick}
-          className="bg-base-white btn btn-circle shadow-md"
+          className="btn btn-circle bg-base-white shadow-md"
           {...props}
         >
           <IconPosition
