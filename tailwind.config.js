@@ -1,7 +1,10 @@
 import daisyui from 'daisyui';
 import theme from 'daisyui/src/theming/themes';
+import avatar from './src/theme/avatar';
 import btn from './src/theme/btn';
 import colors from './src/theme/colors';
+import img from './src/theme/img';
+import input from './src/theme/input';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -15,10 +18,13 @@ export default {
     themes: [
       {
         light: {
-          ...btn,
           ...theme['[data-theme=light]'],
           primary: colors.base.primary,
           'primary-content': colors.base.white,
+          ...avatar,
+          ...input,
+          ...btn,
+          ...img,
         },
       },
     ],
