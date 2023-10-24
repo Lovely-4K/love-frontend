@@ -3,6 +3,7 @@ import theme from 'daisyui/src/theming/themes';
 import btn from './src/theme/btn';
 import colors from './src/theme/colors';
 import img from './src/theme/img';
+import input from './src/theme/input';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -17,6 +18,7 @@ export default {
       {
         light: {
           ...theme['[data-theme=light]'],
+          ...input,
           ...btn,
           ...img,
         },
