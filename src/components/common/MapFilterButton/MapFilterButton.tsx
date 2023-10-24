@@ -25,19 +25,22 @@ const IconAll = memo(() => {
 
 const MapFilterButton = memo(
   ({ onClick, type, ...props }: MapFilterButtonProps) => {
+    const IconElement =
+      type === 'all' ? (
+        <IconAll />
+      ) : type === 'visited' ? (
+        <IconHeart className={iconStyles.visited} />
+      ) : (
+        <IconHeart className={iconStyles.unvisited} />
+      );
+
     return (
       <button
         onClick={onClick}
         className="btn btn-circle bg-base-white shadow-md"
         {...props}
       >
-        {type === 'all' ? (
-          <IconAll />
-        ) : type === 'visited' ? (
-          <IconHeart className={iconStyles.visited} />
-        ) : (
-          <IconHeart className={iconStyles.unvisited} />
-        )}
+        {IconElement}
       </button>
     );
   },

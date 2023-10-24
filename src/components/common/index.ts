@@ -1,2 +1,2 @@
 export * from './MapFilterButton';
-export * from './MapPositionButton';
+export * from './MapCurPosButton';
