@@ -1,7 +1,11 @@
 const colors = {
-  primary: '#F95656',
-  secondary: '#FF938B',
-  blue: '#5697F9',
+  base: {
+    primary: '#F95656',
+    secondary: '#FF938B',
+    blue: '#5697F9',
+    white: '#FFFFFF',
+    black: '#000000',
+  },
   brand: {
     kakao: '#FFE922',
     naver: '#11C56E',
@@ -21,7 +25,5 @@ const colors = {
     400: '#989898',
     500: '#707070',
   },
-  white: '#FFFFFF',
-  black: '#000000',
 };
 export default colors;
