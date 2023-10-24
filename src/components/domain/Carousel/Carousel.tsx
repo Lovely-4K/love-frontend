@@ -11,9 +11,9 @@ const Carousel = memo(({ pictures }: CarouselProps) => {
   const handleScroll = () => {
     if (carouselRef.current === null) return;
 
-    const index = Math.round(
-      carouselRef.current.scrollLeft / carouselRef.current.clientWidth,
-    );
+    const { scrollLeft, clientWidth } = carouselRef.current;
+
+    const index = Math.round(scrollLeft / clientWidth);
     setActiveIndex(index);
   };
 
