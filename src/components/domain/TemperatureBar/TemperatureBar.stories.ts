@@ -5,11 +5,7 @@ const meta: Meta<typeof TemperatureBar> = {
   title: 'Components/Common/TemperatureBar',
   component: TemperatureBar,
   tags: ['autodocs'],
-  argTypes: {
-    horizontal: {
-      control: { type: 'boolean' },
-    },
-  },
+  argTypes: {},
 };
 
 export default meta;
