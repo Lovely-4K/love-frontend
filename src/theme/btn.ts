@@ -2,7 +2,6 @@ const btn = {
   '.btn-extra-large': {
     width: '23.875rem',
     height: '4.625rem',
-    'flex-shirink': '1',
     'font-size': '1.25rem',
   },
   '.btn-large': {
