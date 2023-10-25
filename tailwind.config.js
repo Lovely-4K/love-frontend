@@ -3,6 +3,7 @@ import theme from 'daisyui/src/theming/themes';
 import avatar from './src/theme/avatar';
 import btn from './src/theme/btn';
 import colors from './src/theme/colors';
+import font from './src/theme/font';
 import img from './src/theme/img';
 import input from './src/theme/input';
 
@@ -25,6 +26,7 @@ export default {
           ...input,
           ...btn,
           ...img,
+          ...font,
         },
       },
     ],
