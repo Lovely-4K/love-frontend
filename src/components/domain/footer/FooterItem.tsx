@@ -15,7 +15,7 @@ const FooterItem = ({ svg, label }: FooterItemProps) => {
           <SvgComponent className="w-10 stroke-base-black " />
         </div>
         <div className="[25%] flex w-full justify-center">
-          <span className="btm-nav-label">{label}</span>
+          <span className="font-medium btm-nav-label">{label}</span>
         </div>
       </div>
     </button>

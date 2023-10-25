@@ -1,15 +1,15 @@
 const font = {
   '.font-title': {
-    'font-size': '20px',
+    'font-size': '1.25rem',
   },
   '.font-large': {
-    'font-size': '16px',
+    'font-size': '1rem',
   },
   '.font-medium': {
-    'font-size': '14px',
+    'font-size': '0.875rem',
   },
   'font-small': {
-    'font-size': '12px',
+    'font-size': '0.75rem',
   },
 };
 
