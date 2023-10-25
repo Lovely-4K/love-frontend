@@ -4,11 +4,11 @@ import { IconHome, IconCalendar, IconDiary } from '~/assets/icons';
 const Footer = () => {
   return (
     <div className="flex h-28 w-screen items-center justify-between lg:h-screen lg:w-28 lg:flex-col lg:justify-start">
-      <FooterItem svg={IconHome} label={'홈'} />
-      <FooterItem svg={IconCalendar} label={'다이어리'} />
-      <FooterItem svg={IconDiary} label={'캘린더'} />
-      <FooterItem svg={IconHome} label={'홈'} />
-      <FooterItem svg={IconHome} label={'홈'} />
+      <FooterItem url={'/'} svg={IconHome} label={'홈'} />
+      <FooterItem url={'/diary'} svg={IconCalendar} label={'다이어리'} />
+      <FooterItem url={'/calendar'} svg={IconDiary} label={'캘린더'} />
+      <FooterItem url={'/question'} svg={IconHome} label={'질문하기'} />
+      <FooterItem url={'/setting'} svg={IconHome} label={'환경설정'} />
     </div>
   );
 };
