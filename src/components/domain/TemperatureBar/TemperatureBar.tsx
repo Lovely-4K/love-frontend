@@ -7,7 +7,7 @@ interface TemperatureBarProps {
 
 const TemperatureBar = ({ percent = 10 }: TemperatureBarProps) => {
   const [horizontal, setHorizontal] = useState(window.innerWidth <= 428);
-  const modifiedPercent = percent >= 99 ? 98.7 : percent <= 1 ? 1.9 : percent;
+  const modifiedPercent = percent >= 99 ? 98 : percent <= 2 ? 2.3 : percent;
 
   const wrapperStyle = horizontal
     ? 'bg-grey-100 h-4 w-full'
@@ -19,8 +19,8 @@ const TemperatureBar = ({ percent = 10 }: TemperatureBarProps) => {
   };
 
   const iconBoxStyle = horizontal
-    ? '-right-[0.94rem] -top-[0.49rem]'
-    : '-right-[0.49rem] -top-[0.94rem]';
+    ? '-right-[0.94rem] -top-[0.74rem]'
+    : '-right-[0.74rem] -top-[1.3rem]';
 
   useEffect(() => {
     const handleResize = () => {
@@ -36,9 +36,9 @@ const TemperatureBar = ({ percent = 10 }: TemperatureBarProps) => {
 
   return (
     <div className={`${wrapperStyle} relative flex flex-col-reverse`}>
-      <div className="bg-base-primary relative" style={progressStyle}>
+      <div className="relative bg-base-primary" style={progressStyle}>
         <IconHeart
-          className={`fill-base-primary stroke-base-primary absolute h-8 w-8 ${iconBoxStyle}`}
+          className={`absolute h-[2.5rem] w-[2.5rem] fill-base-primary stroke-base-primary ${iconBoxStyle}`}
         />
       </div>
     </div>
