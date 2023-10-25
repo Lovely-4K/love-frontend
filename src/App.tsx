@@ -1,5 +1,11 @@
+import { Login } from './pages';
+
 const App = () => {
-  return <></>;
+  return (
+    <>
+      <Login />
+    </>
+  );
 };
 
 export default App;

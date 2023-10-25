@@ -1,11 +1,6 @@
 import daisyui from 'daisyui';
 import theme from 'daisyui/src/theming/themes';
-import avatar from './src/theme/avatar';
-import btn from './src/theme/btn';
-import colors from './src/theme/colors';
-import font from './src/theme/font';
-import img from './src/theme/img';
-import input from './src/theme/input';
+import { avatar, btn, colors, font, img, input } from './src/theme';
 
 /** @type {import('tailwindcss').Config} */
 export default {
