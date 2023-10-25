@@ -4,7 +4,7 @@ const categories = ['cafe', 'food', 'sleep', 'culture', 'etc'] as const;
 
 const CategoryList = () => {
   return (
-    <ul className="flex w-full gap-5">
+    <ul className="flex w-full gap-6">
       {categories.map((category) => (
         <li key={category}>
           <CategoryButton type={category} active={false} />

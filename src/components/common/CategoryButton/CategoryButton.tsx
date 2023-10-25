@@ -26,7 +26,7 @@ const CategoryButton = ({
     : 'border-grey-300 bg-base-white fill-grey-300 stroke-grey-300';
 
   return (
-    <button onClick={onClick} className="flex w-11 flex-col items-center">
+    <button onClick={onClick} className="flex w-11 flex-col items-center gap-2">
       <button
         className={`flex h-[1.875rem] w-[1.875rem] items-center justify-center rounded-full border-[1px] ${activeStyle}`}
         {...props}
