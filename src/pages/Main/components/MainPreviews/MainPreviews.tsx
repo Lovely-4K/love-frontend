@@ -5,7 +5,7 @@ import MainPreivewQuestion from './MainPreviewQuestion';
 
 const MainPreviews = () => {
   return (
-    <div>
+    <div className="flex w-[90%] flex-col lg:flex-row">
       <MainPreviewItem
         pageLink={'/calendar'}
         title={'다가오는 일정 →'}
