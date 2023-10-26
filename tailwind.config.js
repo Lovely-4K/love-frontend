@@ -10,7 +10,7 @@ export default {
     colors,
     extend: {},
   },
-  plugins: [daisyui, scrollbar],
+  plugins: [daisyui, scrollbar({ nocompatible: true })],
   daisyui: {
     themes: [
       {
