@@ -1,9 +1,10 @@
-import { MainCouple } from '~/pages/Main/components';
+import { MainCouple, MainSolo } from '~/pages/Main/components';
 
 const MainPage = () => {
   return (
     <>
-      <MainCouple />
+      {/* <MainCouple /> */}
+      <MainSolo />
     </>
   );
 };
