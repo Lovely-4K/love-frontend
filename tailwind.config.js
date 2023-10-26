@@ -1,5 +1,6 @@
 import daisyui from 'daisyui';
 import theme from 'daisyui/src/theming/themes';
+import scrollbar from 'tailwind-scrollbar-hide';
 import { avatar, btn, colors, font, img, input } from './src/theme';
 
 /** @type {import('tailwindcss').Config} */
@@ -9,7 +10,7 @@ export default {
     colors,
     extend: {},
   },
-  plugins: [daisyui],
+  plugins: [daisyui, scrollbar],
   daisyui: {
     themes: [
       {
@@ -17,6 +18,7 @@ export default {
           ...theme['[data-theme=light]'],
           primary: colors.base.primary,
           'primary-content': colors.base.white,
+
           ...avatar,
           ...input,
           ...btn,
