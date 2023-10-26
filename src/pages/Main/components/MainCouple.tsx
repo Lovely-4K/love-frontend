@@ -5,10 +5,10 @@ const MainCouple = () => {
   return (
     <div className="min-w-[23.43rem] px-7 py-5">
       <div className="mb-5 flex justify-end gap-[0.625rem]">
-        <button className="btn-small rounded-xl border border-grey-200 bg-base-white font-bold text-grey-400 lg:btn-medium">
+        <button className="btn-small w-full rounded-xl border border-grey-200 bg-base-white font-bold text-grey-400 lg:btn-medium">
           프로필 수정
         </button>
-        <button className="btn-small rounded-xl border border-grey-200 bg-base-white font-bold text-grey-400 lg:btn-medium">
+        <button className="btn-small w-full rounded-xl border border-grey-200 bg-base-white font-bold text-grey-400 lg:btn-medium">
           디데이 수정
         </button>
       </div>
