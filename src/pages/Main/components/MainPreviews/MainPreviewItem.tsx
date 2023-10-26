@@ -17,9 +17,7 @@ const MainPreviewItem = ({
       <Link to={pageLink}>
         <div className="font-title my-2 font-bold">{title}</div>
       </Link>
-      <div className="scrollbar-hide overflow-x-scroll lg:overflow-x-hidden lg:overflow-y-scroll ">
-        {content}
-      </div>
+      {content}
     </div>
   );
 };
