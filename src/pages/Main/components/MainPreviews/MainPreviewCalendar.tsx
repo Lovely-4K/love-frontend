@@ -1,4 +1,6 @@
-const MainPreivewCalendar = () => {
+import { CalendarScheduleItem } from '~/components/domain';
+
+const MainPreviewCalendar = () => {
   return (
     <>
       <CalendarScheduleItem />
@@ -9,4 +11,4 @@ const MainPreivewCalendar = () => {
   );
 };
 
-export default MainPreivewCalendar;
+export default MainPreviewCalendar;
