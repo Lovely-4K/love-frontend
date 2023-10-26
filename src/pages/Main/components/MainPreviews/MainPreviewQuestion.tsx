@@ -9,7 +9,7 @@ const MainPreivewQuestion = () => {
       <div>
         <div>세미콜론 쓰기 vs 안 쓰기</div>
         <Link to="/question">
-          <div>답변하러 가기</div>
+          <div>답변하러 가기 →</div>
         </Link>
       </div>
     </div>
