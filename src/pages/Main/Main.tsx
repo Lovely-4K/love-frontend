@@ -1,5 +1,11 @@
+import { MainPreviews } from './components';
+
 const MainPage = () => {
-  return <></>;
+  return (
+    <div>
+      <MainPreviews />
+    </div>
+  );
 };
 
 export default MainPage;
