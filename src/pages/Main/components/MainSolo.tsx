@@ -25,7 +25,7 @@ const MainSolo = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center gap-14 px-4 pt-20">
+      <div className="flex w-full flex-col items-center  gap-14 px-4 pt-20">
         <MainProfile
           name="정"
           mbti="ISFJ"
