@@ -6,7 +6,7 @@ export interface UserInfo {
   MBTI: string;
 }
 
-export interface EditItemProps {
+export interface ProfileItemProps {
   activeEdit: boolean;
   userInfo: UserInfo;
   setUserInfo: React.Dispatch<React.SetStateAction<UserInfo>>;

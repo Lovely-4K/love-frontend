@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import EditContainer from './EditContainer';
+import ProfileContainer from './ProfileContainer';
 import useModal from '~/hooks/useModal';
 
-const MainEditModal = () => {
+const MainProfileModal = () => {
   const { openModal, closeModal, Modal } = useModal();
 
   useEffect(() => {
@@ -22,10 +22,10 @@ const MainEditModal = () => {
           ✕
         </button>
         <div className="h-36 bg-personal-blue" />
-        <EditContainer />
+        <ProfileContainer />
       </Modal>
     </>
   );
 };
 
-export default MainEditModal;
+export default MainProfileModal;

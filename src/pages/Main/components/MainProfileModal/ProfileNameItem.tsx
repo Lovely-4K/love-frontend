@@ -1,8 +1,12 @@
-import type { EditItemProps, UserInfo } from './EditItemType';
+import type { ProfileItemProps, UserInfo } from './ProfileItemType';
 import { ChangeEvent } from 'react';
-import EditItemWrapper from './EditItemWrapper';
+import EditItemWrapper from './ProfileItemWrapper';
 
-const EditNameItem = ({ activeEdit, userInfo, setUserInfo }: EditItemProps) => {
+const ProfileNameItem = ({
+  activeEdit,
+  userInfo,
+  setUserInfo,
+}: ProfileItemProps) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = event.target;
 
@@ -38,4 +42,4 @@ const EditNameItem = ({ activeEdit, userInfo, setUserInfo }: EditItemProps) => {
   );
 };
 
-export default EditNameItem;
+export default ProfileNameItem;

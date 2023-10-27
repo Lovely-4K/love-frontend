@@ -1,7 +1,11 @@
-import type { EditItemProps } from './EditItemType';
+import type { ProfileItemProps } from './ProfileItemType';
 import { IconCamera } from '~/assets/icons';
 
-const EditAvatar = ({ activeEdit, userInfo, setUserInfo }: EditItemProps) => {
+const ProfileAvatar = ({
+  activeEdit,
+  userInfo,
+  setUserInfo,
+}: ProfileItemProps) => {
   const activeStyle = activeEdit ? 'hover:cursor-pointer' : 'cursor-default';
 
   return (
@@ -18,4 +22,4 @@ const EditAvatar = ({ activeEdit, userInfo, setUserInfo }: EditItemProps) => {
   );
 };
 
-export default EditAvatar;
+export default ProfileAvatar;

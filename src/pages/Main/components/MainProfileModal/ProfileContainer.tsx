@@ -1,10 +1,10 @@
-import type { UserInfo } from './EditItemType';
+import type { UserInfo } from './ProfileItemType';
 import { useState } from 'react';
-import EditAvatar from './EditAvatar';
-import EditBirthdayItem from './EditBirthdayItem';
-import EditColorItem from './EditColorItem';
-import EditMbtiItem from './EditMbtiItem';
-import EditNameItem from './EditNameItem';
+import ProfileAvatar from './ProfileAvatar';
+import ProfileBirthdayItem from './ProfileBirthdayItem';
+import ProfileColorItem from './ProfileColorItem';
+import ProfileMbtiItem from './ProfileMbtiItem';
+import ProfileNameItem from './ProfileNameItem';
 
 interface EditContainerProps {
   initialUserInfo?: UserInfo;
@@ -33,7 +33,7 @@ const EditContainer = ({ initialUserInfo }: EditContainerProps) => {
 
   return (
     <>
-      <EditAvatar
+      <ProfileAvatar
         activeEdit={activeEdit}
         userInfo={userInfo}
         setUserInfo={setUserInfo}
@@ -46,22 +46,22 @@ const EditContainer = ({ initialUserInfo }: EditContainerProps) => {
         >
           {activeEdit ? '프로필 저장' : '프로필 수정'}
         </button>
-        <EditNameItem
+        <ProfileNameItem
           activeEdit={activeEdit}
           userInfo={userInfo}
           setUserInfo={setUserInfo}
         />
-        <EditColorItem
+        <ProfileColorItem
           activeEdit={activeEdit}
           userInfo={userInfo}
           setUserInfo={setUserInfo}
         />
-        <EditBirthdayItem
+        <ProfileBirthdayItem
           activeEdit={activeEdit}
           userInfo={userInfo}
           setUserInfo={setUserInfo}
         />
-        <EditMbtiItem
+        <ProfileMbtiItem
           activeEdit={activeEdit}
           userInfo={userInfo}
           setUserInfo={setUserInfo}

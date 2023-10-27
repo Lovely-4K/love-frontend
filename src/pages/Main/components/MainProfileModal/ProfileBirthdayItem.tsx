@@ -1,12 +1,12 @@
-import type { EditItemProps } from './EditItemType';
+import type { ProfileItemProps } from './ProfileItemType';
 import BirthdayDropdown from './BirthdayDropdown';
-import EditItemWrapper from './EditItemWrapper';
+import EditItemWrapper from './ProfileItemWrapper';
 
-const EditBirthdayItem = ({
+const ProfileBirthdayItem = ({
   activeEdit,
   userInfo,
   setUserInfo,
-}: EditItemProps) => {
+}: ProfileItemProps) => {
   const currentTime = new Date();
 
   const [year, month, day] = userInfo.birthday.split('-');
@@ -76,4 +76,4 @@ const EditBirthdayItem = ({
   );
 };
 
-export default EditBirthdayItem;
+export default ProfileBirthdayItem;

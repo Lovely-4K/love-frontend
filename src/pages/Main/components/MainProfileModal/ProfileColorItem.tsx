@@ -1,11 +1,11 @@
-import type { EditItemProps } from './EditItemType';
-import EditItemWrapper from './EditItemWrapper';
+import type { ProfileItemProps } from './ProfileItemType';
+import EditItemWrapper from './ProfileItemWrapper';
 
-const EditColorItem = ({
+const ProfileColorItem = ({
   activeEdit,
   userInfo,
   setUserInfo,
-}: EditItemProps) => {
+}: ProfileItemProps) => {
   /** @todo color 형식 변경과 setUserInfo 추가 */
   return (
     <EditItemWrapper label="color" title="사랑의 색깔">
@@ -33,4 +33,4 @@ const EditColorItem = ({
   );
 };
 
-export default EditColorItem;
+export default ProfileColorItem;

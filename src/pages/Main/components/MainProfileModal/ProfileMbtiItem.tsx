@@ -1,10 +1,10 @@
-import type { EditItemProps } from './EditItemType';
+import type { ProfileItemProps } from './ProfileItemType';
 import { memo } from 'react';
-import EditItemWrapper from './EditItemWrapper';
 import MbtiButton from './MbtiButton';
+import EditItemWrapper from './ProfileItemWrapper';
 
-const EditMbtiItem = memo(
-  ({ activeEdit, userInfo, setUserInfo }: EditItemProps) => {
+const ProfileMbtiItem = memo(
+  ({ activeEdit, userInfo, setUserInfo }: ProfileItemProps) => {
     console.log(userInfo.MBTI);
 
     return (
@@ -18,4 +18,4 @@ const EditMbtiItem = memo(
   },
 );
 
-export default EditMbtiItem;
+export default ProfileMbtiItem;
