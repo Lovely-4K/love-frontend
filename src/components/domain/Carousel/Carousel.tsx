@@ -45,7 +45,7 @@ const Carousel = memo(({ pictures }: CarouselProps) => {
             key={index}
             onClick={() => handleButtonClick(index)}
             className={`h-3 w-3 rounded-full ${
-              index === activeIndex ? 'bg-black' : 'bg-gray-500'
+              index === activeIndex ? 'bg-base-primary' : 'bg-grey-500'
             }`}
           />
         ))}
