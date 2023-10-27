@@ -1,6 +1,6 @@
 import type { ProfileItemProps, UserInfo } from './ProfileItemType';
 import { ChangeEvent } from 'react';
-import EditItemWrapper from './ProfileItemWrapper';
+import ProfileItemWrapper from './ProfileItemWrapper';
 
 const ProfileNameItem = ({
   activeEdit,
@@ -18,7 +18,7 @@ const ProfileNameItem = ({
 
   return (
     <>
-      <EditItemWrapper label="name" title="이름">
+      <ProfileItemWrapper label="name" title="이름">
         <input
           id="name"
           readOnly={!activeEdit}
@@ -27,8 +27,8 @@ const ProfileNameItem = ({
           value={userInfo.name}
           onChange={handleChange}
         />
-      </EditItemWrapper>
-      <EditItemWrapper label="nickname" title="닉네임">
+      </ProfileItemWrapper>
+      <ProfileItemWrapper label="nickname" title="닉네임">
         <input
           id="nickname"
           readOnly={!activeEdit}
@@ -37,7 +37,7 @@ const ProfileNameItem = ({
           value={userInfo.nickname}
           onChange={handleChange}
         />
-      </EditItemWrapper>
+      </ProfileItemWrapper>
     </>
   );
 };

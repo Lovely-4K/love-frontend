@@ -1,5 +1,5 @@
 import type { ProfileItemProps } from './ProfileItemType';
-import EditItemWrapper from './ProfileItemWrapper';
+import ProfileItemWrapper from './ProfileItemWrapper';
 
 const ProfileColorItem = ({
   activeEdit,
@@ -8,7 +8,7 @@ const ProfileColorItem = ({
 }: ProfileItemProps) => {
   /** @todo color 형식 변경과 setUserInfo 추가 */
   return (
-    <EditItemWrapper label="color" title="사랑의 색깔">
+    <ProfileItemWrapper label="color" title="사랑의 색깔">
       <div className="dropdown">
         <div
           tabIndex={0}
@@ -29,7 +29,7 @@ const ProfileColorItem = ({
           </div>
         )}
       </div>
-    </EditItemWrapper>
+    </ProfileItemWrapper>
   );
 };
 

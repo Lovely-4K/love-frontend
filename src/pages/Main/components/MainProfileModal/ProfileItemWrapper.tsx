@@ -1,12 +1,12 @@
 import { PropsWithChildren, memo } from 'react';
 
-interface EditInputProps extends PropsWithChildren {
+interface ProfileItemProps extends PropsWithChildren {
   label?: string;
   title: string;
 }
 
 const ProfileItemWrapper = memo(
-  ({ label, title, children }: EditInputProps) => {
+  ({ label, title, children }: ProfileItemProps) => {
     return (
       <>
         <div className="flex items-center px-4">

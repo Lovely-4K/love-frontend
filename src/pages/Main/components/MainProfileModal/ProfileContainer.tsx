@@ -6,11 +6,11 @@ import ProfileColorItem from './ProfileColorItem';
 import ProfileMbtiItem from './ProfileMbtiItem';
 import ProfileNameItem from './ProfileNameItem';
 
-interface EditContainerProps {
+interface ProfileContainerProps {
   initialUserInfo?: UserInfo;
 }
 
-const EditContainer = ({ initialUserInfo }: EditContainerProps) => {
+const ProfileContainer = ({ initialUserInfo }: ProfileContainerProps) => {
   /** @todo input value값 설정하기 */
   const [activeEdit, setActiveEdit] = useState(false);
   const [userInfo, setUserInfo] = useState({
@@ -71,4 +71,4 @@ const EditContainer = ({ initialUserInfo }: EditContainerProps) => {
   );
 };
 
-export default EditContainer;
+export default ProfileContainer;

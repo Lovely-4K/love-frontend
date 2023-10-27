@@ -1,6 +1,6 @@
 import type { ProfileItemProps } from './ProfileItemType';
 import BirthdayDropdown from './BirthdayDropdown';
-import EditItemWrapper from './ProfileItemWrapper';
+import ProfileItemWrapper from './ProfileItemWrapper';
 
 const ProfileBirthdayItem = ({
   activeEdit,
@@ -43,7 +43,7 @@ const ProfileBirthdayItem = ({
   };
 
   return (
-    <EditItemWrapper label="birthday" title="생일">
+    <ProfileItemWrapper label="birthday" title="생일">
       {activeEdit ? (
         <>
           <BirthdayDropdown
@@ -72,7 +72,7 @@ const ProfileBirthdayItem = ({
           <span className="mx-1">{day} 일</span>
         </>
       )}
-    </EditItemWrapper>
+    </ProfileItemWrapper>
   );
 };
 
