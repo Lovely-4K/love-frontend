@@ -8,7 +8,7 @@ const font = {
   '.font-medium': {
     'font-size': '0.875rem',
   },
-  'font-small': {
+  '.font-small': {
     'font-size': '0.75rem',
   },
 };
