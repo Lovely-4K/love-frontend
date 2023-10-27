@@ -13,7 +13,7 @@ module.exports = {
   ignorePatterns: ['dist', '.eslintrc.cjs', 'vite.config.ts'],
   parser: '@typescript-eslint/parser',
   parserOptions: { tsconfigRootDir: __dirname },
-  plugins: ['react-refresh', 'import'],
+  plugins: ['react-refresh', 'import', '@emotion'],
   rules: {
     'react-refresh/only-export-components': [
       'warn',
@@ -49,5 +49,7 @@ module.exports = {
         alphabetize: { order: 'asc', caseInsensitive: true },
       },
     ],
+    '@emotion/jsx-import': 'error',
+    '@emotion/pkg-renaming': 'error',
   },
 };

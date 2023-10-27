@@ -19,6 +19,9 @@
     "react-router-dom": "^6.17.0"
   },
   "devDependencies": {
+    "@emotion/eslint-plugin": "^11.11.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@rushstack/eslint-config": "^3.4.1",
     "@storybook/addon-essentials": "^7.5.0",
     "@storybook/addon-interactions": "^7.5.0",

@@ -17,6 +17,7 @@ export default {
           ...theme['[data-theme=light]'],
           primary: colors.base.primary,
           'primary-content': colors.base.white,
+
           ...avatar,
           ...input,
           ...btn,
