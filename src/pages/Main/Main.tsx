@@ -8,11 +8,15 @@ const MainPageContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media screen and (min-width: 768px) {
+    align-items: center;
+  }
 `;
 
 const MainPage = () => {
   return (
-    <MainPageContainer className="md:items-center">
+    <MainPageContainer>
       <MainPreviews />
     </MainPageContainer>
   );

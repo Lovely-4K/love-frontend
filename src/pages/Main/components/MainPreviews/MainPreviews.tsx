@@ -11,13 +11,15 @@ const MainPreviewContainer = styled.div`
   flex-direction: column;
 
   @media screen and (min-width: 768px) {
+    max-width: 64rem;
     flex-direction: row;
+    justify-content: center;
   }
 `;
 
 const MainPreviews = () => {
   return (
-    <MainPreviewContainer className="md:max-w-5xl md:flex-row md:justify-center">
+    <MainPreviewContainer>
       <MainPreviewItem
         pageLink={'/calendar'}
         title={'다가오는 일정 →'}
