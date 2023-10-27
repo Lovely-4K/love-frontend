@@ -25,8 +25,4 @@ const btn = {
   },
 };
 
-const colors = {
-  'personal-pink': 'bg-personal-${color}',
-};
-
 export default btn;
