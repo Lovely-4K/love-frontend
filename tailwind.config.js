@@ -1,6 +1,5 @@
 import daisyui from 'daisyui';
 import theme from 'daisyui/src/theming/themes';
-import scrollbar from 'tailwind-scrollbar';
 import { avatar, btn, colors, font, img, input } from './src/theme';
 
 /** @type {import('tailwindcss').Config} */
@@ -10,7 +9,7 @@ export default {
     colors,
     extend: {},
   },
-  plugins: [daisyui, scrollbar({ nocompatible: true })],
+  plugins: [daisyui],
   daisyui: {
     themes: [
       {
