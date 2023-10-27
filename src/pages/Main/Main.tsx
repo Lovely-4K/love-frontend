@@ -1,11 +1,10 @@
-import { MainCouple, MainSolo } from '~/pages/Main/components';
+import { MainPreviews } from './components';
 
 const MainPage = () => {
   return (
-    <>
-      {/* <MainCouple /> */}
-      <MainSolo />
-    </>
+    <div className="flex h-full w-full flex-shrink flex-col justify-center overflow-y-auto overflow-x-hidden md:items-center">
+      <MainPreviews />
+    </div>
   );
 };
 

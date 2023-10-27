@@ -5,6 +5,7 @@ const colors = {
     blue: '#5697F9',
     white: '#FFFFFF',
     black: '#000000',
+    deem: '#00000073',
   },
   brand: {
     kakao: '#FFE922',
