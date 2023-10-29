@@ -14,10 +14,9 @@ const CalendarScheduleItemContainer = styled.div`
   width: 15.385rem;
   flex-shrink: 0;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   border-radius: 0.75rem;
-  padding: 2rem 5rem;
+  padding: 0.5rem 2rem;
 `;
 
 const CalendarScheduleItem = ({
