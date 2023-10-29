@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { IconCopyLink } from '~/assets/icons';
-import { MainProfile } from '~/pages/Main/components';
+import MainProfile from '~/pages/Main/components/MainProfile';
 
 const MainSolo = () => {
   const [linkToggle, setLinkToggle] = useState(false);
