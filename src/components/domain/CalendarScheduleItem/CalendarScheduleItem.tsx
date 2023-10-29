@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import { colors } from '~/theme';
 
 interface CalendarScheulItemProps {
@@ -5,6 +6,19 @@ interface CalendarScheulItemProps {
   date: string;
   title: string;
 }
+
+const CalendarScheduleItemContainer = styled.div`
+  margin: 0.5rem;
+  display: flex;
+  height: 4rem;
+  width: 15.385rem;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  padding: 2rem 5rem;
+`;
 
 const CalendarScheduleItem = ({
   customColor,
@@ -14,8 +28,8 @@ const CalendarScheduleItem = ({
   const { personal } = colors;
 
   return (
-    <div
-      className={`m-2 flex h-[4rem] w-[15.385rem] flex-shrink-0 flex-col items-center justify-center rounded-xl border border-solid bg-base-white px-5 py-2`}
+    <CalendarScheduleItemContainer
+      className="border border-solid bg-base-white"
       style={{ borderColor: personal[customColor] }}
     >
       <div className="font-small w-full text-grey-400">{date}</div>
@@ -25,7 +39,7 @@ const CalendarScheduleItem = ({
       >
         {title}
       </div>
-    </div>
+    </CalendarScheduleItemContainer>
   );
 };
 
