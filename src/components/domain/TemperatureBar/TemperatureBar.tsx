@@ -1,30 +1,41 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { IconHeart } from '~/assets/icons';
+
+const DESKTOP_WIDTH = 1024;
 
 interface TemperatureBarProps {
   percent: number;
 }
 
-const TemperatureBar = ({ percent = 10 }: TemperatureBarProps) => {
-  const [horizontal, setHorizontal] = useState(window.innerWidth <= 428);
-  const modifiedPercent = percent >= 99 ? 98 : percent <= 2 ? 2.3 : percent;
+const TemperatureBar = ({ percent = 0 }: TemperatureBarProps) => {
+  const [horizontal, setHorizontal] = useState(
+    window.innerWidth <= DESKTOP_WIDTH,
+  );
 
-  const wrapperStyle = horizontal
-    ? 'bg-grey-100 h-4 w-full'
-    : 'bg-grey-100 h-screen max-h-screen w-4';
+  const getModifiedPercent = useCallback(
+    (percent: number) => {
+      if (percent >= 99) {
+        return horizontal ? 95 : 99;
+      }
+      if (percent < 2.5) {
+        return horizontal ? 4 : 2.5;
+      }
+
+      return percent;
+    },
+    [horizontal],
+  );
+
+  const modifiedPercent = getModifiedPercent(percent);
 
   const progressStyle = {
     width: horizontal ? `${modifiedPercent}%` : '1rem',
     height: horizontal ? '1rem' : `${modifiedPercent}%`,
   };
 
-  const iconBoxStyle = horizontal
-    ? '-right-[0.94rem] -top-[0.74rem]'
-    : '-right-[0.74rem] -top-[1.3rem]';
-
   useEffect(() => {
     const handleResize = () => {
-      setHorizontal(window.innerWidth <= 428);
+      setHorizontal(window.innerWidth <= DESKTOP_WIDTH);
     };
 
     window.addEventListener('resize', handleResize);
@@ -35,11 +46,9 @@ const TemperatureBar = ({ percent = 10 }: TemperatureBarProps) => {
   }, []);
 
   return (
-    <div className={`${wrapperStyle} relative flex flex-col-reverse`}>
-      <div className="relative bg-base-primary" style={progressStyle}>
-        <IconHeart
-          className={`absolute h-[2.5rem] w-[2.5rem] fill-base-primary stroke-base-primary ${iconBoxStyle}`}
-        />
+    <div className="flex h-4 w-screen flex-col-reverse bg-grey-100 lg:h-screen lg:w-4">
+      <div className="relative h-4 bg-base-primary" style={progressStyle}>
+        <IconHeart className="absolute -top-3 right-0 h-10 w-10 translate-x-1/2 fill-base-primary stroke-base-primary lg:left-1/2 lg:-translate-x-1/2" />
       </div>
     </div>
   );

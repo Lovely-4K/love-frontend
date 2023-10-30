@@ -5,14 +5,14 @@ import { MainCouple, MainSolo } from './components';
 const MainPageContainer = styled.div`
   width: 100%;
   height: 100%;
-  flex-shrink: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 
-  @media screen and (min-width: 768px) {
+  /* @media screen and (min-width: 768px) {
     align-items: center;
-  }
+  } */
 `;
 
 const MainPage = () => {

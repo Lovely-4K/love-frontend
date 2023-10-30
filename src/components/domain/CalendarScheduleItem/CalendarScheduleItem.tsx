@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { colors } from '~/theme';
 
-interface CalendarScheulItemProps {
+interface CalendarScheduleItemProps {
   customColor: keyof typeof colors.personal;
   date: string;
   title: string;
@@ -28,7 +28,7 @@ const CalendarScheduleItem = ({
   customColor,
   date,
   title,
-}: CalendarScheulItemProps) => {
+}: CalendarScheduleItemProps) => {
   const { personal } = colors;
 
   return (

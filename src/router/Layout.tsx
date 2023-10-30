@@ -3,7 +3,7 @@ import { Footer } from '~/components/domain';
 
 const Layout = () => {
   return (
-    <div className="flex h-full w-full flex-shrink-0 flex-col-reverse lg:flex-row">
+    <div className="flex h-screen w-screen flex-shrink-0 flex-col-reverse lg:flex-row">
       <Footer />
       <Outlet />
     </div>
