@@ -1,20 +1,8 @@
-import type { ProfileItemProps, UserInfo } from './ProfileItemType';
-import { ChangeEvent } from 'react';
 import ProfileItemWrapper from './ProfileItemWrapper';
+import { useProfileModal } from '~/pages/Main/hooks';
 
-const ProfileNameItem = ({
-  activeEdit,
-  userInfo,
-  setUserInfo,
-}: ProfileItemProps) => {
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { id, value } = event.target;
-
-    setUserInfo((prevUserInfo: UserInfo) => ({
-      ...prevUserInfo,
-      [id]: value,
-    }));
-  };
+const ProfileNameItem = () => {
+  const { userInfo, handleInputChange, activeEdit } = useProfileModal();
 
   return (
     <>
@@ -25,7 +13,7 @@ const ProfileNameItem = ({
           type="text"
           className="font-large input m-0 h-5 w-full p-0 pl-1 focus:outline-none"
           value={userInfo.name}
-          onChange={handleChange}
+          onChange={handleInputChange}
         />
       </ProfileItemWrapper>
       <ProfileItemWrapper label="nickname" title="닉네임">
@@ -35,7 +23,7 @@ const ProfileNameItem = ({
           type="text"
           className="font-large input m-0 h-5 w-full p-0 pl-1 focus:outline-none"
           value={userInfo.nickname}
-          onChange={handleChange}
+          onChange={handleInputChange}
         />
       </ProfileItemWrapper>
     </>

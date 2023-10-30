@@ -1,71 +1,29 @@
-import type { UserInfo } from './ProfileItemType';
-import { useState } from 'react';
 import ProfileAvatar from './ProfileAvatar';
 import ProfileBirthdayItem from './ProfileBirthdayItem';
 import ProfileColorItem from './ProfileColorItem';
 import ProfileMbtiItem from './ProfileMbtiItem';
 import ProfileNameItem from './ProfileNameItem';
+import { useProfileModal } from '~/pages/Main/hooks';
 
-interface ProfileContainerProps {
-  initialUserInfo?: UserInfo;
-}
-
-const ProfileContainer = ({ initialUserInfo }: ProfileContainerProps) => {
-  /** @todo input value값 설정하기 */
-  const [activeEdit, setActiveEdit] = useState(false);
-  const [userInfo, setUserInfo] = useState({
-    name: '홍건우',
-    nickname: '비둘기',
-    color: '#0098cf',
-    birthday: '1995-11-11',
-    MBTI: 'INFJ',
-  });
-
-  const handleClick = () => {
-    if (activeEdit) {
-      setActiveEdit(false);
-
-      return;
-    }
-
-    setActiveEdit(true);
-  };
+const ProfileContainer = () => {
+  const { activeEdit, handleActiveEdit, userInfo } = useProfileModal();
 
   return (
     <>
-      <ProfileAvatar
-        activeEdit={activeEdit}
-        userInfo={userInfo}
-        setUserInfo={setUserInfo}
-      />
+      <div className="h-36" style={{ backgroundColor: userInfo.color }} />
+      <ProfileAvatar />
       <div className="relative -mt-28 flex flex-col p-6">
         <button
           className="font-medium btn btn-sm mb-6 self-end rounded-lg text-base-white"
-          style={{ backgroundColor: '#0098cf' }}
-          onClick={handleClick}
+          style={{ backgroundColor: userInfo.color }}
+          onClick={handleActiveEdit}
         >
           {activeEdit ? '프로필 저장' : '프로필 수정'}
         </button>
-        <ProfileNameItem
-          activeEdit={activeEdit}
-          userInfo={userInfo}
-          setUserInfo={setUserInfo}
-        />
-        <ProfileColorItem
-          activeEdit={activeEdit}
-          userInfo={userInfo}
-          setUserInfo={setUserInfo}
-        />
-        <ProfileBirthdayItem
-          activeEdit={activeEdit}
-          userInfo={userInfo}
-          setUserInfo={setUserInfo}
-        />
-        <ProfileMbtiItem
-          activeEdit={activeEdit}
-          userInfo={userInfo}
-          setUserInfo={setUserInfo}
-        />
+        <ProfileNameItem />
+        <ProfileColorItem />
+        <ProfileBirthdayItem />
+        <ProfileMbtiItem />
       </div>
     </>
   );

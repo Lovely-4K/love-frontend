@@ -4,33 +4,38 @@ interface MbtiButtonProps {
   position: 'left' | 'center' | 'right';
   topItem: 'E' | 'N' | 'F' | 'J';
   bottomItem: 'I' | 'S' | 'T' | 'P';
+  selected?: 'E' | 'I' | 'N' | 'S' | 'F' | 'T' | 'J' | 'P' | unknown;
 }
 
+const topItemStyle = {
+  left: 'rounded-ss-lg',
+  center: '',
+  right: 'rounded-se-lg',
+};
+
+const bottomItemStyle = {
+  left: 'rounded-es-lg',
+  center: '',
+  right: 'rounded-ee-lg',
+};
+
 const MbtiButton = memo(
-  ({ position, topItem, bottomItem }: MbtiButtonProps) => {
-    const topItemStyle =
-      position === 'left'
-        ? 'rounded-ss-lg'
-        : position === 'right'
-        ? 'rounded-se-lg'
-        : '';
-
-    const bottomItemStyle =
-      position === 'left'
-        ? 'rounded-es-lg'
-        : position === 'right'
-        ? 'rounded-ee-lg'
-        : '';
-
+  ({ position, topItem, bottomItem, selected }: MbtiButtonProps) => {
     return (
       <div className={`flex flex-col`}>
         <button
-          className={`h-8 w-8 bg-grey-300 text-base-white ${topItemStyle}`}
+          className={`h-8 w-8 bg-grey-200 ${
+            selected === topItem ? 'text-base-primary' : 'text-grey-400'
+          } ${topItemStyle[position]}`}
+          value={topItem}
         >
           {topItem}
         </button>
         <button
-          className={`h-8 w-8 bg-grey-300 text-base-white ${bottomItemStyle}`}
+          className={`h-8 w-8 bg-grey-200 ${
+            selected === bottomItem ? 'text-base-primary' : 'text-grey-400'
+          } ${bottomItemStyle[position]}`}
+          value={bottomItem}
         >
           {bottomItem}
         </button>
