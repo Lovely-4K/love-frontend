@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import useModal from '~/hooks/useModal';
 
-const IsNotCoupleModal = () => {
+const NotCoupleModal = () => {
   const { openModal, closeModal, Modal } = useModal();
 
   useEffect(() => {
@@ -25,4 +25,4 @@ const IsNotCoupleModal = () => {
   );
 };
 
-export default IsNotCoupleModal;
+export default NotCoupleModal;

@@ -1,6 +1,6 @@
 import MainProfile from '~/pages/Main/components/MainProfile';
 
-const InviteContainer = () => {
+const InviterProfile = () => {
   return (
     <>
       <div className="flex flex-col items-center justify-center gap-5">
@@ -17,4 +17,4 @@ const InviteContainer = () => {
   );
 };
 
-export default InviteContainer;
+export default InviterProfile;

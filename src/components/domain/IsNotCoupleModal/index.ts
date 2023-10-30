@@ -1,1 +1,1 @@
-export { default as IsNotCoupleModal } from './IsNotCoupleModal';
+export { default as NotCoupleModal } from './NotCoupleModal';

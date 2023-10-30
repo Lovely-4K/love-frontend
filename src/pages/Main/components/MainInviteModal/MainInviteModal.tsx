@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
+import InviterProfile from './InviterProfile';
 import useModal from '~/hooks/useModal';
-import InviteContainer from './InviteContainer';
 
 interface MainInviteModalProps {
   onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
@@ -16,7 +16,7 @@ const MainInviteModal = ({ onClick }: MainInviteModalProps) => {
   return (
     <>
       <Modal className="flex flex-col gap-10 py-10">
-        <InviteContainer />
+        <InviterProfile />
         <div className="flex justify-center gap-2">
           <button
             onClick={closeModal}
