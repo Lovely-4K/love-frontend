@@ -1,6 +1,17 @@
 import { useState } from 'react';
 import { IconCopyLink } from '~/assets/icons';
 import { MainProfile } from '~/pages/Main/components';
+import styled from '@emotion/styled';
+
+const MainSoloContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3.5rem;
+  padding: 1rem 2rem;
+  margin-top: 5rem;
+  width: 100%;
+`;
 
 const MainSolo = () => {
   const [linkToggle, setLinkToggle] = useState(false);
@@ -25,7 +36,7 @@ const MainSolo = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center gap-14 px-4 pt-20">
+      <MainSoloContainer>
         <MainProfile
           name="정"
           mbti="ISFJ"
@@ -43,7 +54,7 @@ const MainSolo = () => {
             초대 링크 발급하기
           </button>
         </div>
-      </div>
+      </MainSoloContainer>
     </>
   );
 };
