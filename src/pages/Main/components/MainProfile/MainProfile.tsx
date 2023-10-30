@@ -1,5 +1,5 @@
-import { memo } from 'react';
 import styled from '@emotion/styled';
+import { memo } from 'react';
 
 interface MainProfileProps {
   name: string;
