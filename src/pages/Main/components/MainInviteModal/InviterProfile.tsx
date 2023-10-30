@@ -1,4 +1,4 @@
-import MainProfile from '~/pages/Main/components/MainProfile';
+import { MainProfile } from '~/pages/Main/components';
 
 const InviterProfile = () => {
   return (
