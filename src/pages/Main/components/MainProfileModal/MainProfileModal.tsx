@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { ProfileModalProvider } from '../../context/ProfileModalContext';
 import ProfileContainer from './ProfileContainer';
 import useModal from '~/hooks/useModal';
 
@@ -15,14 +16,15 @@ const MainProfileModal = () => {
         open modal
       </button>
       <Modal className="p-0">
-        <button
-          onClick={closeModal}
-          className="btn btn-circle btn-ghost btn-sm absolute right-2 top-2"
-        >
-          ✕
-        </button>
-        <div className="h-36 bg-personal-blue" />
-        <ProfileContainer />
+        <ProfileModalProvider>
+          <button
+            onClick={closeModal}
+            className="btn btn-circle btn-ghost btn-sm absolute right-2 top-2"
+          >
+            ✕
+          </button>
+          <ProfileContainer />
+        </ProfileModalProvider>
       </Modal>
     </>
   );
