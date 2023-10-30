@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import { IconCopyLink } from '~/assets/icons';
-import MainProfile from '~/pages/Main/components/MainProfile';
+import { MainProfile } from '~/pages/Main/components';
 
 const MainSoloContainer = styled.div`
   display: flex;
