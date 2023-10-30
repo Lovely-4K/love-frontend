@@ -12,18 +12,6 @@ const MainPreviewCalendarContainer = styled.div`
     overflow-x: hidden;
     overflow-y: scroll;
   }
-
-  & > *:last-child {
-    position: relative;
-
-    &::after {
-      position: absolute;
-      right: -1.25rem;
-      height: 1.25rem;
-      width: 1.25rem;
-      display: block;
-    }
-  }
 `;
 
 const MainPreviewCalendar = () => {
