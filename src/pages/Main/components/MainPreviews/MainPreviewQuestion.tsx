@@ -13,7 +13,7 @@ const MainPreivewQuestion = () => {
       <div className="flex h-[40%] w-[70%] flex-col items-center">
         <div>세미콜론 쓰기 vs 안 쓰기</div>
         <Link to="/question">
-          <div className="font-small text-grey-400">답변하러 가기 →</div>
+          <div className="font-small text-grey-500">답변하러 가기 →</div>
         </Link>
       </div>
     </div>

@@ -1,8 +1,22 @@
+import styled from '@emotion/styled';
 import { CalendarScheduleItem } from '~/components/domain';
+
+const MainPreviewCalendarContainer = styled.div`
+  width: 100%;
+  overflow-x: scroll;
+  display: flex;
+  scroll-behavior: smooth;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+`;
 
 const MainPreviewCalendar = () => {
   return (
-    <div className="flex w-full overflow-x-scroll scroll-smooth scrollbar-none md:flex-col md:overflow-x-hidden  md:overflow-y-scroll md:scrollbar-thin md:scrollbar-w-1 [&>*:last-child]:relative [&>*:last-child]:after:absolute [&>*:last-child]:after:-right-5 [&>*:last-child]:after:block [&>*:last-child]:after:h-5 [&>*:last-child]:after:w-5">
+    <MainPreviewCalendarContainer>
       <CalendarScheduleItem
         customColor={'blue'}
         date={'2023년 11월 06일'}
@@ -38,7 +52,7 @@ const MainPreviewCalendar = () => {
         date={'2023년 11월 06일'}
         title={'1차 데모'}
       />
-    </div>
+    </MainPreviewCalendarContainer>
   );
 };
 

@@ -1,11 +1,25 @@
+import styled from '@emotion/styled';
 import MainPreviewCalendar from './MainPreviewCalendar';
 import MainPreviewDiary from './MainPreviewDiary';
 import MainPreviewItem from './MainPreviewItem';
 import MainPreivewQuestion from './MainPreviewQuestion';
 
+const MainPreviewContainer = styled.div`
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: 768px) {
+    max-width: 64rem;
+    flex-direction: row;
+    justify-content: center;
+  }
+`;
+
 const MainPreviews = () => {
   return (
-    <div className="mx-auto my-0 flex w-full flex-col md:max-w-5xl md:flex-row md:justify-center">
+    <MainPreviewContainer>
       <MainPreviewItem
         pageLink={'/calendar'}
         title={'다가오는 일정 →'}
@@ -21,7 +35,7 @@ const MainPreviews = () => {
         title={'오늘의 질문 →'}
         content={<MainPreivewQuestion />}
       />
-    </div>
+    </MainPreviewContainer>
   );
 };
 

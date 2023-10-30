@@ -1,4 +1,3 @@
-import { MainPreviews } from '~/pages/Main/components';
 import MainCoupleProfile from '~/pages/Main/components/MainProfile/MainCoupleProfile';
 
 const MainCouple = () => {
@@ -19,9 +18,7 @@ const MainCouple = () => {
             <span className="text-3xl text-base-primary">D+123</span>
           </div>
         </div>
-        <div className="flex h-full w-full flex-shrink flex-col justify-center overflow-y-auto overflow-x-hidden md:items-center">
-          <MainPreviews />
-        </div>
+        <div className="flex h-full w-full flex-shrink flex-col justify-center overflow-y-auto overflow-x-hidden md:items-center"></div>
       </div>
     </>
   );
