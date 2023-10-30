@@ -1,4 +1,4 @@
-const LoginContainer = () => {
+const LoginButtonContainer = () => {
   return (
     <>
       <div className="flex w-full flex-col items-center space-y-6 px-5">
@@ -13,4 +13,4 @@ const LoginContainer = () => {
   );
 };
 
-export default LoginContainer;
+export default LoginButtonContainer;
