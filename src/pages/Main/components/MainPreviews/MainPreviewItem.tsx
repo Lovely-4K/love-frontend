@@ -9,7 +9,8 @@ interface MainPreviewItemProps {
 }
 
 const MainPreviewItemContainer = styled.div`
-  margin: 0.75rem;
+  margin: 1rem;
+  margin-top: 0;
   display: flex;
   flex-direction: column;
   padding: 0.75rem 1rem;
@@ -17,7 +18,8 @@ const MainPreviewItemContainer = styled.div`
 
   @media screen and (min-width: 768px) {
     width: 30%;
-    height: 28.125rem;
+    height: calc(100vh - 23rem);
+    max-height: 100%;
   }
 `;
 
