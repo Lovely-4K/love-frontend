@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 interface MainPreviewItemProps {
   title: string;
-  pageLink: '/calendar' | '/diary' | '/qeustion';
+  pageLink: '/calendar' | '/diary' | '/question';
   content: React.ReactElement;
 }
 

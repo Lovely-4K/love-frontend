@@ -9,28 +9,16 @@ interface FooterItemProps {
 
 const FooterItem = ({ url, svg, label }: FooterItemProps) => {
   const SvgComponent = svg;
-  const activeLinkStyle = (isActive: boolean) => {
-    return isActive
-      ? '[&>button>div]:stroke-base-primary [&>button]:bg-grey-100 [&>button>div>*]:text-primary [&>button>div>*]:stroke-primary'
-      : '';
-  };
 
   return (
     <NavLink
       to={url}
-      className={({ isActive }) =>
-        'flex h-full w-[20%] items-center justify-center lg:h-1/5 lg:max-h-28 lg:w-full ' +
-        activeLinkStyle(isActive)
-      }
+      className="group flex h-20 w-20 flex-col items-center justify-center rounded-xl hover:bg-grey-200 aria-[current]:bg-grey-100"
     >
-      <button className="flex h-[90%] w-[80%] flex-col items-center justify-center rounded-xl stroke-base-black hover:bg-grey-100 [&>div>*]:hover:stroke-primary [&>div]:hover:text-primary">
-        <div className="flex h-[50%] w-full items-center justify-center overflow-y-hidden">
-          <SvgComponent className="h-10 w-10" />
-        </div>
-        <div className="[25%] flex w-full justify-center">
-          <span className="font-medium btm-nav-label">{label}</span>
-        </div>
-      </button>
+      <SvgComponent className="h-10 w-10 stroke-base-black group-hover:stroke-primary group-aria-[current]:stroke-primary" />
+      <span className="font-medium group-hover:text-primary group-aria-[current]:text-primary">
+        {label}
+      </span>
     </NavLink>
   );
 };

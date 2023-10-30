@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import MainPreviewCalendar from './MainPreviewCalendar';
 import MainPreviewDiary from './MainPreviewDiary';
 import MainPreviewItem from './MainPreviewItem';
-import MainPreivewQuestion from './MainPreviewQuestion';
+import MainPreviewQuestion from './MainPreviewQuestion';
 
 const MainPreviewContainer = styled.div`
   width: 90%;
@@ -31,9 +31,9 @@ const MainPreviews = () => {
         content={<MainPreviewDiary />}
       />
       <MainPreviewItem
-        pageLink={'/qeustion'}
+        pageLink={'/question'}
         title={'오늘의 질문 →'}
-        content={<MainPreivewQuestion />}
+        content={<MainPreviewQuestion />}
       />
     </MainPreviewContainer>
   );
