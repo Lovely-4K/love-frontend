@@ -1,12 +1,13 @@
 import ProfileAvatar from './ProfileAvatar';
 import ProfileBirthdayItem from './ProfileBirthdayItem';
 import ProfileColorItem from './ProfileColorItem';
-import ProfileMbtiItem from './ProfileMbtiItem';
+import ProfileMbtiItem from './ProfileMBTIItem';
 import ProfileNameItem from './ProfileNameItem';
 import { useProfileModal } from '~/pages/Main/hooks';
 
 const ProfileContainer = () => {
   const { activeEdit, handleActiveEdit, userInfo } = useProfileModal();
+  const buttonContent = activeEdit ? '프로필 저장' : '프로필 수정';
 
   return (
     <>
@@ -18,7 +19,7 @@ const ProfileContainer = () => {
           style={{ backgroundColor: userInfo.color }}
           onClick={handleActiveEdit}
         >
-          {activeEdit ? '프로필 저장' : '프로필 수정'}
+          {buttonContent}
         </button>
         <ProfileNameItem />
         <ProfileColorItem />

@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-interface MbtiButtonProps {
+interface MBTIButtonProps {
   position: 'left' | 'center' | 'right';
   topItem: 'E' | 'N' | 'F' | 'J';
   bottomItem: 'I' | 'S' | 'T' | 'P';
@@ -19,22 +19,24 @@ const bottomItemStyle = {
   right: 'rounded-ee-lg',
 };
 
-const MbtiButton = memo(
-  ({ position, topItem, bottomItem, selected }: MbtiButtonProps) => {
+const MBTIButton = memo(
+  ({ position, topItem, bottomItem, selected }: MBTIButtonProps) => {
+    const topItemTextColor =
+      selected === topItem ? 'text-base-primary' : 'text-grey-400';
+
+    const bottomItemTextColor =
+      selected === bottomItem ? 'text-base-primary' : 'text-grey-400';
+
     return (
       <div className={`flex flex-col`}>
         <button
-          className={`h-8 w-8 bg-grey-200 ${
-            selected === topItem ? 'text-base-primary' : 'text-grey-400'
-          } ${topItemStyle[position]}`}
+          className={`h-8 w-8 bg-grey-200 ${topItemTextColor} ${topItemStyle[position]}`}
           value={topItem}
         >
           {topItem}
         </button>
         <button
-          className={`h-8 w-8 bg-grey-200 ${
-            selected === bottomItem ? 'text-base-primary' : 'text-grey-400'
-          } ${bottomItemStyle[position]}`}
+          className={`h-8 w-8 bg-grey-200 ${bottomItemTextColor} ${bottomItemStyle[position]}`}
           value={bottomItem}
         >
           {bottomItem}
@@ -44,4 +46,4 @@ const MbtiButton = memo(
   },
 );
 
-export default MbtiButton;
+export default MBTIButton;
