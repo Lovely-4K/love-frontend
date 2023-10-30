@@ -5,13 +5,16 @@ import MainPreviewItem from './MainPreviewItem';
 import MainPreviewQuestion from './MainPreviewQuestion';
 
 const MainPreviewContainer = styled.div`
-  width: 90%;
+  width: 100%;
+  height: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  padding-top: 2rem;
 
   @media screen and (min-width: 768px) {
-    max-width: 64rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
     flex-direction: row;
     justify-content: center;
   }
