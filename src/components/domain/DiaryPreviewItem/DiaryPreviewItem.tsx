@@ -1,8 +1,46 @@
+import styled from '@emotion/styled';
+
 interface DiaryPreviewItemProps {
   date: string;
   location: string;
   imgSrc: string;
 }
+
+const DiaryPreviewItemContainer = styled.div`
+  position: relative;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  height: 8rem;
+  width: 8rem;
+  flex-shrink: 0;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (min-width: 768px) {
+    width: 100%;
+
+    & > div:hover {
+      visibility: visible;
+    }
+  }
+`;
+
+const PreviewTextItemContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  visibility: hidden;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+`;
 
 const DiaryPreviewItem = ({
   date,
@@ -10,17 +48,17 @@ const DiaryPreviewItem = ({
   imgSrc,
 }: DiaryPreviewItemProps) => {
   return (
-    <div className="relative my-2 flex h-32 w-32 flex-shrink-0 cursor-pointer items-center justify-center md:w-full [&>div]:hover:visible">
-      <div className="font-medium invisible absolute left-[50%] top-[50%] z-20 flex h-full w-full translate-x-[-50%] translate-y-[-50%] flex-col items-center justify-center rounded-xl bg-base-deem text-base-white">
+    <DiaryPreviewItemContainer>
+      <PreviewTextItemContainer className="font-medium rounded-xl bg-base-deem text-base-white">
         <div>{date}</div>
         <div>{location}</div>
-      </div>
+      </PreviewTextItemContainer>
       <img
         className="image-square flex-grow lg:image-rectangle"
         src={imgSrc}
         alt="다이어리 미리보기"
       />
-    </div>
+    </DiaryPreviewItemContainer>
   );
 };
 

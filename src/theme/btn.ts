@@ -1,8 +1,7 @@
 const btn = {
   '.btn-extra-large': {
-    'max-width': '23.875rem',
-    height: '4.625rem',
-    'flex-shrink': '1',
+    'max-width': '20rem',
+    height: '3.5rem',
     'font-size': '1.25rem',
   },
   '.btn-large': {
