@@ -7,7 +7,7 @@ const MainPreviewNoneItem = ({ itemName }: MainPreviewNoneItemProps) => {
 
   return (
     <div className="flex h-full w-full items-center justify-center">
-      <span className="text-grey-400">{placeholder}</span>
+      <span className="text-grey-500">{placeholder}</span>
     </div>
   );
 };

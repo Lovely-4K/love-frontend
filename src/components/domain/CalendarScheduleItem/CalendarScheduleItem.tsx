@@ -31,7 +31,7 @@ const CalendarScheduleItem = ({
       className="border border-solid bg-base-white"
       style={{ borderColor: personal[customColor] }}
     >
-      <div className="font-small w-full text-grey-400">{date}</div>
+      <div className="font-small w-full text-grey-500">{date}</div>
       <div
         className={`font-medium w-full`}
         style={{ color: personal[customColor] }}
