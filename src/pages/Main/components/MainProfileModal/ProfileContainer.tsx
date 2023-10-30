@@ -1,7 +1,7 @@
 import ProfileAvatar from './ProfileAvatar';
 import ProfileBirthdayItem from './ProfileBirthdayItem';
 import ProfileColorItem from './ProfileColorItem';
-import ProfileMbtiItem from './ProfileMBTIItem';
+import ProfileMBTIItem from './ProfileMBTIItem';
 import ProfileNameItem from './ProfileNameItem';
 import { useProfileModal } from '~/pages/Main/hooks';
 
@@ -24,7 +24,7 @@ const ProfileContainer = () => {
         <ProfileNameItem />
         <ProfileColorItem />
         <ProfileBirthdayItem />
-        <ProfileMbtiItem />
+        <ProfileMBTIItem />
       </div>
     </>
   );
