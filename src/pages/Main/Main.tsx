@@ -1,11 +1,12 @@
-import { MainPreviews } from './components';
+import { useState } from 'react';
+import { MainCouple, MainSolo } from './components';
 
 const MainPage = () => {
-  return (
-    <div className="flex h-full w-full flex-shrink flex-col justify-center overflow-y-auto overflow-x-hidden md:items-center">
-      <MainPreviews />
-    </div>
-  );
+  const [isCoupled] = useState(true); // 이 부분은 테스트용이고 나중에 인증처리 할 때 수정합시다!
+
+  const mainContent = isCoupled ? <MainCouple /> : <MainSolo />;
+
+  return <>{mainContent}</>;
 };
 
 export default MainPage;
