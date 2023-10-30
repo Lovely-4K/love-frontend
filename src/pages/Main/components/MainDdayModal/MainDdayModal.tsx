@@ -1,0 +1,39 @@
+import { useEffect } from 'react';
+import useModal from '~/hooks/useModal';
+import DdayContainer from './DdayContainer';
+
+interface MainInviteModalProps {
+  onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+}
+
+const MainDdayModal = ({ onClick }: MainInviteModalProps) => {
+  const { openModal, closeModal, Modal } = useModal();
+
+  useEffect(() => {
+    openModal();
+  }, [openModal]);
+
+  return (
+    <>
+      <Modal className="flex flex-col gap-16 py-10">
+        <DdayContainer />
+        <div className="flex justify-center gap-2">
+          <button
+            onClick={closeModal}
+            className="btn-medium btn w-full rounded-xl border-grey-300 bg-base-white text-grey-400 focus:outline-none"
+          >
+            취소
+          </button>
+          <button
+            onClick={onClick}
+            className="btn-medium btn w-full rounded-xl border bg-base-primary text-base-white focus:outline-none"
+          >
+            저장하기
+          </button>
+        </div>
+      </Modal>
+    </>
+  );
+};
+
+export default MainDdayModal;
