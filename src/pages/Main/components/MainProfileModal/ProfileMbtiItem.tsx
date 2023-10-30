@@ -4,6 +4,7 @@ import { useProfileModal } from '~/pages/Main/hooks';
 
 const ProfileMBTIItem = () => {
   const { userInfo, handleMBTIChange, activeEdit } = useProfileModal();
+  /** @todo type 지정 다시 수정 */
   const itemContent = activeEdit ? (
     <div onClick={handleMBTIChange} className="flex">
       <MBTIButton
