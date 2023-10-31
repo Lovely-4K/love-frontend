@@ -15,7 +15,7 @@ const QuestionChatItem = ({
   message = answerStatus === false ? '답변을 기다리는 중이에요!' : message;
 
   return (
-    <div className={`chat ${chatType}`}>
+    <div className={`chat ${chatType} my-3`}>
       <div className="avatar chat-image">
         <div className="avatar-small rounded-full lg:avatar-medium">
           <img src="https://source.unsplash.com/random/" />
