@@ -1,10 +1,11 @@
 import { QuestionContainer } from '../Question/Question';
-import { QuestionCreateHeader } from './components';
+import { QuestionCreateHeader, QuestionCreateForm } from './components';
 
 const QuestionCreate = () => {
   return (
     <QuestionContainer>
       <QuestionCreateHeader />
+      <QuestionCreateForm />
     </QuestionContainer>
   );
 };
