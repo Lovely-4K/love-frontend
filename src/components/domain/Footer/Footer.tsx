@@ -3,7 +3,7 @@ import { IconHome, IconCalendar, IconDiary } from '~/assets/icons';
 
 const Footer = () => {
   return (
-    <div className="flex h-28 w-screen items-center justify-between lg:h-screen lg:w-28 lg:flex-col lg:justify-start">
+    <div className="relative z-40 flex h-28 w-screen items-center justify-between bg-base-white lg:h-screen lg:w-28 lg:flex-col lg:justify-start">
       <FooterItem url={'/'} svg={IconHome} label={'홈'} />
       <FooterItem url={'/diary'} svg={IconCalendar} label={'다이어리'} />
       <FooterItem url={'/calendar'} svg={IconDiary} label={'캘린더'} />
