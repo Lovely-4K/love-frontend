@@ -46,8 +46,8 @@ const TemperatureBar = ({ percent = 0 }: TemperatureBarProps) => {
   }, []);
 
   return (
-    <div className="flex h-4 w-screen flex-col-reverse bg-grey-100 lg:h-screen lg:w-4">
-      <div className="relative h-4 bg-base-primary" style={progressStyle}>
+    <div className="flex h-full w-full flex-col-reverse bg-grey-100">
+      <div className="relative bg-base-primary" style={progressStyle}>
         <IconHeart className="absolute -top-3 right-0 h-10 w-10 translate-x-1/2 fill-base-primary stroke-base-primary lg:left-1/2 lg:-translate-x-1/2" />
       </div>
     </div>

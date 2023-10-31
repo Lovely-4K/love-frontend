@@ -9,10 +9,6 @@ const MainPageContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  /* @media screen and (min-width: 768px) {
-    align-items: center;
-  } */
 `;
 
 const MainPage = () => {
