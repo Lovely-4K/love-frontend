@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { QuestionHeader, QuestionForm, QuestionChat } from './components';
 
 const QuestionContainer = styled.div`
   width: 100%;
