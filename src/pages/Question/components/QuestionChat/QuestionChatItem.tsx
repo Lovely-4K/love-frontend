@@ -24,7 +24,7 @@ const QuestionChatItem = ({
       <div className="chat-header">
         <time className="text-xs opacity-50">{author}</time>
       </div>
-      <div className="chat-bubble bg-grey-100 text-base-black lg:px-10 lg:py-4">
+      <div className="font-medium chat-bubble bg-grey-100 text-base-black lg:px-10 lg:py-4">
         {message}
       </div>
     </div>
