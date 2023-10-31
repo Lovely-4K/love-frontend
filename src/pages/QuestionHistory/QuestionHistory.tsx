@@ -1,8 +1,12 @@
+import { HistoryHeader, HistoryList } from './components';
 import { QuestionContainer } from '~/pages/Question/Question';
 
 const QuestionHistory = () => {
   return (
-    <QuestionContainer className="flex flex-col gap-3"></QuestionContainer>
+    <QuestionContainer>
+      <HistoryHeader />
+      <HistoryList />
+    </QuestionContainer>
   );
 };
 
