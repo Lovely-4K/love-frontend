@@ -5,6 +5,7 @@ const avatar = {
   },
   '.avatar-large': {
     width: '6.25rem',
+    height: '6.25rem',
     'border-radius': '50%',
   },
   '.avatar-medium': {
