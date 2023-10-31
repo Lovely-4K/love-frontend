@@ -1,9 +1,12 @@
-interface QuestionSelectItemProps {
+interface QuestionFormSelectItemProps {
   answer: string;
   active: boolean;
 }
 
-const QuestionSelectItem = ({ answer, active }: QuestionSelectItemProps) => {
+const QuestionFormSelectItem = ({
+  answer,
+  active,
+}: QuestionFormSelectItemProps) => {
   const activeStyle = active
     ? 'border-none bg-primary text-base-white hover:bg-base-secondary'
     : 'border border-grey-200 py-3 hover:bg-grey-100';
@@ -17,4 +20,4 @@ const QuestionSelectItem = ({ answer, active }: QuestionSelectItemProps) => {
   );
 };
 
-export default QuestionSelectItem;
+export default QuestionFormSelectItem;

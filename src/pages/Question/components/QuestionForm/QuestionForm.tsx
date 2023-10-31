@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import QuestionLabel from './QuestionLabel';
-import QuestionSelect from './QuestionSelect';
+import QuestionFormLabel from './QuestionFormLabel';
+import QuestionFormSelect from './QuestionFormSelect';
 
 const QuestionFormContainer = styled.div``;
 
@@ -8,8 +8,8 @@ const QuestionFormContainer = styled.div``;
 const QuestionForm = () => {
   return (
     <QuestionFormContainer>
-      <QuestionLabel />
-      <QuestionSelect />
+      <QuestionFormLabel />
+      <QuestionFormSelect />
       <div>
         <button className="btn-small btn-primary float-right w-full rounded-xl hover:border-none hover:bg-base-secondary">
           결정
