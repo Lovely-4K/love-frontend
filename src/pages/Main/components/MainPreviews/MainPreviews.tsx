@@ -2,16 +2,19 @@ import styled from '@emotion/styled';
 import MainPreviewCalendar from './MainPreviewCalendar';
 import MainPreviewDiary from './MainPreviewDiary';
 import MainPreviewItem from './MainPreviewItem';
-import MainPreivewQuestion from './MainPreviewQuestion';
+import MainPreviewQuestion from './MainPreviewQuestion';
 
 const MainPreviewContainer = styled.div`
-  width: 90%;
+  width: 100%;
+  height: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  padding-top: 2rem;
 
   @media screen and (min-width: 768px) {
-    max-width: 64rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
     flex-direction: row;
     justify-content: center;
   }
@@ -31,9 +34,9 @@ const MainPreviews = () => {
         content={<MainPreviewDiary />}
       />
       <MainPreviewItem
-        pageLink={'/qeustion'}
+        pageLink={'/question'}
         title={'오늘의 질문 →'}
-        content={<MainPreivewQuestion />}
+        content={<MainPreviewQuestion />}
       />
     </MainPreviewContainer>
   );
