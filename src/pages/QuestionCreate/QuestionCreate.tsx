@@ -1,5 +1,12 @@
+import { QuestionContainer } from '../Question/Question';
+import { QuestionCreateHeader } from './components';
+
 const QuestionCreate = () => {
-  return <div></div>;
+  return (
+    <QuestionContainer>
+      <QuestionCreateHeader />
+    </QuestionContainer>
+  );
 };
 
 export default QuestionCreate;
