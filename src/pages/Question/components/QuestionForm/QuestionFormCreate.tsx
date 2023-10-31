@@ -7,7 +7,7 @@ const QuestionFormCreate = () => {
       <div>
         <Link
           className="font-small font-bold text-grey-400"
-          to="question/create"
+          to="/question/create"
         >
           새 질문 작성하러 가기 →
         </Link>
