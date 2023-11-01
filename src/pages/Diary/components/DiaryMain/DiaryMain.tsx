@@ -1,9 +1,6 @@
-import { IconSearch } from '~/assets/icons';
-import { DiaryPreviewItem } from '~/components/domain';
-import CategoryList from '~/components/domain/CategoryList/CategoryList';
-import DiaryRecords from '~/pages/Diary/components/DiaryMain/DiaryRecords';
-import DiarySearchBar from '~/pages/Diary/components/DiaryMain/DiarySearchBar';
-import DiaryCategoryList from '~/pages/Diary/components/DiaryMain/DidaryCategoryList';
+import DiaryRecords from './DiaryRecords';
+import DiarySearchBar from './DiarySearchBar';
+import DiaryCategoryList from '~/pages/Diary/components/DiaryCommon/DiaryCategoryList';
 
 const DiaryMain = () => {
   return (

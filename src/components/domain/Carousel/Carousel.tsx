@@ -27,25 +27,29 @@ const Carousel = memo(({ pictures }: CarouselProps) => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative h-full">
       <div
         ref={carouselRef}
-        className="carousel w-full rounded-[0.625rem]"
+        className="carousel h-full w-full rounded-[0.625rem]"
         onScroll={handleScroll}
       >
         {pictures.map((picture, index) => (
-          <div key={index} id={`item${index}`} className="carousel-item w-full">
+          <div
+            key={index}
+            id={`item${index}`}
+            className="carousel-item h-full w-full"
+          >
             <img src={picture} className="w-full" />
           </div>
         ))}
       </div>
-      <div className="absolute bottom-5 left-1/2 flex w-full -translate-x-1/2 justify-center gap-1 py-2">
+      <div className="absolute bottom-1 left-1/2 flex w-full -translate-x-1/2 justify-center gap-1 py-2">
         {pictures.map((_, index) => (
           <button
             key={index}
             onClick={() => handleButtonClick(index)}
             className={`h-3 w-3 rounded-full ${
-              index === activeIndex ? 'bg-base-primary' : 'bg-grey-500'
+              index === activeIndex ? 'bg-base-primary' : 'bg-grey-300'
             }`}
           />
         ))}

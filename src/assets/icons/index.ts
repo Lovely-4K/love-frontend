@@ -17,3 +17,4 @@ export { default as IconQuestion } from './question.svg?react';
 export { default as IconSetting } from './setting.svg?react';
 export { default as IconCopyLink } from './copyLink.svg?react';
 export { default as IconCamera } from './camera.svg?react';
+export { default as IconImageGallery } from './imageGallery.svg?react';
