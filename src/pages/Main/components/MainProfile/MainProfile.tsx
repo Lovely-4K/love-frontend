@@ -19,7 +19,7 @@ const MainProfile = memo(({ name, mbti, picture }: MainProfileProps) => {
   return (
     <MainProfileContainer>
       <div className="avatar">
-        <div className="avatar-extra-large rounded-full">
+        <div className="avatar-large rounded-full lg:avatar-extra-large">
           <img src={picture} />
         </div>
       </div>

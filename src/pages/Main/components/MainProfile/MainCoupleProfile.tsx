@@ -10,7 +10,7 @@ const MainCoupleProfile = () => {
         picture="https://source.unsplash.com/random/"
       />
       <IconHeart
-        className={`absolute left-[8rem] top-[3rem] z-10  h-[3.1255rem] w-[3.125rem] fill-base-primary stroke-base-primary`}
+        className={`absolute left-[50%] top-[30%] z-10 h-[3.1255rem] w-[3.125rem] translate-x-[-50%] translate-y-[-50%] fill-base-primary stroke-base-primary lg:left-[8rem] lg:top-[3rem] lg:translate-x-0 lg:translate-y-0`}
       />
       <MainProfile
         name="호"

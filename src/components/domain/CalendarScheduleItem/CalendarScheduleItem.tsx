@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { colors } from '~/theme';
 
-interface CalendarScheulItemProps {
+interface CalendarScheduleItemProps {
   customColor: keyof typeof colors.personal;
   date: string;
   title: string;
@@ -11,19 +11,24 @@ const CalendarScheduleItemContainer = styled.div`
   margin: 0.5rem;
   display: flex;
   height: 4rem;
-  width: 15.385rem;
-  flex-shrink: 0;
+  min-width: 70%;
+  max-width: 15.385rem;
   flex-direction: column;
   justify-content: center;
   border-radius: 0.75rem;
   padding: 0.5rem 2rem;
+
+  @media screen and (min-width: 768px) {
+    margin: 0.5rem auto;
+    min-width: 99%;
+  }
 `;
 
 const CalendarScheduleItem = ({
   customColor,
   date,
   title,
-}: CalendarScheulItemProps) => {
+}: CalendarScheduleItemProps) => {
   const { personal } = colors;
 
   return (
