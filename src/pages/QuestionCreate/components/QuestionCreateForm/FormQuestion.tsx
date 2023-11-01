@@ -1,14 +1,7 @@
-import React from 'react';
+import useQuestionCreateForm from '../../hooks/useQuestionCreateForm';
 
-interface FormQuestionProps {
-  question: string;
-  setQuestion: React.Dispatch<React.SetStateAction<string>>;
-}
-
-const FormQuestion = ({ question, setQuestion }: FormQuestionProps) => {
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setQuestion(event.target.value);
-  };
+const FormQuestion = () => {
+  const { question, handleQuestionChange } = useQuestionCreateForm();
 
   return (
     <div className="flex flex-col gap-3">
@@ -17,7 +10,7 @@ const FormQuestion = ({ question, setQuestion }: FormQuestionProps) => {
       </label>
       <input
         value={question}
-        onChange={handleInputChange}
+        onChange={handleQuestionChange}
         maxLength={100}
         required
         className="input-bottom font-medium  border-grey-200 p-3 focus:outline-none"

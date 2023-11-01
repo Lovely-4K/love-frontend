@@ -1,17 +1,14 @@
-import React from 'react';
+import useQuestionCreateForm from '../../hooks/useQuestionCreateForm';
 import FormAnswerCard from './FormAnswerCard';
 import FormAnswerInput from './FormAnswerInput';
 
-interface FormAnswerProps {
-  answers: string[];
-  setAnswers: React.Dispatch<React.SetStateAction<string[]>>;
-}
+const FormAnswer = () => {
+  const { answers } = useQuestionCreateForm();
 
-const FormAnswer = ({ answers, setAnswers }: FormAnswerProps) => {
   return (
     <div>
       <div className="flex flex-col gap-3">
-        <FormAnswerInput answers={answers} setAnswers={setAnswers} />
+        <FormAnswerInput />
         {answers.map((answer, index) => (
           <FormAnswerCard key={index} answer={answer} />
         ))}
