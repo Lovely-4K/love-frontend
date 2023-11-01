@@ -18,6 +18,7 @@ const CircleButton = ({ label, icon, active }: CircleButtonProps) => {
   return (
     <div className="flex flex-col items-center">
       <button
+        type="button"
         className={`btn-circle btn-sm relative overflow-hidden ${activeButtonStyle} group hover:border-0 hover:bg-base-secondary`}
       >
         <IconComponent
