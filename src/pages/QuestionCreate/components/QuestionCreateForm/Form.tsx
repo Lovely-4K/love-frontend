@@ -8,17 +8,19 @@ const Form = () => {
   const buttonInvalidate = question.length === 0 || answers.length === 0;
 
   return (
-    <form onSubmit={handleSubmitForm} className="flex flex-col gap-3">
+    <form onSubmit={handleSubmitForm} className="flex flex-col gap-10">
       <FormQuestion />
       <FormAnswer />
-      <button
-        disabled={buttonInvalidate}
-        className="btn-medium cursor-pointer rounded-xl bg-base-primary text-base-white hover:bg-base-secondary disabled:cursor-not-allowed disabled:bg-grey-200 disabled:text-grey-400"
-        type="submit"
-        onClick={handleSubmitForm}
-      >
-        질문 저장
-      </button>
+      <div className="flex w-full justify-end">
+        <button
+          disabled={buttonInvalidate}
+          className="btn-medium w-full cursor-pointer rounded-xl bg-base-primary text-base-white hover:bg-base-secondary disabled:cursor-not-allowed disabled:bg-grey-200 disabled:text-grey-400"
+          type="submit"
+          onClick={handleSubmitForm}
+        >
+          질문 저장
+        </button>
+      </div>
     </form>
   );
 };
