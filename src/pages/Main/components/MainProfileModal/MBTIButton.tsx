@@ -4,7 +4,7 @@ interface MBTIButtonProps {
   position: 'left' | 'center' | 'right';
   topItem: 'E' | 'N' | 'F' | 'J';
   bottomItem: 'I' | 'S' | 'T' | 'P';
-  selected?: 'E' | 'I' | 'N' | 'S' | 'F' | 'T' | 'J' | 'P' | unknown;
+  selected?: string;
 }
 
 const topItemStyle = {
