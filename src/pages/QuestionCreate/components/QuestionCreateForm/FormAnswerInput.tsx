@@ -27,7 +27,7 @@ const FormAnswerInput = ({ answers, setAnswers }: FormAnswerInputProps) => {
 
   return (
     <form className="flex flex-col gap-3" onSubmit={handlePlusButton}>
-      <label>어떤 선택지가 있나요?</label>
+      <label className="font-bold">어떤 선택지가 있나요?</label>
       <div className={`form-control w-full ${inputHideStyle}`}>
         <div className={`input-group`}>
           <input

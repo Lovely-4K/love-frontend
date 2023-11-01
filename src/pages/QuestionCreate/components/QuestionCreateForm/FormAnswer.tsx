@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import React from 'react';
 import FormAnswerCard from './FormAnswerCard';
 import FormAnswerInput from './FormAnswerInput';
 
-const QuestionCreateFormAnswer = () => {
-  const [answers, setAnswers] = useState<string[]>([]);
+interface FormAnswerProps {
+  answers: string[];
+  setAnswers: React.Dispatch<React.SetStateAction<string[]>>;
+}
 
+const FormAnswer = ({ answers, setAnswers }: FormAnswerProps) => {
   return (
     <div>
       <div className="flex flex-col gap-3">
@@ -17,4 +20,4 @@ const QuestionCreateFormAnswer = () => {
   );
 };
 
-export default QuestionCreateFormAnswer;
+export default FormAnswer;
