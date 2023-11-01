@@ -37,12 +37,21 @@ const useQuestionCreateForm = () => {
     setAnswers(nextAnswers);
   };
 
+  const handleDeleteButton = (event: React.MouseEvent<HTMLElement>) => {
+    const { index } = event.currentTarget.dataset;
+    const nextAnswers = [...answers];
+
+    nextAnswers.splice(Number(index), 1);
+    setAnswers(nextAnswers);
+  };
+
   return {
     question,
     answers,
     handleSubmitForm,
     handleQuestionChange,
     handleAddAnswer,
+    handleDeleteButton,
   };
 };
 
