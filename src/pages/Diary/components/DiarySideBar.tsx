@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { DiaryContent } from '~/pages/Diary/components/DiaryContent';
+import { DiaryContentLists } from '~/pages/Diary/components/DiaryContentLists';
 import DiaryMain from '~/pages/Diary/components/DiaryMain/DiaryMain';
 
 const DiarySideBar = () => {
@@ -23,7 +24,7 @@ const DiarySideBar = () => {
       >
         {'<'}
       </button>
-      <DiaryContent />
+      <DiaryContentLists />
     </div>
   );
 };
