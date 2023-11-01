@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { LeftArrow } from '~/assets/icons';
+import { IconLeftArrow } from '~/assets/icons';
 
 interface NavigationHeader {
   prevPageLink: string;
@@ -12,7 +12,7 @@ const NavigationHeader = ({ prevPageLink, pageTitle }: NavigationHeader) => {
   return (
     <header className="flex w-full items-center gap-3 pb-3">
       <div className="box-content cursor-pointer rounded-full px-2 py-2 hover:bg-grey-100">
-        <LeftArrow
+        <IconLeftArrow
           onClick={() => {
             navigate(prevPageLink);
           }}
