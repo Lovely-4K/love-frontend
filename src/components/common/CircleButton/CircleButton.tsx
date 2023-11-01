@@ -1,7 +1,7 @@
 import { FunctionComponent, SVGProps } from 'react';
 
 interface CircleButtonProps {
-  label: string;
+  label?: string | undefined;
   icon: FunctionComponent<SVGProps<SVGSVGElement>>;
   active: boolean;
 }
