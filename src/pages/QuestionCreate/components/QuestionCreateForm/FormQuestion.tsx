@@ -1,4 +1,4 @@
-const QuestionCreateInput = () => {
+const QuestionCreateFormInput = () => {
   return (
     <div className="flex flex-col gap-3">
       <label>상대방에게 물어보고 싶은 질문이 있나요? </label>
@@ -11,4 +11,4 @@ const QuestionCreateInput = () => {
   );
 };
 
-export default QuestionCreateInput;
+export default QuestionCreateFormInput;
