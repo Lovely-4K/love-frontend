@@ -4,8 +4,9 @@ const QuestionCreateFormInput = () => {
       <label>상대방에게 물어보고 싶은 질문이 있나요? </label>
       <input
         maxLength={100}
-        className="input-bottom border-grey-200 p-3"
-        placeholder="질문을 작성해보세요"
+        required
+        className="input-bottom font-medium  border-grey-200 p-3 focus:outline-none"
+        placeholder="질문은 최대 50자까지 작성 가능해요!"
       />
     </div>
   );

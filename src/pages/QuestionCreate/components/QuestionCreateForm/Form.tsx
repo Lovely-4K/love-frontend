@@ -3,7 +3,7 @@ import FormQuestion from './FormQuestion';
 
 const QuestionCreateForm = () => {
   return (
-    <div>
+    <div className="flex flex-col gap-3">
       <FormQuestion />
       <FormAnswer />
     </div>

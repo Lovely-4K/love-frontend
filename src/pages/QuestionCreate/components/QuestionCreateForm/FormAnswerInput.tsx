@@ -26,15 +26,17 @@ const FormAnswerInput = ({ answers, setAnswers }: FormAnswerInputProps) => {
   };
 
   return (
-    <form onSubmit={handlePlusButton}>
+    <form className="flex flex-col gap-3" onSubmit={handlePlusButton}>
       <label>어떤 선택지가 있나요?</label>
       <div className={`form-control w-full ${inputHideStyle}`}>
         <div className={`input-group`}>
           <input
             ref={inputRef}
             type="text"
-            placeholder="답변을 등록해보세요!"
-            className="input input-bordered w-full border-dashed focus:outline-none active:border-none"
+            maxLength={20}
+            required
+            placeholder="답변은 최대 20자까지 작성 가능해요!"
+            className="font-medium input input-bordered w-full border-dashed focus:outline-none active:border-none"
           />
           <button
             className="btn btn-square relative"

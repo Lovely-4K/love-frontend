@@ -7,10 +7,12 @@ const QuestionCreateFormAnswer = () => {
 
   return (
     <div>
-      <FormAnswerInput answers={answers} setAnswers={setAnswers} />
-      {answers.map((answer, index) => (
-        <FormAnswerCard key={index} answer={answer} />
-      ))}
+      <div className="flex flex-col gap-3">
+        <FormAnswerInput answers={answers} setAnswers={setAnswers} />
+        {answers.map((answer, index) => (
+          <FormAnswerCard key={index} answer={answer} />
+        ))}
+      </div>
     </div>
   );
 };
