@@ -1,1 +1,1 @@
-export { default as DiarySideBar } from './DiarySideBar';
+export { default as DiarySideBar } from './DiaryCommon/DiarySideBar';

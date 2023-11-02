@@ -8,8 +8,6 @@ const DiaryContentLists = () => {
     'https://picsum.photos/200',
     'https://picsum.photos/200',
     'https://picsum.photos/200',
-    'https://picsum.photos/200',
-    'https://picsum.photos/200',
   ] as string[];
 
   const [deleteMode, setDeleteMode] = useState(false);

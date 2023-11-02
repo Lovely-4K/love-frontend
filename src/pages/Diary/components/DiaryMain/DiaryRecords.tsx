@@ -14,6 +14,7 @@ const DiaryRecords = () => {
               type="radio"
               name="options"
               aria-label="날짜 순"
+              defaultChecked
             />
             <input
               className="btn join-item btn-xs rounded-xl bg-base-white"
