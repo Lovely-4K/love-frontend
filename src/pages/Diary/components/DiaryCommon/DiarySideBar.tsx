@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { IconTopArrow } from '~/assets/icons';
 import { DiaryContent } from '~/pages/Diary/components/DiaryContent';
-import { DiaryContentLists } from '~/pages/Diary/components/DiaryContentLists';
-import DiaryMain from '~/pages/Diary/components/DiaryMain/DiaryMain';
 
 const DiarySideBar = () => {
   const [isOpen, setIsOpen] = useState(true);
