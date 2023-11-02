@@ -12,18 +12,18 @@ interface CategoryIconProps extends HtmlHTMLAttributes<SVGElement> {
   type: categoryType;
 }
 
-const CategoryIcon = ({ type, ...props }: CategoryIconProps) => {
+const CategoryIcon = ({ type }: CategoryIconProps) => {
   switch (type) {
     case 'cafe':
-      return <IconCafe {...props} />;
+      return IconCafe;
     case 'food':
-      return <IconRestaurant {...props} />;
+      return IconRestaurant;
     case 'sleep':
-      return <IconHotel {...props} />;
+      return IconHotel;
     case 'culture':
-      return <IconActivity {...props} />;
+      return IconActivity;
     case 'etc':
-      return <IconEtc {...props} />;
+      return IconEtc;
   }
 };
 

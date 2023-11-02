@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Main } from '~/pages';
+import { Main, Question, QuestionHistory, QuestionCreate } from '~/pages';
 import Layout from './Layout';
 import { Diary } from '~/pages/Diary';
 
@@ -12,6 +12,9 @@ const Router = () => {
         <Route element={<Layout />}>
           <Route path="/" element={<Main />} />
           <Route path="/diary" element={<Diary />} />
+          <Route path="/question" element={<Question />} />
+          <Route path="/question/history" element={<QuestionHistory />} />
+          <Route path="/question/create" element={<QuestionCreate />} />
         </Route>
       </Routes>
     </BrowserRouter>
