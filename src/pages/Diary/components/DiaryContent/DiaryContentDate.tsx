@@ -12,7 +12,7 @@ const DiaryContentDate = ({ editMode }: DiaryContentDateProps) => {
             className="font-medium text-base-black focus:outline-none"
             type="date"
             value={'2023-10-31'}
-            readOnly={editMode ? false : true}
+            readOnly={!editMode}
           />
         </div>
       </div>
