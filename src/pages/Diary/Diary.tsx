@@ -1,4 +1,4 @@
-import { DiarySideBar } from '~/pages/Diary/components';
+import { DiarySideBar } from '~/pages/Diary/components/DiaryCommon';
 
 const Diary = () => {
   return (

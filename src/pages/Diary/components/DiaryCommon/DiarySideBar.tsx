@@ -29,7 +29,7 @@ const DiarySideBar = () => {
           }`}
         />
       </button>
-      <DiaryMain />
+      <DiaryContent />
     </div>
   );
 };
