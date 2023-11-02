@@ -4,7 +4,7 @@ import Calendar from 'react-calendar';
 import { colors, font, screens } from '~/theme';
 import 'react-calendar/dist/Calendar.css';
 
-const CustomCalendar = styled(Calendar)`
+const StyledCalendar = styled(Calendar)`
   width: 100%;
   height: 100%;
   border: none;
@@ -157,21 +157,20 @@ const CustomCalendar = styled(Calendar)`
 `;
 
 const CalendarMain = () => {
-  const [clickedDate, setClickedDate] = useState(new Date());
+  const [pickedDate, setPickedDate] = useState(new Date());
 
   const handleChangeDate = (date: Date) => {
-    setClickedDate(date);
-    console.log(date);
+    setPickedDate(date);
   };
 
-  const handleMoveToday = (e: MouseEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setClickedDate(new Date());
+  const handleMoveToday = (event: MouseEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setPickedDate(new Date());
   };
 
   return (
-    <CustomCalendar
+    <StyledCalendar
       locale="en-US"
       minDetail="year"
       onClickDay={handleChangeDate}
@@ -203,7 +202,7 @@ const CalendarMain = () => {
         if (!activeStartDate) return;
         handleChangeDate(activeStartDate);
       }}
-      activeStartDate={clickedDate}
+      activeStartDate={pickedDate}
     />
   );
 };

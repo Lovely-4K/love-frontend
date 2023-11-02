@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { colors, screens } from '~/theme';
 
-const Badge = styled.div`
+const StyledBadge = styled.div`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -14,7 +14,7 @@ const Badge = styled.div`
   color: ${colors.base.white};
 `;
 
-const Divider = styled.div`
+const StyledDivider = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -41,7 +41,7 @@ const SideBarEditSchedule = () => {
   return (
     <div>
       <input className="input input-ghost h-5 w-full" placeholder="내용 입력" />
-      <Divider />
+      <StyledDivider />
       <div>
         <div className="flex justify-between gap-2 px-4">
           <div>
@@ -62,22 +62,22 @@ const SideBarEditSchedule = () => {
           </div>
         </div>
       </div>
-      <Divider />
+      <StyledDivider />
       <div className="px-4 pb-3">누구의 일정인가요?</div>
       <div className="flex w-full gap-2 px-4">
-        <Badge>정</Badge>
-        <Badge>호</Badge>
-        <Badge>함께</Badge>
+        <StyledBadge>정</StyledBadge>
+        <StyledBadge>호</StyledBadge>
+        <StyledBadge>함께</StyledBadge>
       </div>
-      <Divider />
+      <StyledDivider />
       <div className="px-4 pb-3">어떤 것을 함께하나요?</div>
       <div className="flex w-full gap-2 px-4">
-        <Badge>데이트</Badge>
-        <Badge>기념일</Badge>
-        <Badge>여행</Badge>
-        <Badge>기타</Badge>
+        <StyledBadge>데이트</StyledBadge>
+        <StyledBadge>기념일</StyledBadge>
+        <StyledBadge>여행</StyledBadge>
+        <StyledBadge>기타</StyledBadge>
       </div>
-      <Divider />
+      <StyledDivider />
       <div className="flex justify-end gap-2 px-2">
         <button className="btn-small w-full rounded-lg border border-grey-200 bg-base-white">
           취소
