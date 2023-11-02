@@ -1,5 +1,5 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Main, Question, QuestionHistory, QuestionCreate } from '~/pages';
+import { createBrowserRouter } from 'react-router-dom';
+import { Calendar, Login, Main } from '~/pages';
 import Layout from './Layout';
 import { Diary } from '~/pages/Diary';
 
@@ -20,5 +20,3 @@ const Router = () => {
     </BrowserRouter>
   );
 };
-
-export default Router;

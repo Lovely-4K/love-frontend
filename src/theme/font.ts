@@ -14,6 +14,6 @@ const font = {
   '.font-small': {
     'font-size': '0.75rem',
   },
-};
+} as const;
 
 export default font;
