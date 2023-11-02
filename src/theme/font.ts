@@ -1,4 +1,7 @@
 const font = {
+  '.font-title-large': {
+    'font-size': '2.25rem',
+  },
   '.font-title': {
     'font-size': '1.25rem',
   },
@@ -11,6 +14,6 @@ const font = {
   '.font-small': {
     'font-size': '0.75rem',
   },
-};
+} as const;
 
 export default font;

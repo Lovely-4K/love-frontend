@@ -1,11 +1,10 @@
-import { CalendarMain, CalendarSide } from './components';
-import 'react-calendar/dist/Calendar.css';
+import { CalendarMain, CalendarSideBar } from './components';
 
 const Calendar = () => {
   return (
-    <div className="h-full w-full">
+    <div className="flex h-full w-full flex-col lg:flex-row">
       <CalendarMain />
-      <CalendarSide />
+      <CalendarSideBar />
     </div>
   );
 };
