@@ -1,4 +1,5 @@
 import { HtmlHTMLAttributes } from 'react';
+import { CircleButton } from '..';
 import CategoryIcon from './CategoryIcon';
 import categoryType from './CategoryTypes';
 
@@ -15,25 +16,12 @@ const titles: Record<categoryType, string> = {
   etc: '기타',
 };
 
-const CategoryButton = ({
-  type,
-  active,
-  onClick,
-  ...props
-}: CategoryButtonProps) => {
-  const activeStyle = active
-    ? 'border-base-primary bg-base-primary fill-base-white stroke-base-white'
-    : 'border-grey-300 bg-base-white fill-grey-300 stroke-grey-300';
+const CategoryButton = ({ type, active, onClick }: CategoryButtonProps) => {
+  const icon = CategoryIcon({ type });
 
   return (
-    <button onClick={onClick} className="flex w-11 flex-col items-center gap-2">
-      <button
-        className={`flex h-[1.875rem] w-[1.875rem] items-center justify-center rounded-full border-[1px] ${activeStyle}`}
-        {...props}
-      >
-        <CategoryIcon className="h-4 w-4" type={type} />
-      </button>
-      <div className="text-xs">{titles[type]}</div>
+    <button onClick={onClick}>
+      <CircleButton active={active} icon={icon} label={titles[type]} />
     </button>
   );
 };

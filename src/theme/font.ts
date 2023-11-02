@@ -1,4 +1,7 @@
 const font = {
+  '.font-title-large': {
+    'font-size': '2.25rem',
+  },
   '.font-title': {
     'font-size': '1.25rem',
   },
