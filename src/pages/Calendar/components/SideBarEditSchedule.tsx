@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
 import { colors, screens } from '~/theme';
 
 const Badge = styled.div`

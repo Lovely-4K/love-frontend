@@ -1,5 +1,4 @@
 import SideBarDaySchedule from './SideBarDaySchedule';
-import SideBarEditSchedule from './SideBarEditSchedule';
 import { IconPlus } from '~/assets/icons';
 
 const CalendarSideBar = () => {
@@ -11,7 +10,6 @@ const CalendarSideBar = () => {
           <IconPlus className="h-5 w-5" />
         </button>
       </div>
-      {/* <SideBarEditSchedule /> */}
       <SideBarDaySchedule />
     </div>
   );

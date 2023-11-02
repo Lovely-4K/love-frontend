@@ -1,9 +1,5 @@
 import { CalendarScheduleItem } from '~/components/domain';
 
-const NoCalendarScheduleItem = () => {
-  return <div>일정이 없네요!</div>;
-};
-
 const SideBarDaySchedule = () => {
   return (
     <div className="w-full space-y-3">
