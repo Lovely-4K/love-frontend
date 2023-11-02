@@ -1,5 +1,13 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { Calendar, Login, Main } from '~/pages';
+import {
+  Calendar,
+  Diary,
+  Login,
+  Main,
+  Question,
+  QuestionCreate,
+  QuestionHistory,
+} from '~/pages';
 import Layout from './Layout';
 import PATHS from './paths';
 
@@ -13,10 +21,25 @@ const router = createBrowserRouter([
         path: PATHS.MAIN,
         element: <Main />,
       },
-
       {
         path: PATHS.CALENDAR,
         element: <Calendar />,
+      },
+      {
+        path: PATHS.DIARY,
+        element: <Diary />,
+      },
+      {
+        path: PATHS.QUESTION,
+        element: <Question />,
+      },
+      {
+        path: PATHS.QUESTION_CREATE,
+        element: <QuestionCreate />,
+      },
+      {
+        path: PATHS.QUESTION_HISTORY,
+        element: <QuestionHistory />,
       },
     ],
   },
