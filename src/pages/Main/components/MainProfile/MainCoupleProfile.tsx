@@ -9,9 +9,7 @@ const MainCoupleProfile = () => {
         mbti="ISFJ"
         picture="https://source.unsplash.com/random/"
       />
-      <IconHeart
-        className={`absolute left-[50%] top-[30%] z-10 h-[3.1255rem] w-[3.125rem] translate-x-[-50%] translate-y-[-50%] fill-base-primary stroke-base-primary lg:left-[8rem] lg:top-[3rem] lg:translate-x-0 lg:translate-y-0`}
-      />
+      <IconHeart className="absolute left-1/2 top-1/2 z-10 h-[3.1255rem] w-[3.125rem] -translate-x-1/2 -translate-y-1/2 fill-base-primary stroke-base-primary lg:left-32 lg:top-12 lg:translate-x-0 lg:translate-y-0" />
       <MainProfile
         name="호"
         mbti="ENTP"
