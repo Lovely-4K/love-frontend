@@ -6,11 +6,11 @@ const patchAnswerQuestion = async ({
 }: {
   choiceNumber: number;
 }) => {
-  await apiClient.patch(`/v1/questions/1/answers?sex=MALE`, {
+  await apiClient.patch(`/questions/1/answers?sex=MALE`, {
     choiceNumber,
   });
 };
 
-export const useGetQuestion = () => {
+export const usePatchAnswerQuestion = () => {
   return useMutation({ mutationFn: patchAnswerQuestion });
 };
