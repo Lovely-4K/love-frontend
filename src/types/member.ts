@@ -2,7 +2,7 @@ interface User {
   imageUrl: string | null;
   name: string;
   nickname: string;
-  birth: number[];
+  birthday: number[];
   mbti: string;
   calendarColor: string;
 }

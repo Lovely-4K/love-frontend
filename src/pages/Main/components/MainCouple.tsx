@@ -34,7 +34,6 @@ const MainCouple = () => {
       </div>
       <div className="flex flex-col items-center justify-center gap-1">
         <MainCoupleProfile />
-        <span className="text-3xl text-base-primary">D+123</span>
       </div>
       <MainPreviews />
     </div>
