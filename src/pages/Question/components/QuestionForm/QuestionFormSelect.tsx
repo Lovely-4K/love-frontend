@@ -3,7 +3,6 @@ import useQuestionForm from '~/pages/Question/hooks/useQuestionForm';
 
 const QuestionFormSelect = () => {
   const { userAnswer, answers, handleSubmitUserAnswer } = useQuestionForm();
-  console.log(userAnswer);
 
   return (
     <>
