@@ -1,21 +1,28 @@
-import { PropsWithChildren, createContext } from 'react';
+import React, { PropsWithChildren, createContext } from 'react';
+import { useState } from 'react';
 import { QuestionToday } from '~/types';
 
-const QuestionContext = createContext<QuestionToday>({} as QuestionToday);
+interface QuestionContextProps {
+  questionForm: QuestionToday;
+  setQuestionForm: React.Dispatch<React.SetStateAction<QuestionToday>>;
+}
 
-const QuestionProvider = ({
-  children,
-  question = {
+const QuestionContext = createContext<QuestionContextProps>(
+  {} as QuestionContextProps,
+);
+
+const QuestionProvider = ({ children }: PropsWithChildren) => {
+  const [questionForm, setQuestionForm] = useState<QuestionToday>({
     questionId: 1,
     questionContent: '테스트 질문',
     firstChoice: '선택지 1',
     secondChoice: '선택지 2',
-    thirdChoice: '선택지 3',
-    fourthChoice: null,
-  },
-}: PropsWithChildren & { question: QuestionToday }) => {
+    thirdChoice: undefined,
+    fourthChoice: undefined,
+  } as QuestionToday);
+
   return (
-    <QuestionContext.Provider value={question}>
+    <QuestionContext.Provider value={{ questionForm, setQuestionForm }}>
       {children}
     </QuestionContext.Provider>
   );

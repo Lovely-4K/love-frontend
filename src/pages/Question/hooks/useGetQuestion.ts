@@ -1,18 +1,26 @@
 import { useQuery } from '@tanstack/react-query';
-import { QuestionToday } from '~/types';
+import { QuestionToday, code, links } from '~/types';
 import apiClient from '~/api/apiClient';
 
-const getQuestion = async (): Promise<QuestionToday> => {
-  const response = await apiClient.get('/questions/daily?coupleId=1');
+interface QuestionResponse {
+  code: code;
+  links: links;
+  body: QuestionToday;
+}
 
-  console.log(response.data);
+const useGetQuestion = () => {
+  const getQuestion = async (): Promise<QuestionResponse> => {
+    const response = await apiClient.get('/questions/daily?coupleId=1');
 
-  return response.data;
-};
+    return response.data;
+  };
 
-export const useGetQuestion = () => {
-  return useQuery({
+  const { data, isError, isLoading } = useQuery({
     queryKey: ['question'],
     queryFn: getQuestion,
   });
+
+  return { data, isError, isLoading };
 };
+
+export default useGetQuestion;

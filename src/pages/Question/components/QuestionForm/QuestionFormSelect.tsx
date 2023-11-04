@@ -1,31 +1,16 @@
-import { useContext, useState } from 'react';
 import QuestionFormSelectItem from './QuestionFormSelectItem';
-import { QuestionContext } from '~/pages/Question/contexts/QuestionContext';
+import useQuestionForm from '~/pages/Question/hooks/useQuestionForm';
 
 const QuestionFormSelect = () => {
-  const {
-    firstChoice,
-    secondChoice,
-    thirdChoice = null,
-    fourthChoice = null,
-  } = useContext(QuestionContext);
-
-  // const [active, setActive] = useState(false);
-
-  // const handleClick = () => {
-  //   setActive(!active);
-  // };
+  const { answers } = useQuestionForm();
 
   return (
     <div className="my-3 flex flex-col gap-3 lg:flex-row">
-      <QuestionFormSelectItem active={false} answer={firstChoice} />
-      <QuestionFormSelectItem active={false} answer={secondChoice} />
-      {thirdChoice && (
-        <QuestionFormSelectItem active={false} answer={thirdChoice} />
-      )}
-      {fourthChoice && (
-        <QuestionFormSelectItem active={false} answer={fourthChoice} />
-      )}
+      {answers.map((answer) => {
+        return (
+          answer && <QuestionFormSelectItem answer={answer} active={false} />
+        );
+      })}
     </div>
   );
 };

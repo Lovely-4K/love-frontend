@@ -1,10 +1,8 @@
-import { useContext } from 'react';
-import { QuestionContext } from '~/pages/Question/contexts/QuestionContext';
+import useQuestionForm from '~/pages/Question/hooks/useQuestionForm';
 
 const QuestionFormLabel = () => {
-  const { questionContent } = useContext(QuestionContext);
-
-  console.log(questionContent);
+  // questionContent 를 커스텀 훅으로 가져옴
+  const { questionContent } = useQuestionForm();
 
   return (
     <div className="mt-3 flex flex-col gap-5">

@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
+
 import QuestionFormCreate from './QuestionFormCreate';
 import QuestionFormLabel from './QuestionFormLabel';
 import QuestionFormSelect from './QuestionFormSelect';
 import { QuestionProvider } from '~/pages/Question/contexts/QuestionContext';
-import { useGetQuestion } from '~/pages/Question/hooks/useGetQuestion';
 import { usePatchAnswerQuestion } from '~/pages/Question/hooks/usePatchAnswerQuestion';
 
 const QuestionFormContainer = styled.div``;
@@ -12,8 +12,6 @@ const QuestionFormContainer = styled.div``;
 const QuestionForm = () => {
   const myAnswerStatus: boolean = false;
   const myLoverStatus: boolean = true;
-
-  const { data: question } = useGetQuestion();
 
   const patchAnswerMutation = usePatchAnswerQuestion();
 
@@ -27,7 +25,7 @@ const QuestionForm = () => {
   };
 
   return (
-    <QuestionProvider question={question!}>
+    <QuestionProvider>
       <QuestionFormContainer>
         <QuestionFormLabel />
         <QuestionFormSelect />
