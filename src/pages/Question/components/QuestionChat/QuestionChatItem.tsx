@@ -14,8 +14,6 @@ const QuestionChatItem = ({
   const chatType = type === 'start' ? 'chat-start' : 'chat-end';
   message = answerStatus === false ? '답변을 기다리는 중이에요!' : message;
 
-  console.log(message);
-
   return (
     <div className={`chat ${chatType} my-3`}>
       <div className="avatar chat-image">

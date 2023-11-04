@@ -6,7 +6,7 @@ const patchAnswerQuestion = async ({
 }: {
   choiceNumber: number;
 }) => {
-  await apiClient.patch(`/questions/1/answers?sex=MALE`, {
+  await apiClient.patch(`/questions/1/answers?sex=FEMALE`, {
     choiceNumber,
   });
 };

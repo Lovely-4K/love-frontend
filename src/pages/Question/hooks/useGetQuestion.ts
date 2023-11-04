@@ -5,6 +5,8 @@ import apiClient from '~/api/apiClient';
 const getQuestion = async (): Promise<QuestionToday> => {
   const response = await apiClient.get('/questions/daily?coupleId=1');
 
+  console.log(response.data);
+
   return response.data;
 };
 

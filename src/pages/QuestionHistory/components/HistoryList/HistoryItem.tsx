@@ -12,6 +12,8 @@ const HistoryItem = ({ questionTitle }: QuestionDropDown) => {
     girlAnswer: '기본 값',
   };
 
+  console.log(questionDetail);
+
   return (
     <div className="collapse-arrow collapse border border-solid border-grey-200 bg-base-white">
       <input type="checkbox" className="peer" />
