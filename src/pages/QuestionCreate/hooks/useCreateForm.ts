@@ -1,16 +1,16 @@
 import { useMutation } from '@tanstack/react-query';
 
 import axios from 'axios';
-import type { Question, code, links } from '~/types';
+import type { QuestionToday, code, links } from '~/types';
 
 interface QuestionResponse {
-  body?: Question;
+  body?: QuestionToday;
   code: code;
   links?: links;
 }
 
 interface createFormParams {
-  questionForm: Question;
+  questionForm: QuestionToday;
 }
 
 const useCreateForm = () => {

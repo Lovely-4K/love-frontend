@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import QuestionFormSelectItem from './QuestionFormSelectItem';
 import { QuestionContext } from '~/pages/Question/contexts/QuestionContext';
 
