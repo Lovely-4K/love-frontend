@@ -6,9 +6,11 @@ const QuestionFormSelect = () => {
 
   return (
     <div className="my-3 flex flex-col gap-3 lg:flex-row">
-      {answers.map((answer) => {
+      {answers.map((answer, index) => {
         return (
-          answer && <QuestionFormSelectItem answer={answer} active={false} />
+          answer && (
+            <QuestionFormSelectItem itemIndex={index + 1} answer={answer} />
+          )
         );
       })}
     </div>

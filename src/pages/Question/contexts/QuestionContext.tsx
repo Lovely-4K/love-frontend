@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { QuestionToday } from '~/types';
 
 interface QuestionContextProps {
+  userAnswer: number;
+  setUserAnswer: React.Dispatch<React.SetStateAction<number>>;
   questionForm: QuestionToday;
   setQuestionForm: React.Dispatch<React.SetStateAction<QuestionToday>>;
 }
@@ -12,6 +14,7 @@ const QuestionContext = createContext<QuestionContextProps>(
 );
 
 const QuestionProvider = ({ children }: PropsWithChildren) => {
+  const [userAnswer, setUserAnswer] = useState(-1);
   const [questionForm, setQuestionForm] = useState<QuestionToday>({
     questionId: 1,
     questionContent: '테스트 질문',
@@ -22,7 +25,9 @@ const QuestionProvider = ({ children }: PropsWithChildren) => {
   } as QuestionToday);
 
   return (
-    <QuestionContext.Provider value={{ questionForm, setQuestionForm }}>
+    <QuestionContext.Provider
+      value={{ userAnswer, setUserAnswer, questionForm, setQuestionForm }}
+    >
       {children}
     </QuestionContext.Provider>
   );

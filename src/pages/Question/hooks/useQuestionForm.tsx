@@ -3,8 +3,9 @@ import { QuestionContext } from '../contexts/QuestionContext';
 import useGetQuestion from './useGetQuestion';
 
 const useQuestionForm = () => {
-  const { data } = useGetQuestion(); // react-query
-  const { questionForm, setQuestionForm } = useContext(QuestionContext); // context 에서 데이터 받아오기
+  const { data } = useGetQuestion();
+  const { userAnswer, setUserAnswer, questionForm, setQuestionForm } =
+    useContext(QuestionContext);
   const {
     questionId,
     questionContent,
@@ -14,15 +15,15 @@ const useQuestionForm = () => {
     fourthChoice,
   } = questionForm;
 
-  // react-query 성공시 question 변경
   useEffect(() => {
     if (data) {
       setQuestionForm(data.body);
     }
   }, [data, setQuestionForm]);
 
-  // question 관련 데이터 return
   return {
+    userAnswer,
+    setUserAnswer,
     questionId,
     questionContent,
     answers: [firstChoice, secondChoice, thirdChoice, fourthChoice],

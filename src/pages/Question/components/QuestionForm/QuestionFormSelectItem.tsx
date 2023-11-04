@@ -1,18 +1,23 @@
+import useQuestionForm from '../../hooks/useQuestionForm';
+
 interface QuestionFormSelectItemProps {
   answer: string;
-  active: boolean;
+  itemIndex: number;
 }
 
 const QuestionFormSelectItem = ({
   answer,
-  active,
+  itemIndex,
 }: QuestionFormSelectItemProps) => {
-  const activeStyle = active
-    ? 'border-none bg-primary text-base-white hover:bg-base-secondary'
-    : 'border border-grey-200 py-3 hover:bg-grey-100';
+  const { userAnswer, setUserAnswer } = useQuestionForm();
+  const activeStyle =
+    itemIndex === userAnswer
+      ? 'border-none bg-primary text-base-white hover:bg-base-secondary'
+      : 'border border-grey-200 py-3 hover:bg-grey-100';
 
   return (
     <div
+      onClick={() => setUserAnswer(itemIndex)}
       className={`flex flex-grow cursor-pointer items-center justify-center rounded-xl ${activeStyle}`}
     >
       {answer}
