@@ -1,5 +1,5 @@
 import QuestionChatItem from '~/pages/Question/components/QuestionChat/QuestionChatItem';
-import { useGetQuestionDetail } from '~/pages/QuestionHistory/hooks/useGetQuestionDetail';
+import useGetQuestionDetail from '~/pages/QuestionHistory/hooks/useGetQuestionDetail';
 
 interface QuestionDropDown {
   questionTitle: string;

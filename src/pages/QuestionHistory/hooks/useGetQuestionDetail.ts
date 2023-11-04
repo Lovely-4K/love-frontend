@@ -2,17 +2,19 @@ import { useQuery } from '@tanstack/react-query';
 import { QuestionHistoryDetail } from '~/types';
 import apiClient from '~/api/apiClient';
 
-const getQuestionDetail = async (): Promise<QuestionHistoryDetail> => {
-  const response = await apiClient.get('/questions/details/1');
+const useGetQuestionDetail = () => {
+  const getQuestionDetail = async (): Promise<QuestionHistoryDetail> => {
+    const response = await apiClient.get('/questions/details/4');
 
-  console.log(response.data);
+    return response.data.body;
+  };
 
-  return response.data;
-};
-
-export const useGetQuestionDetail = () => {
-  return useQuery({
+  const { data, isError, isLoading } = useQuery({
     queryKey: ['questionDetail'],
     queryFn: getQuestionDetail,
   });
+
+  return { data, isError, isLoading };
 };
+
+export default useGetQuestionDetail;
