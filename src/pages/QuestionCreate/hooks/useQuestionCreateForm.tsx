@@ -1,18 +1,35 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { paths } from '~/router';
 import { QuestionCreateFormContext } from '../contexts/QuestionCreateFormContext';
+import useCreateForm from './useCreateForm';
 
 const useQuestionCreateForm = () => {
+  const navigate = useNavigate();
+  const { mutateAsync, data, isError } = useCreateForm();
   const { question, setQuestion, answers, setAnswers } = useContext(
     QuestionCreateFormContext,
   );
 
-  /** @todo-백엔드 API 연결 로직 추가해야 함 */
-  const handleSubmitForm = (
+  const handleSubmitForm = async (
     event:
       | React.FormEvent<HTMLFormElement>
       | React.MouseEvent<HTMLButtonElement>,
   ) => {
     event.preventDefault();
+    const data = await mutateAsync({
+      questionForm: {
+        questionContent: question,
+        firstChoice: answers[0],
+        secondChoice: answers[1],
+        thirdChoice: answers[2],
+        fourthChoice: answers[3],
+      },
+    });
+
+    if (data) {
+      navigate(paths.QUESTION);
+    }
   };
 
   const handleQuestionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,6 +63,8 @@ const useQuestionCreateForm = () => {
   };
 
   return {
+    data,
+    isError,
     question,
     answers,
     handleSubmitForm,

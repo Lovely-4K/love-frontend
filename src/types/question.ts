@@ -1,10 +1,10 @@
-interface QuestionToday {
-  questionId: number;
+interface Question {
+  questionId?: number;
   questionContent: string;
   firstChoice: string;
   secondChoice: string;
-  thirdChoice: string | null;
-  fourthChoice: string | null;
+  thirdChoice?: string;
+  fourthChoice?: string;
 }
 
 interface QuestionHistoryDetail {

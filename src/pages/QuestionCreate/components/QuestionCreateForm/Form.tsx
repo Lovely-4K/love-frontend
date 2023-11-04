@@ -2,7 +2,7 @@ import FormAnswer from './FormAnswer';
 import FormQuestion from './FormQuestion';
 import useQuestionCreateForm from '~/pages/QuestionCreate/hooks/useQuestionCreateForm';
 
-/** @todo- answer, question 에 대한 상태관리를 여기서 해주어야 함 */
+/** @todo- data === undefined 일 시, 로딩 기능 추가, isError 일 시 Toast UI 추가 */
 const Form = () => {
   const { question, answers, handleSubmitForm } = useQuestionCreateForm();
   const buttonInvalidate = question.length === 0 || answers.length === 0;

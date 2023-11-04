@@ -21,6 +21,8 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
 
+    "types": ["kakao.maps.d.ts"],
+
     "baseUrl": "./src",
     "paths": {
       "~/*": ["*"]
