@@ -16,6 +16,7 @@
     "axios": "^1.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-kakao-maps-sdk": "^1.1.24",
     "react-router-dom": "^6.17.0"
   },
   "devDependencies": {
@@ -47,6 +48,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "eslint-plugin-storybook": "^0.6.15",
+    "kakao.maps.d.ts": "^0.1.39",
     "netlify-cli": "^16.9.3",
     "postcss": "^8.4.31",
     "prettier": "^3.0.3",

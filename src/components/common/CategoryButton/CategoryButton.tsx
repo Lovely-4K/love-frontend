@@ -3,7 +3,7 @@ import { CircleButton } from '..';
 import CategoryIcon from './CategoryIcon';
 import categoryType from './CategoryTypes';
 
-interface CategoryButtonProps extends HtmlHTMLAttributes<HTMLButtonElement> {
+interface CategoryButtonProps extends HtmlHTMLAttributes<HTMLDivElement> {
   type: categoryType;
   active: boolean;
 }
@@ -20,9 +20,9 @@ const CategoryButton = ({ type, active, onClick }: CategoryButtonProps) => {
   const icon = CategoryIcon({ type });
 
   return (
-    <button onClick={onClick}>
+    <div onClick={onClick}>
       <CircleButton active={active} icon={icon} label={titles[type]} />
-    </button>
+    </div>
   );
 };
 
