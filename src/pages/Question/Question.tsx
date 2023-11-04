@@ -1,8 +1,5 @@
 import styled from '@emotion/styled';
 import { QuestionHeader, QuestionForm, QuestionChat } from './components';
-import { useGetQuestion } from '~/pages/Question/hooks/useGetQuestion';
-import { useGetQuestionDetail } from '~/pages/QuestionHistory/hooks/useGetQuestionDetail';
-import { useGetQuestions } from '~/pages/QuestionHistory/hooks/useGetQuestions';
 
 export const QuestionContainer = styled.div`
   width: 100%;
@@ -19,10 +16,6 @@ export const QuestionContainer = styled.div`
 `;
 
 const Question = () => {
-  const { data: question } = useGetQuestion();
-
-  console.log(question);
-
   return (
     <QuestionContainer>
       <QuestionHeader />

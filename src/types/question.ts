@@ -1,4 +1,4 @@
-interface Question {
+interface QuestionToday {
   questionId: number;
   questionContent: string;
   firstChoice: string;
@@ -23,7 +23,7 @@ interface QuestionHistories {
 }
 
 export type {
-  Question,
+  QuestionToday,
   QuestionHistoryPreview,
   QuestionHistories,
   QuestionHistoryDetail,
