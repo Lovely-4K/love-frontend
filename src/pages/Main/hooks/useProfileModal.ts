@@ -1,80 +1,88 @@
 import { ChangeEvent, MouseEventHandler, useContext } from 'react';
 import { personalColors } from '~/constants';
+import { User } from '~/types';
 import { ProfileModalContext } from '../context/ProfileModalContext';
 
 const useProfileModal = () => {
-  const { activeEdit, setActiveEdit, userInfo, isLoading } =
-    useContext(ProfileModalContext);
+  const {
+    activeEdit,
+    setActiveEdit,
+    editUserInfo,
+    setEditUserInfo,
+    editProfile,
+  } = useContext(ProfileModalContext);
 
-  // const handleActiveEdit = () => {
-  //   if (!activeEdit) {
-  //     setActiveEdit(true);
+  const handleActiveEdit = () => {
+    if (!activeEdit) {
+      setActiveEdit(true);
 
-  //     return;
-  //   }
+      return;
+    }
 
-  //   setActiveEdit(false);
-  // };
+    editProfile(editUserInfo);
+    setActiveEdit(false);
+  };
 
-  // const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-  //   const { id, value } = event.target;
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = event.target;
 
-  //   setUserInfo({
-  //     ...userInfo,
-  //     [id]: value,
-  //   });
-  // };
+    setEditUserInfo({
+      ...editUserInfo,
+      [id]: value,
+    });
+  };
 
-  // const handleColorChange: MouseEventHandler<HTMLDivElement> = (event) => {
-  //   const { id: color } = event.currentTarget;
+  const handleColorChange: MouseEventHandler<HTMLDivElement> = (event) => {
+    const { id: color } = event.currentTarget;
 
-  //   setUserInfo({
-  //     ...userInfo,
-  //     color: personalColors[color as keyof typeof personalColors],
-  //   });
-  // };
+    setEditUserInfo({
+      ...editUserInfo,
+      calendarColor: personalColors[color as keyof typeof personalColors],
+    });
+  };
 
-  // const getNewMBTI = (value: string) => {
-  //   let newMBTI = '';
+  const getNewMBTI = (value: string) => {
+    let newMBTI = '';
 
-  //   if (['E', 'I'].includes(value)) {
-  //     newMBTI = value + userInfo.MBTI.slice(1);
-  //   } else if (['S', 'N'].includes(value)) {
-  //     newMBTI = userInfo.MBTI.slice(0, 1) + value + userInfo.MBTI.slice(2);
-  //   } else if (['T', 'F'].includes(value)) {
-  //     newMBTI = userInfo.MBTI.slice(0, 2) + value + userInfo.MBTI.slice(3);
-  //   } else if (['J', 'P'].includes(value)) {
-  //     newMBTI = userInfo.MBTI.slice(0, 3) + value;
-  //   } else {
-  //     newMBTI = userInfo.MBTI;
-  //   }
+    if (['E', 'I'].includes(value)) {
+      newMBTI = value + editUserInfo?.mbti.slice(1);
+    } else if (['S', 'N'].includes(value)) {
+      newMBTI =
+        editUserInfo?.mbti.slice(0, 1) + value + editUserInfo?.mbti.slice(2);
+    } else if (['T', 'F'].includes(value)) {
+      newMBTI =
+        editUserInfo?.mbti.slice(0, 2) + value + editUserInfo?.mbti.slice(3);
+    } else if (['J', 'P'].includes(value)) {
+      newMBTI = editUserInfo?.mbti.slice(0, 3) + value;
+    } else {
+      newMBTI = editUserInfo?.mbti as string;
+    }
 
-  //   return newMBTI;
-  // };
+    return newMBTI;
+  };
 
-  // const handleMBTIChange: MouseEventHandler<HTMLDivElement> = (event) => {
-  //   if (!(event.target instanceof HTMLButtonElement)) return;
+  const handleMBTIChange: MouseEventHandler<HTMLDivElement> = (event) => {
+    if (!(event.target instanceof HTMLButtonElement)) return;
 
-  //   const { value } = event.target;
+    const { value } = event.target;
 
-  //   if (userInfo.MBTI.includes(value)) return;
+    if (editUserInfo?.mbti.includes(value)) return;
 
-  //   const newMBTI = getNewMBTI(value);
+    const newMBTI = getNewMBTI(value);
 
-  //   setUserInfo({
-  //     ...userInfo,
-  //     MBTI: newMBTI,
-  //   });
-  // };
+    setEditUserInfo({
+      ...editUserInfo,
+      mbti: newMBTI,
+    });
+  };
 
   return {
     activeEdit,
-    // handleActiveEdit,
-    userInfo,
-    // handleInputChange,
-    // handleColorChange,
-    // handleMBTIChange,
-    isLoading,
+    handleActiveEdit,
+    editUserInfo,
+    handleInputChange,
+    handleColorChange,
+    handleMBTIChange,
   };
 };
 

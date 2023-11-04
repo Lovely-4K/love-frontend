@@ -1,13 +1,15 @@
-import { UseQueryResult } from '@tanstack/react-query';
-import { PropsWithChildren, createContext, useState } from 'react';
+import { UseMutateFunction } from '@tanstack/react-query';
+import { PropsWithChildren, createContext, useEffect, useState } from 'react';
 import { User } from '~/types';
+import useEditProfile from '../hooks/useEditProfile';
 import useGetProfile from '../hooks/useGetProfile';
 
 interface ProfileModalContextProps {
   activeEdit: boolean;
   setActiveEdit: React.Dispatch<React.SetStateAction<boolean>>;
-  userInfo: User | undefined;
-  isLoading: boolean;
+  editUserInfo: User;
+  setEditUserInfo: React.Dispatch<React.SetStateAction<User>>;
+  editProfile: UseMutateFunction<any, Error, User, unknown>;
 }
 
 const ProfileModalContext = createContext<ProfileModalContextProps>(
@@ -15,17 +17,25 @@ const ProfileModalContext = createContext<ProfileModalContextProps>(
 );
 
 const ProfileModalProvider = ({ children }: PropsWithChildren) => {
-  const { data: userInfo, isLoading } = useGetProfile();
+  const { data: userInfo } = useGetProfile();
+  const { mutate: editProfile } = useEditProfile();
   const [activeEdit, setActiveEdit] = useState(false);
-  // const [userInfo, setUserInfo] = useState<User>();
+  const [editUserInfo, setEditUserInfo] = useState<User>({} as User);
+
+  useEffect(() => {
+    if (userInfo) {
+      setEditUserInfo(userInfo);
+    }
+  }, [userInfo]);
 
   return (
     <ProfileModalContext.Provider
       value={{
         activeEdit,
         setActiveEdit,
-        userInfo,
-        isLoading,
+        editUserInfo,
+        setEditUserInfo,
+        editProfile,
       }}
     >
       {children}
