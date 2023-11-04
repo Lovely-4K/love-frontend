@@ -23,7 +23,7 @@ const useUpdateUserAnswer = () => {
     return response.data;
   };
 
-  const { data, isError } = useMutation({
+  const { mutate, data, isError } = useMutation({
     mutationKey: ['userAnswer'],
     mutationFn: updateUserAnswer,
     onMutate: async ({ selectedItemIndex }) => {
@@ -35,6 +35,9 @@ const useUpdateUserAnswer = () => {
         queryClient.setQueryData(['userAnswer'], '');
       };
     },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ['questionDetail'] });
+    },
     onError: (error, _, context) => {
       if (error && context) {
         context();
@@ -45,7 +48,7 @@ const useUpdateUserAnswer = () => {
     },
   });
 
-  return { data, isError };
+  return { mutate, data, isError };
 };
 
 export default useUpdateUserAnswer;
