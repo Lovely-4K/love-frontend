@@ -15,8 +15,8 @@ const MainCouple = () => {
   } = useModal();
 
   return (
-    <div className="flex h-full w-full flex-col p-5">
-      <div className="flex items-center justify-end gap-[0.625rem]">
+    <>
+      <div className="flex items-center justify-end gap-3">
         <button
           onClick={openModal}
           className="btn-small w-full rounded-xl border border-grey-200 bg-base-white font-bold text-grey-400 lg:btn-medium"
@@ -32,11 +32,9 @@ const MainCouple = () => {
         </button>
         <MainDdayModal ref={dDayModalRef} closeModal={closeDdayModal} />
       </div>
-      <div className="flex flex-col items-center justify-center gap-1">
-        <MainCoupleProfile />
-      </div>
+      <MainCoupleProfile />
       <MainPreviews />
-    </div>
+    </>
   );
 };
 

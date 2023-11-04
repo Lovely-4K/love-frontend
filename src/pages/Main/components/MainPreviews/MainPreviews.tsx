@@ -1,29 +1,14 @@
-import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
+import { screens } from '~/theme';
 import MainPreviewCalendar from './MainPreviewCalendar';
 import MainPreviewDiary from './MainPreviewDiary';
 import MainPreviewItem from './MainPreviewItem';
 import MainPreviewQuestion from './MainPreviewQuestion';
 
-const MainPreviewContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  padding-top: 2rem;
-
-  @media screen and (min-width: 768px) {
-    padding-right: 1rem;
-    padding-left: 1rem;
-    flex-direction: row;
-    justify-content: center;
-  }
-`;
-
 const MainPreviews = () => {
   return (
-    <MainPreviewContainer>
-      <MainPreviewItem
+    <div className="flex h-full w-full flex-col pt-8 md:flex-row md:justify-center md:px-4">
+      {/* <MainPreviewItem
         pageLink={'/calendar'}
         title={'다가오는 일정 →'}
         content={<MainPreviewCalendar />}
@@ -37,8 +22,14 @@ const MainPreviews = () => {
         pageLink={'/question'}
         title={'오늘의 질문 →'}
         content={<MainPreviewQuestion />}
-      />
-    </MainPreviewContainer>
+      /> */}
+      <div className="mx-4 flex h-full flex-col rounded-xl px-4 py-3 md:w-1/3 md:border md:border-solid md:border-grey-200">
+        <Link to={'/'} className="font-title my-2 w-full font-bold">
+          다가오는 일정 →
+        </Link>
+        <MainPreviewCalendar />
+      </div>
+    </div>
   );
 };
 
