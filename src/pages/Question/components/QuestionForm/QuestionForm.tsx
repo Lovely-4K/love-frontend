@@ -4,6 +4,7 @@ import QuestionFormLabel from './QuestionFormLabel';
 import QuestionFormSelect from './QuestionFormSelect';
 import { QuestionProvider } from '~/pages/Question/contexts/QuestionContext';
 import { useGetQuestion } from '~/pages/Question/hooks/useGetQuestion';
+import { usePatchAnswerQuestion } from '~/pages/Question/hooks/usePatchAnswerQuestion';
 
 const QuestionFormContainer = styled.div``;
 
@@ -14,6 +15,17 @@ const QuestionForm = () => {
 
   const { data: question } = useGetQuestion();
 
+  const patchAnswerMutation = usePatchAnswerQuestion();
+
+  const handlePatchAnswer = async (choiceNumber: number) => {
+    try {
+      const result = await patchAnswerMutation.mutateAsync({ choiceNumber });
+      console.log(result);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <QuestionProvider question={question!}>
       <QuestionFormContainer>
@@ -21,7 +33,10 @@ const QuestionForm = () => {
         <QuestionFormSelect />
         {!myAnswerStatus && (
           <div className="flex w-full justify-end">
-            <button className="btn-small btn-primary w-full rounded-xl hover:border-none hover:bg-base-secondary">
+            <button
+              onClick={() => handlePatchAnswer(1)}
+              className="btn-small btn-primary w-full rounded-xl hover:border-none hover:bg-base-secondary"
+            >
               결정
             </button>
           </div>
