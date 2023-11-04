@@ -1,10 +1,17 @@
 import QuestionChatItem from '~/pages/Question/components/QuestionChat/QuestionChatItem';
+import { useGetQuestionDetail } from '~/pages/QuestionHistory/hooks/useGetQuestionDetail';
 
 interface QuestionDropDown {
   questionTitle: string;
 }
 
 const HistoryItem = ({ questionTitle }: QuestionDropDown) => {
+  const { data: questionDetail } = useGetQuestionDetail();
+  const { boyAnswer, girlAnswer } = questionDetail ?? {
+    boyAnswer: '기본 값',
+    girlAnswer: '기본 값',
+  };
+
   return (
     <div className="collapse-arrow collapse border border-solid border-grey-200 bg-base-white">
       <input type="checkbox" className="peer" />
@@ -15,13 +22,13 @@ const HistoryItem = ({ questionTitle }: QuestionDropDown) => {
         <QuestionChatItem
           type={'start'}
           author={'정'}
-          message={'500만 월급 전라도 취직'}
+          message={boyAnswer}
           answerStatus={true}
         />
         <QuestionChatItem
           type={'end'}
           author={'호'}
-          message={'300만 월급 서울 강남 취직'}
+          message={girlAnswer}
           answerStatus={true}
         />
       </div>
