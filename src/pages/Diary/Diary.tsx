@@ -2,10 +2,9 @@ import { DiarySideBar } from '~/pages/Diary/components/DiaryCommon';
 
 const Diary = () => {
   return (
-    <>
-      <DiarySideBar></DiarySideBar>
-      <div>hi</div>
-    </>
+    <div className="h-full w-full">
+      <DiarySideBar />
+    </div>
   );
 };
 
