@@ -11,14 +11,20 @@ const QuestionForm = () => {
     question?.body?.questionId || -1,
   );
 
+  const { questionFormType = '' } = question?.body || {};
   const { myAnswer = '', opponentAnswer = '' } = questionDetail || {};
+
+  const CreateForm = () =>
+    questionFormType === 'SERVER' &&
+    myAnswer &&
+    opponentAnswer && <QuestionFormCreate />;
 
   return (
     <QuestionProvider>
       <div>
         <QuestionFormLabel />
         <QuestionFormSelect />
-        {myAnswer && opponentAnswer && <QuestionFormCreate />}
+        <CreateForm />
       </div>
     </QuestionProvider>
   );
