@@ -4,25 +4,32 @@ import useGetQuestionDetail from '~/pages/QuestionHistory/hooks/useGetQuestionDe
 
 const QuestionChat = () => {
   const { data: question } = useGetQuestion();
-  const { data: { boyAnswer, girlAnswer } = {} } = useGetQuestionDetail(
+  const { data: questionDetail } = useGetQuestionDetail(
     question?.body?.questionId || -1,
   );
 
-  console.log(boyAnswer, girlAnswer);
+  const {
+    myAnswer = '',
+    opponentAnswer = '',
+    myProfile = '',
+    opponentProfile = '',
+  } = questionDetail || {};
 
   return (
     <div className="mt-16">
       <QuestionChatItem
         type={'start'}
-        answerStatus={!!boyAnswer}
+        answerStatus={!!myAnswer}
         author={'나의 답변'}
-        message={boyAnswer}
+        picture={myProfile}
+        message={myAnswer}
       />
       <QuestionChatItem
         type={'end'}
-        answerStatus={!!girlAnswer}
+        answerStatus={!!opponentAnswer}
         author={'상대의 답변'}
-        message={girlAnswer}
+        picture={opponentProfile}
+        message={opponentAnswer}
       />
     </div>
   );

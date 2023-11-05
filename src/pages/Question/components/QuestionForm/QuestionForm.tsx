@@ -7,19 +7,18 @@ import useGetQuestionDetail from '~/pages/QuestionHistory/hooks/useGetQuestionDe
 
 const QuestionForm = () => {
   const { data: question } = useGetQuestion();
-  console.log(question);
-  const { data: { boyAnswer, girlAnswer } = {} } = useGetQuestionDetail(
+  const { data: questionDetail } = useGetQuestionDetail(
     question?.body?.questionId || -1,
   );
 
-  console.log(boyAnswer, girlAnswer);
+  const { myAnswer = '', opponentAnswer = '' } = questionDetail || {};
 
   return (
     <QuestionProvider>
       <div>
         <QuestionFormLabel />
         <QuestionFormSelect />
-        {boyAnswer && girlAnswer && <QuestionFormCreate />}
+        {myAnswer && opponentAnswer && <QuestionFormCreate />}
       </div>
     </QuestionProvider>
   );
