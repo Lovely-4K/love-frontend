@@ -24,7 +24,13 @@ const useQuestionForm = () => {
   }, [questionResponse, setQuestionForm]);
 
   const handleSubmitUserAnswer = () => {
-    mutateUserAnswer({ selectedItemIndex: userAnswer, sex: 'MALE' });
+    if (questionId) {
+      mutateUserAnswer({
+        questionId,
+        selectedItemIndex: userAnswer,
+        sex: 'MALE',
+      });
+    }
   };
 
   return {
