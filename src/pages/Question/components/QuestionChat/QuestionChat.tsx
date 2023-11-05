@@ -1,8 +1,14 @@
 import QuestionChatItem from './QuestionChatItem';
+import useGetQuestion from '~/pages/Question/hooks/useGetQuestion';
 import useGetQuestionDetail from '~/pages/QuestionHistory/hooks/useGetQuestionDetail';
 
 const QuestionChat = () => {
-  const { data: { boyAnswer, girlAnswer } = {} } = useGetQuestionDetail(4);
+  const { data: question } = useGetQuestion();
+  const { data: { boyAnswer, girlAnswer } = {} } = useGetQuestionDetail(
+    question?.body?.questionId || -1,
+  );
+
+  console.log(boyAnswer, girlAnswer);
 
   return (
     <div className="mt-16">

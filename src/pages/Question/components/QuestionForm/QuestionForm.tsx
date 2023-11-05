@@ -6,8 +6,12 @@ import { QuestionProvider } from '~/pages/Question/contexts/QuestionContext';
 import useGetQuestionDetail from '~/pages/QuestionHistory/hooks/useGetQuestionDetail';
 
 const QuestionForm = () => {
-  useGetQuestion();
-  const { data: { boyAnswer, girlAnswer } = {} } = useGetQuestionDetail(4);
+  const { data: question } = useGetQuestion();
+  const { data: { boyAnswer, girlAnswer } = {} } = useGetQuestionDetail(
+    question?.body?.questionId || -1,
+  );
+
+  console.log(boyAnswer, girlAnswer);
 
   return (
     <QuestionProvider>
