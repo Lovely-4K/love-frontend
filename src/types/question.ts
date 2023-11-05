@@ -5,17 +5,23 @@ interface QuestionToday {
   secondChoice: string;
   thirdChoice?: string | null;
   fourthChoice?: string | null;
+  questionFormType: string;
 }
 
 interface QuestionHistoryDetail {
   questionContent: string;
-  boyAnswer: string;
-  girlAnswer: string;
+  myAnswer: string;
+  opponentAnswer: string;
+  myChoiceIndex: number;
+  opponentChoiceIndex: number;
+  myProfile: string;
+  opponentProfile: string;
 }
 
 interface QuestionHistoryPreview {
   questionId: number;
   questionContent: string;
+  questionType: string;
 }
 
 interface QuestionHistories {
