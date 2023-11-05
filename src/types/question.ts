@@ -5,7 +5,7 @@ interface QuestionToday {
   secondChoice: string;
   thirdChoice?: string | null;
   fourthChoice?: string | null;
-  questionFormType: string;
+  questionFormType?: string;
 }
 
 interface QuestionHistoryDetail {
