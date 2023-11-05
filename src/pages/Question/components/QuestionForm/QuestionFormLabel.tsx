@@ -1,7 +1,6 @@
 import useQuestionForm from '~/pages/Question/hooks/useQuestionForm';
 
 const QuestionFormLabel = () => {
-  // questionContent 를 커스텀 훅으로 가져옴
   const { questionContent } = useQuestionForm();
 
   return (
