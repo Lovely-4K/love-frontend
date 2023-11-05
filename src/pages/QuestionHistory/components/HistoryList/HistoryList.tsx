@@ -1,12 +1,18 @@
 import HistoryItem from './HistoryItem';
+import useGetQuestions from '~/pages/QuestionHistory/hooks/useGetQuestions';
 
 const HistoryList = () => {
+  const { data: questions } = useGetQuestions();
+
   return (
     <div className="flex flex-col gap-3">
-      <HistoryItem questionTitle={'둘 중 하나에 취직한다면?'} />
-      <HistoryItem questionTitle={'둘 중 하나에 취직한다면?'} />
-      <HistoryItem questionTitle={'둘 중 하나에 취직한다면?'} />
-      <HistoryItem questionTitle={'둘 중 하나에 취직한다면?'} />
+      {questions?.answeredQuestions.map(({ questionId, questionContent }) => (
+        <HistoryItem
+          questionTitle={questionContent}
+          questionId={questionId}
+          key={questionId}
+        />
+      ))}
     </div>
   );
 };

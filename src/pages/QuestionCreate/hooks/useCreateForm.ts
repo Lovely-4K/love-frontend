@@ -1,16 +1,15 @@
 import { useMutation } from '@tanstack/react-query';
-
-import axios from 'axios';
-import type { Question, code, links } from '~/types';
+import type { QuestionToday, code, links } from '~/types';
+import apiClient from '~/api/apiClient';
 
 interface QuestionResponse {
-  body?: Question;
+  body?: QuestionToday;
   code: code;
   links?: links;
 }
 
 interface createFormParams {
-  questionForm: Question;
+  questionForm: QuestionToday;
 }
 
 const useCreateForm = () => {
@@ -18,9 +17,16 @@ const useCreateForm = () => {
     const subURL = 'questions/question-forms?';
     const params = `memberId=${1}&coupleId=${1}`;
     const URL = subURL + params;
-    const response = await axios.post<QuestionResponse>(URL, {
-      data: questionForm,
-    });
+    console.log(questionForm);
+    const response = await apiClient.post<QuestionResponse>(
+      URL,
+      JSON.stringify(questionForm),
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    );
 
     return response.data;
   };

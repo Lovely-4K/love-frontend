@@ -9,7 +9,7 @@ const QuestionChatItem = ({
   type,
   answerStatus,
   author,
-  message = '답변을 기다리는 중이에요!',
+  message,
 }: QuestionChatItemProps) => {
   const chatType = type === 'start' ? 'chat-start' : 'chat-end';
   message = answerStatus === false ? '답변을 기다리는 중이에요!' : message;

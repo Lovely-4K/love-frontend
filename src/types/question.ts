@@ -1,10 +1,10 @@
-interface Question {
+interface QuestionToday {
   questionId?: number;
   questionContent: string;
   firstChoice: string;
   secondChoice: string;
-  thirdChoice?: string;
-  fourthChoice?: string;
+  thirdChoice?: string | null;
+  fourthChoice?: string | null;
 }
 
 interface QuestionHistoryDetail {
@@ -23,7 +23,7 @@ interface QuestionHistories {
 }
 
 export type {
-  Question,
+  QuestionToday,
   QuestionHistoryPreview,
   QuestionHistories,
   QuestionHistoryDetail,

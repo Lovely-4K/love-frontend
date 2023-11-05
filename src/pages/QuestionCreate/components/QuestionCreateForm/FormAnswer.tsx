@@ -10,7 +10,7 @@ const FormAnswer = () => {
     <div>
       <div className="flex flex-col gap-3">
         <FormAnswerInput />
-        <div onClick={handleDeleteButton}>
+        <div onClick={handleDeleteButton} className="flex flex-col gap-3">
           {answers.map((answer, index) => (
             <FormAnswerCard key={index} index={index} answer={answer} />
           ))}
