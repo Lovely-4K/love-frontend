@@ -1,4 +1,4 @@
-import { MainProfile } from '../MainProfile';
+import Profile from '../MainProfile/Profile';
 import { Modal } from '~/components/domain';
 
 const MainInviteModal = () => {
@@ -9,10 +9,10 @@ const MainInviteModal = () => {
           <span className="font-title text-base-black">
             정 님께서 초대하셨어요!
           </span>
-          <MainProfile
+          <Profile
             name="정"
             mbti="ISFJ"
-            picture="https://source.unsplash.com/random/"
+            src="https://source.unsplash.com/random/"
           />
         </div>
         <div className="flex justify-center gap-2">
