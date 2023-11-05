@@ -7,7 +7,11 @@ const HistoryList = () => {
   return (
     <div className="flex flex-col gap-3">
       {questions?.answeredQuestions.map(({ questionId, questionContent }) => (
-        <HistoryItem questionTitle={questionContent} key={questionId} />
+        <HistoryItem
+          questionTitle={questionContent}
+          questionId={questionId}
+          key={questionId}
+        />
       ))}
     </div>
   );

@@ -2,7 +2,7 @@ import QuestionChatItem from './QuestionChatItem';
 import useGetQuestionDetail from '~/pages/QuestionHistory/hooks/useGetQuestionDetail';
 
 const QuestionChat = () => {
-  const { data: { boyAnswer, girlAnswer } = {} } = useGetQuestionDetail();
+  const { data: { boyAnswer, girlAnswer } = {} } = useGetQuestionDetail(4);
 
   return (
     <div className="mt-16">

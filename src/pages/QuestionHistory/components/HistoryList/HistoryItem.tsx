@@ -3,16 +3,16 @@ import useGetQuestionDetail from '~/pages/QuestionHistory/hooks/useGetQuestionDe
 
 interface QuestionDropDown {
   questionTitle: string;
+  questionId: number;
 }
 
-const HistoryItem = ({ questionTitle }: QuestionDropDown) => {
-  const { data: questionDetail } = useGetQuestionDetail();
+const HistoryItem = ({ questionTitle, questionId }: QuestionDropDown) => {
+  const { data: questionDetail } = useGetQuestionDetail(questionId);
+  const defaultMessage = '답변이 존재하지 않습니다!';
   const { boyAnswer, girlAnswer } = questionDetail ?? {
-    boyAnswer: '기본 값',
-    girlAnswer: '기본 값',
+    boyAnswer: defaultMessage,
+    girlAnswer: defaultMessage,
   };
-
-  console.log(questionDetail);
 
   return (
     <div className="collapse-arrow collapse border border-solid border-grey-200 bg-base-white">

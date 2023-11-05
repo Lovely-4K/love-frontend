@@ -7,7 +7,7 @@ import useGetQuestionDetail from '~/pages/QuestionHistory/hooks/useGetQuestionDe
 
 const QuestionForm = () => {
   useGetQuestion();
-  const { data: { boyAnswer, girlAnswer } = {} } = useGetQuestionDetail();
+  const { data: { boyAnswer, girlAnswer } = {} } = useGetQuestionDetail(4);
 
   return (
     <QuestionProvider>
