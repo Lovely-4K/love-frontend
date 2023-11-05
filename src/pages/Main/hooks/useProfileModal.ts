@@ -1,6 +1,5 @@
 import { ChangeEvent, MouseEventHandler, useContext } from 'react';
 import { personalColors } from '~/constants';
-import { User } from '~/types';
 import { ProfileModalContext } from '../context/ProfileModalContext';
 
 const useProfileModal = () => {

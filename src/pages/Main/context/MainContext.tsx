@@ -1,7 +1,8 @@
-import { PropsWithChildren, createContext } from 'react';
+import { PropsWithChildren, createContext, useEffect, useState } from 'react';
 import useModal from '~/hooks/useModal';
 
 interface MainContextProps {
+  coupleMode: boolean;
   openDdayModal: () => void;
   closeDdayModal: () => void;
   dDayModalRef: React.RefObject<HTMLDialogElement>;
@@ -23,10 +24,17 @@ const MainProvider = ({ children }: PropsWithChildren) => {
     closeModal: closeProfileModal,
     modalRef: profileModalRef,
   } = useModal();
+  const [coupleMode, setCoupleMode] = useState(false);
+
+  /** @todo couple 인지 아닌지 알 수 있는 로직 추가 */
+  useEffect(() => {
+    setCoupleMode(true);
+  }, []);
 
   return (
     <MainContext.Provider
       value={{
+        coupleMode,
         openDdayModal,
         closeDdayModal,
         dDayModalRef,

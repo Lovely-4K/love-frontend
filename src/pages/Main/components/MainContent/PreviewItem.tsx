@@ -7,11 +7,7 @@ interface MainPreviewItemProps {
   content: ReactElement;
 }
 
-const MainPreviewItem = ({
-  title,
-  pageLink,
-  content,
-}: MainPreviewItemProps) => {
+const PreviewItem = ({ title, pageLink, content }: MainPreviewItemProps) => {
   return (
     <div className="mx-4 flex flex-col rounded-xl px-4 py-3 md:h-[22rem] md:w-1/3 md:border md:border-solid md:border-grey-200">
       <Link to={pageLink} className="font-title my-2 w-full font-bold">
@@ -22,4 +18,4 @@ const MainPreviewItem = ({
   );
 };
 
-export default MainPreviewItem;
+export default PreviewItem;
