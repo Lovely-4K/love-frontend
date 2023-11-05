@@ -9,10 +9,11 @@ interface QuestionDropDown {
 const HistoryItem = ({ questionTitle, questionId }: QuestionDropDown) => {
   const { data: questionDetail } = useGetQuestionDetail(questionId);
   const defaultMessage = '답변이 존재하지 않습니다!';
-  const { boyAnswer, girlAnswer } = questionDetail ?? {
-    boyAnswer: defaultMessage,
-    girlAnswer: defaultMessage,
-  };
+  const { myAnswer, opponentAnswer, myProfile, opponentProfile } =
+    questionDetail ?? {
+      myAnswer: defaultMessage,
+      opponentAnswer: defaultMessage,
+    };
 
   return (
     <div className="collapse-arrow collapse border border-solid border-grey-200 bg-base-white">
@@ -24,13 +25,15 @@ const HistoryItem = ({ questionTitle, questionId }: QuestionDropDown) => {
         <QuestionChatItem
           type={'start'}
           author={'정'}
-          message={boyAnswer}
+          message={myAnswer}
+          picture={myProfile}
           answerStatus={true}
         />
         <QuestionChatItem
           type={'end'}
           author={'호'}
-          message={girlAnswer}
+          message={opponentAnswer}
+          picture={opponentProfile}
           answerStatus={true}
         />
       </div>
