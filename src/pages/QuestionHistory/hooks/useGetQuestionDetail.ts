@@ -18,13 +18,13 @@ const useGetQuestionDetail = (questionId: number) => {
       return response.data;
     };
 
-  const { data, isError, isLoading } = useQuery({
+  const { data, isError, isLoading, refetch } = useQuery({
     enabled: questionId !== -1,
     queryKey: ['questionDetail', questionId],
     queryFn: getQuestionDetail,
   });
 
-  return { data, isError, isLoading };
+  return { data, isError, isLoading, refetch };
 };
 
 export default useGetQuestionDetail;

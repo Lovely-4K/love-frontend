@@ -30,8 +30,8 @@ const QuestionProvider = ({ children }: PropsWithChildren) => {
   } as QuestionToday);
   const [questionDetail, setQuestionDetail] = useState<QuestionHistoryDetail>({
     questionContent: '테스트 질문',
-    myAnswer: '답변을 기다리는 중이에요!',
-    opponentAnswer: '답변을 기다리는 중이에요!',
+    myAnswer: '',
+    opponentAnswer: '',
     myChoiceIndex: 1,
     opponentChoiceIndex: 1,
     myProfile: '',

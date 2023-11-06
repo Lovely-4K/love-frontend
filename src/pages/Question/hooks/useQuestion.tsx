@@ -16,11 +16,12 @@ const useQuestion = () => {
   } = useContext(QuestionContext);
   const { mutate: createTodayQuestionMutate } = useCreateTodayQuestion();
   const { data: questionResponse } = useGetQuestion();
-  const { data: questionDetailResponse } = useGetQuestionDetail(
-    questionResponse?.body?.questionId || -1,
-  );
-  const { mutate: mutateUserAnswer } = useUpdateUserAnswer();
+  const { data: questionDetailResponse, refetch: questionDetailRefetch } =
+    useGetQuestionDetail(questionResponse?.body?.questionId || -1);
+  const { data: updateAnswerResponse, mutate: mutateUserAnswer } =
+    useUpdateUserAnswer();
 
+  const { myAnswer } = questionDetail;
   const {
     questionId,
     questionContent,
@@ -47,6 +48,13 @@ const useQuestion = () => {
     }
   }, [questionDetailResponse, setQuestionDetail]);
 
+  useEffect(() => {
+    if (updateAnswerResponse !== undefined) {
+      alert('답변을 제출했습니다!');
+      questionDetailRefetch().catch((error) => console.log(error));
+    }
+  }, [updateAnswerResponse, questionDetailRefetch]);
+
   const handleSubmitUserAnswer = () => {
     if (questionId) {
       mutateUserAnswer({
@@ -61,6 +69,7 @@ const useQuestion = () => {
     questionDetail,
     userAnswer,
     setUserAnswer,
+    myAnswer,
     handleSubmitUserAnswer,
     question: {
       questionId,
