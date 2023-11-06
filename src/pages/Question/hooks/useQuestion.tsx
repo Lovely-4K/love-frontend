@@ -62,6 +62,11 @@ const useQuestion = () => {
         selectedItemIndex: userAnswer,
         sex: 'MALE',
       });
+      mutateUserAnswer({
+        questionId,
+        selectedItemIndex: userAnswer,
+        sex: 'FEMALE',
+      });
     }
   };
 
