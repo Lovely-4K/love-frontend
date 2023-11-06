@@ -1,19 +1,10 @@
+import useQuestion from '../../hooks/useQuestion';
 import QuestionChatItem from './QuestionChatItem';
-import useGetQuestion from '~/pages/Question/hooks/useGetQuestion';
-import useGetQuestionDetail from '~/pages/QuestionHistory/hooks/useGetQuestionDetail';
 
 const QuestionChat = () => {
-  const { data: question } = useGetQuestion();
-  const { data: questionDetail } = useGetQuestionDetail(
-    question?.body?.questionId || -1,
-  );
-
-  const {
-    myAnswer = '',
-    opponentAnswer = '',
-    myProfile = '',
-    opponentProfile = '',
-  } = questionDetail || {};
+  const { questionDetail } = useQuestion();
+  const { myAnswer, myProfile, opponentAnswer, opponentProfile } =
+    questionDetail;
 
   return (
     <div className="mt-16">

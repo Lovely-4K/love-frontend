@@ -1,13 +1,26 @@
 import { useContext, useEffect } from 'react';
 import { QuestionContext } from '../contexts/QuestionContext';
+import useCreateTodayQuestion from './useCreateTodayQuestion';
 import useGetQuestion from './useGetQuestion';
 import useUpdateUserAnswer from './useUpdateUserAnswer';
+import useGetQuestionDetail from '~/pages/QuestionHistory/hooks/useGetQuestionDetail';
 
 const useQuestion = () => {
+  const {
+    questionDetail,
+    setQuestionDetail,
+    userAnswer,
+    setUserAnswer,
+    questionForm,
+    setQuestionForm,
+  } = useContext(QuestionContext);
+  const { mutate: createTodayQuestionMutate } = useCreateTodayQuestion();
   const { data: questionResponse } = useGetQuestion();
+  const { data: questionDetailResponse } = useGetQuestionDetail(
+    questionResponse?.body?.questionId || -1,
+  );
   const { mutate: mutateUserAnswer } = useUpdateUserAnswer();
-  const { userAnswer, setUserAnswer, questionForm, setQuestionForm } =
-    useContext(QuestionContext);
+
   const {
     questionId,
     questionContent,
@@ -15,14 +28,24 @@ const useQuestion = () => {
     secondChoice,
     thirdChoice,
     fourthChoice,
+    questionFormType,
   } = questionForm;
 
   useEffect(() => {
-    console.log(questionResponse);
+    createTodayQuestionMutate();
+  }, []);
+
+  useEffect(() => {
     if (questionResponse) {
       setQuestionForm(questionResponse.body);
     }
   }, [questionResponse, setQuestionForm]);
+
+  useEffect(() => {
+    if (questionDetailResponse) {
+      setQuestionDetail(questionDetailResponse.body);
+    }
+  }, [questionDetailResponse, setQuestionDetail]);
 
   const handleSubmitUserAnswer = () => {
     if (questionId) {
@@ -35,11 +58,15 @@ const useQuestion = () => {
   };
 
   return {
+    questionDetail,
     userAnswer,
     setUserAnswer,
     handleSubmitUserAnswer,
-    questionId,
-    questionContent,
+    question: {
+      questionId,
+      questionContent,
+      questionFormType,
+    },
     answers: [firstChoice, secondChoice, thirdChoice, fourthChoice],
   };
 };

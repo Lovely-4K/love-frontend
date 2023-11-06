@@ -1,12 +1,16 @@
 import React, { PropsWithChildren, createContext } from 'react';
 import { useState } from 'react';
-import { QuestionToday } from '~/types';
+import { QuestionHistoryDetail, QuestionToday } from '~/types';
 
 interface QuestionContextProps {
   userAnswer: number;
   setUserAnswer: React.Dispatch<React.SetStateAction<number>>;
   questionForm: QuestionToday;
   setQuestionForm: React.Dispatch<React.SetStateAction<QuestionToday>>;
+  questionDetail: QuestionHistoryDetail;
+  setQuestionDetail: React.Dispatch<
+    React.SetStateAction<QuestionHistoryDetail>
+  >;
 }
 
 const QuestionContext = createContext<QuestionContextProps>(
@@ -22,11 +26,28 @@ const QuestionProvider = ({ children }: PropsWithChildren) => {
     secondChoice: '선택지 2',
     thirdChoice: undefined,
     fourthChoice: undefined,
+    questionFormType: 'SERVER',
   } as QuestionToday);
+  const [questionDetail, setQuestionDetail] = useState<QuestionHistoryDetail>({
+    questionContent: '테스트 질문',
+    myAnswer: '답변을 기다리는 중이에요!',
+    opponentAnswer: '답변을 기다리는 중이에요!',
+    myChoiceIndex: 1,
+    opponentChoiceIndex: 1,
+    myProfile: '',
+    opponentProfile: '',
+  });
 
   return (
     <QuestionContext.Provider
-      value={{ userAnswer, setUserAnswer, questionForm, setQuestionForm }}
+      value={{
+        questionDetail,
+        setQuestionDetail,
+        userAnswer,
+        setUserAnswer,
+        questionForm,
+        setQuestionForm,
+      }}
     >
       {children}
     </QuestionContext.Provider>
