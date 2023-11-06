@@ -2,7 +2,7 @@ interface MainPreviewNoneItemProps {
   itemName: string;
 }
 
-const MainPreviewNoneItem = ({ itemName }: MainPreviewNoneItemProps) => {
+const PreviewNoneItem = ({ itemName }: MainPreviewNoneItemProps) => {
   const placeholder = `아직 등록된 '${itemName}' 이(가) 없어요`;
 
   return (
@@ -12,4 +12,4 @@ const MainPreviewNoneItem = ({ itemName }: MainPreviewNoneItemProps) => {
   );
 };
 
-export default MainPreviewNoneItem;
+export default PreviewNoneItem;

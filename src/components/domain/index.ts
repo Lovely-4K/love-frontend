@@ -5,3 +5,4 @@ export * from './Footer';
 export * from './CalendarScheduleItem';
 export * from './DiaryPreviewItem';
 export * from './NavigationHeader';
+export * from './Modal';

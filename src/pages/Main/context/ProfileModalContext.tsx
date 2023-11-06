@@ -1,19 +1,15 @@
-import { PropsWithChildren, createContext, useState } from 'react';
-
-interface UserInfo {
-  name: string;
-  nickname: string;
-  color: string;
-  birthday: string;
-  avatar: string;
-  MBTI: string;
-}
+import { UseMutateFunction } from '@tanstack/react-query';
+import { PropsWithChildren, createContext, useEffect, useState } from 'react';
+import { User } from '~/types';
+import useEditProfile from '../hooks/useEditProfile';
+import useGetProfile from '../hooks/useGetProfile';
 
 interface ProfileModalContextProps {
   activeEdit: boolean;
   setActiveEdit: React.Dispatch<React.SetStateAction<boolean>>;
-  userInfo: UserInfo;
-  setUserInfo: React.Dispatch<React.SetStateAction<UserInfo>>;
+  editUserInfo: User;
+  setEditUserInfo: React.Dispatch<React.SetStateAction<User>>;
+  editProfile: UseMutateFunction<any, Error, User, unknown>;
 }
 
 const ProfileModalContext = createContext<ProfileModalContextProps>(
@@ -21,19 +17,26 @@ const ProfileModalContext = createContext<ProfileModalContextProps>(
 );
 
 const ProfileModalProvider = ({ children }: PropsWithChildren) => {
+  const { data: userInfo } = useGetProfile({ userId: 1 });
+  const { mutate: editProfile } = useEditProfile();
   const [activeEdit, setActiveEdit] = useState(false);
-  const [userInfo, setUserInfo] = useState({
-    name: '홍건우',
-    nickname: '비둘기',
-    color: '#0098cf',
-    birthday: '1995-11-11',
-    avatar: 'https://picsum.photos/200',
-    MBTI: 'INFJ',
-  });
+  const [editUserInfo, setEditUserInfo] = useState<User>({} as User);
+
+  useEffect(() => {
+    if (userInfo) {
+      setEditUserInfo(userInfo);
+    }
+  }, [userInfo]);
 
   return (
     <ProfileModalContext.Provider
-      value={{ activeEdit, setActiveEdit, userInfo, setUserInfo }}
+      value={{
+        activeEdit,
+        setActiveEdit,
+        editUserInfo,
+        setEditUserInfo,
+        editProfile,
+      }}
     >
       {children}
     </ProfileModalContext.Provider>

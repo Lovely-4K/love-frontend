@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const MainPreivewQuestion = () => {
+const PreviewQuestion = () => {
   return (
     <div className="flex h-full w-full items-center md:flex-col md:justify-center">
       <div className="m-4 flex h-[40%] items-center justify-center">
@@ -20,4 +20,4 @@ const MainPreivewQuestion = () => {
   );
 };
 
-export default MainPreivewQuestion;
+export default PreviewQuestion;

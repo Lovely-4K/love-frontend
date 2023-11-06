@@ -1,6 +1,7 @@
 const avatar = {
   '.avatar-extra-large': {
     width: '9.375rem',
+    height: '9.375rem',
     'border-radius': '50%',
   },
   '.avatar-large': {
@@ -10,10 +11,12 @@ const avatar = {
   },
   '.avatar-medium': {
     width: '4.375rem',
+    height: '4.375rem',
     'border-radius': '50%',
   },
   '.avatar-small': {
     width: '3.125rem',
+    height: '3.125rem',
     'border-radius': '50%',
   },
 };

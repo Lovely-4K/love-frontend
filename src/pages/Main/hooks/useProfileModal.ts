@@ -3,8 +3,13 @@ import { personalColors } from '~/constants';
 import { ProfileModalContext } from '../context/ProfileModalContext';
 
 const useProfileModal = () => {
-  const { activeEdit, setActiveEdit, userInfo, setUserInfo } =
-    useContext(ProfileModalContext);
+  const {
+    activeEdit,
+    setActiveEdit,
+    editUserInfo,
+    setEditUserInfo,
+    editProfile,
+  } = useContext(ProfileModalContext);
 
   const handleActiveEdit = () => {
     if (!activeEdit) {
@@ -13,14 +18,15 @@ const useProfileModal = () => {
       return;
     }
 
+    editProfile(editUserInfo);
     setActiveEdit(false);
   };
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = event.target;
 
-    setUserInfo({
-      ...userInfo,
+    setEditUserInfo({
+      ...editUserInfo,
       [id]: value,
     });
   };
@@ -28,9 +34,16 @@ const useProfileModal = () => {
   const handleColorChange: MouseEventHandler<HTMLDivElement> = (event) => {
     const { id: color } = event.currentTarget;
 
-    setUserInfo({
-      ...userInfo,
-      color: personalColors[color as keyof typeof personalColors],
+    setEditUserInfo({
+      ...editUserInfo,
+      calendarColor: personalColors[color as keyof typeof personalColors],
+    });
+  };
+
+  const handleAvatarChange = (file: object) => {
+    setEditUserInfo({
+      ...editUserInfo,
+      imageUrl: file,
     });
   };
 
@@ -38,15 +51,17 @@ const useProfileModal = () => {
     let newMBTI = '';
 
     if (['E', 'I'].includes(value)) {
-      newMBTI = value + userInfo.MBTI.slice(1);
+      newMBTI = value + editUserInfo?.mbti.slice(1);
     } else if (['S', 'N'].includes(value)) {
-      newMBTI = userInfo.MBTI.slice(0, 1) + value + userInfo.MBTI.slice(2);
+      newMBTI =
+        editUserInfo?.mbti.slice(0, 1) + value + editUserInfo?.mbti.slice(2);
     } else if (['T', 'F'].includes(value)) {
-      newMBTI = userInfo.MBTI.slice(0, 2) + value + userInfo.MBTI.slice(3);
+      newMBTI =
+        editUserInfo?.mbti.slice(0, 2) + value + editUserInfo?.mbti.slice(3);
     } else if (['J', 'P'].includes(value)) {
-      newMBTI = userInfo.MBTI.slice(0, 3) + value;
+      newMBTI = editUserInfo?.mbti.slice(0, 3) + value;
     } else {
-      newMBTI = userInfo.MBTI;
+      newMBTI = editUserInfo?.mbti as string;
     }
 
     return newMBTI;
@@ -57,23 +72,24 @@ const useProfileModal = () => {
 
     const { value } = event.target;
 
-    if (userInfo.MBTI.includes(value)) return;
+    if (editUserInfo?.mbti.includes(value)) return;
 
     const newMBTI = getNewMBTI(value);
 
-    setUserInfo({
-      ...userInfo,
-      MBTI: newMBTI,
+    setEditUserInfo({
+      ...editUserInfo,
+      mbti: newMBTI,
     });
   };
 
   return {
     activeEdit,
     handleActiveEdit,
-    userInfo,
+    editUserInfo,
     handleInputChange,
     handleColorChange,
     handleMBTIChange,
+    handleAvatarChange,
   };
 };
 

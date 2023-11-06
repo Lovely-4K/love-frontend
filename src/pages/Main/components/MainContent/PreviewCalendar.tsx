@@ -1,22 +1,8 @@
-import styled from '@emotion/styled';
 import { CalendarScheduleItem } from '~/components/domain';
 
-const MainPreviewCalendarContainer = styled.div`
-  width: 100%;
-  overflow-x: scroll;
-  display: flex;
-  scroll-behavior: smooth;
-
-  @media screen and (min-width: 768px) {
-    flex-direction: column;
-    overflow-x: hidden;
-    overflow-y: scroll;
-  }
-`;
-
-const MainPreviewCalendar = () => {
+const PreviewCalendar = () => {
   return (
-    <MainPreviewCalendarContainer>
+    <div className="flex w-full overflow-auto scroll-smooth md:flex-col">
       <CalendarScheduleItem
         customColor={'blue'}
         date={'2023년 11월 06일'}
@@ -47,13 +33,8 @@ const MainPreviewCalendar = () => {
         date={'2023년 11월 06일'}
         title={'1차 데모'}
       />
-      <CalendarScheduleItem
-        customColor={'purple'}
-        date={'2023년 11월 06일'}
-        title={'1차 데모'}
-      />
-    </MainPreviewCalendarContainer>
+    </div>
   );
 };
 
-export default MainPreviewCalendar;
+export default PreviewCalendar;

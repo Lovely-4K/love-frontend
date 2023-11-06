@@ -14,8 +14,8 @@ const MainPreviewDiaryContainer = styled.div`
   }
 `;
 
-const MainPreviewDiary = () => {
-  // todo 다이어리 클릭시 해당 페이지로 이동할 수 있도록 Link 추가해야함
+const PreviewDiary = () => {
+  /** @todo 다이어리 클릭 시 해당 페이로 이동할 수 있도록 Link 추가 */
   return (
     <MainPreviewDiaryContainer>
       <DiaryPreviewItem
@@ -57,4 +57,4 @@ const MainPreviewDiary = () => {
   );
 };
 
-export default MainPreviewDiary;
+export default PreviewDiary;
