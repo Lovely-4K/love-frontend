@@ -1,22 +1,35 @@
 import QuestionChatItem from './QuestionChatItem';
+import useGetQuestion from '~/pages/Question/hooks/useGetQuestion';
 import useGetQuestionDetail from '~/pages/QuestionHistory/hooks/useGetQuestionDetail';
 
 const QuestionChat = () => {
-  const { data: { boyAnswer, girlAnswer } = {} } = useGetQuestionDetail(4);
+  const { data: question } = useGetQuestion();
+  const { data: questionDetail } = useGetQuestionDetail(
+    question?.body?.questionId || -1,
+  );
+
+  const {
+    myAnswer = '',
+    opponentAnswer = '',
+    myProfile = '',
+    opponentProfile = '',
+  } = questionDetail || {};
 
   return (
     <div className="mt-16">
       <QuestionChatItem
         type={'start'}
-        answerStatus={!!boyAnswer}
+        answerStatus={!!myAnswer}
         author={'나의 답변'}
-        message={boyAnswer}
+        picture={myProfile}
+        message={myAnswer}
       />
       <QuestionChatItem
         type={'end'}
-        answerStatus={!!girlAnswer}
+        answerStatus={!!opponentAnswer}
         author={'상대의 답변'}
-        message={girlAnswer}
+        picture={opponentProfile}
+        message={opponentAnswer}
       />
     </div>
   );

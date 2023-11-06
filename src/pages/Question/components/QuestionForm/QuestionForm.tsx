@@ -6,15 +6,25 @@ import { QuestionProvider } from '~/pages/Question/contexts/QuestionContext';
 import useGetQuestionDetail from '~/pages/QuestionHistory/hooks/useGetQuestionDetail';
 
 const QuestionForm = () => {
-  useGetQuestion();
-  const { data: { boyAnswer, girlAnswer } = {} } = useGetQuestionDetail(4);
+  const { data: question } = useGetQuestion();
+  const { data: questionDetail } = useGetQuestionDetail(
+    question?.body?.questionId || -1,
+  );
+
+  const { questionFormType = '' } = question?.body || {};
+  const { myAnswer = '', opponentAnswer = '' } = questionDetail || {};
+
+  const CreateForm = () =>
+    questionFormType === 'SERVER' &&
+    myAnswer &&
+    opponentAnswer && <QuestionFormCreate />;
 
   return (
     <QuestionProvider>
       <div>
         <QuestionFormLabel />
         <QuestionFormSelect />
-        {boyAnswer && girlAnswer && <QuestionFormCreate />}
+        <CreateForm />
       </div>
     </QuestionProvider>
   );
