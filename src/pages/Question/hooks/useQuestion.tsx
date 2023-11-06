@@ -2,10 +2,8 @@ import { useContext, useEffect } from 'react';
 import { QuestionContext } from '../contexts/QuestionContext';
 import useGetQuestion from './useGetQuestion';
 import useUpdateUserAnswer from './useUpdateUserAnswer';
-import useCreateForm from '~/pages/QuestionCreate/hooks/useCreateForm';
 
 const useQuestion = () => {
-  useCreateForm();
   const { data: questionResponse } = useGetQuestion();
   const { mutate: mutateUserAnswer } = useUpdateUserAnswer();
   const { userAnswer, setUserAnswer, questionForm, setQuestionForm } =

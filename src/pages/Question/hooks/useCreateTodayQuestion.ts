@@ -1,5 +1,5 @@
 import { useMutation, QueryClient } from '@tanstack/react-query';
-import axios from 'axios';
+import apiClient from '~/api/apiClient';
 
 const queryClient = new QueryClient();
 
@@ -8,19 +8,19 @@ const useCreateTodayQuestion = () => {
     const subURL = '/questions';
     const params = '?coupleId=1';
     const URL = subURL + params;
-    const response = await axios.post(URL, { data: {} });
+    const response = await apiClient.post(URL, { data: {} });
 
     return response.data;
   };
 
-  const { data, isError } = useMutation({
+  const { mutate, data, isError } = useMutation({
     mutationFn: createTodayQuestion,
     onSettled: async () => {
       await queryClient.invalidateQueries({ queryKey: ['question'] });
     },
   });
 
-  return { data, isError };
+  return { mutate, data, isError };
 };
 
 export default useCreateTodayQuestion;
