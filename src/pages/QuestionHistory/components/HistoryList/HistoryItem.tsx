@@ -7,10 +7,10 @@ interface QuestionDropDown {
 }
 
 const HistoryItem = ({ questionTitle, questionId }: QuestionDropDown) => {
-  const { data: questionDetail } = useGetQuestionDetail(questionId);
+  const { data: questionDetailResponse } = useGetQuestionDetail(questionId);
   const defaultMessage = '답변이 존재하지 않습니다!';
   const { myAnswer, opponentAnswer, myProfile, opponentProfile } =
-    questionDetail ?? {
+    questionDetailResponse?.body ?? {
       myAnswer: defaultMessage,
       opponentAnswer: defaultMessage,
     };
