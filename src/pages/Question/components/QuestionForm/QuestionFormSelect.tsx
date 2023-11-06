@@ -1,9 +1,9 @@
 import QuestionFormSelectItem from './QuestionFormSelectItem';
-import useQuestionForm from '~/pages/Question/hooks/useQuestionForm';
+import useQuestion from '~/pages/Question/hooks/useQuestion';
 
 /** @todo - 내가 직성한 값이 있는 경우 button 보이지 않거나 or 수정 버튼 보일 수 있도록 하기 */
 const QuestionFormSelect = () => {
-  const { userAnswer, answers, handleSubmitUserAnswer } = useQuestionForm();
+  const { userAnswer, answers, handleSubmitUserAnswer } = useQuestion();
 
   return (
     <>
