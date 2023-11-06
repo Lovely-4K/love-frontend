@@ -2,7 +2,6 @@ import useGetQuestion from '../../hooks/useGetQuestion';
 import QuestionFormCreate from './QuestionFormCreate';
 import QuestionFormLabel from './QuestionFormLabel';
 import QuestionFormSelect from './QuestionFormSelect';
-import { QuestionProvider } from '~/pages/Question/contexts/QuestionContext';
 import useGetQuestionDetail from '~/pages/QuestionHistory/hooks/useGetQuestionDetail';
 
 const QuestionForm = () => {
@@ -20,13 +19,11 @@ const QuestionForm = () => {
     opponentAnswer && <QuestionFormCreate />;
 
   return (
-    <QuestionProvider>
-      <div>
-        <QuestionFormLabel />
-        <QuestionFormSelect />
-        <CreateForm />
-      </div>
-    </QuestionProvider>
+    <div>
+      <QuestionFormLabel />
+      <QuestionFormSelect />
+      <CreateForm />
+    </div>
   );
 };
 
