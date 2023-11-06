@@ -1,22 +1,24 @@
-import useGetQuestion from '../../hooks/useGetQuestion';
+import useQuestion from '../../hooks/useQuestion';
 import QuestionFormCreate from './QuestionFormCreate';
 import QuestionFormLabel from './QuestionFormLabel';
 import QuestionFormSelect from './QuestionFormSelect';
-import { QuestionProvider } from '~/pages/Question/contexts/QuestionContext';
-import useGetQuestionDetail from '~/pages/QuestionHistory/hooks/useGetQuestionDetail';
 
 const QuestionForm = () => {
-  useGetQuestion();
-  const { data: { boyAnswer, girlAnswer } = {} } = useGetQuestionDetail(4);
+  const { questionDetail, question } = useQuestion();
+  const { questionFormType } = question;
+  const { myAnswer, opponentAnswer } = questionDetail;
+
+  const CreateForm = () =>
+    questionFormType === 'SERVER' &&
+    myAnswer &&
+    opponentAnswer && <QuestionFormCreate />;
 
   return (
-    <QuestionProvider>
-      <div>
-        <QuestionFormLabel />
-        <QuestionFormSelect />
-        {boyAnswer && girlAnswer && <QuestionFormCreate />}
-      </div>
-    </QuestionProvider>
+    <div>
+      <QuestionFormLabel />
+      <QuestionFormSelect />
+      <CreateForm />
+    </div>
   );
 };
 

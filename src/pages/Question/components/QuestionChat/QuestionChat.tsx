@@ -1,22 +1,26 @@
+import useQuestion from '../../hooks/useQuestion';
 import QuestionChatItem from './QuestionChatItem';
-import useGetQuestionDetail from '~/pages/QuestionHistory/hooks/useGetQuestionDetail';
 
 const QuestionChat = () => {
-  const { data: { boyAnswer, girlAnswer } = {} } = useGetQuestionDetail(4);
+  const { questionDetail } = useQuestion();
+  const { myAnswer, myProfile, opponentAnswer, opponentProfile } =
+    questionDetail;
 
   return (
     <div className="mt-16">
       <QuestionChatItem
         type={'start'}
-        answerStatus={!!boyAnswer}
+        answerStatus={!!myAnswer}
         author={'나의 답변'}
-        message={boyAnswer}
+        picture={myProfile}
+        message={myAnswer}
       />
       <QuestionChatItem
         type={'end'}
-        answerStatus={!!girlAnswer}
+        answerStatus={!!opponentAnswer}
         author={'상대의 답변'}
-        message={girlAnswer}
+        picture={opponentProfile}
+        message={opponentAnswer}
       />
     </div>
   );

@@ -15,12 +15,12 @@ const useGetQuestion = () => {
     return response.data;
   };
 
-  const { data, isError, isLoading } = useQuery({
+  const { data, isError, isLoading, isSuccess } = useQuery({
     queryKey: ['question'],
     queryFn: getQuestion,
   });
 
-  return { data, isError, isLoading };
+  return { data, isError, isLoading, isSuccess };
 };
 
 export default useGetQuestion;

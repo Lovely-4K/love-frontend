@@ -3,6 +3,7 @@ interface QuestionChatItemProps {
   answerStatus: boolean;
   message?: string;
   author: string;
+  picture?: string;
 }
 
 const QuestionChatItem = ({
@@ -10,6 +11,7 @@ const QuestionChatItem = ({
   answerStatus,
   author,
   message,
+  picture,
 }: QuestionChatItemProps) => {
   const chatType = type === 'start' ? 'chat-start' : 'chat-end';
   message = answerStatus === false ? '답변을 기다리는 중이에요!' : message;
@@ -18,7 +20,7 @@ const QuestionChatItem = ({
     <div className={`chat ${chatType} my-3`}>
       <div className="avatar chat-image">
         <div className="avatar-small rounded-full lg:avatar-medium">
-          <img src="https://source.unsplash.com/random/" />
+          <img src={picture} />
         </div>
       </div>
       <div className="chat-header">

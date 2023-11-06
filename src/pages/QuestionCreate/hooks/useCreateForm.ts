@@ -17,7 +17,6 @@ const useCreateForm = () => {
     const subURL = 'questions/question-forms?';
     const params = `memberId=${1}&coupleId=${1}`;
     const URL = subURL + params;
-    console.log(questionForm);
     const response = await apiClient.post<QuestionResponse>(
       URL,
       JSON.stringify(questionForm),

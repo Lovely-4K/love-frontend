@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { QuestionHeader, QuestionForm, QuestionChat } from './components';
+import { QuestionProvider } from '~/pages/Question/contexts/QuestionContext';
 
 export const QuestionContainer = styled.div`
   width: 100%;
@@ -19,8 +20,10 @@ const Question = () => {
   return (
     <QuestionContainer>
       <QuestionHeader />
-      <QuestionForm />
-      <QuestionChat />
+      <QuestionProvider>
+        <QuestionForm />
+        <QuestionChat />
+      </QuestionProvider>
     </QuestionContainer>
   );
 };

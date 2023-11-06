@@ -1,7 +1,8 @@
-import useQuestionForm from '~/pages/Question/hooks/useQuestionForm';
+import useQuestion from '~/pages/Question/hooks/useQuestion';
 
 const QuestionFormLabel = () => {
-  const { questionContent } = useQuestionForm();
+  const { question } = useQuestion();
+  const { questionContent } = question;
 
   return (
     <div className="mt-3 flex flex-col gap-5">
