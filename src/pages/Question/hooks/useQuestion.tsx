@@ -34,7 +34,7 @@ const useQuestion = () => {
 
   useEffect(() => {
     createTodayQuestionMutate();
-  }, []);
+  }, [createTodayQuestionMutate]);
 
   useEffect(() => {
     if (questionResponse) {
