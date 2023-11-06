@@ -1,8 +1,8 @@
 interface User {
-  imageUrl: string | null;
+  imageUrl: string | null | object;
   name: string;
   nickname: string;
-  birthday: number[];
+  birthday: string;
   mbti: string;
   calendarColor: string;
 }

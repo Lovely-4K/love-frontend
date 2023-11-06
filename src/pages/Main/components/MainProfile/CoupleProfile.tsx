@@ -3,9 +3,21 @@ import Profile from './Profile';
 import { IconHeart } from '~/assets/icons';
 
 const CoupleProfile = () => {
-  const { mainProfileData, openDdayModal } = useMain();
+  const { mainProfileData, openDdayModal, getDday } = useMain();
 
   if (!mainProfileData) return;
+
+  const getTempImageUrl = () => {
+    const appendedPath = '/images/member/';
+    if (mainProfileData?.boyImageUrl) {
+      const originalUrl = mainProfileData?.boyImageUrl as string;
+
+      return originalUrl.replace(
+        'amazonaws.com/',
+        `amazonaws.com${appendedPath}`,
+      );
+    }
+  };
 
   return (
     <div className="flex h-full flex-col items-center justify-center gap-1">
@@ -13,7 +25,7 @@ const CoupleProfile = () => {
         <Profile
           name={mainProfileData.boyNickname}
           mbti={mainProfileData.boyMbti}
-          src={mainProfileData.boyImageUrl}
+          src={getTempImageUrl() as string}
         />
         <IconHeart className="absolute left-1/2 top-1/3 z-10 h-12 w-12 -translate-x-1/2 -translate-y-1/2 fill-base-primary stroke-base-primary" />
         <Profile
@@ -23,7 +35,7 @@ const CoupleProfile = () => {
         />
       </div>
       <span onClick={openDdayModal} className="text-3xl text-base-primary">
-        D+123
+        D+{getDday()}
       </span>
     </div>
   );

@@ -3,7 +3,15 @@ import { User } from '~/types';
 import apiClient from '~/api/apiClient';
 
 const editProfile = async (data: User) => {
-  const response = await apiClient.patch('/members?memberId=1', data);
+  const formData = new FormData();
+  formData.append(
+    'texts',
+    new Blob([JSON.stringify(data)], { type: 'application/json' }),
+  );
+  if (data.imageUrl instanceof Blob) {
+    formData.append('images', data.imageUrl);
+  }
+  const response = await apiClient.patch('/members?memberId=1', formData);
 
   return response.data.body;
 };
@@ -15,7 +23,7 @@ const useEditProfile = () => {
     mutationFn: editProfile,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: ['profile'],
+        queryKey: ['profile', 'coupleProfile'],
       });
     },
   });

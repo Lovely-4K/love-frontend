@@ -40,6 +40,13 @@ const useProfileModal = () => {
     });
   };
 
+  const handleAvatarChange = (file: object) => {
+    setEditUserInfo({
+      ...editUserInfo,
+      imageUrl: file,
+    });
+  };
+
   const getNewMBTI = (value: string) => {
     let newMBTI = '';
 
@@ -82,6 +89,7 @@ const useProfileModal = () => {
     handleInputChange,
     handleColorChange,
     handleMBTIChange,
+    handleAvatarChange,
   };
 };
 

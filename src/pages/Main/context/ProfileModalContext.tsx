@@ -17,7 +17,7 @@ const ProfileModalContext = createContext<ProfileModalContextProps>(
 );
 
 const ProfileModalProvider = ({ children }: PropsWithChildren) => {
-  const { data: userInfo } = useGetProfile();
+  const { data: userInfo } = useGetProfile({ userId: 1 });
   const { mutate: editProfile } = useEditProfile();
   const [activeEdit, setActiveEdit] = useState(false);
   const [editUserInfo, setEditUserInfo] = useState<User>({} as User);
