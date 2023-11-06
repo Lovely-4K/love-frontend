@@ -1,5 +1,5 @@
 import { useMutation, QueryClient } from '@tanstack/react-query';
-import axios from 'axios';
+import apiClient from '~/api/apiClient';
 
 interface updateUserAnswerParams {
   questionId: number;
@@ -18,9 +18,15 @@ const useUpdateUserAnswer = () => {
     const subURL = `/questions/${questionId}`;
     const params = `/answers?sex=${sex}`;
     const URL = subURL + params;
-    const response = await axios.patch(URL, {
-      data: { choiceNumber: selectedItemIndex },
-    });
+    const response = await apiClient.patch(
+      URL,
+      JSON.stringify({ choiceNumber: selectedItemIndex }),
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    );
 
     return response.data;
   };
