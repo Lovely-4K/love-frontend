@@ -16,11 +16,18 @@ const QuestionChatItem = ({
   const chatType = type === 'start' ? 'chat-start' : 'chat-end';
   message = answerStatus === false ? '답변을 기다리는 중이에요!' : message;
 
+  const getTempImageUrl = () => {
+    const appendedPath = '/images/member/';
+    if (picture) {
+      return picture.replace('amazonaws.com/', `amazonaws.com${appendedPath}`);
+    }
+  };
+
   return (
     <div className={`chat ${chatType} my-3`}>
       <div className="avatar chat-image">
         <div className="avatar-small rounded-full lg:avatar-medium">
-          <img src={picture} />
+          <img src={getTempImageUrl()} />
         </div>
       </div>
       <div className="chat-header">
