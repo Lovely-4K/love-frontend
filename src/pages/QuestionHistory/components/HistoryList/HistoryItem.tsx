@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { QuestionHistoryDetail } from '~/types';
 import QuestionChatItem from '~/pages/Question/components/QuestionChat/QuestionChatItem';
 import useGetQuestionDetail from '~/pages/QuestionHistory/hooks/useGetQuestionDetail';
