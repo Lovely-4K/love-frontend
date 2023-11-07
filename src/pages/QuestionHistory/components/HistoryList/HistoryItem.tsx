@@ -7,13 +7,12 @@ interface QuestionDropDown {
 }
 
 const HistoryItem = ({ questionTitle, questionId }: QuestionDropDown) => {
-  const { data: questionDetailResponse } = useGetQuestionDetail(questionId);
-  const defaultMessage = '답변이 존재하지 않습니다!';
+  const { data: questionDetail, isSuccess } = useGetQuestionDetail(questionId);
+
+  if (!isSuccess) return;
+
   const { myAnswer, opponentAnswer, myProfile, opponentProfile } =
-    questionDetailResponse?.body ?? {
-      myAnswer: defaultMessage,
-      opponentAnswer: defaultMessage,
-    };
+    questionDetail;
 
   return (
     <div className="collapse-arrow collapse border border-solid border-grey-200 bg-base-white">

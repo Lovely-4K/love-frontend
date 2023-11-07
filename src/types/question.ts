@@ -1,4 +1,4 @@
-interface QuestionToday {
+interface QuestionForm {
   questionId?: number;
   questionContent: string;
   firstChoice: string;
@@ -29,7 +29,7 @@ interface QuestionHistories {
 }
 
 export type {
-  QuestionToday,
+  QuestionForm,
   QuestionHistoryPreview,
   QuestionHistories,
   QuestionHistoryDetail,
