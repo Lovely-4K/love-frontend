@@ -1,4 +1,3 @@
-import { QuestionHistoryDetail } from '~/types';
 import QuestionChatItem from '~/pages/Question/components/QuestionChat/QuestionChatItem';
 import useGetQuestionDetail from '~/pages/QuestionHistory/hooks/useGetQuestionDetail';
 
@@ -13,7 +12,7 @@ const HistoryItem = ({ questionTitle, questionId }: QuestionDropDown) => {
   if (!isSuccess) return;
 
   const { myAnswer, opponentAnswer, myProfile, opponentProfile } =
-    questionDetail as QuestionHistoryDetail;
+    questionDetail;
 
   return (
     <div className="collapse-arrow collapse border border-solid border-grey-200 bg-base-white">
