@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { QuestionHistoryDetail } from '~/types';
 import QuestionChatItem from '~/pages/Question/components/QuestionChat/QuestionChatItem';
 import useGetQuestionDetail from '~/pages/QuestionHistory/hooks/useGetQuestionDetail';
 
@@ -7,13 +9,12 @@ interface QuestionDropDown {
 }
 
 const HistoryItem = ({ questionTitle, questionId }: QuestionDropDown) => {
-  const { data: questionDetailResponse } = useGetQuestionDetail(questionId);
-  const defaultMessage = '답변이 존재하지 않습니다!';
+  const { data: questionDetail, isSuccess } = useGetQuestionDetail(questionId);
+
+  if (!isSuccess) return;
+
   const { myAnswer, opponentAnswer, myProfile, opponentProfile } =
-    questionDetailResponse?.body ?? {
-      myAnswer: defaultMessage,
-      opponentAnswer: defaultMessage,
-    };
+    questionDetail as QuestionHistoryDetail;
 
   return (
     <div className="collapse-arrow collapse border border-solid border-grey-200 bg-base-white">

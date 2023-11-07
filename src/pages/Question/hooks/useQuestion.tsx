@@ -44,7 +44,7 @@ const useQuestion = () => {
 
   useEffect(() => {
     if (questionDetailResponse) {
-      setQuestionDetail(questionDetailResponse.body);
+      setQuestionDetail(questionDetailResponse);
     }
   }, [questionDetailResponse, setQuestionDetail]);
 
