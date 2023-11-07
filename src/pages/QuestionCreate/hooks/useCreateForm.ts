@@ -1,15 +1,15 @@
 import { useMutation } from '@tanstack/react-query';
-import type { QuestionToday, code, links } from '~/types';
+import type { QuestionForm, code, links } from '~/types';
 import apiClient from '~/api/apiClient';
 
 interface QuestionResponse {
-  body?: QuestionToday;
+  body?: QuestionForm;
   code: code;
   links?: links;
 }
 
 interface createFormParams {
-  questionForm: QuestionToday;
+  questionForm: QuestionForm;
 }
 
 const useCreateForm = () => {

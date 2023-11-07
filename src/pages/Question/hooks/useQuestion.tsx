@@ -17,7 +17,7 @@ const useQuestion = () => {
   const { mutate: createTodayQuestionMutate } = useCreateTodayQuestion();
   const { data: questionResponse } = useGetQuestion();
   const { data: questionDetailResponse, refetch: questionDetailRefetch } =
-    useGetQuestionDetail(questionResponse?.body?.questionId || -1);
+    useGetQuestionDetail(questionResponse?.questionId || -1);
   const { data: updateAnswerResponse, mutate: mutateUserAnswer } =
     useUpdateUserAnswer();
 
@@ -38,7 +38,7 @@ const useQuestion = () => {
 
   useEffect(() => {
     if (questionResponse) {
-      setQuestionForm(questionResponse.body);
+      setQuestionForm(questionResponse);
     }
   }, [questionResponse, setQuestionForm]);
 

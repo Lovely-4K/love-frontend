@@ -1,18 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import { QuestionToday, code, links } from '~/types';
+import { QuestionForm } from '~/types';
 import apiClient from '~/api/apiClient';
 
-interface QuestionResponse {
-  code: code;
-  links: links;
-  body: QuestionToday;
-}
-
 const useGetQuestion = () => {
-  const getQuestion = async (): Promise<QuestionResponse> => {
+  const getQuestion = async (): Promise<QuestionForm> => {
     const response = await apiClient.get('/questions/daily?coupleId=1');
 
-    return response.data;
+    return response.data.body as QuestionForm;
   };
 
   const { data, isError, isLoading, isSuccess } = useQuery({
