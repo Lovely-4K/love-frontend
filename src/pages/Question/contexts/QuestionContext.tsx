@@ -1,12 +1,12 @@
 import { PropsWithChildren, createContext } from 'react';
 import { useState } from 'react';
-import { QuestionHistoryDetail, QuestionToday } from '~/types';
+import { QuestionHistoryDetail, QuestionForm } from '~/types';
 
 interface QuestionContextProps {
   userAnswer: number;
   setUserAnswer: React.Dispatch<React.SetStateAction<number>>;
-  questionForm: QuestionToday;
-  setQuestionForm: React.Dispatch<React.SetStateAction<QuestionToday>>;
+  questionForm: QuestionForm;
+  setQuestionForm: React.Dispatch<React.SetStateAction<QuestionForm>>;
   questionDetail: QuestionHistoryDetail;
   setQuestionDetail: React.Dispatch<
     React.SetStateAction<QuestionHistoryDetail>
@@ -19,7 +19,7 @@ const QuestionContext = createContext<QuestionContextProps>(
 
 const QuestionProvider = ({ children }: PropsWithChildren) => {
   const [userAnswer, setUserAnswer] = useState(-1);
-  const [questionForm, setQuestionForm] = useState<QuestionToday>({
+  const [questionForm, setQuestionForm] = useState<QuestionForm>({
     questionId: 1,
     questionContent: '테스트 질문',
     firstChoice: '선택지 1',
@@ -27,7 +27,7 @@ const QuestionProvider = ({ children }: PropsWithChildren) => {
     thirdChoice: undefined,
     fourthChoice: undefined,
     questionFormType: 'SERVER',
-  } as QuestionToday);
+  } as QuestionForm);
   const [questionDetail, setQuestionDetail] = useState<QuestionHistoryDetail>({
     questionContent: '테스트 질문',
     myAnswer: '',
