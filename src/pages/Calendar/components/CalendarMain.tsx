@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { MouseEvent, useState } from 'react';
-import Calendar from 'react-calendar';
+import Calendar, { CalendarProps } from 'react-calendar';
+import { NavigationLabelArgs } from 'react-calendar/dist/cjs/shared/types';
 import { colors, font, screens } from '~/theme';
 import 'react-calendar/dist/Calendar.css';
 
@@ -185,7 +186,7 @@ const CalendarMain = () => {
         </>
       }
       nextLabel={<span>{'>'}</span>}
-      navigationLabel={({ date }) =>
+      navigationLabel={({ date }: NavigationLabelArgs) =>
         `${date.getFullYear()} ${date.getMonth() + 1}월`
       }
       // tileContent={({ activeStartDate, date, view }) => {
@@ -198,7 +199,7 @@ const CalendarMain = () => {
       //     );
       //   }
       // }}
-      onActiveStartDateChange={({ activeStartDate }) => {
+      onActiveStartDateChange={({ activeStartDate }: CalendarProps) => {
         if (!activeStartDate) return;
         handleChangeDate(activeStartDate);
       }}
