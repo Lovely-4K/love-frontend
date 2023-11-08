@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { DiaryHeader } from '~/pages/Diary/components/DiaryCommon';
 import DiaryNotContent from '~/pages/Diary/components/DiarySpot/DiaryNotContent';
 import DiaryItems from '~/pages/Diary/components/DiarySpot/DiarySpotPreviews';
+import { DiarySpotProvider } from '~/pages/Diary/contexts/DiarySpotContent';
 
 const DiarySpot = () => {
   const pictures = [
@@ -40,7 +41,7 @@ const DiarySpot = () => {
     );
 
   return (
-    <>
+    <DiarySpotProvider>
       <div className="flex h-full w-full max-w-[20rem] flex-col gap-14 overflow-y-auto overflow-x-hidden">
         <div className="flex items-center justify-between">
           <DiaryHeader />
@@ -48,7 +49,7 @@ const DiarySpot = () => {
         </div>
         <DiaryListArea />
       </div>
-    </>
+    </DiarySpotProvider>
   );
 };
 
