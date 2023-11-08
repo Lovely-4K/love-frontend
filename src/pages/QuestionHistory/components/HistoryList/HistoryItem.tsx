@@ -1,4 +1,4 @@
-import QuestionChatItem from '~/pages/Question/components/QuestionChat/QuestionChatItem';
+import QuestionChatItem from '~/pages/Question/components/QuestionChat/ChatItem';
 import useGetQuestionDetail from '~/pages/QuestionHistory/hooks/useGetQuestionDetail';
 
 interface QuestionDropDown {

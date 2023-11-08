@@ -1,24 +1,27 @@
-import useUserAnswer from '../../hooks/useUserAnswer';
-
 interface QuestionFormSelectItemProps {
   answer: string | null | undefined;
-  itemIndex: number;
+  activeStatus: boolean;
+  handleClickAnswer: React.MouseEventHandler<HTMLDivElement>;
 }
 
-const FormAnswerItem = ({ answer, itemIndex }: QuestionFormSelectItemProps) => {
-  const { userAnswer, setUserAnswer } = useUserAnswer();
-  const activeStyle =
-    itemIndex === userAnswer
-      ? 'border-none bg-primary text-base-white hover:bg-base-secondary'
-      : 'border border-grey-200  hover:bg-grey-100';
+const FormAnswerItem = ({
+  answer,
+  activeStatus,
+  handleClickAnswer,
+}: QuestionFormSelectItemProps) => {
+  const activeStyle = activeStatus
+    ? 'border-none bg-primary text-base-white hover:bg-base-secondary'
+    : 'border border-grey-200  hover:bg-grey-100';
 
   return (
-    <div
-      onClick={() => setUserAnswer(itemIndex)}
-      className={`flex flex-grow cursor-pointer items-center justify-center rounded-xl py-3 ${activeStyle}`}
-    >
-      {answer}
-    </div>
+    answer && (
+      <div
+        onClick={handleClickAnswer}
+        className={`flex flex-grow cursor-pointer items-center justify-center rounded-xl py-3 ${activeStyle}`}
+      >
+        {answer}
+      </div>
+    )
   );
 };
 

@@ -8,14 +8,21 @@ const FormAnswers = () => {
   const { myChoiceIndex } = questionDetail;
   const { handleSubmitUserAnswer } = methods;
 
-  const { userAnswer } = useUserAnswer(myChoiceIndex);
+  const { userAnswer, setUserAnswer } = useUserAnswer(myChoiceIndex);
   const buttonContent = myChoiceIndex ? '수정' : '결정';
 
   return (
     <>
       <div className="my-3 flex flex-col gap-3 lg:flex-row">
         {answers.map((answer, index) => (
-          <FormAnswerItem key={index} itemIndex={index + 1} answer={answer} />
+          <FormAnswerItem
+            key={index}
+            answer={answer}
+            activeStatus={userAnswer === index + 1}
+            handleClickAnswer={() => {
+              setUserAnswer(index + 1);
+            }}
+          />
         ))}
       </div>
       <div className="flex w-full justify-end">
