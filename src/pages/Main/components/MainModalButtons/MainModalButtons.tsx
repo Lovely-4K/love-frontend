@@ -1,6 +1,7 @@
 import { useMain } from '../../hooks';
 import { MainDdayModal } from '../MainDdayModal';
 import { MainProfileModal } from '../MainProfileModal';
+import { Button } from '~/components/common';
 
 const MainModalButtons = () => {
   const {
@@ -15,21 +16,23 @@ const MainModalButtons = () => {
 
   return (
     <div className="flex items-center justify-end gap-3">
-      <button
+      <Button
         onClick={openProfileModal}
-        className="btn-small w-full rounded-xl border border-grey-200 bg-base-white font-bold text-grey-400 lg:btn-medium"
+        size="medium"
+        className="border border-grey-200 bg-base-white font-bold text-grey-400"
       >
         프로필 수정
-      </button>
+      </Button>
       <MainProfileModal ref={profileModalRef} closeModal={closeProfileModal} />
       {coupleMode && (
         <>
-          <button
+          <Button
             onClick={openDdayModal}
-            className="btn-small w-full rounded-xl border border-grey-200 bg-base-white font-bold text-grey-400 lg:btn-medium"
+            size="medium"
+            className="border border-grey-200 bg-base-white font-bold text-grey-400"
           >
             디데이 수정
-          </button>
+          </Button>
           <MainDdayModal ref={dDayModalRef} closeModal={closeDdayModal} />
         </>
       )}

@@ -1,12 +1,13 @@
 import daisyui from 'daisyui';
 import theme from 'daisyui/src/theming/themes';
-import { avatar, btn, colors, font, img, input } from './src/theme';
+import { colors, fontSize } from './src/theme';
 
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     colors,
+    fontSize,
     extend: {},
   },
   plugins: [daisyui],
@@ -17,12 +18,6 @@ export default {
           ...theme['[data-theme=light]'],
           primary: colors.base.primary,
           'primary-content': colors.base.white,
-
-          ...avatar,
-          ...input,
-          ...btn,
-          ...img,
-          ...font,
         },
       },
     ],
