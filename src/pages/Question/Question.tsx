@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
-import { QuestionHeader, QuestionForm, QuestionChat } from './components';
-import { QuestionProvider } from '~/pages/Question/contexts/QuestionFormContext';
 import { screens } from '~/theme';
+import { QuestionHeader, QuestionForm, QuestionChat } from './components';
+import { QuestionProvider } from '~/pages/Question/contexts/QuestionContext';
 
 export const QuestionContainer = styled.div`
   width: 100%;

@@ -2,8 +2,6 @@ import { PropsWithChildren, createContext, useState } from 'react';
 import { QuestionHistoryDetail, QuestionForm } from '~/types';
 
 interface QuestionContextProps {
-  userAnswer: number;
-  setUserAnswer: React.Dispatch<React.SetStateAction<number>>;
   questionForm: QuestionForm;
   setQuestionForm: React.Dispatch<React.SetStateAction<QuestionForm>>;
   questionDetail: QuestionHistoryDetail;
@@ -17,7 +15,6 @@ const QuestionContext = createContext<QuestionContextProps>(
 );
 
 const QuestionProvider = ({ children }: PropsWithChildren) => {
-  const [userAnswer, setUserAnswer] = useState(-1);
   const [questionForm, setQuestionForm] = useState<QuestionForm>({
     questionId: 1,
     questionContent: '테스트 질문',
@@ -42,8 +39,6 @@ const QuestionProvider = ({ children }: PropsWithChildren) => {
       value={{
         questionDetail,
         setQuestionDetail,
-        userAnswer,
-        setUserAnswer,
         questionForm,
         setQuestionForm,
       }}

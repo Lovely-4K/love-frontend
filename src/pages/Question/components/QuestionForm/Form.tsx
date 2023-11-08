@@ -1,11 +1,11 @@
 import useQuestion from '../../hooks/useQuestion';
+import FormAnswers from './FormAnswers';
 import FormCustomLink from './FormCustomLink';
 import FormQuestionnaire from './FormQuestionnaire';
-import FormAnswers from './FormAnswers';
 
 const QuestionForm = () => {
-  const { questionDetail, question } = useQuestion();
-  const { questionFormType } = question;
+  const { questionDetail, questionForm } = useQuestion();
+  const { questionFormType } = questionForm;
   const { myAnswer, opponentAnswer } = questionDetail;
 
   const CreateForm = () =>

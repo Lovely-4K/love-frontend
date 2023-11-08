@@ -1,19 +1,13 @@
 import { useContext, useEffect } from 'react';
-import { QuestionContext } from '../contexts/QuestionFormContext';
+import { QuestionContext } from '../contexts/QuestionContext';
 import useCreateTodayQuestion from './useCreateTodayQuestion';
 import useGetQuestion from './useGetQuestion';
 import useUpdateUserAnswer from './useUpdateUserAnswer';
 import useGetQuestionDetail from '~/pages/QuestionHistory/hooks/useGetQuestionDetail';
 
 const useQuestion = () => {
-  const {
-    questionDetail,
-    setQuestionDetail,
-    userAnswer,
-    setUserAnswer,
-    questionForm,
-    setQuestionForm,
-  } = useContext(QuestionContext);
+  const { questionDetail, setQuestionDetail, questionForm, setQuestionForm } =
+    useContext(QuestionContext);
   const { mutate: createTodayQuestionMutate } = useCreateTodayQuestion();
   const { data: questionResponse } = useGetQuestion();
   const { data: questionDetailResponse, refetch: questionDetailRefetch } =
@@ -21,16 +15,8 @@ const useQuestion = () => {
   const { data: updateAnswerResponse, mutate: mutateUserAnswer } =
     useUpdateUserAnswer();
 
-  const { myAnswer } = questionDetail;
-  const {
-    questionId,
-    questionContent,
-    firstChoice,
-    secondChoice,
-    thirdChoice,
-    fourthChoice,
-    questionFormType,
-  } = questionForm;
+  const { questionId, firstChoice, secondChoice, thirdChoice, fourthChoice } =
+    questionForm;
 
   useEffect(() => {
     createTodayQuestionMutate();
@@ -55,7 +41,7 @@ const useQuestion = () => {
     }
   }, [updateAnswerResponse, questionDetailRefetch]);
 
-  const handleSubmitUserAnswer = () => {
+  const handleSubmitUserAnswer = (userAnswer: number) => {
     if (questionId) {
       mutateUserAnswer({
         questionId,
@@ -71,17 +57,14 @@ const useQuestion = () => {
   };
 
   return {
-    questionDetail,
-    userAnswer,
-    setUserAnswer,
-    myAnswer,
-    handleSubmitUserAnswer,
-    question: {
-      questionId,
-      questionContent,
-      questionFormType,
+    questionForm: {
+      ...questionForm,
+      answers: [firstChoice, secondChoice, thirdChoice, fourthChoice],
     },
-    answers: [firstChoice, secondChoice, thirdChoice, fourthChoice],
+    questionDetail,
+    methods: {
+      handleSubmitUserAnswer,
+    },
   };
 };
 

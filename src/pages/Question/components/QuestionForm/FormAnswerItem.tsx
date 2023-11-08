@@ -1,12 +1,12 @@
-import useQuestion from '../../hooks/useQuestion';
+import useUserAnswer from '../../hooks/useUserAnswer';
 
 interface QuestionFormSelectItemProps {
-  answer: string;
+  answer: string | null | undefined;
   itemIndex: number;
 }
 
 const FormAnswerItem = ({ answer, itemIndex }: QuestionFormSelectItemProps) => {
-  const { userAnswer, setUserAnswer } = useQuestion();
+  const { userAnswer, setUserAnswer } = useUserAnswer();
   const activeStyle =
     itemIndex === userAnswer
       ? 'border-none bg-primary text-base-white hover:bg-base-secondary'

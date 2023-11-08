@@ -1,8 +1,8 @@
 import useQuestion from '~/pages/Question/hooks/useQuestion';
 
 const FormQuestionnaire = () => {
-  const { question } = useQuestion();
-  const { questionContent } = question;
+  const { questionForm } = useQuestion();
+  const { questionContent } = questionForm;
 
   return (
     <div className="mt-3 flex flex-col gap-5">
