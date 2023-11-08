@@ -1,7 +1,7 @@
 import useQuestion from '../../hooks/useQuestion';
-import QuestionFormCreate from './QuestionFormCreate';
-import QuestionFormLabel from './QuestionFormLabel';
-import QuestionFormSelect from './QuestionFormSelect';
+import FormCustomLink from './FormCustomLink';
+import FormQuestionnaire from './FormQuestionnaire';
+import FormAnswers from './FormAnswers';
 
 const QuestionForm = () => {
   const { questionDetail, question } = useQuestion();
@@ -11,12 +11,12 @@ const QuestionForm = () => {
   const CreateForm = () =>
     questionFormType === 'SERVER' &&
     myAnswer &&
-    opponentAnswer && <QuestionFormCreate />;
+    opponentAnswer && <FormCustomLink />;
 
   return (
     <div>
-      <QuestionFormLabel />
-      <QuestionFormSelect />
+      <FormQuestionnaire />
+      <FormAnswers />
       <CreateForm />
     </div>
   );

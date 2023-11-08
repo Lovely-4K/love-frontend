@@ -1,8 +1,7 @@
-import QuestionFormSelectItem from './QuestionFormSelectItem';
+import FormAnswerItem from './FormAnswerItem';
 import useQuestion from '~/pages/Question/hooks/useQuestion';
 
-/** @todo - 내가 직성한 값이 있는 경우 button 보이지 않거나 or 수정 버튼 보일 수 있도록 하기 */
-const QuestionFormSelect = () => {
+const FormAnswers = () => {
   const { userAnswer, answers, myAnswer, handleSubmitUserAnswer } =
     useQuestion();
   const buttonContent = myAnswer !== '' ? '수정' : '결정';
@@ -13,7 +12,7 @@ const QuestionFormSelect = () => {
         {answers.map((answer, index) => {
           return (
             answer && (
-              <QuestionFormSelectItem
+              <FormAnswerItem
                 key={index}
                 itemIndex={index + 1}
                 answer={answer}
@@ -35,4 +34,4 @@ const QuestionFormSelect = () => {
   );
 };
 
-export default QuestionFormSelect;
+export default FormAnswers;

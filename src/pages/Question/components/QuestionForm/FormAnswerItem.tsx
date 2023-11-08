@@ -5,10 +5,7 @@ interface QuestionFormSelectItemProps {
   itemIndex: number;
 }
 
-const QuestionFormSelectItem = ({
-  answer,
-  itemIndex,
-}: QuestionFormSelectItemProps) => {
+const FormAnswerItem = ({ answer, itemIndex }: QuestionFormSelectItemProps) => {
   const { userAnswer, setUserAnswer } = useQuestion();
   const activeStyle =
     itemIndex === userAnswer
@@ -25,4 +22,4 @@ const QuestionFormSelectItem = ({
   );
 };
 
-export default QuestionFormSelectItem;
+export default FormAnswerItem;

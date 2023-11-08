@@ -1,6 +1,6 @@
 import useQuestion from '~/pages/Question/hooks/useQuestion';
 
-const QuestionFormLabel = () => {
+const FormQuestionnaire = () => {
   const { question } = useQuestion();
   const { questionContent } = question;
 
@@ -14,4 +14,4 @@ const QuestionFormLabel = () => {
   );
 };
 
-export default QuestionFormLabel;
+export default FormQuestionnaire;

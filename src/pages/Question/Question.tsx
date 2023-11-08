@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { QuestionHeader, QuestionForm, QuestionChat } from './components';
-import { QuestionProvider } from '~/pages/Question/contexts/QuestionContext';
+import { QuestionProvider } from '~/pages/Question/contexts/QuestionFormContext';
+import { screens } from '~/theme';
 
 export const QuestionContainer = styled.div`
   width: 100%;
@@ -8,7 +9,7 @@ export const QuestionContainer = styled.div`
   margin: 0 auto;
   padding: 3rem 4rem;
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: ${screens.lg}) {
     width: 70%;
     padding: 4rem 10rem;
   }
