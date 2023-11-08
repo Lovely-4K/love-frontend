@@ -27,7 +27,7 @@ const DiarySideBar = () => {
       >
         <IconTopArrow className={`h-4 w-4 fill-grey-400 ${arrowStyle}`} />
       </button>
-      <DiaryContent />
+      <DiaryMain />
     </div>
   );
 };
