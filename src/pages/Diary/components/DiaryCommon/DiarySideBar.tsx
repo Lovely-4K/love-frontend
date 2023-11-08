@@ -6,7 +6,7 @@ import { DiarySpot } from '~/pages/Diary/components/DiarySpot';
 import { DiarySideBarContext } from '~/pages/Diary/contexts/DiarySideBarContext';
 
 const DiarySideBar = () => {
-  const { isOpen, toggleSideBar } = useContext(DiarySideBarContext); // 이 부분을 수정
+  const { isOpen, toggleSideBar } = useContext(DiarySideBarContext);
 
   const openStyle = isOpen
     ? 'translate-y-0 lg:translate-x-0'
@@ -24,7 +24,7 @@ const DiarySideBar = () => {
       >
         <IconTopArrow className={`h-4 w-4 fill-grey-400 ${arrowStyle}`} />
       </button>
-      <DiaryMain />
+      <DiaryContent />
     </div>
   );
 };

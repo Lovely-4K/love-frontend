@@ -52,7 +52,7 @@ const DiaryContent = () => {
 
   return (
     <DiaryContentProvider>
-      <div className="flex w-full max-w-[20rem] flex-col gap-6 overflow-y-auto overflow-x-hidden">
+      <div className="flex w-full flex-col gap-6 overflow-y-auto overflow-x-hidden">
         <div className="flex items-center justify-between">
           <DiaryHeader />
           <HeaderButton />
