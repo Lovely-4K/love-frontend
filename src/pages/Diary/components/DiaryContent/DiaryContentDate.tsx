@@ -1,8 +1,9 @@
-interface DiaryContentDateProps {
-  editMode: boolean;
-}
+import { useContext } from 'react';
+import { DiaryContentContext } from '~/pages/Diary/contexts/DiaryContentContext';
 
-const DiaryContentDate = ({ editMode }: DiaryContentDateProps) => {
+const DiaryContentDate = () => {
+  const { editMode } = useContext(DiaryContentContext);
+
   return (
     <>
       <div className="flex flex-col gap-2">

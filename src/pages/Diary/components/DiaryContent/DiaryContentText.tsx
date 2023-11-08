@@ -1,8 +1,9 @@
-interface DiaryContentText {
-  editMode: boolean;
-}
+import { useContext } from 'react';
+import { DiaryContentContext } from '~/pages/Diary/contexts/DiaryContentContext';
 
-const DiaryContentText = ({ editMode }: DiaryContentText) => {
+const DiaryContentText = () => {
+  const { editMode } = useContext(DiaryContentContext);
+
   return (
     <>
       <div className="flex flex-col items-center justify-center gap-4 rounded-xl">

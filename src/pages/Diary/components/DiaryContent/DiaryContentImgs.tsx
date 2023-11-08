@@ -1,12 +1,10 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useContext, useState } from 'react';
 import { IconImageGallery } from '~/assets/icons';
 import { Carousel } from '~/components/domain';
+import { DiaryContentContext } from '~/pages/Diary/contexts/DiaryContentContext';
 
-interface DiaryContentImgsProps {
-  editMode: boolean;
-}
-
-const DiaryContentImgs = ({ editMode }: DiaryContentImgsProps) => {
+const DiaryContentImgs = () => {
+  const { editMode } = useContext(DiaryContentContext);
   const pictures = [
     'https://picsum.photos/200',
     'https://picsum.photos/200',
