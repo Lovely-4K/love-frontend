@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { DiaryHeader } from '~/pages/Diary/components/DiaryCommon';
-import DiaryItems from '~/pages/Diary/components/DiaryContentLists/DiaryItems';
-import DiaryNotContent from '~/pages/Diary/components/DiaryContentLists/DiaryNotContent';
+import DiaryNotContent from '~/pages/Diary/components/DiarySpot/DiaryNotContent';
+import DiaryItems from '~/pages/Diary/components/DiarySpot/DiarySpotPreviews';
 
-const DiaryContentLists = () => {
+const DiarySpot = () => {
   const pictures = [
     'https://picsum.photos/200',
     'https://picsum.photos/200',
@@ -28,7 +28,9 @@ const DiaryContentLists = () => {
       >
         {deleteMode ? '삭제하기' : '선택 삭제'}
       </button>
-    ) : null;
+    ) : (
+      <></>
+    );
 
   const DiaryListArea = () =>
     pictures.length ? (
@@ -50,4 +52,4 @@ const DiaryContentLists = () => {
   );
 };
 
-export default DiaryContentLists;
+export default DiarySpot;

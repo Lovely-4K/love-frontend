@@ -64,8 +64,10 @@ const DiaryContent = () => {
         <span className="font-large font-bold text-base-black">
           다이어리 내용
         </span>
-        <DiaryContentImgs editMode={editMode} />
-        <DiaryContentText editMode={editMode} />
+        <div className="rounded-xl border border-grey-200 px-3 py-5">
+          <DiaryContentImgs editMode={editMode} />
+          <DiaryContentText editMode={editMode} />
+        </div>
       </div>
       <EditButton />
     </div>
