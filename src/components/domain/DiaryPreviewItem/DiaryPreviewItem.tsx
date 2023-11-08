@@ -54,7 +54,7 @@ const DiaryPreviewItem = ({
         <div>{location}</div>
       </PreviewTextItemContainer>
       <img
-        className="image-square flex-grow lg:image-rectangle"
+        className="image-square lg:image-rectangle flex-grow"
         src={imgSrc}
         alt="다이어리 미리보기"
       />

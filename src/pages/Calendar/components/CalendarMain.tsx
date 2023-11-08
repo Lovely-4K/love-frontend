@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { MouseEvent, useState } from 'react';
 import Calendar, { CalendarProps } from 'react-calendar';
 import { NavigationLabelArgs } from 'react-calendar/dist/cjs/shared/types';
-import { colors, font, screens } from '~/theme';
+import { colors, fontSize, screens } from '~/theme';
 import 'react-calendar/dist/Calendar.css';
 
 const StyledCalendar = styled(Calendar)`
@@ -35,14 +35,14 @@ const StyledCalendar = styled(Calendar)`
 
     &__label {
       order: 1;
-      ${font['.font-large']};
+      font-size: ${fontSize.lg};
       align-self: center;
       text-align: start;
       height: 2rem;
       padding-left: 1rem;
 
       @media (min-width: ${screens.lg}) {
-        ${font['.font-title-large']};
+        font-size: ${fontSize.xl};
         height: 3rem;
         margin-bottom: 3rem;
       }
@@ -77,7 +77,7 @@ const StyledCalendar = styled(Calendar)`
 
       abbr {
         text-decoration: none;
-        ${font['.font-medium']}
+        font-size: ${fontSize.base};
         font-weight: 500;
 
         @media (min-width: ${screens.lg}) {
@@ -127,13 +127,13 @@ const StyledCalendar = styled(Calendar)`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    ${font['.font-small']}
+    font-size: ${fontSize.sm};
     font-weight: 100;
     border-bottom: 1px solid ${colors.grey[200]};
     padding: 0.2rem;
 
     @media (min-width: ${screens.lg}) {
-      ${font['.font-title']}
+      font-size: ${fontSize.lg};
       min-height: 5.5rem;
       max-height: 8rem;
       padding: 0.5rem;
