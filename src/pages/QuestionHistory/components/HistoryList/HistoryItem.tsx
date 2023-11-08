@@ -15,9 +15,9 @@ const HistoryItem = ({ questionTitle, questionId }: QuestionDropDown) => {
     questionDetail;
 
   return (
-    <div className="collapse-arrow collapse border border-solid border-grey-200 bg-base-white">
+    <div className="collapse collapse-arrow border border-solid border-grey-200 bg-base-white">
       <input type="checkbox" className="peer" />
-      <div className="font-medium collapse-title text-xl transition-all duration-200 peer-checked:bg-base-secondary">
+      <div className="font-medium collapse-title text-xl text-base-black transition-all duration-200 peer-checked:bg-base-primary peer-checked:text-base-white">
         {questionTitle}
       </div>
       <div className="collapse-content">
