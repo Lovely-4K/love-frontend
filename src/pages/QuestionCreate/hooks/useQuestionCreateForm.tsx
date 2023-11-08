@@ -22,6 +22,8 @@ const useQuestionCreateForm = () => {
         questionContent: question,
         firstChoice: answers[0],
         secondChoice: answers[1],
+        thirdChoice: answers[2],
+        fourthChoice: answers[3],
       },
     });
 

@@ -17,7 +17,7 @@ const FormAnswerItem = ({
     answer && (
       <button
         onClick={handleClickAnswer}
-        className={`box-border flex flex-grow cursor-pointer items-center justify-center rounded-xl py-3 ${activeStyle}`}
+        className={`box-border flex flex-grow cursor-pointer items-center justify-center rounded-xl py-3 lg:min-w-[30%] lg:max-w-[50%] ${activeStyle}`}
       >
         {answer}
       </button>

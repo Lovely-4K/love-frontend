@@ -36,6 +36,8 @@ const useCreateForm = () => {
     },
   });
 
+  console.log(data?.body);
+
   return { mutateAsync, data, isError };
 };
 
