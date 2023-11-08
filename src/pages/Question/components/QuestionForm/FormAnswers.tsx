@@ -8,7 +8,7 @@ const FormAnswers = () => {
   const { myChoiceIndex } = questionDetail;
   const { handleSubmitUserAnswer } = methods;
 
-  const { userAnswer, setUserAnswer } = useUserAnswer(myChoiceIndex);
+  const { userAnswer, handleClickAnswer } = useUserAnswer(myChoiceIndex);
   const buttonContent = myChoiceIndex ? '수정' : '결정';
 
   return (
@@ -20,7 +20,7 @@ const FormAnswers = () => {
             answer={answer}
             activeStatus={userAnswer === index + 1}
             handleClickAnswer={() => {
-              setUserAnswer(index + 1);
+              handleClickAnswer(index + 1);
             }}
           />
         ))}
