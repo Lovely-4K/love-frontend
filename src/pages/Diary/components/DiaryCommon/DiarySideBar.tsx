@@ -1,15 +1,12 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { IconTopArrow } from '~/assets/icons';
 import { DiaryContent } from '~/pages/Diary/components/DiaryContent';
 import { DiaryMain } from '~/pages/Diary/components/DiaryMain';
 import { DiarySpot } from '~/pages/Diary/components/DiarySpot';
+import { DiarySideBarContext } from '~/pages/Diary/contexts/DiarySideBarContext';
 
 const DiarySideBar = () => {
-  const [isOpen, setIsOpen] = useState(true);
-
-  const toggleSideBar = () => {
-    setIsOpen(!isOpen);
-  };
+  const { isOpen, toggleSideBar } = useContext(DiarySideBarContext); // 이 부분을 수정
 
   const openStyle = isOpen
     ? 'translate-y-0 lg:translate-x-0'
