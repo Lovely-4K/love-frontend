@@ -1,7 +1,7 @@
 interface QuestionFormSelectItemProps {
   answer: string | null | undefined;
   activeStatus: boolean;
-  handleClickAnswer: React.MouseEventHandler<HTMLDivElement>;
+  handleClickAnswer: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const FormAnswerItem = ({
@@ -10,17 +10,17 @@ const FormAnswerItem = ({
   handleClickAnswer,
 }: QuestionFormSelectItemProps) => {
   const activeStyle = activeStatus
-    ? 'border-none bg-primary text-base-white hover:bg-base-secondary'
-    : 'border border-grey-200  hover:bg-grey-100';
+    ? 'border-2 border-base-secondary text-base-primary transition-all duration-500'
+    : 'border-2 border-grey-200  hover:bg-grey-100';
 
   return (
     answer && (
-      <div
+      <button
         onClick={handleClickAnswer}
-        className={`flex flex-grow cursor-pointer items-center justify-center rounded-xl py-3 ${activeStyle}`}
+        className={`box-border flex flex-grow cursor-pointer items-center justify-center rounded-xl py-3 ${activeStyle}`}
       >
         {answer}
-      </div>
+      </button>
     )
   );
 };
