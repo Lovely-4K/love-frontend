@@ -1,8 +1,6 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { IconTopArrow } from '~/assets/icons';
-import { DiaryContent } from '~/pages/Diary/components/DiaryContent';
 import { DiaryMain } from '~/pages/Diary/components/DiaryMain';
-import { DiarySpot } from '~/pages/Diary/components/DiarySpot';
 import { DiarySideBarContext } from '~/pages/Diary/contexts/DiarySideBarContext';
 
 const DiarySideBar = () => {
@@ -24,7 +22,7 @@ const DiarySideBar = () => {
       >
         <IconTopArrow className={`h-4 w-4 fill-grey-400 ${arrowStyle}`} />
       </button>
-      <DiarySpot />
+      <DiaryMain />
     </div>
   );
 };
