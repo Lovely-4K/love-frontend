@@ -1,14 +1,14 @@
+import { useContext } from 'react';
+import { DiarySpotContext } from '~/pages/Diary/contexts/DiarySpotContent';
+
 interface DiarySpotPreviewProps {
   picture: string;
   id: number;
-  deleteMode: boolean;
 }
 
-const DiarySpotPreview = ({
-  picture,
-  id,
-  deleteMode,
-}: DiarySpotPreviewProps) => {
+const DiarySpotPreview = ({ picture, id }: DiarySpotPreviewProps) => {
+  const { deleteMode } = useContext(DiarySpotContext);
+
   return (
     <div
       key={id}
