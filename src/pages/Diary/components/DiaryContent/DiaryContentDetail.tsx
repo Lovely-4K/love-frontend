@@ -1,5 +1,5 @@
-import DiaryContentImgs from '~/pages/Diary/components/DiaryContent/DiaryContentImgs';
-import DiaryContentText from '~/pages/Diary/components/DiaryContent/DiaryContentText';
+import DiaryContentImgs from './DiaryContentImgs';
+import DiaryContentText from './DiaryContentText';
 import { DiaryImgsProvider } from '~/pages/Diary/contexts/DiaryImgsContext';
 
 const DiaryContentDetail = () => {

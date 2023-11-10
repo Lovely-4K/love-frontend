@@ -1,9 +1,9 @@
 import DiaryContentDate from './DiaryContentDate';
+import DiaryContentDetail from './DiaryContentDetail';
+import DiaryContentEditButton from './DiaryContentEditButton';
+import DiaryContentHeader from './DiaryContentHeader';
 import DiaryContentRating from './DiaryContentRating';
 import { DiaryCategoryList } from '~/pages/Diary/components/DiaryCommon';
-import DiaryContentDetail from '~/pages/Diary/components/DiaryContent/DiaryContentDetail';
-import DiaryContentEditButton from '~/pages/Diary/components/DiaryContent/DiaryContentEditButton';
-import DiaryContentHeader from '~/pages/Diary/components/DiaryContent/DiaryContentHeader';
 import { DiaryContentProvider } from '~/pages/Diary/contexts/DiaryContentContext';
 
 const DiaryContent = () => {
