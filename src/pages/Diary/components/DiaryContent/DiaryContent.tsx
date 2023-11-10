@@ -3,7 +3,7 @@ import DiaryContentDetail from './DiaryContentDetail';
 import DiaryContentEditButton from './DiaryContentEditButton';
 import DiaryContentHeader from './DiaryContentHeader';
 import DiaryContentRating from './DiaryContentRating';
-import { DiaryCategoryList } from '~/pages/Diary/components/DiaryCommon';
+import { DiaryCategories } from '~/pages/Diary/components/DiaryCommon';
 import { DiaryContentProvider } from '~/pages/Diary/contexts/DiaryContentContext';
 
 const DiaryContent = () => {
@@ -15,7 +15,7 @@ const DiaryContent = () => {
           <DiaryContentDate />
           <DiaryContentRating />
         </div>
-        <DiaryCategoryList />
+        <DiaryCategories />
         <DiaryContentDetail />
         <DiaryContentEditButton />
       </div>
