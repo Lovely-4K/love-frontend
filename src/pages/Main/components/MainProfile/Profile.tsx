@@ -16,7 +16,7 @@ const Profile = memo(({ name, mbti, src }: MainProfileProps) => {
       onClick={openProfileModal}
       className="flex cursor-pointer flex-col items-center justify-center gap-2"
     >
-      <Avatar src={src} type="large" className="lg:avatar-extra-large" />
+      <Avatar src={src} size="large" className="lg:avatar-extra-large" />
       <span className="font-title font-bold">{name}</span>
       <span className="font-medium text-grey-500">{mbti}</span>
     </div>
