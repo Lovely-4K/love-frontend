@@ -1,41 +1,30 @@
-import useMain from '../../hooks/useMain';
+import { useMain, useProfile } from '../../hooks';
 import Profile from './Profile';
 import { IconHeart } from '~/assets/icons';
 
 const CoupleProfile = () => {
-  const { mainProfileData, openDdayModal, getDday } = useMain();
-
-  if (!mainProfileData) return;
-
-  const getTempImageUrl = () => {
-    const appendedPath = '/images/member/';
-    if (mainProfileData?.boyImageUrl) {
-      const originalUrl = mainProfileData?.boyImageUrl as string;
-
-      return originalUrl.replace(
-        'amazonaws.com/',
-        `amazonaws.com${appendedPath}`,
-      );
-    }
-  };
+  const { coupleProfile } = useMain();
+  const { openDdayModal, dDay } = useProfile();
 
   return (
     <div className="flex h-full flex-col items-center justify-center gap-1">
       <div className="relative flex gap-2">
         <Profile
-          name={mainProfileData.boyNickname}
-          mbti={mainProfileData.boyMbti}
-          src={getTempImageUrl() as string}
+          name={coupleProfile.boyNickname}
+          mbti={coupleProfile.boyMbti}
+          src={coupleProfile.boyImageUrl}
+          id={coupleProfile.boyId}
         />
         <IconHeart className="absolute left-1/2 top-1/3 z-10 h-12 w-12 -translate-x-1/2 -translate-y-1/2 fill-base-primary stroke-base-primary" />
         <Profile
-          name={mainProfileData.girlNickname}
-          mbti={mainProfileData.girlMbti}
-          src={mainProfileData.girlImageUrl}
+          name={coupleProfile.girlNickname}
+          mbti={coupleProfile.girlMbti}
+          src={coupleProfile.girlImageUrl}
+          id={coupleProfile.girlId}
         />
       </div>
-      <span onClick={openDdayModal} className="text-3xl text-base-primary">
-        D+{getDday()}
+      <span onClick={openDdayModal} className="text-2xl text-base-primary">
+        D+{dDay}
       </span>
     </div>
   );

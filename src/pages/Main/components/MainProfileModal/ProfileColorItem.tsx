@@ -3,7 +3,8 @@ import personalColors from '~/constants/personalColor';
 import { useProfileModal } from '~/pages/Main/hooks';
 
 const ProfileColorItem = () => {
-  const { editUserInfo, activeEdit, handleColorChange } = useProfileModal();
+  const { editUserInfo, activeEdit, handleColorChange, userInfo } =
+    useProfileModal();
 
   return (
     <ProfileItemWrapper label="color" title="사랑의 색깔">
@@ -13,7 +14,11 @@ const ProfileColorItem = () => {
           className={`h-7 w-7 rounded-full ${
             activeEdit && 'hover:cursor-pointer'
           }`}
-          style={{ backgroundColor: editUserInfo?.calendarColor }}
+          style={{
+            backgroundColor: activeEdit
+              ? editUserInfo.calendarColor
+              : userInfo.calendarColor,
+          }}
         />
         {activeEdit && (
           <div

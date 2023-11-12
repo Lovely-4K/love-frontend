@@ -1,5 +1,5 @@
 interface User {
-  imageUrl: string | null | object;
+  imageUrl: string | null;
   name: string;
   nickname: string;
   birthday: string;
@@ -7,4 +7,8 @@ interface User {
   calendarColor: string;
 }
 
-export type { User };
+interface EditUser extends Omit<User, 'imageUrl'> {
+  imageUrl: string | File | null;
+}
+
+export type { User, EditUser };

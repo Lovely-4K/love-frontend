@@ -7,7 +7,7 @@ interface CoupleProfile {
   boyNickname: string;
   boyMbti: string;
   boyImageUrl: string;
-  bodyId: number;
+  boyId: number;
   girlNickname: string;
   girlMbti: string;
   girlImageUrl: string;

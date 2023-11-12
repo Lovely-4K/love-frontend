@@ -2,16 +2,14 @@ import { useQuery } from '@tanstack/react-query';
 import apiClient from '~/api/apiClient';
 import { CoupleProfile } from '~/types/couple';
 
-const getCoupleProfile = async () => {
-  const response = await apiClient.get(
-    'http://43.201.122.97/v1/couples?memberId=1',
-  );
+const getCoupleProfile = async (): Promise<CoupleProfile> => {
+  const response = await apiClient.get('/couples?memberId=1');
 
   return response.data.body;
 };
 
 const useGetCoupleProfile = () => {
-  return useQuery<CoupleProfile>({
+  return useQuery({
     queryKey: ['coupleProfile'],
     queryFn: getCoupleProfile,
   });

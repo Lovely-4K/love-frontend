@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { IconCopyLink } from '~/assets/icons';
+import { Button, Input } from '~/components/common';
 
 const InviteContainer = () => {
   const [linkToggle, setLinkToggle] = useState(false);
@@ -10,15 +11,15 @@ const InviteContainer = () => {
 
   const linkContent = linkToggle && (
     <div className="join flex w-full border border-grey-200">
-      <input
+      <Input
         className="input join-item grow focus:outline-none"
         placeholder="초대 링크를 발급받으세요!"
         content="hello"
         readOnly
-      ></input>
-      <button className="btn join-item">
+      />
+      <Button className="btn join-item">
         <IconCopyLink className="h-7 w-7" />
-      </button>
+      </Button>
     </div>
   );
 
@@ -29,12 +30,12 @@ const InviteContainer = () => {
           상대방을 초대하고 우이삭 컨텐츠를 이용해보세요!
         </span>
         {linkContent}
-        <button
+        <Button
           onClick={handleClick}
           className="btn-extra-large w-full rounded-xl bg-base-primary text-base-white"
         >
           초대 링크 발급하기
-        </button>
+        </Button>
       </div>
     </div>
   );

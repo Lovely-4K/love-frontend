@@ -3,10 +3,14 @@ import ProfileBirthdayItem from './ProfileBirthdayItem';
 import ProfileColorItem from './ProfileColorItem';
 import ProfileMBTIItem from './ProfileMBTIItem';
 import ProfileNameItem from './ProfileNameItem';
-import { useProfileModal } from '~/pages/Main/hooks';
+import { Button } from '~/components/common';
+import { useMain, useProfile, useProfileModal } from '~/pages/Main/hooks';
 
 const ProfileContainer = () => {
-  const { activeEdit, handleActiveEdit, editUserInfo } = useProfileModal();
+  const { modalId } = useProfile();
+  const { coupleProfile } = useMain();
+  const { activeEdit, handleActiveEdit, editUserInfo, userInfo } =
+    useProfileModal();
   const buttonContent = activeEdit ? '프로필 저장' : '프로필 수정';
 
   return (
@@ -14,18 +18,29 @@ const ProfileContainer = () => {
       <div
         className="h-36 transition-colors"
         style={{
-          backgroundColor: editUserInfo?.calendarColor,
+          backgroundColor: activeEdit
+            ? editUserInfo.calendarColor
+            : userInfo.calendarColor,
         }}
       />
       <ProfileAvatar />
       <div className="relative -mt-28 flex flex-col p-6">
-        <button
-          className="font-medium btn btn-sm mb-6 self-end rounded-lg text-base-white"
-          style={{ backgroundColor: editUserInfo?.calendarColor }}
-          onClick={handleActiveEdit}
-        >
-          {buttonContent}
-        </button>
+        <div className="mb-6 h-7 self-end">
+          {modalId === coupleProfile.boyId && (
+            <Button
+              size="small"
+              className="text-sm text-base-white"
+              style={{
+                backgroundColor: activeEdit
+                  ? editUserInfo.calendarColor
+                  : userInfo.calendarColor,
+              }}
+              onClick={handleActiveEdit}
+            >
+              {buttonContent}
+            </Button>
+          )}
+        </div>
         <ProfileNameItem />
         <ProfileColorItem />
         <ProfileBirthdayItem />

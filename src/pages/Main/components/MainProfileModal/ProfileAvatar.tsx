@@ -3,7 +3,8 @@ import { IconCamera } from '~/assets/icons';
 import { useProfileModal } from '~/pages/Main/hooks';
 
 const ProfileAvatar = () => {
-  const { activeEdit, editUserInfo, handleAvatarChange } = useProfileModal();
+  const { activeEdit, editUserInfo, handleAvatarChange, userInfo } =
+    useProfileModal();
   const inputRef = useRef<HTMLInputElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
 
@@ -25,38 +26,19 @@ const ProfileAvatar = () => {
     handleAvatarChange(files[0]);
   };
 
-  const getTempImageUrl = () => {
-    const appendedPath = '/images/member/';
-    if (editUserInfo?.imageUrl) {
-      if (editUserInfo.imageUrl instanceof File) {
-        const reader = new FileReader();
-        reader.readAsDataURL(editUserInfo.imageUrl);
-
-        reader.onload = () => {
-          if (imageRef.current) {
-            imageRef.current.src = reader.result as string;
-          }
-        };
-      } else if (typeof editUserInfo.imageUrl === 'string') {
-        const originalUrl = editUserInfo.imageUrl;
-
-        if (!originalUrl) return;
-
-        return originalUrl.replace(
-          'amazonaws.com/',
-          `amazonaws.com${appendedPath}`,
-        );
-      }
-    }
-  };
+  const imageURL = activeEdit
+    ? editUserInfo.imageUrl instanceof File
+      ? URL.createObjectURL(editUserInfo.imageUrl)
+      : (editUserInfo.imageUrl as string)
+    : (userInfo.imageUrl as string);
 
   return (
     <div
       onClick={handleAvatarClick}
       className={`avatar z-10 ml-6 -translate-y-1/2 ${activeStyle}`}
     >
-      <div className="avatar-large">
-        <img ref={imageRef} src={getTempImageUrl()} alt="user avatar" />
+      <div className="w-32 rounded-full">
+        <img ref={imageRef} src={imageURL} alt="user avatar" />
       </div>
       {activeEdit && (
         <>

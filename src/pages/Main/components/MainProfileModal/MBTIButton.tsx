@@ -30,7 +30,7 @@ const MBTIButton = memo(
       selected === bottomItem ? 'text-base-primary' : 'text-grey-400';
 
     return (
-      <div className={`flex flex-col`} onClick={handleMBTIChange}>
+      <div className="flex flex-col" onClick={handleMBTIChange}>
         <button
           className={`h-8 w-8 bg-grey-200 ${topItemTextColor} ${topItemStyle[position]}`}
           value={topItem}

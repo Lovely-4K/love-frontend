@@ -1,5 +1,5 @@
 export * from './Login';
-export * from './Main';
+export { default as Main } from './Main/Main';
 export * from './Calendar';
 export * from './Question';
 export * from './QuestionHistory';

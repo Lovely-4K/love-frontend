@@ -1,28 +1,24 @@
-import { forwardRef } from 'react';
-import { ProfileModalProvider } from '../../context/ProfileModalContext';
+import { ProfileModalProvider } from '../../contexts/ProfileModalContext';
+import { useProfile } from '../../hooks';
 import ProfileContainer from './ProfileContainer';
 import { Modal } from '~/components/domain';
 
-interface MainProfileModalProps {
-  closeModal: () => void;
-}
+const MainProfileModal = () => {
+  const { closeProfileModal, profileModalRef } = useProfile();
 
-const MainProfileModal = forwardRef<HTMLDialogElement, MainProfileModalProps>(
-  ({ closeModal }, ref) => {
-    return (
-      <Modal className="p-0" ref={ref}>
-        <ProfileModalProvider>
-          <button
-            onClick={closeModal}
-            className="btn btn-circle btn-ghost btn-sm absolute right-2 top-2"
-          >
-            ✕
-          </button>
-          <ProfileContainer />
-        </ProfileModalProvider>
-      </Modal>
-    );
-  },
-);
+  return (
+    <Modal className="p-0" ref={profileModalRef}>
+      <ProfileModalProvider>
+        <button
+          onClick={closeProfileModal}
+          className="btn btn-circle btn-ghost btn-sm absolute right-2 top-2"
+        >
+          ✕
+        </button>
+        <ProfileContainer />
+      </ProfileModalProvider>
+    </Modal>
+  );
+};
 
 export default MainProfileModal;
