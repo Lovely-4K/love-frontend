@@ -11,8 +11,6 @@ const FormAnswers = () => {
   const { userAnswer, handleClickAnswer } = useUserAnswer(myChoiceIndex);
   const buttonContent = myChoiceIndex ? '수정' : '결정';
 
-  console.log('Form Answer component called');
-
   return (
     <>
       <div className="my-3 flex flex-col flex-wrap gap-3 lg:flex-row">

@@ -13,8 +13,6 @@ const QuestionForm = () => {
     myAnswer &&
     opponentAnswer && <FormCustomLink />;
 
-  console.log('Form component called');
-
   return (
     <div>
       <FormQuestionnaire />
