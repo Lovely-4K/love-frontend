@@ -5,8 +5,14 @@ import { QuestionCreateFormContext } from '../contexts/QuestionCreateFormContext
 
 const useQuestionCreateForm = () => {
   const navigate = useNavigate();
+  const questionCreateFormContext = useContext(QuestionCreateFormContext);
+
+  if (!questionCreateFormContext) {
+    throw new Error('questionCreateContext is null');
+  }
+
   const { question, setQuestion, answers, setAnswers, mutateAsync, isError } =
-    useContext(QuestionCreateFormContext);
+    questionCreateFormContext;
 
   const handleSubmitForm = async (
     event:
