@@ -9,28 +9,28 @@ export interface updateUserAnswerParams {
 
 const queryClient = new QueryClient();
 
-const useUpdateUserAnswer = () => {
-  const updateUserAnswer = async ({
-    questionId,
-    selectedItemIndex,
-    sex,
-  }: updateUserAnswerParams) => {
-    const subURL = `/questions/${questionId}`;
-    const params = `/answers?sex=${sex}`;
-    const URL = subURL + params;
-    const response = await apiClient.patch(
-      URL,
-      JSON.stringify({ choiceNumber: selectedItemIndex }),
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        },
+const updateUserAnswer = async ({
+  questionId,
+  selectedItemIndex,
+  sex,
+}: updateUserAnswerParams) => {
+  const subURL = `/questions/${questionId}`;
+  const params = `/answers?sex=${sex}`;
+  const URL = subURL + params;
+  const response = await apiClient.patch(
+    URL,
+    JSON.stringify({ choiceNumber: selectedItemIndex }),
+    {
+      headers: {
+        'Content-Type': 'application/json',
       },
-    );
+    },
+  );
 
-    return response.data;
-  };
+  return response.data;
+};
 
+const useUpdateUserAnswer = () => {
   return useMutation({
     mutationKey: ['userAnswer'],
     mutationFn: updateUserAnswer,
