@@ -2,17 +2,13 @@ import { useMain } from '../../hooks';
 import Profile from './Profile';
 
 const SoloProfile = () => {
-  const { mainProfileData } = useMain();
+  const { coupleProfile } = useMain();
 
-  if (!mainProfileData) return;
+  const { boyNickname, boyMbti, boyImageUrl, boyId } = coupleProfile;
 
   return (
     <div className="flex justify-center">
-      <Profile
-        name={mainProfileData.boyNickname}
-        mbti={mainProfileData.boyMbti}
-        src={mainProfileData.boyImageUrl}
-      />
+      <Profile name={boyNickname} mbti={boyMbti} src={boyImageUrl} id={boyId} />
     </div>
   );
 };

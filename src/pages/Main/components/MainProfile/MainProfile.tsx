@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import useMain from '../../hooks/useMain';
+import { useMain } from '../../hooks';
 import CoupleProfile from './CoupleProfile';
 import SoloProfile from './SoloProfile';
 

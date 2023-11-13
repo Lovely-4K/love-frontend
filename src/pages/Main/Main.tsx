@@ -1,15 +1,17 @@
-import { MainContent, MainProfile, MainModalButtons } from './components';
-import { MainProvider } from './context/MainContext';
+import { MainContent, MainModalButtons, MainProfile } from './components';
+import { MainProvider, ProfileProvider } from './contexts';
 
 const MainPage = () => {
   return (
-    <MainProvider>
-      <div className="flex h-full w-full flex-col p-7">
-        <MainModalButtons />
-        <MainProfile />
+    <div className="flex h-full w-full flex-col p-7">
+      <MainProvider>
+        <ProfileProvider>
+          <MainModalButtons />
+          <MainProfile />
+        </ProfileProvider>
         <MainContent />
-      </div>
-    </MainProvider>
+      </MainProvider>
+    </div>
   );
 };
 

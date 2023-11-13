@@ -1,29 +1,23 @@
-import { useMain } from '../../hooks';
-import { MainDdayModal } from '../MainDdayModal';
-import { MainProfileModal } from '../MainProfileModal';
+import { DdayModalProvider } from '../../contexts';
+import { useMain, useProfile } from '../../hooks';
+import MainDdayModal from '../MainDdayModal/MainDdayModal';
+import MainProfileModal from '../MainProfileModal/MainProfileModal';
 import { Button } from '~/components/common';
 
 const MainModalButtons = () => {
-  const {
-    coupleMode,
-    openProfileModal,
-    closeProfileModal,
-    profileModalRef,
-    openDdayModal,
-    closeDdayModal,
-    dDayModalRef,
-  } = useMain();
+  const { coupleMode, coupleProfile } = useMain();
+  const { handleOpenProfileModal, openDdayModal } = useProfile();
 
   return (
     <div className="flex items-center justify-end gap-3">
       <Button
-        onClick={openProfileModal}
+        onClick={() => handleOpenProfileModal(coupleProfile.boyId)}
         size="medium"
         className="border border-grey-200 bg-base-white font-bold text-grey-400"
       >
         프로필 수정
       </Button>
-      <MainProfileModal ref={profileModalRef} closeModal={closeProfileModal} />
+      <MainProfileModal />
       {coupleMode && (
         <>
           <Button
@@ -33,7 +27,9 @@ const MainModalButtons = () => {
           >
             디데이 수정
           </Button>
-          <MainDdayModal ref={dDayModalRef} closeModal={closeDdayModal} />
+          <DdayModalProvider>
+            <MainDdayModal />
+          </DdayModalProvider>
         </>
       )}
     </div>

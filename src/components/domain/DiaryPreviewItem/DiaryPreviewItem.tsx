@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Img } from '~/components/common';
 
 interface DiaryPreviewItemProps {
   date: string;
@@ -49,12 +50,13 @@ const DiaryPreviewItem = ({
 }: DiaryPreviewItemProps) => {
   return (
     <DiaryPreviewItemContainer>
-      <PreviewTextItemContainer className="font-medium rounded-xl bg-base-deem text-base-white">
+      <PreviewTextItemContainer className="rounded-xl bg-base-deem font-medium text-base-white">
         <div>{date}</div>
         <div>{location}</div>
       </PreviewTextItemContainer>
-      <img
-        className="image-square lg:image-rectangle flex-grow"
+      <Img
+        shape="square"
+        className="flex-grow lg:h-32 lg:w-[17.5rem]"
         src={imgSrc}
         alt="다이어리 미리보기"
       />

@@ -2,7 +2,11 @@ import ProfileItemWrapper from './ProfileItemWrapper';
 import { useProfileModal } from '~/pages/Main/hooks';
 
 const ProfileNameItem = () => {
-  const { editUserInfo, handleInputChange, activeEdit } = useProfileModal();
+  const { editUserInfo, handleInputChange, activeEdit, userInfo } =
+    useProfileModal();
+
+  const name = activeEdit ? editUserInfo.name : userInfo.name;
+  const nickname = activeEdit ? editUserInfo.nickname : userInfo.nickname;
 
   return (
     <>
@@ -12,7 +16,7 @@ const ProfileNameItem = () => {
           readOnly={!activeEdit}
           type="text"
           className="font-large input m-0 h-5 w-full p-0 pl-1 focus:outline-none"
-          value={editUserInfo?.name || ''}
+          value={name}
           onChange={handleInputChange}
         />
       </ProfileItemWrapper>
@@ -22,7 +26,7 @@ const ProfileNameItem = () => {
           readOnly={!activeEdit}
           type="text"
           className="font-large input m-0 h-5 w-full p-0 pl-1 focus:outline-none"
-          value={editUserInfo?.nickname || ''}
+          value={nickname}
           onChange={handleInputChange}
         />
       </ProfileItemWrapper>

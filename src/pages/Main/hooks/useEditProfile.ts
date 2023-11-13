@@ -1,8 +1,14 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { User } from '~/types';
+import { EditUser } from '~/types';
 import apiClient from '~/api/apiClient';
 
-const editProfile = async (data: User) => {
+const editProfile = async ({
+  data,
+  userId,
+}: {
+  data: EditUser;
+  userId: number;
+}) => {
   const formData = new FormData();
   formData.append(
     'texts',
@@ -11,7 +17,10 @@ const editProfile = async (data: User) => {
   if (data.imageUrl instanceof Blob) {
     formData.append('images', data.imageUrl);
   }
-  const response = await apiClient.patch('/members?memberId=1', formData);
+  const response = await apiClient.patch(
+    `/members?memberId=${userId}`,
+    formData,
+  );
 
   return response.data.body;
 };
@@ -23,7 +32,10 @@ const useEditProfile = () => {
     mutationFn: editProfile,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: ['profile', 'coupleProfile'],
+        queryKey: ['profile'],
+      });
+      await queryClient.invalidateQueries({
+        queryKey: ['coupleProfile'],
       });
     },
   });
