@@ -24,6 +24,26 @@ const QuestionContext = createContext<QuestionContextProps>(
   {} as QuestionContextProps,
 );
 
+const initialQuestionForm = {
+  questionId: 1,
+  questionContent: '테스트 질문',
+  firstChoice: '선택지 1',
+  secondChoice: '선택지 2',
+  thirdChoice: undefined,
+  fourthChoice: undefined,
+  questionFormType: 'SERVER',
+};
+
+const initialQuestionDetail = {
+  questionContent: '테스트 질문',
+  myAnswer: '',
+  opponentAnswer: '',
+  myChoiceIndex: 1,
+  opponentChoiceIndex: 1,
+  myProfile: '',
+  opponentProfile: '',
+};
+
 const QuestionProvider = ({ children }: PropsWithChildren) => {
   const { mutate: createTodayQuestionMutate } = useCreateTodayQuestion();
   const { data: questionResponse } = useGetQuestion();
@@ -31,24 +51,11 @@ const QuestionProvider = ({ children }: PropsWithChildren) => {
     useGetQuestionDetail(questionResponse?.questionId || -1);
   const { data: updateAnswerResponse, mutate: mutateUserAnswer } =
     useUpdateUserAnswer();
-  const [questionForm, setQuestionForm] = useState<QuestionForm>({
-    questionId: 1,
-    questionContent: '테스트 질문',
-    firstChoice: '선택지 1',
-    secondChoice: '선택지 2',
-    thirdChoice: undefined,
-    fourthChoice: undefined,
-    questionFormType: 'SERVER',
-  } as QuestionForm);
-  const [questionDetail, setQuestionDetail] = useState<QuestionHistoryDetail>({
-    questionContent: '테스트 질문',
-    myAnswer: '',
-    opponentAnswer: '',
-    myChoiceIndex: 1,
-    opponentChoiceIndex: 1,
-    myProfile: '',
-    opponentProfile: '',
-  });
+  const [questionForm, setQuestionForm] =
+    useState<QuestionForm>(initialQuestionForm);
+  const [questionDetail, setQuestionDetail] = useState<QuestionHistoryDetail>(
+    initialQuestionDetail,
+  );
 
   useEffect(() => {
     createTodayQuestionMutate();
