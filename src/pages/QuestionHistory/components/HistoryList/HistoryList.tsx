@@ -1,5 +1,5 @@
 import HistoryItem from './HistoryItem';
-import useGetQuestions from '~/pages/QuestionHistory/hooks/useGetQuestions';
+import useGetQuestions from '~/services/question/useGetQuestions';
 
 const HistoryList = () => {
   const { data: questions, isSuccess } = useGetQuestions();
