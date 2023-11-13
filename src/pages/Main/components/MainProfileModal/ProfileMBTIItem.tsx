@@ -4,6 +4,7 @@ import { useProfileModal } from '~/pages/Main/hooks';
 
 const ProfileMBTIItem = () => {
   const { editUserInfo, activeEdit, userInfo } = useProfileModal();
+
   const itemContent = activeEdit ? (
     <div className="flex">
       <MBTIButton

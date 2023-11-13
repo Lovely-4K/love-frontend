@@ -4,14 +4,11 @@ import Profile from './Profile';
 const SoloProfile = () => {
   const { coupleProfile } = useMain();
 
+  const { boyNickname, boyMbti, boyImageUrl, boyId } = coupleProfile;
+
   return (
     <div className="flex justify-center">
-      <Profile
-        name={coupleProfile.boyNickname}
-        mbti={coupleProfile.boyMbti}
-        src={coupleProfile.boyImageUrl}
-        id={coupleProfile.boyId}
-      />
+      <Profile name={boyNickname} mbti={boyMbti} src={boyImageUrl} id={boyId} />
     </div>
   );
 };

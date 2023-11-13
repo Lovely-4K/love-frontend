@@ -11,16 +11,19 @@ const ProfileContainer = () => {
   const { coupleProfile } = useMain();
   const { activeEdit, handleActiveEdit, editUserInfo, userInfo } =
     useProfileModal();
+
   const buttonContent = activeEdit ? '프로필 저장' : '프로필 수정';
+
+  const backgroundColor = activeEdit
+    ? editUserInfo.calendarColor
+    : userInfo.calendarColor;
 
   return (
     <>
       <div
         className="h-36 transition-colors"
         style={{
-          backgroundColor: activeEdit
-            ? editUserInfo.calendarColor
-            : userInfo.calendarColor,
+          backgroundColor,
         }}
       />
       <ProfileAvatar />
@@ -31,9 +34,7 @@ const ProfileContainer = () => {
               size="small"
               className="text-sm text-base-white"
               style={{
-                backgroundColor: activeEdit
-                  ? editUserInfo.calendarColor
-                  : userInfo.calendarColor,
+                backgroundColor,
               }}
               onClick={handleActiveEdit}
             >
