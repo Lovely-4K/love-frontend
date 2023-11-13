@@ -2,14 +2,11 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '~/router';
 import { QuestionCreateFormContext } from '../contexts/QuestionCreateFormContext';
-import useCreateForm from './useCreateForm';
 
 const useQuestionCreateForm = () => {
   const navigate = useNavigate();
-  const { mutateAsync, data, isError } = useCreateForm();
-  const { question, setQuestion, answers, setAnswers } = useContext(
-    QuestionCreateFormContext,
-  );
+  const { question, setQuestion, answers, setAnswers, mutateAsync, isError } =
+    useContext(QuestionCreateFormContext);
 
   const handleSubmitForm = async (
     event:
@@ -22,6 +19,8 @@ const useQuestionCreateForm = () => {
         questionContent: question,
         firstChoice: answers[0],
         secondChoice: answers[1],
+        thirdChoice: answers[2],
+        fourthChoice: answers[3],
       },
     });
 
@@ -61,7 +60,6 @@ const useQuestionCreateForm = () => {
   };
 
   return {
-    data,
     isError,
     question,
     answers,

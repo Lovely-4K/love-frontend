@@ -1,5 +1,5 @@
 import useQuestion from '../../hooks/useQuestion';
-import QuestionChatItem from './QuestionChatItem';
+import QuestionChatItem from './ChatItem';
 
 const QuestionChat = () => {
   const { questionDetail } = useQuestion();

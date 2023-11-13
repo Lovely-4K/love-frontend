@@ -1,7 +1,7 @@
 import { useMutation, QueryClient } from '@tanstack/react-query';
 import apiClient from '~/api/apiClient';
 
-interface updateUserAnswerParams {
+export interface updateUserAnswerParams {
   questionId: number;
   selectedItemIndex: number;
   sex: 'MALE' | 'FEMALE';
@@ -9,29 +9,29 @@ interface updateUserAnswerParams {
 
 const queryClient = new QueryClient();
 
-const useUpdateUserAnswer = () => {
-  const updateUserAnswer = async ({
-    questionId,
-    selectedItemIndex,
-    sex,
-  }: updateUserAnswerParams) => {
-    const subURL = `/questions/${questionId}`;
-    const params = `/answers?sex=${sex}`;
-    const URL = subURL + params;
-    const response = await apiClient.patch(
-      URL,
-      JSON.stringify({ choiceNumber: selectedItemIndex }),
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        },
+const updateUserAnswer = async ({
+  questionId,
+  selectedItemIndex,
+  sex,
+}: updateUserAnswerParams) => {
+  const subURL = `/questions/${questionId}`;
+  const params = `/answers?sex=${sex}`;
+  const URL = subURL + params;
+  const response = await apiClient.patch(
+    URL,
+    JSON.stringify({ choiceNumber: selectedItemIndex }),
+    {
+      headers: {
+        'Content-Type': 'application/json',
       },
-    );
+    },
+  );
 
-    return response.data;
-  };
+  return response.data;
+};
 
-  const { mutate, data, isError } = useMutation({
+const useUpdateUserAnswer = () => {
+  return useMutation({
     mutationKey: ['userAnswer'],
     mutationFn: updateUserAnswer,
     onMutate: async ({ selectedItemIndex }) => {
@@ -55,8 +55,6 @@ const useUpdateUserAnswer = () => {
       await queryClient.invalidateQueries({ queryKey: ['userAnswer'] });
     },
   });
-
-  return { mutate, data, isError };
 };
 
 export default useUpdateUserAnswer;
