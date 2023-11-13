@@ -2,13 +2,13 @@ import { useMutation } from '@tanstack/react-query';
 import type { QuestionForm, code, links } from '~/types';
 import apiClient from '~/api/apiClient';
 
-interface QuestionResponse {
+export interface createQuestionFromResponse {
   body?: QuestionForm;
   code: code;
   links?: links;
 }
 
-interface createFormParams {
+export interface createFormParams {
   questionForm: QuestionForm;
 }
 
@@ -17,7 +17,7 @@ const useCreateForm = () => {
     const subURL = 'questions/question-forms?';
     const params = `memberId=${1}&coupleId=${1}`;
     const URL = subURL + params;
-    const response = await apiClient.post<QuestionResponse>(
+    const response = await apiClient.post<createQuestionFromResponse>(
       URL,
       JSON.stringify(questionForm),
       {
@@ -35,8 +35,6 @@ const useCreateForm = () => {
       return createForm(createFormParams);
     },
   });
-
-  console.log(data?.body);
 
   return { mutateAsync, data, isError };
 };
