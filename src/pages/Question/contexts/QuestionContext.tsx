@@ -20,9 +20,7 @@ interface QuestionContextProps {
   >;
 }
 
-const QuestionContext = createContext<QuestionContextProps>(
-  {} as QuestionContextProps,
-);
+const QuestionContext = createContext<QuestionContextProps | null>(null);
 
 const initialQuestionForm = {
   questionId: 1,

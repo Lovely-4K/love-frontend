@@ -20,9 +20,8 @@ interface QuestionCreateFormContextProps {
   isError: boolean;
 }
 
-const QuestionCreateFormContext = createContext<QuestionCreateFormContextProps>(
-  {} as QuestionCreateFormContextProps,
-);
+const QuestionCreateFormContext =
+  createContext<QuestionCreateFormContextProps | null>(null);
 
 const QuestionCreateFormProvider = ({ children }: PropsWithChildren) => {
   const { mutateAsync, isError } = useCreateForm();
