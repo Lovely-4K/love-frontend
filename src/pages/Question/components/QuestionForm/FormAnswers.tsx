@@ -8,10 +8,10 @@ const FormAnswers = () => {
   const { myChoiceIndex } = questionDetail;
   const { handleSubmitUserAnswer } = methods;
 
-  console.log(answers);
-
   const { userAnswer, handleClickAnswer } = useUserAnswer(myChoiceIndex);
   const buttonContent = myChoiceIndex ? '수정' : '결정';
+
+  console.log('Form Answer component called');
 
   return (
     <>

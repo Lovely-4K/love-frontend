@@ -1,7 +1,7 @@
 import { useMutation, QueryClient } from '@tanstack/react-query';
 import apiClient from '~/api/apiClient';
 
-interface updateUserAnswerParams {
+export interface updateUserAnswerParams {
   questionId: number;
   selectedItemIndex: number;
   sex: 'MALE' | 'FEMALE';

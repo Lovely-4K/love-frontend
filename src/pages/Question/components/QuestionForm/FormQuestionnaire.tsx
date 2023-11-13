@@ -4,6 +4,8 @@ const FormQuestionnaire = () => {
   const { questionForm } = useQuestion();
   const { questionContent } = questionForm;
 
+  console.log('FormQuestionnaire component called');
+
   return (
     <div className="mt-3 flex flex-col gap-5">
       <div className="font-title flex items-center justify-center px-3 py-5 text-base-primary">
