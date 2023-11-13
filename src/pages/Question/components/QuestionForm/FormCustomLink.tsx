@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const QuestionFormCreate = () => {
+const FormCustomLink = () => {
   return (
     <div className="my-20 flex flex-col items-center justify-center">
       <div className="font-medium">이제 새 질문을 작성할 수 있어요!</div>
@@ -16,4 +16,4 @@ const QuestionFormCreate = () => {
   );
 };
 
-export default QuestionFormCreate;
+export default FormCustomLink;

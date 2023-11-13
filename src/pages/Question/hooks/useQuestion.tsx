@@ -1,87 +1,40 @@
-import { useContext, useEffect } from 'react';
+import { useCallback, useContext } from 'react';
 import { QuestionContext } from '../contexts/QuestionContext';
-import useCreateTodayQuestion from './useCreateTodayQuestion';
-import useGetQuestion from './useGetQuestion';
-import useUpdateUserAnswer from './useUpdateUserAnswer';
-import useGetQuestionDetail from '~/pages/QuestionHistory/hooks/useGetQuestionDetail';
 
 const useQuestion = () => {
-  const {
-    questionDetail,
-    setQuestionDetail,
-    userAnswer,
-    setUserAnswer,
-    questionForm,
-    setQuestionForm,
-  } = useContext(QuestionContext);
-  const { mutate: createTodayQuestionMutate } = useCreateTodayQuestion();
-  const { data: questionResponse } = useGetQuestion();
-  const { data: questionDetailResponse, refetch: questionDetailRefetch } =
-    useGetQuestionDetail(questionResponse?.questionId || -1);
-  const { data: updateAnswerResponse, mutate: mutateUserAnswer } =
-    useUpdateUserAnswer();
+  const { questionForm, questionDetail, mutateUserAnswer } =
+    useContext(QuestionContext);
 
-  const { myAnswer } = questionDetail;
-  const {
-    questionId,
-    questionContent,
-    firstChoice,
-    secondChoice,
-    thirdChoice,
-    fourthChoice,
-    questionFormType,
-  } = questionForm;
+  const { questionId, firstChoice, secondChoice, thirdChoice, fourthChoice } =
+    questionForm;
 
-  useEffect(() => {
-    createTodayQuestionMutate();
-  }, [createTodayQuestionMutate]);
-
-  useEffect(() => {
-    if (questionResponse) {
-      setQuestionForm(questionResponse);
-    }
-  }, [questionResponse, setQuestionForm]);
-
-  useEffect(() => {
-    if (questionDetailResponse) {
-      setQuestionDetail(questionDetailResponse);
-    }
-  }, [questionDetailResponse, setQuestionDetail]);
-
-  useEffect(() => {
-    if (updateAnswerResponse !== undefined) {
-      alert('답변을 제출했습니다!');
-      questionDetailRefetch().catch((error) => console.log(error));
-    }
-  }, [updateAnswerResponse, questionDetailRefetch]);
-
-  const handleSubmitUserAnswer = () => {
-    if (questionId) {
-      mutateUserAnswer({
-        questionId,
-        selectedItemIndex: userAnswer,
-        sex: 'MALE',
-      });
-      mutateUserAnswer({
-        questionId,
-        selectedItemIndex: userAnswer,
-        sex: 'FEMALE',
-      });
-    }
-  };
+  const handleSubmitUserAnswer = useCallback(
+    (userAnswer: number) => {
+      if (questionId) {
+        mutateUserAnswer({
+          questionId,
+          selectedItemIndex: userAnswer,
+          sex: 'MALE',
+        });
+        mutateUserAnswer({
+          questionId,
+          selectedItemIndex: userAnswer,
+          sex: 'FEMALE',
+        });
+      }
+    },
+    [mutateUserAnswer, questionId],
+  );
 
   return {
-    questionDetail,
-    userAnswer,
-    setUserAnswer,
-    myAnswer,
-    handleSubmitUserAnswer,
-    question: {
-      questionId,
-      questionContent,
-      questionFormType,
+    questionForm: {
+      ...questionForm,
+      answers: [firstChoice, secondChoice, thirdChoice, fourthChoice],
     },
-    answers: [firstChoice, secondChoice, thirdChoice, fourthChoice],
+    questionDetail,
+    methods: {
+      handleSubmitUserAnswer,
+    },
   };
 };
 

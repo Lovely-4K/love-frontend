@@ -1,12 +1,12 @@
 import { HistoryHeader, HistoryList } from './components';
-import { QuestionContainer } from '~/pages/Question/Question';
+import { QuestionContainer as QestionHistoryContainer } from '~/pages/Question/Question';
 
 const QuestionHistory = () => {
   return (
-    <QuestionContainer>
+    <QestionHistoryContainer>
       <HistoryHeader />
       <HistoryList />
-    </QuestionContainer>
+    </QestionHistoryContainer>
   );
 };
 

@@ -5,7 +5,7 @@ import useQuestionCreateForm from '~/pages/QuestionCreate/hooks/useQuestionCreat
 /** @todo- data === undefined 일 시, 로딩 기능 추가, isError 일 시 Toast UI 추가 */
 const Form = () => {
   const { question, answers, handleSubmitForm } = useQuestionCreateForm();
-  const buttonInvalidate = question.length === 0 || answers.length === 0;
+  const buttonInvalidate = question.length === 0 || answers.length < 2;
 
   return (
     <form onSubmit={handleSubmitForm} className="flex flex-col gap-10">
