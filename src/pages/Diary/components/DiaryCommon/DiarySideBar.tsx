@@ -34,7 +34,7 @@ const StyledDiarySideBar = styled.div`
     height: 100vh;
     width: 23rem;
     border-top-right-radius: 0.75rem;
-    border-top-bottom-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
     box-shadow: 0.08rem 0.08rem 0.08rem 0 rgba(0, 0, 0, 0.25);
 
     &.open {
