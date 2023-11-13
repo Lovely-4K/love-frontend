@@ -1,10 +1,9 @@
-import { useContext } from 'react';
 import { IconTopArrow } from '~/assets/icons';
 import { DiaryMain } from '~/pages/Diary/components/DiaryMain';
-import { DiarySideBarContext } from '~/pages/Diary/contexts/DiarySideBarContext';
+import useSideBar from '~/pages/Diary/hooks/useSideBar';
 
 const DiarySideBar = () => {
-  const { isOpen, toggleSideBar } = useContext(DiarySideBarContext);
+  const { isOpen, toggleSideBar } = useSideBar();
 
   const openStyle = isOpen
     ? 'translate-y-0 lg:translate-x-0'
