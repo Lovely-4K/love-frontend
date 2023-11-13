@@ -31,7 +31,7 @@ const useUpdateUserAnswer = () => {
     return response.data;
   };
 
-  const { mutate, data, isError } = useMutation({
+  return useMutation({
     mutationKey: ['userAnswer'],
     mutationFn: updateUserAnswer,
     onMutate: async ({ selectedItemIndex }) => {
@@ -55,8 +55,6 @@ const useUpdateUserAnswer = () => {
       await queryClient.invalidateQueries({ queryKey: ['userAnswer'] });
     },
   });
-
-  return { mutate, data, isError };
 };
 
 export default useUpdateUserAnswer;

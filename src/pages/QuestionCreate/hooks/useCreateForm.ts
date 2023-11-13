@@ -30,13 +30,11 @@ const useCreateForm = () => {
     return response.data;
   };
 
-  const { mutateAsync, data, isError } = useMutation({
+  return useMutation({
     mutationFn: async (createFormParams: createFormParams) => {
       return createForm(createFormParams);
     },
   });
-
-  return { mutateAsync, data, isError };
 };
 
 export default useCreateForm;
