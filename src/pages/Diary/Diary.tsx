@@ -1,6 +1,7 @@
 import { Map } from 'react-kakao-maps-sdk';
 import { useKakaoLoader as useKakaoLoaderOrigin } from 'react-kakao-maps-sdk';
 import { DiarySideBar } from '~/pages/Diary/components/DiaryCommon';
+import { DiarySideBarProvider } from '~/pages/Diary/contexts/DiarySideBarContext';
 
 const Diary = () => {
   useKakaoLoaderOrigin({
@@ -10,7 +11,9 @@ const Diary = () => {
 
   return (
     <div className="h-full w-full">
-      <DiarySideBar />
+      <DiarySideBarProvider>
+        <DiarySideBar />
+      </DiarySideBarProvider>
       <Map // 지도를 표시할 Container
         id="map"
         center={{
