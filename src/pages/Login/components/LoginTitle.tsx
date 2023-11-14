@@ -2,13 +2,13 @@ import { PropsWithChildren } from 'react';
 import { IconHeart } from '~/assets/icons';
 
 const EmText = ({ children }: PropsWithChildren) => {
-  return <span className="text-5xl font-black">{children}</span>;
+  return <span className="text-5xl text-base-white">{children}</span>;
 };
 
 const LoginTitle = () => {
   return (
     <div className="relative select-none space-y-3 text-center text-base-white">
-      <h1 className="text-end text-[0.8rem]">
+      <h1 className="text-[1rem] text-base-white">
         <EmText>우</EmText>리<EmText>이</EmText>거<EmText>삭</EmText>제하지말자
       </h1>
       <h2>삭제하지 않기로 약속한 커플 다이어리</h2>
