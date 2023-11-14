@@ -37,7 +37,7 @@ const useSearchLocation = ({ keyword }: useSearchLocationProps) => {
         map.setBounds(bounds);
       }
     });
-  }, [map]);
+  }, [map, keyword]);
 
   return { info, setInfo, markers, setMarkers, map, setMap };
 };
