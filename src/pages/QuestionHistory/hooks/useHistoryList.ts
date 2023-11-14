@@ -9,8 +9,13 @@ interface useHistoryListProps {
 
 const useHistoryList = ({ historyListRef }: useHistoryListProps) => {
   const [histories, setHistories] = useState<QuestionHistoryPreview[]>([]);
-  const { data, refetch } = useGetQuestionHistory();
-  const [observe] = useObserve(refetch);
+  const [lastQuestionId, setLastQuestionId] = useState(0);
+  const { data } = useGetQuestionHistory({ lastQuestionId });
+  const [observe] = useObserve(() => {
+    const lastQuestion = histories[histories.length - 1];
+    const { questionId: lastQuestionId } = lastQuestion;
+    setLastQuestionId(lastQuestionId);
+  });
 
   useEffect(() => {
     if (data !== undefined) {
@@ -21,13 +26,14 @@ const useHistoryList = ({ historyListRef }: useHistoryListProps) => {
   }, [data]);
 
   useEffect(() => {
+    if (data && data.length < 10) return;
     const historyListNode = historyListRef.current;
 
     if (historyListNode) {
       const { lastChild } = historyListNode;
       observe(lastChild);
     }
-  }, [histories, observe, historyListRef]);
+  }, [data, observe, historyListRef]);
 
   return {
     histories,
