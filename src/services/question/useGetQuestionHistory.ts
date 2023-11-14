@@ -3,7 +3,7 @@ import { QuestionHistoryPreview } from '~/types';
 import apiClient from '~/api/apiClient';
 
 const getQuestionHistory = async (
-  coupleId: number = 1,
+  coupleId: number = 5,
   lastQuestionId: number = 0,
 ): Promise<QuestionHistoryPreview[]> => {
   const url = `/questions?id=${lastQuestionId}&coupleId=${coupleId}&limit=10`;

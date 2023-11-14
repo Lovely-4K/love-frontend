@@ -13,9 +13,7 @@ export interface createFormParams {
 }
 
 const createForm = async ({ questionForm }: createFormParams) => {
-  const subURL = 'questions/question-forms?';
-  const params = `memberId=${1}&coupleId=${1}`;
-  const URL = subURL + params;
+  const URL = 'questions/question-forms';
   const response = await apiClient.post<createQuestionFromResponse>(
     URL,
     JSON.stringify(questionForm),

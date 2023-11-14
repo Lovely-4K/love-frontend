@@ -5,9 +5,8 @@ import apiClient from '~/api/apiClient';
 const getQuestionDetail = async (
   questionId: number,
 ): Promise<QuestionHistoryDetail> => {
-  const response = await apiClient.get(
-    `/questions/details/${questionId}?memberId=1&sex=MALE`,
-  );
+  const URL = `/questions/details/${questionId}`;
+  const response = await apiClient.get(URL);
 
   return response.data.body;
 };

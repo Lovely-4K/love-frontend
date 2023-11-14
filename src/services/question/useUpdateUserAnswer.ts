@@ -4,7 +4,6 @@ import apiClient from '~/api/apiClient';
 export interface updateUserAnswerParams {
   questionId: number;
   selectedItemIndex: number;
-  sex: 'MALE' | 'FEMALE';
 }
 
 const queryClient = new QueryClient();
@@ -12,11 +11,8 @@ const queryClient = new QueryClient();
 const updateUserAnswer = async ({
   questionId,
   selectedItemIndex,
-  sex,
 }: updateUserAnswerParams) => {
-  const subURL = `/questions/${questionId}`;
-  const params = `/answers?sex=${sex}`;
-  const URL = subURL + params;
+  const URL = `/questions/${questionId}/answers`;
   const response = await apiClient.patch(
     URL,
     JSON.stringify({ choiceNumber: selectedItemIndex }),
