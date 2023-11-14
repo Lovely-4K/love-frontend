@@ -18,12 +18,10 @@ const useQuestion = () => {
         mutateUserAnswer({
           questionId,
           selectedItemIndex: userAnswer,
-          sex: 'MALE',
         });
         mutateUserAnswer({
           questionId,
           selectedItemIndex: userAnswer,
-          sex: 'FEMALE',
         });
       }
     },

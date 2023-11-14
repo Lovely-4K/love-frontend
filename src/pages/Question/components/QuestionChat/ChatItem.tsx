@@ -26,14 +26,14 @@ const QuestionChatItem = ({
   return (
     <div className={`chat ${chatType} my-3`}>
       <div className="avatar chat-image">
-        <div className="avatar-small rounded-full lg:avatar-medium">
+        <div className="avatar-small lg:avatar-medium rounded-full">
           <img src={getTempImageUrl()} />
         </div>
       </div>
       <div className="chat-header">
         <time className="text-xs opacity-50">{author}</time>
       </div>
-      <div className="font-medium chat-bubble flex w-full flex-wrap items-center justify-center bg-grey-100 py-4 text-base-black lg:w-fit lg:px-10">
+      <div className="chat-bubble flex w-full flex-wrap items-center justify-center bg-grey-100 py-4 font-medium text-base-black lg:w-fit lg:px-10">
         {message}
       </div>
     </div>
