@@ -1,14 +1,14 @@
+import { useRef } from 'react';
+import useHistoryList from '../../hooks/useHistoryList';
 import HistoryItem from './HistoryItem';
-import useGetQuestions from '~/services/question/useGetQuestions';
 
 const HistoryList = () => {
-  const { data: questions, isSuccess } = useGetQuestions();
-
-  if (!isSuccess) return;
+  const historyListRef = useRef(null);
+  const { histories } = useHistoryList({ historyListRef });
 
   return (
-    <div className="flex flex-col gap-3">
-      {questions.answeredQuestions.map(({ questionId, questionContent }) => (
+    <div ref={historyListRef} className="flex flex-col gap-3">
+      {histories.map(({ questionId, questionContent }) => (
         <HistoryItem
           questionTitle={questionContent}
           questionId={questionId}
