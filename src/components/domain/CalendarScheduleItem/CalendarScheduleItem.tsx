@@ -8,20 +8,12 @@ interface CalendarScheduleItemProps {
 }
 
 const CalendarScheduleItemContainer = styled.div`
-  margin: 0.5rem;
   display: flex;
   height: 4rem;
-  min-width: 70%;
-  max-width: 15.385rem;
   flex-direction: column;
   justify-content: center;
   border-radius: 0.75rem;
   padding: 0.5rem 2rem;
-
-  @media screen and (min-width: 768px) {
-    margin: 0.5rem auto;
-    min-width: 99%;
-  }
 `;
 
 const CalendarScheduleItem = ({
@@ -38,7 +30,7 @@ const CalendarScheduleItem = ({
     >
       <div className="font-small w-full text-grey-500">{date}</div>
       <div
-        className={`font-medium w-full`}
+        className={`w-full text-base`}
         style={{ color: personal[customColor] }}
       >
         {title}

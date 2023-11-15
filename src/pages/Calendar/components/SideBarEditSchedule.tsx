@@ -19,7 +19,7 @@ const StyledDivider = styled.div`
   flex-direction: row;
   align-items: center;
   align-self: stretch;
-  height: 1rem /* 16px */;
+  height: 1rem;
   white-space: nowrap;
   padding: 1rem 0;
   @media (min-width: ${screens.lg}) {
