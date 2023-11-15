@@ -9,4 +9,14 @@ export default defineConfig({
   resolve: {
     alias: [{ find: '~', replacement: path.resolve(__dirname, 'src') }],
   },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://love-back.kro.kr/v1',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+        secure: false,
+      },
+    },
+  },
 });
