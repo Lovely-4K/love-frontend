@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
+import { DiaryMapContext } from '~/pages/Diary/contexts/DiaryMapContext';
 
 interface useSearchLocationProps {
   keyword: string;
 }
 
 const useSearchLocation = ({ keyword }: useSearchLocationProps) => {
-  const [info, setInfo] = useState<any>(undefined);
-  const [markers, setMarkers] = useState<Array<any>>([]);
-  const [map, setMap] = useState<any>(undefined);
+  const { info, setInfo, markers, setMarkers, map, setMap } =
+    useContext(DiaryMapContext);
 
   useEffect(() => {
     if (!map) return;
@@ -27,6 +27,8 @@ const useSearchLocation = ({ keyword }: useSearchLocationProps) => {
               lng: data[i].x,
             },
             content: data[i].place_name,
+            address: data[i].address_name,
+            phone: data[i].phone,
           });
 
           bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));

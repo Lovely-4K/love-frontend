@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
-import { Map, MapMarker } from 'react-kakao-maps-sdk';
+import { useEffect, useRef } from 'react';
+import { Map } from 'react-kakao-maps-sdk';
 import { useKakaoLoader as useKakaoLoaderOrigin } from 'react-kakao-maps-sdk';
+import DiaryMapMarker from '~/pages/Diary/components/DiaryCommon/DiaryMapMarker';
 import useCurrentLocation from '~/pages/Diary/hooks/useCurrentLoaction';
 import useInputRef from '~/pages/Diary/hooks/useInputRef';
 import useSearchLocation from '~/pages/Diary/hooks/useSearchLoaction';
@@ -8,7 +9,7 @@ import useSearchLocation from '~/pages/Diary/hooks/useSearchLoaction';
 const DiaryMap = () => {
   const { userPosition } = useCurrentLocation();
   const { searchKeyword } = useInputRef();
-  const { setMap, markers, setInfo, info } = useSearchLocation({
+  const { setMap } = useSearchLocation({
     keyword: searchKeyword,
   });
 
@@ -28,17 +29,7 @@ const DiaryMap = () => {
       level={3}
       onCreate={setMap}
     >
-      {markers.map((marker) => (
-        <MapMarker
-          key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}
-          position={marker.position}
-          onClick={() => setInfo(marker)}
-        >
-          {info && info.content === marker.content && (
-            <div style={{ color: 'black' }}>{marker.content}</div>
-          )}
-        </MapMarker>
-      ))}
+      <DiaryMapMarker />
     </Map>
   );
 };
