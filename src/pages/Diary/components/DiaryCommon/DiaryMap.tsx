@@ -1,8 +1,7 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { CustomOverlayMap, Map } from 'react-kakao-maps-sdk';
 import { useKakaoLoader as useKakaoLoaderOrigin } from 'react-kakao-maps-sdk';
 import DiaryMapMarker from '~/pages/Diary/components/DiaryCommon/DiaryMapMarker';
-import { DiaryMapContext } from '~/pages/Diary/contexts/DiaryMapContext';
 import useCurrentLocation from '~/pages/Diary/hooks/useCurrentLoaction';
 import useInputRef from '~/pages/Diary/hooks/useInputRef';
 import useSearchLocation from '~/pages/Diary/hooks/useSearchLocation';
@@ -10,7 +9,7 @@ import useSearchLocation from '~/pages/Diary/hooks/useSearchLocation';
 const DiaryMap = () => {
   const { userPosition } = useCurrentLocation();
   const { searchKeyword } = useInputRef();
-  const { setMap } = useSearchLocation({
+  const { setMap, info } = useSearchLocation({
     keyword: searchKeyword,
   });
 
@@ -20,13 +19,6 @@ const DiaryMap = () => {
   });
 
   const [isOpen, setIsOpen] = useState(true);
-
-  const markerPosition = {
-    lat: 33.450701,
-    lng: 126.570667,
-  };
-
-  const { info } = useContext(DiaryMapContext);
 
   return (
     <>
@@ -43,10 +35,10 @@ const DiaryMap = () => {
         <DiaryMapMarker />
         {isOpen && info && (
           <CustomOverlayMap position={info.position}>
-            <div className="overlay absolute -right-32 bottom-[2.75rem] h-[6rem] w-[16rem] rounded-xl bg-base-white p-4">
-              <p>{info.content}</p>
-              <p>{info.address}</p>
-              <p>{info.phone}</p>
+            <div className="absolute -right-32 bottom-[2.75rem] z-30 flex w-[16rem] flex-col justify-center gap-1 rounded-xl bg-base-white p-4 drop-shadow-xl">
+              <p className="text-lg text-base-black">{info.content}</p>
+              <p className="text-sm text-grey-400">{info.address}</p>
+              <p className="text-sm text-base-secondary">{info.phone}</p>
             </div>
           </CustomOverlayMap>
         )}

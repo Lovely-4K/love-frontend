@@ -6,7 +6,7 @@ import useSearchLocation from '~/pages/Diary/hooks/useSearchLocation';
 
 const DiaryMapMarker = () => {
   const { searchKeyword } = useInputRef();
-  const { markers, setInfo, info } = useSearchLocation({
+  const { markers, setInfo } = useSearchLocation({
     keyword: searchKeyword,
   });
 
