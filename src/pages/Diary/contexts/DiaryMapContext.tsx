@@ -5,9 +5,9 @@ interface MapMarker {
     lat: number;
     lng: number;
   };
-  content: any;
-  address: any;
-  phone: any;
+  content: string;
+  address: string;
+  phone: string;
 }
 
 interface DiaryMapContextProps {
@@ -15,7 +15,7 @@ interface DiaryMapContextProps {
   setMarkers: React.Dispatch<React.SetStateAction<MapMarker[]>>;
   info: MapMarker | undefined;
   setInfo: React.Dispatch<React.SetStateAction<MapMarker | undefined>>;
-  map: any; // 여기서 map의 타입을 정확히 알고 있다면 해당 타입을 지정하세요.
+  map: any;
   setMap: React.Dispatch<React.SetStateAction<any>>;
 }
 

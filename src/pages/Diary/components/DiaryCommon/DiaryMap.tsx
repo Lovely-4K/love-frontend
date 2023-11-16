@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react';
 import { Map } from 'react-kakao-maps-sdk';
 import { useKakaoLoader as useKakaoLoaderOrigin } from 'react-kakao-maps-sdk';
 import DiaryMapMarker from '~/pages/Diary/components/DiaryCommon/DiaryMapMarker';
