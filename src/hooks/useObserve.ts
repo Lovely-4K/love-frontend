@@ -19,7 +19,7 @@ const useObserve = (callback: () => void) => {
   );
 
   const observe = useCallback((obersevedElement: HTMLElement) => {
-    if (observer.current) {
+    if (observer.current && obersevedElement) {
       observer.current.observe(obersevedElement);
     }
   }, []);
