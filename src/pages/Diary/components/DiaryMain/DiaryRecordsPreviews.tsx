@@ -1,5 +1,4 @@
 import { DiaryPreviewItem } from '~/components/domain';
-import useGetDiarys from '~/pages/Diary/hooks/useGetDiarys';
 
 const DiaryRecordsPreviews = () => {
   // const { data: diarys, isSuccess } = useGetDiarys();

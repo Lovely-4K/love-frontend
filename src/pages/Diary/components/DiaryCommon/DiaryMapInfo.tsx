@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { DiaryMapContext } from '~/pages/Diary/contexts/DiaryMapContext';
 
 interface DiaryMapInfoProps {
@@ -6,9 +6,6 @@ interface DiaryMapInfoProps {
 }
 
 const DiaryMapInfo = ({ marker }: DiaryMapInfoProps) => {
-  const { kakao } = window;
-  const { map } = useContext(DiaryMapContext);
-
   // useEffect(() => {
   //   if (marker) {
   //     console.log(marker.position);
