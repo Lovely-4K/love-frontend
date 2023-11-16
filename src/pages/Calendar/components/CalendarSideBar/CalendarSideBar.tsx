@@ -1,6 +1,6 @@
 import { useCalendarSideBar } from '../../hooks';
 import SideBarDaySchedule from './SideBarDaySchedule';
-import SideBarEditSchedule from './SideBarEditSchedule';
+import SideBarEditSchedule from './SideBarEditSchedule/SideBarEditSchedule';
 import { IconPlus } from '~/assets/icons';
 
 const CalendarSideBar = () => {
