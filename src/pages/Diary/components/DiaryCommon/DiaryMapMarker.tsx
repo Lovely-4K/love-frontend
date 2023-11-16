@@ -1,8 +1,4 @@
-import { useState } from 'react';
-import { CustomOverlayMap, MapMarker } from 'react-kakao-maps-sdk';
-import { MapMarkerGone } from '~/assets/icons';
-import DiaryMapInfo from '~/pages/Diary/components/DiaryCommon/DiaryMapInfo';
-import useCurrentLocation from '~/pages/Diary/hooks/useCurrentLoaction';
+import { MapMarker } from 'react-kakao-maps-sdk';
 import useInputRef from '~/pages/Diary/hooks/useInputRef';
 import useSearchLocation from '~/pages/Diary/hooks/useSearchLocation';
 
@@ -30,7 +26,7 @@ const DiaryMapMarker = ({ userPosition }: DiaryMapMarkerProps) => {
           size: {
             width: 40,
             height: 65,
-          }, // 마커이미지의 크기입니다
+          },
         }}
       />
       {markers.map((marker) => (
@@ -43,7 +39,7 @@ const DiaryMapMarker = ({ userPosition }: DiaryMapMarkerProps) => {
             size: {
               width: 35,
               height: 40,
-            }, // 마커이미지의 크기입니다
+            },
           }}
         />
       ))}

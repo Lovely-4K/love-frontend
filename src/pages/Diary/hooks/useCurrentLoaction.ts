@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { DiaryMapContext } from '~/pages/Diary/contexts/DiaryMapContext';
 
 interface Coordinates {
   latitude: number;
@@ -11,6 +12,7 @@ interface Position {
 
 const useCurrentLocation = () => {
   const [userPosition, setUserPosition] = useState<Coordinates | null>(null);
+  const { map } = useContext(DiaryMapContext);
 
   const onSuccess = (position: Position) => {
     const { latitude, longitude } = position.coords;
@@ -32,7 +34,15 @@ const useCurrentLocation = () => {
     lng: userPosition.longitude,
   };
 
-  return { userPosition: userPositionLatLng, setUserPosition };
+  const setCenter = () => {
+    if (userPosition) {
+      const { latitude, longitude } = userPosition;
+      const newLatLng = new kakao.maps.LatLng(latitude, longitude);
+      map.setCenter(newLatLng);
+    }
+  };
+
+  return { userPosition: userPositionLatLng, setUserPosition, setCenter };
 };
 
 export default useCurrentLocation;

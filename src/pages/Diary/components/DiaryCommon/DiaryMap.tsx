@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { CustomOverlayMap, Map } from 'react-kakao-maps-sdk';
 import { useKakaoLoader as useKakaoLoaderOrigin } from 'react-kakao-maps-sdk';
+import { CurrentMarker, SelectCurrentBtn } from '~/assets/icons';
 import DiaryMapMarker from '~/pages/Diary/components/DiaryCommon/DiaryMapMarker';
 import useCurrentLocation from '~/pages/Diary/hooks/useCurrentLoaction';
 import useInputRef from '~/pages/Diary/hooks/useInputRef';
 import useSearchLocation from '~/pages/Diary/hooks/useSearchLocation';
 
 const DiaryMap = () => {
-  const { userPosition } = useCurrentLocation();
+  const { userPosition, setCenter } = useCurrentLocation();
   const { searchKeyword } = useInputRef();
   const { setMap, info } = useSearchLocation({
     keyword: searchKeyword,
@@ -42,6 +43,9 @@ const DiaryMap = () => {
             </div>
           </CustomOverlayMap>
         )}
+        <button className="absolute right-4 top-4 z-50 ">
+          <SelectCurrentBtn className="h-12" onClick={setCenter} />
+        </button>
       </Map>
     </>
   );
