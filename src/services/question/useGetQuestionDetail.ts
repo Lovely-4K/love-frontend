@@ -11,9 +11,9 @@ const getQuestionDetail = async (
   return response.data.body;
 };
 
-const useGetQuestionDetail = (questionId: number) => {
+const useGetQuestionDetail = (questionId: number, arcodianChecked: boolean) => {
   return useQuery({
-    enabled: questionId !== -1,
+    enabled: questionId !== -1 && arcodianChecked === true,
     queryKey: ['questionDetail', questionId],
     queryFn: () => getQuestionDetail(questionId),
   });
