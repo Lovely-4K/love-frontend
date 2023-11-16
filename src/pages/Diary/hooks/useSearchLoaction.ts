@@ -21,7 +21,6 @@ const useSearchLocation = ({ keyword }: useSearchLocationProps) => {
         const markers = [];
 
         for (let i = 0; i < data.length; i++) {
-          console.log(typeof data[i]);
           markers.push({
             position: {
               lat: data[i].y,

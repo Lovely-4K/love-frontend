@@ -9,8 +9,6 @@ const DiaryMapMarker = () => {
     keyword: searchKeyword,
   });
 
-  console.log(markers);
-
   return (
     <>
       {markers.map((marker) => (
