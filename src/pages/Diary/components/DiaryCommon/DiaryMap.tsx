@@ -32,7 +32,7 @@ const DiaryMap = () => {
         level={3}
         onCreate={setMap}
       >
-        <DiaryMapMarker />
+        <DiaryMapMarker userPosition={userPosition} />
         {isOpen && info && (
           <CustomOverlayMap position={info.position}>
             <div className="absolute -right-32 bottom-[2.75rem] z-30 flex w-[16rem] flex-col justify-center gap-1 rounded-xl bg-base-white p-4 drop-shadow-xl">
