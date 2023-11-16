@@ -19,17 +19,19 @@ const useHistoryList = ({ historyListRef }: useHistoryListProps) => {
 
   useEffect(() => {
     if (data !== undefined) {
+      const { answeredQuestions } = data;
       setHistories((currHistories) => {
-        return [...currHistories, ...data];
+        return [...currHistories, ...answeredQuestions];
       });
     }
   }, [data]);
 
   useEffect(() => {
-    if (data && data.length < 10) return;
-    const historyListNode = historyListRef.current;
+    if (data === undefined) return;
+    if (data.answeredQuestions.length < 20) return;
 
-    if (historyListNode) {
+    if (historyListRef && historyListRef.current) {
+      const historyListNode = historyListRef.current;
       const { lastChild } = historyListNode;
       observe(lastChild);
     }
