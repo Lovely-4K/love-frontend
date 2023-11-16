@@ -4,6 +4,7 @@ const fontSize = {
   lg: '1rem',
   xl: '1.25rem',
   '2xl': '2.25rem',
+  '5xl': '4rem',
 };
 
 export default fontSize;
