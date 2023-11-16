@@ -3,7 +3,7 @@ import { useKakaoLoader as useKakaoLoaderOrigin } from 'react-kakao-maps-sdk';
 import DiaryMapMarker from '~/pages/Diary/components/DiaryCommon/DiaryMapMarker';
 import useCurrentLocation from '~/pages/Diary/hooks/useCurrentLoaction';
 import useInputRef from '~/pages/Diary/hooks/useInputRef';
-import useSearchLocation from '~/pages/Diary/hooks/useSearchLoaction';
+import useSearchLocation from '~/pages/Diary/hooks/useSearchLocation';
 
 const DiaryMap = () => {
   const { userPosition } = useCurrentLocation();

@@ -1,7 +1,7 @@
 import { MapMarker } from 'react-kakao-maps-sdk';
 import DiaryMapInfo from '~/pages/Diary/components/DiaryCommon/DiaryMapInfo';
 import useInputRef from '~/pages/Diary/hooks/useInputRef';
-import useSearchLocation from '~/pages/Diary/hooks/useSearchLoaction';
+import useSearchLocation from '~/pages/Diary/hooks/useSearchLocation';
 
 const DiaryMapMarker = () => {
   const { searchKeyword } = useInputRef();
