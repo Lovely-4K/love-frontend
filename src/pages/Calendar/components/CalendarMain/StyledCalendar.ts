@@ -4,19 +4,22 @@ import { colors, fontSize, screens } from '~/theme';
 
 const StyledCalendar = styled(Calendar)`
   width: 100%;
+  height: 100%;
   border: none;
   padding: 1rem 1rem;
 
   @media (min-width: ${screens.lg}) {
     padding: 1rem 2.5rem;
-    margin-top: 13%;
+    height: 44rem;
   }
 
   // 달력 네이게이션(앞, 뒤, 오늘 버튼)
   .react-calendar__navigation {
+    width: 100%;
     align-items: center;
     margin-bottom: 1;
     max-height: 5rem;
+    display: flex;
 
     button {
       background-color: transparent;
@@ -29,6 +32,9 @@ const StyledCalendar = styled(Calendar)`
     }
 
     &__label {
+      flex-grow: 0 !important;
+      margin-right: auto;
+      margin-bottom: 1rem;
       order: 1;
       font-size: ${fontSize.xl};
       align-self: center;
@@ -61,6 +67,7 @@ const StyledCalendar = styled(Calendar)`
   .react-calendar__month-view {
     // 요일 타일(월~일)
     &__weekdays {
+      text-align: center;
       margin-bottom: 0.5rem;
       position: relative;
 
@@ -190,6 +197,9 @@ const StyledCalendar = styled(Calendar)`
 
     &:hover {
       background-color: ${colors.grey[100]};
+    }
+    &--active {
+      background-color: ${colors.grey[200]};
     }
   }
 `;

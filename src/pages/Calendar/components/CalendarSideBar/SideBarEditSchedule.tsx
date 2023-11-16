@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 import { colors, screens } from '~/theme';
+import { useCalendarSideBar } from '../../hooks';
+import { Button } from '~/components/common';
 
 const StyledBadge = styled.div`
   display: inline-flex;
@@ -37,10 +39,21 @@ const StyledDivider = styled.div`
 `;
 
 const SideBarEditSchedule = () => {
+  const { closeEditSchedule, saveEditSchedule, scheduleInfo, handleEditInput } =
+    useCalendarSideBar();
+
+  const { startDate, endDate, scheduleDetails } = scheduleInfo;
+
   /** @todo nickname에 따라 label content 변경 */
   return (
     <div>
-      <input className="input input-ghost h-5 w-full" placeholder="내용 입력" />
+      <input
+        className="input input-ghost h-5 w-full"
+        placeholder="내용 입력"
+        value={scheduleDetails}
+        name="scheduleDetails"
+        onChange={handleEditInput}
+      />
       <StyledDivider />
       <div>
         <div className="flex justify-between gap-2 px-4">
@@ -49,7 +62,9 @@ const SideBarEditSchedule = () => {
             <input
               className="input input-ghost h-5 w-full p-0"
               type="date"
-              value={'2023-11-01'}
+              name="startDate"
+              value={startDate}
+              onChange={handleEditInput}
             />
           </div>
           <div>
@@ -57,7 +72,9 @@ const SideBarEditSchedule = () => {
             <input
               className="input input-ghost h-5 w-full p-0"
               type="date"
-              value={'2023-11-01'}
+              name="endDate"
+              value={endDate}
+              onChange={handleEditInput}
             />
           </div>
         </div>
@@ -79,12 +96,20 @@ const SideBarEditSchedule = () => {
       </div>
       <StyledDivider />
       <div className="flex justify-end gap-2 px-2">
-        <button className="btn-small w-full rounded-lg border border-grey-200 bg-base-white">
+        <Button
+          onClick={closeEditSchedule}
+          size="small"
+          className="border border-grey-200 bg-base-white"
+        >
           취소
-        </button>
-        <button className="btn-small w-full rounded-lg bg-base-primary text-base-white">
+        </Button>
+        <Button
+          onClick={saveEditSchedule}
+          size="small"
+          className="bg-base-primary text-base-white"
+        >
           저장
-        </button>
+        </Button>
       </div>
     </div>
   );

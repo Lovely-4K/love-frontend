@@ -1,9 +1,21 @@
-import { PropsWithChildren, createContext, useCallback, useMemo } from 'react';
+import {
+  MouseEvent,
+  PropsWithChildren,
+  createContext,
+  useCallback,
+  useMemo,
+  useState,
+} from 'react';
 import { useCalendar } from '../hooks';
 
 interface CalendarMainContextProps {
   handlePickDate(date: Date): void;
-  handleMoveToday(): void;
+  handleMoveToday(event: MouseEvent<HTMLSpanElement>): void;
+}
+
+interface MonthRange {
+  from: Date | null;
+  to: Date | null;
 }
 
 const CalendarMainContext = createContext<CalendarMainContextProps | null>(
@@ -11,18 +23,27 @@ const CalendarMainContext = createContext<CalendarMainContextProps | null>(
 );
 
 const CalendarMainProvider = ({ children }: PropsWithChildren) => {
-  const { actions } = useCalendar();
+  const { changeDate, resetDate } = useCalendar();
+  const [monthRange, setMonthRange] = useState<MonthRange>({
+    from: null,
+    to: null,
+  });
 
   const handlePickDate = useCallback(
     (date: Date) => {
-      actions.changeDate(date);
+      changeDate(date);
     },
-    [actions],
+    [changeDate],
   );
 
-  const handleMoveToday = useCallback(() => {
-    actions.resetDate();
-  }, [actions]);
+  const handleMoveToday = useCallback(
+    (event: MouseEvent<HTMLSpanElement>) => {
+      event.preventDefault();
+      event.stopPropagation();
+      resetDate();
+    },
+    [resetDate],
+  );
 
   const value = useMemo(
     () => ({ handlePickDate, handleMoveToday }),

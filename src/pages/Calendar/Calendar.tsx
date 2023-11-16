@@ -1,5 +1,9 @@
 import { CalendarMain, CalendarSideBar } from './components';
-import { CalendarMainProvider, CalendarProvider } from './contexts';
+import {
+  CalendarMainProvider,
+  CalendarProvider,
+  CalendarSideBarProvider,
+} from './contexts';
 
 const Calendar = () => {
   return (
@@ -8,7 +12,9 @@ const Calendar = () => {
         <CalendarMainProvider>
           <CalendarMain />
         </CalendarMainProvider>
-        <CalendarSideBar />
+        <CalendarSideBarProvider>
+          <CalendarSideBar />
+        </CalendarSideBarProvider>
       </CalendarProvider>
     </div>
   );
