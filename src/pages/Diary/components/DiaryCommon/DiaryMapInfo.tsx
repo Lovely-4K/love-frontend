@@ -1,6 +1,3 @@
-import { useContext } from 'react';
-import { DiaryMapContext } from '~/pages/Diary/contexts/DiaryMapContext';
-
 interface DiaryMapInfoProps {
   marker: any;
 }
