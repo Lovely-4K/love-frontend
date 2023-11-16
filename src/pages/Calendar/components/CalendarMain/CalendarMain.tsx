@@ -48,7 +48,7 @@ const CalendarMain = () => {
         formatMonth={(_: string, date: Date) => {
           return `${date.getMonth() + 1}월`;
         }}
-        tileContent={({ view }: CalendarProps) => {
+        tileContent={({ view, date }: CalendarProps) => {
           if (view === 'month') {
             return (
               <div className="flex w-full flex-wrap justify-center gap-1 overflow-hidden px-1 py-1 lg:mb-2">
