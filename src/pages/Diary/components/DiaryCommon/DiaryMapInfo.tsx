@@ -36,7 +36,7 @@ const DiaryMapInfo = ({ marker }: DiaryMapInfoProps) => {
   // }, []);
 
   return (
-    <div className="rounded-xl p-5 pb-12">
+    <div className="overlay h-[6rem] w-[16rem] rounded-xl bg-base-white p-4">
       <p>{marker.content}</p>
       <p>{marker.address}</p>
       <p>{marker.phone}</p>
