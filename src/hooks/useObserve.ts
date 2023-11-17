@@ -18,7 +18,7 @@ const useObserve = (callback: () => void) => {
     new IntersectionObserver(observerCallback, observeOption.current),
   );
 
-  const observe = useCallback((obersevedElement: HTMLElement) => {
+  const observe = useCallback((obersevedElement: Element) => {
     if (observer.current && obersevedElement) {
       observer.current.observe(obersevedElement);
     }
