@@ -4,7 +4,7 @@ import HistoryItem from './HistoryItem';
 
 const HistoryList = () => {
   const historyListRef = useRef(null);
-  const { histories } = useHistoryList({ historyListRef });
+  const { histories } = useHistoryList();
   const noneItem = history.length === 0 && '현재 작성된 기록이 없어요.';
 
   return (
