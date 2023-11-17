@@ -10,7 +10,10 @@ const HistoryItem = ({ questionTitle, questionId }: QuestionDropDown) => {
   const { handleArcodianClick, questionDetail } = useHistoryItem(questionId);
 
   return (
-    <div className="collapse-arrow collapse mb-3 border border-solid border-grey-200 bg-base-white">
+    <div
+      id={String(questionId)}
+      className="collapse-arrow collapse mb-3 border border-solid border-grey-200 bg-base-white"
+    >
       <input type="checkbox" className="peer" onClick={handleArcodianClick} />
       <div className="collapse-title text-xl font-medium text-base-black transition-all duration-200 peer-checked:bg-base-primary peer-checked:text-base-white">
         {questionTitle}
