@@ -99,12 +99,12 @@ const StyledArrowIcon = styled(IconTopArrow)`
 `;
 
 const DiarySideBar = () => {
-  const { isOpen, toggleSideBar } = useSideBar();
+  const { sideBarToggle, toggleSideBar } = useSideBar();
 
   return (
-    <StyledDiarySideBar className={isOpen ? 'open' : 'closed'}>
+    <StyledDiarySideBar className={sideBarToggle ? 'open' : 'closed'}>
       <StyledButton onClick={toggleSideBar}>
-        <StyledArrowIcon className={isOpen ? 'open' : 'closed'} />
+        <StyledArrowIcon className={sideBarToggle ? 'open' : 'closed'} />
       </StyledButton>
       <DiaryMain />
     </StyledDiarySideBar>

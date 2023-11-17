@@ -1,21 +1,26 @@
 import { useContext } from 'react';
-import { DiarySideBarContext } from '~/pages/Diary/contexts/DiarySideBarContext';
+import { DiaryContext } from '~/pages/Diary/contexts/DiaryProvider';
 
 const useSideBar = () => {
-  const diarySideBarContext = useContext(DiarySideBarContext);
+  const diaryContext = useContext(DiaryContext);
 
-  if (!diarySideBarContext) throw new Error('Cannot find SideBarProvider');
+  if (!diaryContext) throw new Error('Cannot find SideBarProvider');
 
-  const { isOpen, setIsOpen } = diarySideBarContext;
+  const { sideBarToggle, setSideBarToggle } = diaryContext;
 
   const toggleSideBar = () => {
-    setIsOpen(!isOpen);
+    setSideBarToggle(!sideBarToggle);
+  };
+
+  const openSideBar = () => {
+    setSideBarToggle(true);
   };
 
   return {
-    isOpen,
-    setIsOpen,
+    sideBarToggle,
+    setSideBarToggle,
     toggleSideBar,
+    openSideBar,
   };
 };
 

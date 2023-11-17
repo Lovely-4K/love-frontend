@@ -1,4 +1,5 @@
 import { MapMarker } from 'react-kakao-maps-sdk';
+import useHandleMarker from '~/pages/Diary/hooks/useHandleMarker';
 import useInputRef from '~/pages/Diary/hooks/useInputRef';
 import useSearchLocation from '~/pages/Diary/hooks/useSearchLocation';
 
@@ -7,13 +8,10 @@ interface DiaryMapMarkerProps {
 }
 const DiaryMapMarker = ({ userPosition }: DiaryMapMarkerProps) => {
   const { searchKeyword } = useInputRef();
-  const { markers, setInfo } = useSearchLocation({
+  const { markers } = useSearchLocation({
     keyword: searchKeyword,
   });
-
-  const handleMarker = (marker: any) => {
-    setInfo(marker);
-  };
+  const { handleMarker } = useHandleMarker();
 
   if (!userPosition) return;
 
