@@ -36,12 +36,19 @@ const buttonSizes = {
   'extra-large': 'w-80 h-14',
 };
 
-const Button = ({ size = 'medium', className, ...props }: ButtonProps) => {
+const Button = ({
+  size = 'medium',
+  className,
+  children,
+  ...props
+}: ButtonProps) => {
   return (
     <button
       className={`rounded-xl ${buttonSizes[size]} ${className}`}
       {...props}
-    />
+    >
+      {children}
+    </button>
   );
 };
 
