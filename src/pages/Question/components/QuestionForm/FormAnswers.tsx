@@ -31,7 +31,7 @@ const FormAnswers = () => {
           disabled={userAnswer === -1}
           onClick={() => handleSubmitUserAnswer(userAnswer)}
           size="small"
-          className="btn-primary w-full rounded-xl hover:border-none hover:bg-base-secondary disabled:cursor-not-allowed disabled:bg-grey-300"
+          className="btn-primary rounded-xl hover:border-none hover:bg-base-secondary disabled:cursor-not-allowed disabled:bg-grey-300"
         >
           {buttonContent}
         </Button>
