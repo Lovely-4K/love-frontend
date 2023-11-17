@@ -22,8 +22,8 @@ const DiaryMapMarker = ({ userPosition }: DiaryMapMarkerProps) => {
         image={{
           src: 'src/assets/icons/currentMarker.svg',
           size: {
-            width: 40,
-            height: 65,
+            width: 55,
+            height: 55,
           },
         }}
       />
