@@ -28,6 +28,10 @@ const StyledSelect = styled.label`
     text-align: center;
   }
 
+  input[type='radio']:disabled + label {
+    cursor: default;
+  }
+
   input[type='radio']:checked + label {
     background-color: ${colors.grey[300]};
     color: ${colors.base.white};
@@ -35,10 +39,13 @@ const StyledSelect = styled.label`
 `;
 
 const EditType = () => {
-  const { handleEditInput } = useCalendarSideBar();
+  const { handleEditInput, scheduleInfo } = useCalendarSideBar();
+
+  const { scheduleType } = scheduleInfo;
+  const personalSchedule = scheduleType === 'PERSONAL';
 
   return (
-    <>
+    <div className={`${personalSchedule && 'opacity-25'}`}>
       <div className="px-4 pb-3">어떤 것을 함께하나요?</div>
       <StyledSelect>
         {(Object.keys(SCHEDULE_TYPE) as Array<keyof typeof SCHEDULE_TYPE>).map(
@@ -46,17 +53,19 @@ const EditType = () => {
             <Fragment key={type}>
               <input
                 type="radio"
-                name="type"
+                name="scheduleType"
                 id={type}
                 onChange={handleEditInput}
                 value={type}
+                checked={type === scheduleType}
+                disabled={personalSchedule}
               />
               <label htmlFor={type}>{SCHEDULE_TYPE[type]}</label>
             </Fragment>
           ),
         )}
       </StyledSelect>
-    </>
+    </div>
   );
 };
 

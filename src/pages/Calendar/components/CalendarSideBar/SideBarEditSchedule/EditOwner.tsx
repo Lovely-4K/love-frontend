@@ -27,7 +27,9 @@ const StyledSelect = styled.label`
 `;
 
 const EditOwner = () => {
-  const { handleEditInput } = useCalendarSideBar();
+  const { handleEditInput, scheduleInfo } = useCalendarSideBar();
+
+  const { scheduleType } = scheduleInfo;
 
   return (
     <>
@@ -35,28 +37,22 @@ const EditOwner = () => {
       <StyledSelect>
         <input
           type="radio"
-          name="owner"
-          id={'정'}
-          value={'정'}
+          name="ownerType"
+          id="PERSONAL"
+          value="PERSONAL"
           onChange={handleEditInput}
+          checked={scheduleType === 'PERSONAL'}
         />
-        <label htmlFor={'정'}>정</label>
+        <label htmlFor="PERSONAL">나</label>
         <input
           type="radio"
-          name="owner"
-          id={'호'}
-          value={'호'}
+          name="ownerType"
+          id="COUPLE"
+          value="COUPLE"
           onChange={handleEditInput}
+          checked={scheduleType !== 'PERSONAL'}
         />
-        <label htmlFor={'호'}>호</label>
-        <input
-          type="radio"
-          name="owner"
-          id={'함께'}
-          value={'함께'}
-          onChange={handleEditInput}
-        />
-        <label htmlFor={'함께'}>함께</label>
+        <label htmlFor="COUPLE">우리</label>
       </StyledSelect>
     </>
   );

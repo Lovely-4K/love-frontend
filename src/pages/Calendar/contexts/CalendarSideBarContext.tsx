@@ -25,9 +25,7 @@ const CalendarSideBarContext =
 const CalendarSideBarProvider = ({ children }: PropsWithChildren) => {
   const { pickedDate } = useCalendar();
   const [activeEdit, setActiveEdit] = useState(false);
-  const dateCalendarItems = useMemo(() => {
-    // console.log(pickedDate);
-  }, [pickedDate]);
+  const dateCalendarItems = useMemo(() => {}, [pickedDate]);
 
   const initialEditDate = useMemo(() => {
     return format(pickedDate, 'yyyy-MM-dd');
@@ -37,7 +35,7 @@ const CalendarSideBarProvider = ({ children }: PropsWithChildren) => {
     startDate: initialEditDate,
     endDate: initialEditDate,
     scheduleDetails: '',
-    scheduleType: null,
+    scheduleType: 'PERSONAL',
   });
 
   useEffect(() => {
@@ -64,41 +62,13 @@ const CalendarSideBarProvider = ({ children }: PropsWithChildren) => {
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = event.target;
 
-      if (name === 'startDate') {
-        setScheduleInfo({
-          ...scheduleInfo,
-          startDate: value,
-        });
+      const key = name === 'ownerType' ? 'scheduleType' : name;
+      const editValue = value === 'COUPLE' ? 'DATE' : value;
 
-        return;
-      }
-      if (name === 'endDate') {
-        setScheduleInfo({
-          ...scheduleInfo,
-          endDate: value,
-        });
-
-        return;
-      }
-
-      if (name === 'scheduleDetails') {
-        setScheduleInfo({
-          ...scheduleInfo,
-          scheduleDetails: value,
-        });
-
-        return;
-      }
-
-      if (name === 'type' || name === 'owner') {
-        const type = name === 'owner' && value !== '함께' ? 'PERSONAL' : value;
-        setScheduleInfo({
-          ...scheduleInfo,
-          scheduleType: type as EditSchedule['scheduleType'],
-        });
-
-        return;
-      }
+      setScheduleInfo({
+        ...scheduleInfo,
+        [key]: editValue,
+      });
     },
     [scheduleInfo],
   );

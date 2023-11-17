@@ -9,7 +9,7 @@ const EditInput = () => {
   return (
     <Input
       shape="ghost"
-      className="w-full"
+      className="w-full bg-transparent focus:outline-none"
       placeholder="내용 입력"
       value={scheduleDetails}
       name="scheduleDetails"
