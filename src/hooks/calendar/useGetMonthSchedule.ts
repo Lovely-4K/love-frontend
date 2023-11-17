@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import type { CalendarSchedule } from '~/types';
 import apiClient from '~/api/apiClient';
 
 interface GetMonthScheduleParams {
@@ -6,7 +7,10 @@ interface GetMonthScheduleParams {
   to: Date;
 }
 
-const getMonthSchedule = async ({ from, to }: GetMonthScheduleParams) => {
+const getMonthSchedule = async ({
+  from,
+  to,
+}: GetMonthScheduleParams): Promise<CalendarSchedule> => {
   const response = await apiClient.get(`/calendars?from=${from}&to=${to}`);
 
   return response.data.body;

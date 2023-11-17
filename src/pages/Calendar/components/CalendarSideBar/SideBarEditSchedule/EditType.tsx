@@ -1,8 +1,14 @@
 import styled from '@emotion/styled';
 import { Fragment } from 'react';
 import { colors } from '~/theme';
+import { useCalendarSideBar } from '~/pages/Calendar/hooks';
 
-const SCHEDULE_TYPE = ['데이트', '기념일', '여행', '기타'];
+const SCHEDULE_TYPE = {
+  DATE: '데이트',
+  ANNIVERSARY: '기념일',
+  TRAVEL: '여행',
+  ETC: '기타',
+};
 
 const StyledSelect = styled.label`
   display: flex;
@@ -29,16 +35,26 @@ const StyledSelect = styled.label`
 `;
 
 const EditType = () => {
+  const { handleEditInput } = useCalendarSideBar();
+
   return (
     <>
       <div className="px-4 pb-3">어떤 것을 함께하나요?</div>
       <StyledSelect>
-        {SCHEDULE_TYPE.map((type) => (
-          <Fragment key={type}>
-            <input type="radio" name="type" id={type} />
-            <label htmlFor={type}>{type}</label>
-          </Fragment>
-        ))}
+        {(Object.keys(SCHEDULE_TYPE) as Array<keyof typeof SCHEDULE_TYPE>).map(
+          (type) => (
+            <Fragment key={type}>
+              <input
+                type="radio"
+                name="type"
+                id={type}
+                onChange={handleEditInput}
+                value={type}
+              />
+              <label htmlFor={type}>{SCHEDULE_TYPE[type]}</label>
+            </Fragment>
+          ),
+        )}
       </StyledSelect>
     </>
   );

@@ -1,3 +1,5 @@
+import type { UseQueryResult } from '@tanstack/react-query';
+import { endOfMonth, endOfWeek, startOfMonth, startOfWeek } from 'date-fns';
 import {
   PropsWithChildren,
   createContext,
@@ -5,29 +7,38 @@ import {
   useMemo,
   useState,
 } from 'react';
+import type { CalendarSchedule } from '~/types';
+import { useGetMonthSchedule } from '~/hooks/calendar';
 
 interface CalendarContextProps {
   pickedDate: Date;
-  changeDate(date: Date): void;
-  resetDate(): void;
+  changePickedDate(date: Date): void;
+  getMonthScheduleQuery: UseQueryResult<CalendarSchedule, Error>;
 }
 
 const CalendarContext = createContext<CalendarContextProps | null>(null);
 
 const CalendarProvider = ({ children }: PropsWithChildren) => {
   const [pickedDate, setPickedDate] = useState(new Date());
+  const [startDate, endDate] = useMemo(() => {
+    const startDate = startOfWeek(startOfMonth(pickedDate));
+    const endDate = endOfWeek(endOfMonth(pickedDate));
 
-  const changeDate = useCallback((date: Date) => {
+    return [startDate, endDate];
+  }, [pickedDate]);
+
+  const getMonthScheduleQuery = useGetMonthSchedule({
+    from: startDate,
+    to: endDate,
+  });
+
+  const changePickedDate = useCallback((date: Date) => {
     setPickedDate(date);
   }, []);
 
-  const resetDate = useCallback(() => {
-    setPickedDate(new Date());
-  }, []);
-
   const value = useMemo(
-    () => ({ pickedDate, changeDate, resetDate }),
-    [pickedDate, changeDate, resetDate],
+    () => ({ pickedDate, changePickedDate, getMonthScheduleQuery }),
+    [pickedDate, changePickedDate, getMonthScheduleQuery],
   );
 
   return (

@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import {
   PropsWithChildren,
   createContext,
@@ -10,7 +11,6 @@ import type { EditSchedule } from '~/types';
 import { useCalendar } from '../hooks';
 
 interface CalendarSideBarContextProps {
-  today: number;
   activeEdit: boolean;
   editSchedule(): void;
   closeEditSchedule(): void;
@@ -25,13 +25,12 @@ const CalendarSideBarContext =
 const CalendarSideBarProvider = ({ children }: PropsWithChildren) => {
   const { pickedDate } = useCalendar();
   const [activeEdit, setActiveEdit] = useState(false);
+  const dateCalendarItems = useMemo(() => {
+    // console.log(pickedDate);
+  }, [pickedDate]);
 
   const initialEditDate = useMemo(() => {
-    const year = pickedDate.getFullYear();
-    const month = (pickedDate.getMonth() + 1).toString().padStart(2, '0'); // 월은 0부터 시작하므로 +1 해주고, 두 자리로 맞춥니다.
-    const day = pickedDate.getDate().toString().padStart(2, '0');
-
-    return `${year}-${month}-${day}`;
+    return format(pickedDate, 'yyyy-MM-dd');
   }, [pickedDate]);
 
   const [scheduleInfo, setScheduleInfo] = useState<EditSchedule>({
@@ -40,10 +39,6 @@ const CalendarSideBarProvider = ({ children }: PropsWithChildren) => {
     scheduleDetails: '',
     scheduleType: null,
   });
-
-  const today = useMemo(() => {
-    return pickedDate.getDate();
-  }, [pickedDate]);
 
   useEffect(() => {
     setScheduleInfo((prev) => ({
@@ -68,6 +63,7 @@ const CalendarSideBarProvider = ({ children }: PropsWithChildren) => {
   const handleEditInput = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = event.target;
+
       if (name === 'startDate') {
         setScheduleInfo({
           ...scheduleInfo,
@@ -93,13 +89,22 @@ const CalendarSideBarProvider = ({ children }: PropsWithChildren) => {
 
         return;
       }
+
+      if (name === 'type' || name === 'owner') {
+        const type = name === 'owner' && value !== '함께' ? 'PERSONAL' : value;
+        setScheduleInfo({
+          ...scheduleInfo,
+          scheduleType: type as EditSchedule['scheduleType'],
+        });
+
+        return;
+      }
     },
     [scheduleInfo],
   );
 
   const value = useMemo(
     () => ({
-      today,
       activeEdit,
       editSchedule,
       closeEditSchedule,
@@ -108,7 +113,6 @@ const CalendarSideBarProvider = ({ children }: PropsWithChildren) => {
       handleEditInput,
     }),
     [
-      today,
       activeEdit,
       editSchedule,
       closeEditSchedule,

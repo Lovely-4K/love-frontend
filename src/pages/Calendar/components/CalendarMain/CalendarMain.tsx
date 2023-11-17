@@ -48,7 +48,7 @@ const CalendarMain = () => {
         formatMonth={(_: string, date: Date) => {
           return `${date.getMonth() + 1}월`;
         }}
-        tileContent={({ view, date }: CalendarProps) => {
+        tileContent={({ view }: CalendarProps) => {
           if (view === 'month') {
             return (
               <div className="flex w-full flex-wrap justify-center gap-1 overflow-hidden px-1 py-1 lg:mb-2">
@@ -66,7 +66,7 @@ const CalendarMain = () => {
           action: string;
           activeStartDate: Date;
         }) => {
-          if (action === 'onChange') return;
+          if (action === 'onChange' || action === 'drillUp') return;
           handlePickDate(activeStartDate);
         }}
         activeStartDate={pickedDate}

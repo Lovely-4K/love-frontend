@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { colors } from '~/theme';
+import { useCalendarSideBar } from '~/pages/Calendar/hooks';
 
 const StyledSelect = styled.label`
   display: flex;
@@ -26,15 +27,35 @@ const StyledSelect = styled.label`
 `;
 
 const EditOwner = () => {
+  const { handleEditInput } = useCalendarSideBar();
+
   return (
     <>
       <div className="px-4 pb-3">누구의 일정인가요?</div>
       <StyledSelect>
-        <input type="radio" name="owner" id={'정'} />
+        <input
+          type="radio"
+          name="owner"
+          id={'정'}
+          value={'정'}
+          onChange={handleEditInput}
+        />
         <label htmlFor={'정'}>정</label>
-        <input type="radio" name="owner" id={'호'} />
+        <input
+          type="radio"
+          name="owner"
+          id={'호'}
+          value={'호'}
+          onChange={handleEditInput}
+        />
         <label htmlFor={'호'}>호</label>
-        <input type="radio" name="owner" id={'함께'} />
+        <input
+          type="radio"
+          name="owner"
+          id={'함께'}
+          value={'함께'}
+          onChange={handleEditInput}
+        />
         <label htmlFor={'함께'}>함께</label>
       </StyledSelect>
     </>

@@ -7,19 +7,6 @@ import EditOwner from './EditOwner';
 import EditType from './EditType';
 import { Button } from '~/components/common';
 
-const StyledBadge = styled.div`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 1.25rem;
-  border-radius: 0.75rem;
-  padding: 1rem 0;
-  font-size: 0.875rem;
-  background-color: #575757;
-  color: ${colors.base.white};
-`;
-
 const StyledDivider = styled.div`
   display: flex;
   flex-direction: row;

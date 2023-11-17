@@ -4,7 +4,6 @@ import {
   createContext,
   useCallback,
   useMemo,
-  useState,
 } from 'react';
 import { useCalendar } from '../hooks';
 
@@ -13,36 +12,27 @@ interface CalendarMainContextProps {
   handleMoveToday(event: MouseEvent<HTMLSpanElement>): void;
 }
 
-interface MonthRange {
-  from: Date | null;
-  to: Date | null;
-}
-
 const CalendarMainContext = createContext<CalendarMainContextProps | null>(
   null,
 );
 
 const CalendarMainProvider = ({ children }: PropsWithChildren) => {
-  const { changeDate, resetDate } = useCalendar();
-  const [monthRange, setMonthRange] = useState<MonthRange>({
-    from: null,
-    to: null,
-  });
+  const { changePickedDate } = useCalendar();
 
   const handlePickDate = useCallback(
     (date: Date) => {
-      changeDate(date);
+      changePickedDate(date);
     },
-    [changeDate],
+    [changePickedDate],
   );
 
   const handleMoveToday = useCallback(
     (event: MouseEvent<HTMLSpanElement>) => {
       event.preventDefault();
       event.stopPropagation();
-      resetDate();
+      changePickedDate(new Date());
     },
-    [resetDate],
+    [changePickedDate],
   );
 
   const value = useMemo(
