@@ -10,7 +10,7 @@ const useSearchLocation = ({ keyword }: useSearchLocationProps) => {
     useContext(DiaryMapContext);
 
   useEffect(() => {
-    if (!map) return;
+    if (!map || !keyword) return;
 
     const ps = new kakao.maps.services.Places();
 
