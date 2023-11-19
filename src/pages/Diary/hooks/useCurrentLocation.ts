@@ -27,7 +27,7 @@ const useCurrentLocation = () => {
   };
 
   const setCenter = () => {
-    if (userPosition) {
+    if (userPosition && map) {
       const { latitude, longitude } = userPosition;
       const newLatLng = new kakao.maps.LatLng(latitude, longitude);
       map.setCenter(newLatLng);
