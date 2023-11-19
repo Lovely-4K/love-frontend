@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
+import { Coordinates, Position } from '~/types';
 import { DiaryMapContext } from '~/pages/Diary/contexts/DiaryMapContext';
-import { Coordinates, Position } from '~/types/map';
 
 const useCurrentLocation = () => {
   const [userPosition, setUserPosition] = useState<Coordinates | null>(null);
