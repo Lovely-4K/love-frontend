@@ -1,10 +1,10 @@
 import useLocalStorage from './useLocalStorage.ts';
 
-const useLogin = () => {
-  const { defaultStorageValue: token } = useLocalStorage('token');
+const useLogin = (token: string | null) => {
+  const { defaultStorageValue: storageToken } = useLocalStorage('token', token);
 
   const isLoggedIn = () => {
-    return token !== null;
+    return storageToken !== null && storageToken !== undefined;
   };
 
   return { isLoggedIn };

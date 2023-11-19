@@ -13,12 +13,12 @@ const useLocalStorage = (key?: string, value?: any) => {
   }, []);
 
   const getValueFromStorage = useCallback((key: string) => {
-    if (key === defaultStorageKey.current) {
+    if (key === defaultStorageKey.current && defaultStorageValue) {
       return defaultStorageValue;
     }
     const value = localStorage.getItem(key);
 
-    return value ? JSON.parse(value) : null;
+    return value ? value : null;
   }, []);
 
   useEffect(() => {
@@ -26,7 +26,13 @@ const useLocalStorage = (key?: string, value?: any) => {
       saveValueToSotrage(key, value);
     }
     if (key) {
-      setDefaultStorageValue(getValueFromStorage(key));
+      setDefaultStorageValue((curr: any) => {
+        const savedValue = getValueFromStorage(key);
+        curr =
+          typeof savedValue === 'string' ? savedValue : JSON.parse(savedValue);
+
+        return curr;
+      });
     }
   }, []);
 
