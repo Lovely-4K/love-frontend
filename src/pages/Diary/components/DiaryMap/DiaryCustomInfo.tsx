@@ -1,7 +1,8 @@
 import { CustomOverlayMap } from 'react-kakao-maps-sdk';
+import { MapMarker } from '~/types/map';
 
 interface DiaryCustomInfo {
-  info: any;
+  info: MapMarker;
 }
 
 const DiaryCustomInfo = ({ info }: DiaryCustomInfo) => {

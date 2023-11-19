@@ -1,14 +1,5 @@
 import { PropsWithChildren, createContext, useState } from 'react';
-
-interface MapMarker {
-  position: {
-    lat: number;
-    lng: number;
-  };
-  content: string;
-  address: string;
-  phone: string;
-}
+import { MapMarker } from '~/types/map';
 
 interface DiaryMapContextProps {
   markers: MapMarker[];
