@@ -1,5 +1,5 @@
 import { SelectCoupleBtn, SelectCurrentBtn } from '~/assets/icons';
-import useCurrentLocation from '~/pages/Diary/hooks/useCurrentLoaction';
+import useCurrentLocation from '~/pages/Diary/hooks/useCurrentLocation';
 
 const DiaryMapButtons = () => {
   const { setCenter } = useCurrentLocation();

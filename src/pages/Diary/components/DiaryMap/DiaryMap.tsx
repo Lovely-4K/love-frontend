@@ -1,8 +1,11 @@
-import { CustomOverlayMap, Map } from 'react-kakao-maps-sdk';
-import { useKakaoLoader as useKakaoLoaderOrigin } from 'react-kakao-maps-sdk';
-import DiaryMapButtons from '~/pages/Diary/components/DiaryMap/DiaryMapButtons';
-import DiaryMapMarker from '~/pages/Diary/components/DiaryMap/DiaryMapMarker';
-import useCurrentLocation from '~/pages/Diary/hooks/useCurrentLoaction';
+import {
+  Map,
+  useKakaoLoader as useKakaoLoaderOrigin,
+} from 'react-kakao-maps-sdk';
+import DiaryCustomInfo from './DiaryCustomInfo';
+import DiaryMapButtons from './DiaryMapButtons';
+import DiaryMapMarker from './DiaryMapMarker';
+import useCurrentLocation from '~/pages/Diary/hooks/useCurrentLocation';
 import useInfoToggle from '~/pages/Diary/hooks/useInfoToggle';
 import useInputRef from '~/pages/Diary/hooks/useInputRef';
 import useSearchLocation from '~/pages/Diary/hooks/useSearchLocation';
@@ -34,15 +37,7 @@ const DiaryMap = () => {
         onClick={closeInfo}
       >
         <DiaryMapMarker userPosition={userPosition} />
-        {infoOpen && info && (
-          <CustomOverlayMap position={info.position}>
-            <div className="absolute -right-32 bottom-[2.75rem] z-30 flex w-[16rem] flex-col justify-center gap-1 rounded-xl bg-base-white p-4 drop-shadow-xl">
-              <p className="text-lg text-base-black">{info.content}</p>
-              <p className="text-sm text-grey-400">{info.address}</p>
-              <p className="text-sm text-base-secondary">{info.phone}</p>
-            </div>
-          </CustomOverlayMap>
-        )}
+        {infoOpen && info && <DiaryCustomInfo info={info} />}
         <DiaryMapButtons />
       </Map>
     </>
