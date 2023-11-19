@@ -6,8 +6,11 @@ interface useSearchLocationProps {
 }
 
 const useSearchLocation = ({ keyword }: useSearchLocationProps) => {
-  const { info, setInfo, markers, setMarkers, map, setMap } =
-    useContext(DiaryMapContext);
+  const diaryMapContext = useContext(DiaryMapContext);
+
+  if (!diaryMapContext) throw new Error('Cannot find diaryMapProvider');
+
+  const { info, setInfo, markers, setMarkers, map, setMap } = diaryMapContext;
 
   useEffect(() => {
     if (!map || !keyword) return;

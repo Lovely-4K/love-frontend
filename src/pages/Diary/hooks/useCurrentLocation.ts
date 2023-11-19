@@ -3,8 +3,12 @@ import { Coordinates, Position } from '~/types';
 import { DiaryMapContext } from '~/pages/Diary/contexts/DiaryMapContext';
 
 const useCurrentLocation = () => {
+  const diaryMapContext = useContext(DiaryMapContext);
+
+  if (!diaryMapContext) throw new Error('Cannot find diaryMapProvider');
+
+  const { map } = diaryMapContext;
   const [userPosition, setUserPosition] = useState<Coordinates | null>(null);
-  const { map } = useContext(DiaryMapContext);
 
   const onSuccess = (position: Position) => {
     const { latitude, longitude } = position.coords;

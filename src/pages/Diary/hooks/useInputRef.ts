@@ -4,7 +4,7 @@ import { DiaryContext } from '~/pages/Diary/contexts/DiaryProvider';
 const useInputRef = () => {
   const diaryContext = useContext(DiaryContext);
 
-  if (!diaryContext) throw new Error('Cannot find SideBarProvider');
+  if (!diaryContext) throw new Error('Cannot find diaryProvider');
 
   const { searchInputRef, searchKeyword, setSearchKeyword } = diaryContext;
 

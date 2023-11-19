@@ -4,7 +4,7 @@ import { DiaryContext } from '~/pages/Diary/contexts/DiaryProvider';
 const useSideBar = () => {
   const diaryContext = useContext(DiaryContext);
 
-  if (!diaryContext) throw new Error('Cannot find SideBarProvider');
+  if (!diaryContext) throw new Error('Cannot find diaryProvider');
 
   const { sideBarToggle, setSideBarToggle } = diaryContext;
 

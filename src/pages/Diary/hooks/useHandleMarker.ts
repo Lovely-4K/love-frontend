@@ -5,7 +5,11 @@ import useSideBar from '~/pages/Diary/hooks/useSideBar';
 import { MapMarker } from '~/types/map';
 
 const useHandleMarker = () => {
-  const { setInfo } = useContext(DiaryMapContext);
+  const diaryMapContext = useContext(DiaryMapContext);
+
+  if (!diaryMapContext) throw new Error('Cannot find diaryMapProvider');
+
+  const { setInfo } = diaryMapContext;
   const { openInfo } = useInfoToggle();
   const { openSideBar } = useSideBar();
 
