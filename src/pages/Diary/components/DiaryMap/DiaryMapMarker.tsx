@@ -17,6 +17,7 @@ const DiaryMapMarker = ({ userPosition }: DiaryMapMarkerProps) => {
 
   return (
     <>
+      {/* 내 위치 마커 */}
       <MapMarker
         position={userPosition}
         image={{
@@ -27,6 +28,7 @@ const DiaryMapMarker = ({ userPosition }: DiaryMapMarkerProps) => {
           },
         }}
       />
+      {/* 다이어리 마커 */}
       {markers.map((marker) => (
         <MapMarker
           key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}

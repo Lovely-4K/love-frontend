@@ -1,5 +1,5 @@
 import { DiarySideBar } from '~/pages/Diary/components/DiaryCommon';
-import DiaryMap from '~/pages/Diary/components/DiaryCommon/DiaryMap';
+import DiaryMap from '~/pages/Diary/components/DiaryMap/DiaryMap';
 import { DiaryMapProvider } from '~/pages/Diary/contexts/DiaryMapContext';
 import { DiaryProvider } from '~/pages/Diary/contexts/DiaryProvider';
 

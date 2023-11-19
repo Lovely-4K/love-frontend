@@ -1,7 +1,7 @@
 import { CustomOverlayMap, Map } from 'react-kakao-maps-sdk';
 import { useKakaoLoader as useKakaoLoaderOrigin } from 'react-kakao-maps-sdk';
-import DiaryMapButtons from '~/pages/Diary/components/DiaryCommon/DiaryMapButtons';
-import DiaryMapMarker from '~/pages/Diary/components/DiaryCommon/DiaryMapMarker';
+import DiaryMapButtons from '~/pages/Diary/components/DiaryMap/DiaryMapButtons';
+import DiaryMapMarker from '~/pages/Diary/components/DiaryMap/DiaryMapMarker';
 import useCurrentLocation from '~/pages/Diary/hooks/useCurrentLoaction';
 import useInfoToggle from '~/pages/Diary/hooks/useInfoToggle';
 import useInputRef from '~/pages/Diary/hooks/useInputRef';
