@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getValueFromStorage } from './../utils/localStorage';
 
 const apiClient = axios.create({
-  baseURL: '/api',
+  baseURL: import.meta.env.VITE_API_END_POINT,
 });
 
 apiClient.interceptors.request.use((config) => {
