@@ -23,7 +23,7 @@ const FormAnswerInput = () => {
             maxLength={20}
             required
             placeholder="답변은 최대 20자까지 작성 가능해요!"
-            className="font-medium input input-bordered w-full border-dashed focus:outline-none active:border-none"
+            className="input input-bordered w-full border-dashed font-medium focus:outline-none active:border-none"
           />
           <button
             className="btn btn-square relative"

@@ -1,3 +1,4 @@
+import type { updateUserAnswerParams } from '~/services/question/useUpdateUserAnswer';
 import { UseMutateFunction } from '@tanstack/react-query';
 import { PropsWithChildren, createContext, useState, useEffect } from 'react';
 import { QuestionHistoryDetail, QuestionForm } from '~/types';
@@ -5,9 +6,8 @@ import {
   useCreateTodayQuestion,
   useGetQuestion,
   useUpdateUserAnswer,
-} from '../hooks';
-import { updateUserAnswerParams } from '../hooks/useUpdateUserAnswer';
-import useGetQuestionDetail from '~/pages/QuestionHistory/hooks/useGetQuestionDetail';
+  useGetQuestionDetail,
+} from '~/services/question';
 
 interface QuestionContextProps {
   questionForm: QuestionForm;
@@ -20,9 +20,7 @@ interface QuestionContextProps {
   >;
 }
 
-const QuestionContext = createContext<QuestionContextProps>(
-  {} as QuestionContextProps,
-);
+const QuestionContext = createContext<QuestionContextProps | null>(null);
 
 const initialQuestionForm = {
   questionId: 1,

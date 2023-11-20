@@ -1,5 +1,5 @@
 import QuestionChatItem from '~/pages/Question/components/QuestionChat/ChatItem';
-import useGetQuestionDetail from '~/pages/QuestionHistory/hooks/useGetQuestionDetail';
+import { useGetQuestionDetail } from '~/services/question';
 
 interface QuestionDropDown {
   questionTitle: string;
@@ -17,7 +17,7 @@ const HistoryItem = ({ questionTitle, questionId }: QuestionDropDown) => {
   return (
     <div className="collapse collapse-arrow border border-solid border-grey-200 bg-base-white">
       <input type="checkbox" className="peer" />
-      <div className="font-medium collapse-title text-xl text-base-black transition-all duration-200 peer-checked:bg-base-primary peer-checked:text-base-white">
+      <div className="collapse-title text-xl font-medium text-base-black transition-all duration-200 peer-checked:bg-base-primary peer-checked:text-base-white">
         {questionTitle}
       </div>
       <div className="collapse-content">

@@ -1,2 +1,2 @@
-export { default as HistoryHeader } from './HistoryHeader/HistoryHeader';
-export { default as HistoryList } from './HistoryList/HistoryList';
+export { default as HistoryHeader } from './QuestionHistoryHeader/HistoryHeader';
+export { default as HistoryList } from './QuestionHistoryList/HistoryList';

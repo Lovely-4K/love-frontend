@@ -2,8 +2,12 @@ import { useCallback, useContext } from 'react';
 import { QuestionContext } from '../contexts/QuestionContext';
 
 const useQuestion = () => {
-  const { questionForm, questionDetail, mutateUserAnswer } =
-    useContext(QuestionContext);
+  const questionContext = useContext(QuestionContext);
+
+  if (!questionContext) {
+    throw new Error('questionContext is null');
+  }
+  const { questionForm, questionDetail, mutateUserAnswer } = questionContext;
 
   const { questionId, firstChoice, secondChoice, thirdChoice, fourthChoice } =
     questionForm;
@@ -14,12 +18,10 @@ const useQuestion = () => {
         mutateUserAnswer({
           questionId,
           selectedItemIndex: userAnswer,
-          sex: 'MALE',
         });
         mutateUserAnswer({
           questionId,
           selectedItemIndex: userAnswer,
-          sex: 'FEMALE',
         });
       }
     },

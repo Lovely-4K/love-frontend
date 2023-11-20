@@ -1,10 +1,10 @@
-import { UseMutateAsyncFunction } from '@tanstack/react-query';
-import { PropsWithChildren, createContext, useState } from 'react';
-import { useCreateForm } from '../hooks';
-import {
+import type {
   createQuestionFromResponse,
   createFormParams,
-} from '../hooks/useCreateForm';
+} from '~/services/question/useCreateForm';
+import { UseMutateAsyncFunction } from '@tanstack/react-query';
+import { PropsWithChildren, createContext, useState } from 'react';
+import { useCreateForm } from '~/services/question';
 
 interface QuestionCreateFormContextProps {
   question: string;
@@ -20,9 +20,8 @@ interface QuestionCreateFormContextProps {
   isError: boolean;
 }
 
-const QuestionCreateFormContext = createContext<QuestionCreateFormContextProps>(
-  {} as QuestionCreateFormContextProps,
-);
+const QuestionCreateFormContext =
+  createContext<QuestionCreateFormContextProps | null>(null);
 
 const QuestionCreateFormProvider = ({ children }: PropsWithChildren) => {
   const { mutateAsync, isError } = useCreateForm();
