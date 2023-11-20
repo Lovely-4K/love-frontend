@@ -7,6 +7,8 @@ const PATHS = {
   QUESTION_CREATE: '/question/create',
   DIARY: '/diary',
   SETTING: '/setting',
+  KAKAO: 'https://love-back.kro.kr/oauth2/authorization/kakao',
+  NAVER: 'https://love-back.kro.kr/oauth2/authorization/naver',
 };
 
 export default PATHS;

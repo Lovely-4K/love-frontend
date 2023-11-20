@@ -6,17 +6,18 @@ const DiarySpotHeader = () => {
   const { pictures, deleteMode, handleDeleteMode } =
     useContext(DiarySpotContext);
 
+  const deleteButtonStyle = deleteMode
+    ? 'bg-base-primary text-base-white'
+    : 'border border-grey-200 bg-base-white text-grey-400';
+  const deleteButtonLabel = deleteMode ? '삭제하기' : '선택 삭제';
+
   const DeleteButton = () =>
     pictures.length ? (
       <button
         onClick={handleDeleteMode}
-        className={`text btn-small w-full rounded-xl ${
-          deleteMode
-            ? 'bg-base-primary text-base-white'
-            : 'border border-grey-200 bg-base-white text-grey-400'
-        }`}
+        className={`text btn-small w-full rounded-xl ${deleteButtonStyle}`}
       >
-        {deleteMode ? '삭제하기' : '선택 삭제'}
+        {deleteButtonLabel}
       </button>
     ) : (
       <></>
