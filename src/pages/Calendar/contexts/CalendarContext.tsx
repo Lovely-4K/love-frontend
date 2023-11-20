@@ -20,11 +20,11 @@ const CalendarContext = createContext<CalendarContextProps | null>(null);
 
 const CalendarProvider = ({ children }: PropsWithChildren) => {
   const [pickedDate, setPickedDate] = useState(new Date());
-  const [startDate, endDate] = useMemo(() => {
+  const { startDate, endDate } = useMemo(() => {
     const startDate = startOfWeek(startOfMonth(pickedDate));
     const endDate = endOfWeek(endOfMonth(pickedDate));
 
-    return [startDate, endDate];
+    return { startDate, endDate };
   }, [pickedDate]);
 
   const getMonthScheduleQuery = useGetMonthSchedule({

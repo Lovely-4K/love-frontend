@@ -1,26 +1,18 @@
-import { CalendarScheduleItem } from '~/components/domain';
+import { ScheduleItem } from '~/components/domain';
 
 const SideBarDaySchedule = () => {
   return (
     <div className="w-full space-y-3">
-      <CalendarScheduleItem
+      <ScheduleItem
         customColor="blue"
-        date="2023년 1월 10일"
+        startDate="2023-01-10"
+        endDate="2023-01-10"
         title="집가기"
       />
-      <CalendarScheduleItem
+      <ScheduleItem
         customColor="blue"
-        date="2023년 1월 10일"
-        title="집가기"
-      />
-      <CalendarScheduleItem
-        customColor="blue"
-        date="2023년 1월 10일"
-        title="집가기"
-      />
-      <CalendarScheduleItem
-        customColor="blue"
-        date="2023년 1월 10일"
+        startDate="2023-01-10"
+        endDate="2023-01-10"
         title="집가기"
       />
     </div>

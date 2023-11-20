@@ -25,7 +25,6 @@ const CalendarSideBarContext =
 const CalendarSideBarProvider = ({ children }: PropsWithChildren) => {
   const { pickedDate } = useCalendar();
   const [activeEdit, setActiveEdit] = useState(false);
-  const dateCalendarItems = useMemo(() => {}, [pickedDate]);
 
   const initialEditDate = useMemo(() => {
     return format(pickedDate, 'yyyy-MM-dd');

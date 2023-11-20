@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import type { EditSchedule, Schedule } from '~/types';
+import type { EditSchedule } from '~/types';
 import apiClient from '~/api/apiClient';
 
 interface EditScheduleParams {
