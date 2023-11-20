@@ -3,8 +3,8 @@ import type { CalendarSchedule } from '~/types';
 import apiClient from '~/api/apiClient';
 
 interface GetMonthScheduleParams {
-  from: Date;
-  to: Date;
+  from: string;
+  to: string;
 }
 
 const getMonthSchedule = async ({

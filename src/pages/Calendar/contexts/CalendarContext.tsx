@@ -1,5 +1,11 @@
 import type { UseQueryResult } from '@tanstack/react-query';
-import { endOfMonth, endOfWeek, startOfMonth, startOfWeek } from 'date-fns';
+import {
+  endOfMonth,
+  endOfWeek,
+  format,
+  startOfMonth,
+  startOfWeek,
+} from 'date-fns';
 import {
   PropsWithChildren,
   createContext,
@@ -20,9 +26,13 @@ const CalendarContext = createContext<CalendarContextProps | null>(null);
 
 const CalendarProvider = ({ children }: PropsWithChildren) => {
   const [pickedDate, setPickedDate] = useState(new Date());
+
   const { startDate, endDate } = useMemo(() => {
-    const startDate = startOfWeek(startOfMonth(pickedDate));
-    const endDate = endOfWeek(endOfMonth(pickedDate));
+    const startDate = format(
+      startOfWeek(startOfMonth(pickedDate)),
+      'yyyy-MM-dd',
+    );
+    const endDate = format(endOfWeek(endOfMonth(pickedDate)), 'yyyy-MM-dd');
 
     return { startDate, endDate };
   }, [pickedDate]);
