@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import type { QuestionHistoryPreview } from '~/types';
 import useObserve from '~/hooks/useObserve';
 import useGetQuestionHistory from '~/services/question/useGetQuestionHistory';
@@ -9,14 +9,13 @@ const useHistoryList = () => {
   const { data: histoiresResponse } = useGetQuestionHistory({
     lastQuestionId,
   });
-  const observeCallbackFn = useCallback(() => {
+  const [observe] = useObserve(() => {
     if (histories.length === 0) return;
 
     const lastChild = histories[histories.length - 1];
     const { questionId } = lastChild;
     setLastQuestionId(questionId);
-  }, [histories]);
-  const [observe] = useObserve(observeCallbackFn);
+  });
 
   useEffect(() => {
     if (histoiresResponse === undefined) return;
@@ -28,8 +27,9 @@ const useHistoryList = () => {
   }, [histoiresResponse]);
 
   useEffect(() => {
-    if (histoiresResponse === undefined) return;
-    if (histoiresResponse.answeredQuestions.length < 10) return;
+    if (!histoiresResponse || histoiresResponse.answeredQuestions.length < 10) {
+      return;
+    }
 
     const lastQuestion = histories[histories.length - 1];
 
