@@ -3,13 +3,15 @@ import useInputRef from '~/pages/Diary/hooks/useInputRef';
 import useMarkers from '~/pages/Diary/hooks/useMarkers';
 
 const DiarySearchResults = () => {
-  const { searchKeyword } = useInputRef();
+  const { searchKeyword, endSearchMode } = useInputRef();
   const { markers } = useMarkers();
+
+  //   console.log(markers);
 
   return (
     <div className="flex flex-col gap-4">
       <div className="flex gap-2">
-        <button>{'<'}</button>
+        <button onClick={endSearchMode}>{'<'}</button>
         <span className="text-base-primary">{searchKeyword} </span>
         <span>검색 결과</span>
       </div>

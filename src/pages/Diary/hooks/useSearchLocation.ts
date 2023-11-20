@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
 import { DiaryMapContext } from '~/pages/Diary/contexts/DiaryMapContext';
+import useInputRef from '~/pages/Diary/hooks/useInputRef';
 
 interface useSearchLocationProps {
   keyword: string;
@@ -15,6 +16,7 @@ const useSearchLocation = ({ keyword }: useSearchLocationProps) => {
 
   const { info, setInfo, map, setMap } = diaryMapContext;
   const { markers, setMarkers } = diaryContext;
+  const { startSearchMode } = useInputRef();
 
   useEffect(() => {
     if (!map || !keyword) return;
@@ -47,6 +49,8 @@ const useSearchLocation = ({ keyword }: useSearchLocationProps) => {
 
           setMarkers(markers);
           map.setBounds(bounds); // 검색된 장소 위치를 기준으로 지도 범위를 재설정
+
+          startSearchMode();
         }
       },
     );
