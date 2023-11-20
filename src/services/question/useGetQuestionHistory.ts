@@ -3,7 +3,7 @@ import { QuestionHistoryList } from '~/types';
 import apiClient from '~/api/apiClient';
 
 interface useGetQuestionHistoryParams {
-  lastQuestionId: number;
+  lastQuestionId: number | null;
 }
 
 const getQuestionHistory = async (

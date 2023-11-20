@@ -5,14 +5,10 @@ import useGetQuestionHistory from '~/services/question/useGetQuestionHistory';
 
 const useHistoryList = () => {
   const [histories, setHistories] = useState<QuestionHistoryPreview[]>([]);
-  const [lastQuestionId, setLastQuestionId] = useState(0);
+  const [lastQuestionId, setLastQuestionId] = useState<number | null>(null);
   const { data: histoiresResponse } = useGetQuestionHistory({
     lastQuestionId,
   });
-
-  useEffect(() => {
-    console.log(lastQuestionId);
-  }, [lastQuestionId]);
   const observeCallbackFn = useCallback(() => {
     if (histories.length === 0) return;
 
@@ -40,7 +36,6 @@ const useHistoryList = () => {
     if (lastQuestion) {
       const { questionId } = lastQuestion;
       const lastChild = document.getElementById(String(questionId));
-
       if (lastChild) {
         observe(lastChild);
       }

@@ -9,11 +9,11 @@ const HistoryList = () => {
 
   return (
     <div ref={historyListRef} className="flex flex-col gap-3">
-      {histories.map(({ questionId, questionContent }, index) => (
+      {histories.map(({ questionId, questionContent }) => (
         <HistoryItem
           questionTitle={questionContent}
           questionId={questionId}
-          key={index}
+          key={questionId}
         />
       ))}
       {noneItem}
