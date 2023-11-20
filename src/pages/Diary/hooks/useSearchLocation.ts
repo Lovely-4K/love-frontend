@@ -1,4 +1,5 @@
 import { useContext, useEffect } from 'react';
+import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
 import { DiaryMapContext } from '~/pages/Diary/contexts/DiaryMapContext';
 
 interface useSearchLocationProps {
@@ -7,10 +8,13 @@ interface useSearchLocationProps {
 
 const useSearchLocation = ({ keyword }: useSearchLocationProps) => {
   const diaryMapContext = useContext(DiaryMapContext);
+  const diaryContext = useContext(DiaryContext);
 
   if (!diaryMapContext) throw new Error('Cannot find diaryMapProvider');
+  if (!diaryContext) throw new Error('Cannot find diaryProvider');
 
-  const { info, setInfo, markers, setMarkers, map, setMap } = diaryMapContext;
+  const { info, setInfo, map, setMap } = diaryMapContext;
+  const { markers, setMarkers } = diaryContext;
 
   useEffect(() => {
     if (!map || !keyword) return;

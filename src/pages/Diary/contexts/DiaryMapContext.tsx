@@ -2,8 +2,8 @@ import { PropsWithChildren, createContext, useState } from 'react';
 import { MapMarker } from '~/types';
 
 interface DiaryMapContextProps {
-  markers: MapMarker[];
-  setMarkers: React.Dispatch<React.SetStateAction<MapMarker[]>>;
+  // markers: MapMarker[];
+  // setMarkers: React.Dispatch<React.SetStateAction<MapMarker[]>>;
   info: MapMarker | undefined;
   setInfo: React.Dispatch<React.SetStateAction<MapMarker | undefined>>;
   map: kakao.maps.Map | undefined;
@@ -16,7 +16,7 @@ const DiaryMapContext = createContext({} as DiaryMapContextProps);
 
 const DiaryMapProvider = ({ children }: PropsWithChildren) => {
   const [info, setInfo] = useState<MapMarker>();
-  const [markers, setMarkers] = useState<MapMarker[]>([]);
+  // const [markers, setMarkers] = useState<MapMarker[]>([]);
   const [map, setMap] = useState<kakao.maps.Map>();
   const [infoOpen, setInfoOpen] = useState<boolean>(false);
 
@@ -25,8 +25,8 @@ const DiaryMapProvider = ({ children }: PropsWithChildren) => {
       value={{
         info,
         setInfo,
-        markers,
-        setMarkers,
+        // markers,
+        // setMarkers,
         map,
         setMap,
         infoOpen,
