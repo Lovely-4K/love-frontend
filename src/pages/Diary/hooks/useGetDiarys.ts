@@ -4,11 +4,13 @@ import apiClient from '~/api/apiClient';
 
 interface getDiarysParams {
   sortMethod?: string;
+  category?: string;
 }
 
-const getDiarys = async (
-  sortMethod: string = 'createdDate',
-): Promise<Diarys> => {
+const getDiarys = async ({
+  sortMethod = 'createdDate',
+  category,
+}: getDiarysParams): Promise<Diarys> => {
   const response = await apiClient.get(
     `/diaries?page=0&size=10&sort=${sortMethod}`,
   );
@@ -17,11 +19,11 @@ const getDiarys = async (
 };
 
 const useGetDiarys = (
-  { sortMethod }: getDiarysParams = { sortMethod: 'createdDated' },
+  { sortMethod, category }: getDiarysParams = { sortMethod: 'createdDated' },
 ) => {
   return useQuery({
-    queryKey: ['Diarys', sortMethod],
-    queryFn: () => getDiarys(sortMethod),
+    queryKey: ['Diarys', sortMethod, category], // queryKey에 category 추가
+    queryFn: () => getDiarys({ sortMethod, category }), // getDiarys 호출 시 객체 전달
   });
 };
 
