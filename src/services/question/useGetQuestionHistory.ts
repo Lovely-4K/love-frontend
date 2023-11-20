@@ -1,23 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
-import { QuestionHistoryList } from '~/types';
+import { QuestionHistoryPreview } from '~/types';
 import apiClient from '~/api/apiClient';
 
 interface useGetQuestionHistoryParams {
   lastQuestionId: number;
 }
-const token = localStorage.getItem('token');
 
 const getQuestionHistory = async (
   lastQuestionId: number = 0,
-): Promise<QuestionHistoryList> => {
-  const url = `/questions?id=${lastQuestionId}&limit=10`;
-  const response = await apiClient.get(url, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+): Promise<QuestionHistoryPreview[]> => {
+  const url = `/questions?id=${lastQuestionId}&limit=20`;
+  const response = await apiClient.get(url);
 
-  return response.data.body;
+  return response.data;
 };
 
 const useGetQuestionHistory = ({

@@ -1,8 +1,6 @@
-import useLocalStorage from './useLocalStorage.ts';
+import { saveValueToStorage, getValueFromStorage } from '~/utils/localStorage';
 
 const useLogin = (token: string | null) => {
-  const { saveValueToStorage, getValueFromStorage } = useLocalStorage();
-
   if (token !== null) {
     saveValueToStorage('token', token);
   }

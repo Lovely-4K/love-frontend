@@ -3,12 +3,10 @@ import DiaryRecordsPreviews from './DiaryRecordsPreviews';
 
 const DiaryRecords = () => {
   return (
-    <>
-      <div className="flex flex-col gap-4">
-        <DiaryRecordsHeader />
-        <DiaryRecordsPreviews />
-      </div>
-    </>
+    <div className="flex flex-col gap-4">
+      <DiaryRecordsHeader />
+      <DiaryRecordsPreviews />
+    </div>
   );
 };
 

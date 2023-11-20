@@ -1,10 +1,21 @@
 import { CalendarMain, CalendarSideBar } from './components';
+import {
+  CalendarMainProvider,
+  CalendarProvider,
+  CalendarSideBarProvider,
+} from './contexts';
 
 const Calendar = () => {
   return (
     <div className="flex h-full w-full flex-col lg:flex-row">
-      <CalendarMain />
-      <CalendarSideBar />
+      <CalendarProvider>
+        <CalendarMainProvider>
+          <CalendarMain />
+        </CalendarMainProvider>
+        <CalendarSideBarProvider>
+          <CalendarSideBar />
+        </CalendarSideBarProvider>
+      </CalendarProvider>
     </div>
   );
 };

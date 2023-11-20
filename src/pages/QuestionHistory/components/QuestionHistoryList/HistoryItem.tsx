@@ -1,5 +1,5 @@
-import useHistoryItem from '../../hooks/useHistoryItem';
-import HistoryItemContent from './HistoryItemContent';
+import QuestionChatItem from '~/pages/Question/components/QuestionChat/ChatItem';
+import { useGetQuestionDetail } from '~/services/question';
 
 interface QuestionDropDown {
   questionTitle: string;
@@ -7,19 +7,34 @@ interface QuestionDropDown {
 }
 
 const HistoryItem = ({ questionTitle, questionId }: QuestionDropDown) => {
-  const { handleArcodianClick, questionDetail } = useHistoryItem(questionId);
+  const { data: questionDetail, isSuccess } = useGetQuestionDetail(questionId);
+
+  if (!isSuccess) return;
+
+  const { myAnswer, opponentAnswer, myProfile, opponentProfile } =
+    questionDetail;
 
   return (
-    <div
-      id={String(questionId)}
-      className="collapse-arrow collapse mb-3 border border-solid border-grey-200 bg-base-white"
-    >
-      <input type="checkbox" className="peer" onClick={handleArcodianClick} />
+    <div className="collapse-arrow collapse border border-solid border-grey-200 bg-base-white">
+      <input type="checkbox" className="peer" />
       <div className="collapse-title text-xl font-medium text-base-black transition-all duration-200 peer-checked:bg-base-primary peer-checked:text-base-white">
         {questionTitle}
       </div>
       <div className="collapse-content">
-        <HistoryItemContent questionDetail={questionDetail} />
+        <QuestionChatItem
+          type={'start'}
+          author={'정'}
+          message={myAnswer}
+          picture={myProfile}
+          answerStatus={true}
+        />
+        <QuestionChatItem
+          type={'end'}
+          author={'호'}
+          message={opponentAnswer}
+          picture={opponentProfile}
+          answerStatus={true}
+        />
       </div>
     </div>
   );
