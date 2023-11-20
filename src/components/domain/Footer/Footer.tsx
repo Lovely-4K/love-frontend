@@ -1,5 +1,5 @@
 import { paths } from '~/router';
-import { TemperatureBar } from '..';
+import TemperatureBar from '../TemperatureBar/TemperatureBar';
 import FooterItem from './FooterItem';
 import {
   IconHome,
