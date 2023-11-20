@@ -24,23 +24,21 @@ const DiaryMap = () => {
   });
 
   return (
-    <>
-      <Map
-        id="map"
-        center={userPosition || { lat: 33.450701, lng: 126.570667 }}
-        style={{
-          width: '100%',
-          height: '100%',
-        }}
-        level={3}
-        onCreate={setMap}
-        onClick={closeInfo}
-      >
-        <DiaryMapMarker userPosition={userPosition} />
-        {infoOpen && info && <DiaryCustomInfo info={info} />}
-        <DiaryMapButtons />
-      </Map>
-    </>
+    <Map
+      id="map"
+      center={userPosition || { lat: 33.450701, lng: 126.570667 }}
+      style={{
+        width: '100%',
+        height: '100%',
+      }}
+      level={3}
+      onCreate={setMap}
+      onClick={closeInfo}
+    >
+      <DiaryMapMarker userPosition={userPosition} />
+      {infoOpen && info && <DiaryCustomInfo info={info} />}
+      <DiaryMapButtons />
+    </Map>
   );
 };
 

@@ -1,11 +1,11 @@
 import { CustomOverlayMap } from 'react-kakao-maps-sdk';
 import { MapMarker } from '~/types';
 
-interface DiaryCustomInfo {
+interface DiaryCustomInfoProps {
   info: MapMarker;
 }
 
-const DiaryCustomInfo = ({ info }: DiaryCustomInfo) => {
+const DiaryCustomInfo = ({ info }: DiaryCustomInfoProps) => {
   return (
     <CustomOverlayMap position={info.position}>
       <div className="absolute -right-32 bottom-[2.75rem] z-30 flex w-[16rem] flex-col justify-center gap-1 rounded-xl bg-base-white p-4 drop-shadow-xl">

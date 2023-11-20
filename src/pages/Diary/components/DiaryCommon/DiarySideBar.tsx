@@ -48,7 +48,7 @@ const StyledDiarySideBar = styled.div`
   }
 `;
 
-const StyledButton = styled.button`
+const StyledToggleButton = styled.button`
   position: absolute;
   bottom: 100%;
   display: flex;
@@ -103,9 +103,9 @@ const DiarySideBar = () => {
 
   return (
     <StyledDiarySideBar className={sideBarToggle ? 'open' : 'closed'}>
-      <StyledButton onClick={toggleSideBar}>
+      <StyledToggleButton onClick={toggleSideBar}>
         <StyledArrowIcon className={sideBarToggle ? 'open' : 'closed'} />
-      </StyledButton>
+      </StyledToggleButton>
       <DiaryMain />
     </StyledDiarySideBar>
   );

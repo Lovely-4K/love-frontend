@@ -1,24 +1,21 @@
-import { PropsWithChildren, createContext, useRef, useState } from 'react';
+import { PropsWithChildren, createContext, useState } from 'react';
 
 interface DiaryContextProps {
-  searchInputRef: React.RefObject<HTMLInputElement>;
   searchKeyword: string;
   setSearchKeyword: React.Dispatch<React.SetStateAction<string>>;
   sideBarToggle: boolean;
   setSideBarToggle: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const DiaryContext = createContext({} as DiaryContextProps);
+const DiaryContext = createContext<DiaryContextProps | null>(null);
 
 const DiaryProvider = ({ children }: PropsWithChildren) => {
-  const searchInputRef = useRef(null);
   const [searchKeyword, setSearchKeyword] = useState('');
   const [sideBarToggle, setSideBarToggle] = useState(true);
 
   return (
     <DiaryContext.Provider
       value={{
-        searchInputRef,
         searchKeyword,
         setSearchKeyword,
         sideBarToggle,

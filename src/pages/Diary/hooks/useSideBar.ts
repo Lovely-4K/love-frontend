@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { DiaryContext } from '~/pages/Diary/contexts/DiaryProvider';
+import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
 
 const useSideBar = () => {
   const diaryContext = useContext(DiaryContext);

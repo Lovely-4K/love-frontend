@@ -15,9 +15,9 @@ const useSearchLocation = ({ keyword }: useSearchLocationProps) => {
   useEffect(() => {
     if (!map || !keyword) return;
 
-    const ps = new kakao.maps.services.Places();
+    const position = new kakao.maps.services.Places();
 
-    ps.keywordSearch(
+    position.keywordSearch(
       keyword,
       (data: kakao.maps.services.PlacesSearchResult, status, _pagination) => {
         if (status === kakao.maps.services.Status.OK) {
