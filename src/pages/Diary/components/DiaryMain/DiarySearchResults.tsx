@@ -1,3 +1,4 @@
+import DiaryMarkerData from '~/pages/Diary/components/DiaryCommon/DiaryMarkerData';
 import useInputRef from '~/pages/Diary/hooks/useInputRef';
 import useMarkers from '~/pages/Diary/hooks/useMarkers';
 
@@ -18,9 +19,11 @@ const DiarySearchResults = () => {
             key={marker.address}
             className="flex flex-col gap-1 rounded-xl border-2 border-grey-100 px-5 py-3"
           >
-            <p className="text-lg text-base-black">{marker.content}</p>
-            <p className="text-sm text-grey-400">{marker.address}</p>
-            <p className="text-sm text-base-secondary">{marker.phone}</p>
+            <DiaryMarkerData
+              content={marker.content}
+              address={marker.address}
+              phone={marker.phone}
+            />
           </div>
         ))}
       </div>
