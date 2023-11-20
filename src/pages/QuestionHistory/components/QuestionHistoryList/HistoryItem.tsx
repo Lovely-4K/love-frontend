@@ -1,5 +1,6 @@
+import useHistoryItem from '../../hooks/useHistoryItem';
+import { Loading } from '~/components/common';
 import QuestionChatItem from '~/pages/Question/components/QuestionChat/ChatItem';
-import { useGetQuestionDetail } from '~/services/question';
 
 interface QuestionDropDown {
   questionTitle: string;
@@ -7,20 +8,14 @@ interface QuestionDropDown {
 }
 
 const HistoryItem = ({ questionTitle, questionId }: QuestionDropDown) => {
-  const { data: questionDetail, isSuccess } = useGetQuestionDetail(questionId);
+  const { handleArcodianClick, questionDetail } = useHistoryItem(questionId);
+  const QuestionChatContent = () => {
+    if (!questionDetail) return <Loading />;
+    const { myAnswer, myProfile, opponentAnswer, opponentProfile } =
+      questionDetail;
 
-  if (!isSuccess) return;
-
-  const { myAnswer, opponentAnswer, myProfile, opponentProfile } =
-    questionDetail;
-
-  return (
-    <div className="collapse-arrow collapse border border-solid border-grey-200 bg-base-white">
-      <input type="checkbox" className="peer" />
-      <div className="collapse-title text-xl font-medium text-base-black transition-all duration-200 peer-checked:bg-base-primary peer-checked:text-base-white">
-        {questionTitle}
-      </div>
-      <div className="collapse-content">
+    return (
+      <>
         <QuestionChatItem
           type={'start'}
           author={'정'}
@@ -35,6 +30,18 @@ const HistoryItem = ({ questionTitle, questionId }: QuestionDropDown) => {
           picture={opponentProfile}
           answerStatus={true}
         />
+      </>
+    );
+  };
+
+  return (
+    <div className="collapse collapse-arrow border border-solid border-grey-200 bg-base-white">
+      <input onClick={handleArcodianClick} type="checkbox" className="peer" />
+      <div className="collapse-title text-xl font-medium text-base-black transition-all duration-200 peer-checked:bg-base-primary peer-checked:text-base-white">
+        {questionTitle}
+      </div>
+      <div className="collapse-content">
+        <QuestionChatContent />
       </div>
     </div>
   );
