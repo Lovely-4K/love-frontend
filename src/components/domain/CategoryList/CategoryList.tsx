@@ -5,11 +5,11 @@ import useGetDiarys from '~/pages/Diary/hooks/useGetDiarys';
 const categories = ['CAFE', 'FOOD', 'ACCOMODATION', 'CULTURE', 'ETC'] as const;
 
 const CategoryList = () => {
-  const [category, setCategory] = useState('');
-  const { data: diarys, isSuccess } = useGetDiarys({ category });
+  const [selectCategory, setSelectCategory] = useState('');
+  const { data: diarys, isSuccess } = useGetDiarys({ selectCategory });
 
   const handleCategoryClick = (category: string) => {
-    setCategory(category);
+    setSelectCategory(category);
   };
 
   if (!isSuccess) return null;
@@ -22,7 +22,7 @@ const CategoryList = () => {
         <li key={category}>
           <CategoryButton
             type={category}
-            active={false}
+            active={category === selectCategory}
             onClick={() => handleCategoryClick(category)}
           />
         </li>
