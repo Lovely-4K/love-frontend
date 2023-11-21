@@ -3,9 +3,6 @@ import { PropsWithChildren, createContext, useState } from 'react';
 interface DiaryContentContextProps {
   editMode: boolean;
   setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
-  handleEditMode: () => void;
-  handleEditComplete: () => void;
-  handleEditCancel: () => void;
 }
 
 const DiaryContentContext = createContext({} as DiaryContentContextProps);
@@ -13,26 +10,11 @@ const DiaryContentContext = createContext({} as DiaryContentContextProps);
 const DiaryContentProvider = ({ children }: PropsWithChildren) => {
   const [editMode, setEditMode] = useState(false);
 
-  const handleEditMode = () => {
-    setEditMode(true);
-  };
-
-  const handleEditComplete = () => {
-    setEditMode(false);
-  };
-
-  const handleEditCancel = () => {
-    setEditMode(false);
-  };
-
   return (
     <DiaryContentContext.Provider
       value={{
         editMode,
         setEditMode,
-        handleEditMode,
-        handleEditComplete,
-        handleEditCancel,
       }}
     >
       {children}

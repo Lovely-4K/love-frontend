@@ -1,9 +1,7 @@
-import { useContext } from 'react';
-import { DiaryContentContext } from '~/pages/Diary/contexts/DiaryContentContext';
+import useDiaryContent from '../../hooks/DiaryContent/useDiaryContent';
 
 const DiaryContentEditButton = () => {
-  const { editMode, handleEditComplete, handleEditCancel } =
-    useContext(DiaryContentContext);
+  const { editMode, handleEditComplete, handleEditCancel } = useDiaryContent();
 
   return (
     editMode && (

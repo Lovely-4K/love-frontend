@@ -1,9 +1,8 @@
-import { useContext } from 'react';
+import useDiaryContent from '../../hooks/DiaryContent/useDiaryContent';
 import { DiaryHeader } from '~/pages/Diary/components/DiaryCommon';
-import { DiaryContentContext } from '~/pages/Diary/contexts/DiaryContentContext';
 
 const DiaryContentHeader = () => {
-  const { editMode, handleEditMode } = useContext(DiaryContentContext);
+  const { editMode, handleEditMode } = useDiaryContent();
 
   const HeaderButton = () =>
     editMode || (

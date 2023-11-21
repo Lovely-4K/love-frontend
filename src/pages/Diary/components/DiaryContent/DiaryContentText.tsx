@@ -1,5 +1,5 @@
-import { KeyboardEvent, useContext } from 'react';
-import { DiaryContentContext } from '~/pages/Diary/contexts/DiaryContentContext';
+import { KeyboardEvent } from 'react';
+import useDiaryContent from '../../hooks/DiaryContent/useDiaryContent';
 
 interface DiaryContentTextProps {
   editable: boolean;
@@ -7,7 +7,7 @@ interface DiaryContentTextProps {
 }
 
 const DiaryContentText = ({ editable, diaryText }: DiaryContentTextProps) => {
-  const { editMode } = useContext(DiaryContentContext);
+  const { editMode } = useDiaryContent();
   const handleTextAreaHeight = (event: KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.target instanceof HTMLTextAreaElement) {
       const { scrollHeight } = event.target;

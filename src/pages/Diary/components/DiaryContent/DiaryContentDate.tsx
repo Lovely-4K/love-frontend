@@ -1,8 +1,7 @@
-import { useContext } from 'react';
-import { DiaryContentContext } from '~/pages/Diary/contexts/DiaryContentContext';
+import useDiaryContent from '../../hooks/DiaryContent/useDiaryContent';
 
 const DiaryContentDate = () => {
-  const { editMode } = useContext(DiaryContentContext);
+  const { editMode } = useDiaryContent();
 
   return (
     <div className="flex flex-col gap-2">

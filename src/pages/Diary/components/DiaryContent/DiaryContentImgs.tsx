@@ -1,10 +1,9 @@
-import { useContext } from 'react';
+import useDiaryContent from '../../hooks/DiaryContent/useDiaryContent';
 import DiaryImgsCarousel from './DiaryImgsCarousel';
 import DiaryImgsUpload from './DiaryImgsUpload';
-import { DiaryContentContext } from '~/pages/Diary/contexts/DiaryContentContext';
 
 const DiaryContentImgs = () => {
-  const { editMode } = useContext(DiaryContentContext);
+  const { editMode } = useDiaryContent();
 
   return <>{editMode ? <DiaryImgsUpload /> : <DiaryImgsCarousel />}</>;
 };

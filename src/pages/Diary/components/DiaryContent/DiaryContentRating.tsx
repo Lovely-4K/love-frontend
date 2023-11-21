@@ -1,9 +1,8 @@
-import { useContext } from 'react';
+import useDiaryContent from '../../hooks/DiaryContent/useDiaryContent';
 import { Rating } from '~/components/domain';
-import { DiaryContentContext } from '~/pages/Diary/contexts/DiaryContentContext';
 
 const DiaryContentRating = () => {
-  const { editMode } = useContext(DiaryContentContext);
+  const { editMode } = useDiaryContent();
 
   return (
     <div className="flex flex-col gap-2">
