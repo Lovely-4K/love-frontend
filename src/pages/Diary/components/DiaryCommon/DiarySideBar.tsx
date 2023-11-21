@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
+import { PropsWithChildren } from 'react';
 import { colors, fontSize, screens } from '~/theme';
 import { IconTopArrow } from '~/assets/icons';
-import { DiaryMain } from '~/pages/Diary/components/DiaryMain';
 import useSideBar from '~/pages/Diary/hooks/useSideBar';
 
 const StyledDiarySideBar = styled.div`
@@ -98,7 +98,7 @@ const StyledArrowIcon = styled(IconTopArrow)`
   }
 `;
 
-const DiarySideBar = () => {
+const DiarySideBar = ({ children }: PropsWithChildren) => {
   const { sideBarToggle, toggleSideBar } = useSideBar();
 
   return (
@@ -106,7 +106,7 @@ const DiarySideBar = () => {
       <StyledToggleButton onClick={toggleSideBar}>
         <StyledArrowIcon className={sideBarToggle ? 'open' : 'closed'} />
       </StyledToggleButton>
-      <DiaryMain />
+      {children}
     </StyledDiarySideBar>
   );
 };

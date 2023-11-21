@@ -12,6 +12,7 @@ import Layout from './Layout';
 import PATHS from './paths';
 import PrivateRouter from './PrivateRouter';
 import { DiaryContent } from '~/pages/Diary/components/DiaryContent';
+import { DiaryMain } from '~/pages/Diary/components/DiaryMain';
 import { DiarySpot } from '~/pages/Diary/components/DiarySpot';
 
 const router = createBrowserRouter([
@@ -35,14 +36,16 @@ const router = createBrowserRouter([
             element: <Diary />,
             children: [
               {
+                index: true,
+                element: <DiaryMain />,
+              },
+              {
                 path: PATHS.DIARY.SPOT,
                 element: <DiarySpot />,
-                children: [
-                  {
-                    path: PATHS.DIARY.DIARY_DETAIL,
-                    element: <DiaryContent />,
-                  },
-                ],
+              },
+              {
+                path: PATHS.DIARY.DIARY_DETAIL,
+                element: <DiaryContent />,
               },
             ],
           },
