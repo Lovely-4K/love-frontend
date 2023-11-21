@@ -40,6 +40,7 @@ const useSearchLocation = ({ keyword }: useSearchLocationProps) => {
               content: data[i].place_name,
               address: data[i].address_name,
               phone: data[i].phone,
+              spotId: data[i].id,
             });
 
             bounds.extend(
