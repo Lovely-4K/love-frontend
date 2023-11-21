@@ -8,8 +8,6 @@ const ProfileAvatar = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
 
-  const activeStyle = activeEdit ? 'hover:cursor-pointer' : 'cursor-default';
-
   const handleAvatarClick = () => {
     if (!inputRef.current) return;
 
@@ -26,18 +24,19 @@ const ProfileAvatar = () => {
     handleAvatarChange(files[0]);
   };
 
-  const imageURL = activeEdit
-    ? modalInfo.imageUrl instanceof File
+  const activeStyle = activeEdit ? 'hover:cursor-pointer' : 'cursor-default';
+
+  const imageURL =
+    modalInfo.imageUrl instanceof File
       ? URL.createObjectURL(modalInfo.imageUrl)
-      : (modalInfo.imageUrl as string)
-    : (modalInfo.imageUrl as string);
+      : (modalInfo.imageUrl as string);
 
   return (
     <div
       onClick={handleAvatarClick}
       className={`avatar z-10 ml-6 -translate-y-1/2 ${activeStyle}`}
     >
-      <div className="w-32 rounded-full">
+      <div className="w-28 rounded-full border border-grey-200 lg:w-32">
         <img ref={imageRef} src={imageURL} alt="user avatar" />
       </div>
       {activeEdit && (

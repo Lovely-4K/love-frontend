@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { screens } from '~/theme';
+import { colors, fontSize, screens } from '~/theme';
 import { Img } from '~/components/common';
 
 interface DiaryPreviewItemProps {
@@ -10,38 +10,43 @@ interface DiaryPreviewItemProps {
 
 const DiaryPreviewItemContainer = styled.div`
   position: relative;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
   display: flex;
-  height: 8rem;
-  width: 8rem;
-  flex-shrink: 0;
+  min-height: 7rem;
+  min-width: 7rem;
+  height: 100%;
+  width: 100%;
   cursor: pointer;
   align-items: center;
   justify-content: center;
 
   @media screen and (min-width: ${screens.lg}) {
+    min-height: auto;
+    min-width: auto;
+    height: 100%;
     width: 100%;
+  }
 
-    & > div:hover {
+  &:hover {
+    & > div {
       visibility: visible;
     }
   }
 `;
 
 const PreviewTextItemContainer = styled.div`
-  height: 100%;
-  width: 100%;
+  position: absolute;
   display: flex;
   flex-direction: column;
-  visibility: hidden;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  top: -50%;
-  left: -50%;
+  height: 100%;
+  width: 100%;
+  visibility: hidden;
+  border-radius: 0.75rem;
+  background-color: ${colors.base.deem};
+  font-size: ${fontSize.base};
+  color: ${colors.base.white};
   z-index: 2;
-  transform: translate(-50%, -50%);
 `;
 
 const DiaryPreviewItem = ({
@@ -51,16 +56,16 @@ const DiaryPreviewItem = ({
 }: DiaryPreviewItemProps) => {
   return (
     <DiaryPreviewItemContainer>
-      <PreviewTextItemContainer className="rounded-xl bg-base-deem font-medium text-base-white">
+      <Img
+        shape="square"
+        src={imgSrc}
+        alt="다이어리 미리보기"
+        className="h-full w-full"
+      />
+      <PreviewTextItemContainer>
         <div>{date}</div>
         <div>{location}</div>
       </PreviewTextItemContainer>
-      <Img
-        shape="square"
-        className="flex-grow lg:h-32 lg:w-[17.5rem]"
-        src={imgSrc}
-        alt="다이어리 미리보기"
-      />
     </DiaryPreviewItemContainer>
   );
 };

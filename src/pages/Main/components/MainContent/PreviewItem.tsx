@@ -27,7 +27,10 @@ interface MainPreviewItemProps {
 const PreviewItem = ({ title, pageLink, content }: MainPreviewItemProps) => {
   return (
     <StyledContainer>
-      <Link to={pageLink} className="font-title my-2 w-full font-bold">
+      <Link
+        to={pageLink}
+        className="font-title my-2 w-fit pl-1 font-bold lg:mb-4"
+      >
         {title}
       </Link>
       {content}
