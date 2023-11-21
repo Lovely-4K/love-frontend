@@ -12,7 +12,7 @@ interface DiaryMapContextProps {
   setInfoOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const DiaryMapContext = createContext({} as DiaryMapContextProps);
+const DiaryMapContext = createContext<DiaryMapContextProps | null>(null);
 
 const DiaryMapProvider = ({ children }: PropsWithChildren) => {
   const [info, setInfo] = useState<MapMarker>();

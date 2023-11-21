@@ -8,7 +8,9 @@ interface DiaryContentContextProps {
   handleEditCancel: () => void;
 }
 
-const DiaryContentContext = createContext({} as DiaryContentContextProps);
+const DiaryContentContext = createContext<DiaryContentContextProps | null>(
+  null,
+);
 
 const DiaryContentProvider = ({ children }: PropsWithChildren) => {
   const [editMode, setEditMode] = useState(false);

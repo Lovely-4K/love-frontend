@@ -12,7 +12,7 @@ interface DiarySpotContextProps {
   handleDeleteMode: () => void;
 }
 
-const DiarySpotContext = createContext({} as DiarySpotContextProps);
+const DiarySpotContext = createContext<DiarySpotContextProps | null>(null);
 
 const DiarySpotProvider = ({ children }: PropsWithChildren) => {
   const pictures = [

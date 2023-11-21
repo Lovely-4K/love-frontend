@@ -7,7 +7,7 @@ interface DiaryImgsContextProps {
   handleDeleteImage: (id: number) => void;
 }
 
-const DiaryImgsContext = createContext({} as DiaryImgsContextProps);
+const DiaryImgsContext = createContext<DiaryImgsContextProps | null>(null);
 
 const DiaryImgsProvider = ({ children }: PropsWithChildren) => {
   const [showImages, setShowImages] = useState<string[]>([]);
