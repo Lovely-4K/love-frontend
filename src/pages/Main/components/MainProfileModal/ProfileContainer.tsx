@@ -7,16 +7,12 @@ import { Button } from '~/components/common';
 import { useMain, useProfile, useProfileModal } from '~/pages/Main/hooks';
 
 const ProfileContainer = () => {
-  const { modalId } = useProfile();
   const { coupleProfile } = useMain();
-  const { activeEdit, handleActiveEdit, editUserInfo, userInfo } =
-    useProfileModal();
+  const { modalInfo } = useProfile();
+  const { handleActiveEdit, activeEdit } = useProfileModal();
 
   const buttonContent = activeEdit ? '프로필 저장' : '프로필 수정';
-
-  const backgroundColor = activeEdit
-    ? editUserInfo.calendarColor
-    : userInfo.calendarColor;
+  const backgroundColor = coupleProfile.myCalendarColor;
 
   return (
     <>
@@ -29,13 +25,11 @@ const ProfileContainer = () => {
       <ProfileAvatar />
       <div className="relative -mt-28 flex flex-col p-6">
         <div className="mb-6 h-7 self-end">
-          {modalId === coupleProfile.boyId && (
+          {modalInfo.id === coupleProfile.myId && (
             <Button
               size="small"
+              style={{ backgroundColor }}
               className="text-sm text-base-white"
-              style={{
-                backgroundColor,
-              }}
               onClick={handleActiveEdit}
             >
               {buttonContent}

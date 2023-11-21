@@ -1,6 +1,6 @@
 import type { CoupleProfile } from '~/types/couple';
-import { PropsWithChildren, createContext } from 'react';
-import useGetCoupleProfile from '../hooks/useGetCoupleProfile';
+import { PropsWithChildren, createContext, useMemo } from 'react';
+import { useGetCoupleProfile } from '~/hooks/couple';
 
 interface MainContextProps {
   coupleProfile: CoupleProfile;
@@ -12,6 +12,12 @@ const MainContext = createContext<MainContextProps | null>(null);
 const MainProvider = ({ children }: PropsWithChildren) => {
   const getCoupleProfileQuery = useGetCoupleProfile();
 
+  const coupleMode = useMemo(() => {
+    if (!getCoupleProfileQuery.isSuccess) return false;
+
+    return getCoupleProfileQuery.data.opponentId !== null;
+  }, [getCoupleProfileQuery]);
+
   if (getCoupleProfileQuery.isLoading) {
     return <div>스켈레톤 UI...</div>;
   }
@@ -21,8 +27,6 @@ const MainProvider = ({ children }: PropsWithChildren) => {
   }
 
   if (!getCoupleProfileQuery.isSuccess) return;
-
-  const coupleMode = getCoupleProfileQuery.data.girlId !== null;
 
   return (
     <MainContext.Provider

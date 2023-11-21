@@ -6,9 +6,7 @@ const useMain = () => {
 
   if (!mainContext) throw new Error('Cannot find MainProvider');
 
-  return {
-    ...mainContext,
-  };
+  return mainContext;
 };
 
 export default useMain;

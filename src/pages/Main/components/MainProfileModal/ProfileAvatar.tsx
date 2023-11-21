@@ -1,10 +1,10 @@
 import { useRef } from 'react';
 import { IconCamera } from '~/assets/icons';
-import { useProfileModal } from '~/pages/Main/hooks';
+import { useProfile, useProfileModal } from '~/pages/Main/hooks';
 
 const ProfileAvatar = () => {
-  const { activeEdit, editUserInfo, handleAvatarChange, userInfo } =
-    useProfileModal();
+  const { activeEdit, handleAvatarChange } = useProfileModal();
+  const { modalInfo } = useProfile();
   const inputRef = useRef<HTMLInputElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
 
@@ -27,10 +27,10 @@ const ProfileAvatar = () => {
   };
 
   const imageURL = activeEdit
-    ? editUserInfo.imageUrl instanceof File
-      ? URL.createObjectURL(editUserInfo.imageUrl)
-      : (editUserInfo.imageUrl as string)
-    : (userInfo.imageUrl as string);
+    ? modalInfo.imageUrl instanceof File
+      ? URL.createObjectURL(modalInfo.imageUrl)
+      : (modalInfo.imageUrl as string)
+    : (modalInfo.imageUrl as string);
 
   return (
     <div

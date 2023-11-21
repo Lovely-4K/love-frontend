@@ -11,7 +11,16 @@ const MainModalButtons = () => {
   return (
     <div className="flex items-center justify-end gap-3">
       <Button
-        onClick={() => handleOpenProfileModal(coupleProfile.boyId)}
+        onClick={() =>
+          handleOpenProfileModal({
+            birthday: coupleProfile.myBirthday,
+            calendarColor: coupleProfile.myCalendarColor,
+            id: coupleProfile.myId,
+            imageUrl: coupleProfile.myImageUrl,
+            mbti: coupleProfile.myMbti,
+            nickname: coupleProfile.myNickname,
+          })
+        }
         size="medium"
         className="border border-grey-200 bg-base-white font-bold text-grey-400"
       >

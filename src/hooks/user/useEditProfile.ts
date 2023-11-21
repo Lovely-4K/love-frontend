@@ -1,14 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { EditUser } from '~/types';
+import { User } from '~/types';
 import apiClient from '~/api/apiClient';
 
-const editProfile = async ({
-  data,
-  userId,
-}: {
-  data: EditUser;
-  userId: number;
-}) => {
+const editProfile = async ({ data }: { data: User }) => {
   const formData = new FormData();
   formData.append(
     'texts',
@@ -17,10 +11,7 @@ const editProfile = async ({
   if (data.imageUrl instanceof Blob) {
     formData.append('images', data.imageUrl);
   }
-  const response = await apiClient.patch(
-    `/members?memberId=${userId}`,
-    formData,
-  );
+  const response = await apiClient.patch(`/members`, formData);
 
   return response.data.body;
 };

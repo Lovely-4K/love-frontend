@@ -1,4 +1,12 @@
-import { PropsWithChildren, createContext, useMemo, useState } from 'react';
+import { differenceInDays } from 'date-fns';
+import {
+  PropsWithChildren,
+  createContext,
+  useCallback,
+  useMemo,
+  useState,
+} from 'react';
+import { User } from '~/types';
 import { useMain } from '../hooks';
 import useModal from '~/hooks/useModal';
 
@@ -9,21 +17,20 @@ interface MainModalContextProps {
   openProfileModal: () => void;
   closeProfileModal: () => void;
   profileModalRef: React.RefObject<HTMLDialogElement>;
-  modalId: number;
-  setModalId: React.Dispatch<React.SetStateAction<number>>;
+  modalInfo: User;
+  setModalInfo: React.Dispatch<React.SetStateAction<User>>;
   dDay: number;
+  handleOpenProfileModal: ({
+    birthday,
+    calendarColor,
+    imageUrl,
+    mbti,
+    nickname,
+    id,
+  }: User) => void;
 }
 
 const ProfileContext = createContext<MainModalContextProps | null>(null);
-
-const getDday = (meetDay: string) => {
-  const today = new Date();
-  const meetDate = new Date(meetDay);
-  const diff = today.getTime() - meetDate.getTime();
-  const dDay = Math.floor(diff / (1000 * 60 * 60 * 24));
-
-  return dDay;
-};
 
 const ProfileProvider = ({ children }: PropsWithChildren) => {
   const { coupleProfile } = useMain();
@@ -37,26 +44,64 @@ const ProfileProvider = ({ children }: PropsWithChildren) => {
     closeModal: closeProfileModal,
     modalRef: profileModalRef,
   } = useModal();
-  const [modalId, setModalId] = useState<number>(coupleProfile.boyId);
+  const [modalInfo, setModalInfo] = useState<User>({
+    birthday: '',
+    calendarColor: '',
+    imageUrl: '',
+    mbti: '',
+    nickname: '',
+    id: 0,
+  });
 
-  const dDay = useMemo(() => getDday(coupleProfile.meetDay), [coupleProfile]);
+  const dDay = useMemo(
+    () => differenceInDays(new Date(), new Date(coupleProfile.meetDay)),
+    [coupleProfile],
+  );
+
+  const handleOpenProfileModal = useCallback(
+    ({ birthday, calendarColor, imageUrl, mbti, nickname, id }: User) => {
+      setModalInfo({
+        birthday,
+        calendarColor,
+        imageUrl,
+        mbti,
+        nickname,
+        id,
+      });
+      openProfileModal();
+    },
+    [openProfileModal],
+  );
+
+  const value = useMemo(
+    () => ({
+      openDdayModal,
+      closeDdayModal,
+      dDayModalRef,
+      openProfileModal,
+      closeProfileModal,
+      profileModalRef,
+      handleOpenProfileModal,
+      modalInfo,
+      setModalInfo,
+      dDay,
+    }),
+    [
+      openDdayModal,
+      closeDdayModal,
+      dDayModalRef,
+      openProfileModal,
+      closeProfileModal,
+      profileModalRef,
+      modalInfo,
+      setModalInfo,
+      dDay,
+      handleOpenProfileModal,
+    ],
+  );
 
   return (
-    <ProfileContext.Provider
-      value={{
-        openDdayModal,
-        closeDdayModal,
-        dDayModalRef,
-        openProfileModal,
-        closeProfileModal,
-        profileModalRef,
-        modalId,
-        setModalId,
-        dDay,
-      }}
-    >
-      {children}
-    </ProfileContext.Provider>
+    <ProfileContext.Provider value={value}>{children}</ProfileContext.Provider>
   );
 };
 
