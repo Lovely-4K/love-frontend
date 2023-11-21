@@ -19,15 +19,17 @@ const Profile = memo(
             id,
           })
         }
-        className="flex cursor-pointer flex-col items-center justify-center gap-2"
+        className="flex cursor-pointer flex-col items-center justify-center"
       >
         <Avatar
           src={imageUrl as string}
           size="large"
-          className="lg:avatar-extra-large"
+          className="md:h-[9.375rem] md:w-[9.375rem]"
         />
-        <span className="font-title font-bold">{nickname}</span>
-        <span className="font-medium text-grey-500">{mbti}</span>
+        <div className="mt-2 flex flex-col items-center">
+          <span className="text-lg font-bold">{nickname}</span>
+          <span className="text-base font-medium text-grey-500">{mbti}</span>
+        </div>
       </div>
     );
   },

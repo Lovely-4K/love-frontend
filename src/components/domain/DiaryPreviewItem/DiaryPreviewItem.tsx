@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { screens } from '~/theme';
 import { Img } from '~/components/common';
 
 interface DiaryPreviewItemProps {
@@ -19,7 +20,7 @@ const DiaryPreviewItemContainer = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${screens.lg}) {
     width: 100%;
 
     & > div:hover {

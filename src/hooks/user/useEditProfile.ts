@@ -23,9 +23,6 @@ const useEditProfile = () => {
     mutationFn: editProfile,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: ['profile'],
-      });
-      await queryClient.invalidateQueries({
         queryKey: ['coupleProfile'],
       });
     },

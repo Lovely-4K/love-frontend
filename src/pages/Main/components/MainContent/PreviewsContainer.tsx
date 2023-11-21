@@ -1,3 +1,4 @@
+import { paths } from '~/router';
 import PreviewCalendar from './PreviewCalendar';
 import PreviewDiary from './PreviewDiary';
 import PreviewItem from './PreviewItem';
@@ -5,19 +6,19 @@ import PreviewQuestion from './PreviewQuestion';
 
 const PreviewsContainer = () => {
   return (
-    <div className="flex h-full w-full flex-col pt-2 md:flex-row md:justify-center md:px-4">
+    <div className="flex h-full w-full flex-col pt-2 lg:flex-row lg:justify-center lg:px-4">
       <PreviewItem
-        pageLink={'/calendar'}
+        pageLink={paths.CALENDAR}
         title={'다가오는 일정 →'}
         content={<PreviewCalendar />}
       />
       <PreviewItem
-        pageLink={'/diary'}
+        pageLink={paths.DIARY}
         title={'우리의 추억들 →'}
         content={<PreviewDiary />}
       />
       <PreviewItem
-        pageLink={'/question'}
+        pageLink={paths.QUESTION}
         title={'오늘의 질문 →'}
         content={<PreviewQuestion />}
       />

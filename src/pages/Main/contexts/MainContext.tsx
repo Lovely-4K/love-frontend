@@ -16,6 +16,7 @@ const MainProvider = ({ children }: PropsWithChildren) => {
     if (!getCoupleProfileQuery.isSuccess) return false;
 
     return getCoupleProfileQuery.data.opponentId !== null;
+    // return false;
   }, [getCoupleProfileQuery]);
 
   if (getCoupleProfileQuery.isLoading) {

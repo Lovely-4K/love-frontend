@@ -12,7 +12,7 @@ const ProfileContainer = () => {
   const { handleActiveEdit, activeEdit } = useProfileModal();
 
   const buttonContent = activeEdit ? '프로필 저장' : '프로필 수정';
-  const backgroundColor = coupleProfile.myCalendarColor;
+  const backgroundColor = modalInfo.calendarColor;
 
   return (
     <>

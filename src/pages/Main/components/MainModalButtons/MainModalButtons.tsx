@@ -9,7 +9,7 @@ const MainModalButtons = () => {
   const { handleOpenProfileModal, openDdayModal } = useProfile();
 
   return (
-    <div className="flex items-center justify-end gap-3">
+    <div className="mt-5 flex items-center justify-end gap-3 md:mt-0">
       <Button
         onClick={() =>
           handleOpenProfileModal({
@@ -22,7 +22,7 @@ const MainModalButtons = () => {
           })
         }
         size="medium"
-        className="border border-grey-200 bg-base-white font-bold text-grey-400"
+        className="hidden border border-grey-200 bg-base-white font-bold text-grey-400 md:block"
       >
         프로필 수정
       </Button>
@@ -32,7 +32,7 @@ const MainModalButtons = () => {
           <Button
             onClick={openDdayModal}
             size="medium"
-            className="border border-grey-200 bg-base-white font-bold text-grey-400"
+            className="hidden border border-grey-200 bg-base-white font-bold text-grey-400 md:block"
           >
             디데이 수정
           </Button>

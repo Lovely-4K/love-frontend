@@ -32,7 +32,7 @@ const CoupleProfile = () => {
           calendarColor={myCalendarColor}
           id={myId}
         />
-        <IconHeart className="absolute left-1/2 top-1/3 z-10 h-12 w-12 -translate-x-1/2 -translate-y-1/2 fill-base-primary stroke-base-primary" />
+        <IconHeart className="absolute left-1/2 top-1/3 z-10 h-9 w-9 -translate-x-1/2 -translate-y-1/2 fill-base-primary stroke-base-primary md:h-16 md:w-16 md:-translate-y-1/3" />
         <Profile
           nickname={opponentNickname}
           mbti={opponentMbti}
@@ -42,7 +42,10 @@ const CoupleProfile = () => {
           id={opponentId}
         />
       </div>
-      <span onClick={openDdayModal} className="text-2xl text-base-primary">
+      <span
+        onClick={openDdayModal}
+        className="text-xl text-base-primary hover:cursor-pointer md:text-2xl"
+      >
         D+{dDay}
       </span>
     </div>

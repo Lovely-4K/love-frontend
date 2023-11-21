@@ -30,6 +30,10 @@ const ProfileModalProvider = ({ children }: PropsWithChildren) => {
   const { modalInfo, setModalInfo } = useProfile();
   const [activeEdit, setActiveEdit] = useState(false);
 
+  useEffect(() => {
+    setActiveEdit(false);
+  }, [modalInfo.id]);
+
   const handleActiveEdit = useCallback(() => {
     if (!activeEdit) {
       setActiveEdit(true);
@@ -106,12 +110,12 @@ const ProfileModalProvider = ({ children }: PropsWithChildren) => {
 
       const newMBTI = getNewMBTI(value);
 
-      setModalInfo({
-        ...modalInfo,
+      setModalInfo((prev) => ({
+        ...prev,
         mbti: newMBTI,
-      });
+      }));
     },
-    [getNewMBTI, modalInfo, setModalInfo],
+    [getNewMBTI, setModalInfo, modalInfo],
   );
 
   const value = useMemo(
