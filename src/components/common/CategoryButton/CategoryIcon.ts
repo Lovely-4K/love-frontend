@@ -14,15 +14,15 @@ interface CategoryIconProps extends HtmlHTMLAttributes<SVGElement> {
 
 const CategoryIcon = ({ type }: CategoryIconProps) => {
   switch (type) {
-    case 'cafe':
+    case 'CAFE':
       return IconCafe;
-    case 'food':
+    case 'FOOD':
       return IconRestaurant;
-    case 'sleep':
+    case 'ACCOMODATION':
       return IconHotel;
-    case 'culture':
+    case 'CULTURE':
       return IconActivity;
-    case 'etc':
+    case 'ETC':
       return IconEtc;
   }
 };

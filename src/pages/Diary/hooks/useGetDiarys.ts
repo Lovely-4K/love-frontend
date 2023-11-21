@@ -11,9 +11,13 @@ const getDiarys = async ({
   sortMethod = 'createdDate',
   category,
 }: getDiarysParams): Promise<Diarys> => {
-  const response = await apiClient.get(
-    `/diaries?page=0&size=10&sort=${sortMethod}`,
-  );
+  let apiUrl = `/diaries?page=0&size=10&sort=${sortMethod}`;
+
+  if (category) {
+    apiUrl += `&category=${category}`;
+  }
+
+  const response = await apiClient.get(apiUrl);
 
   return response.data.body as Diarys;
 };

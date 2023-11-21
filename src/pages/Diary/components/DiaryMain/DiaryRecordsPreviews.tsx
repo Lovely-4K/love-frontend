@@ -8,8 +8,6 @@ const DiaryRecordsPreviews = () => {
 
   if (!isSuccess) return;
 
-  console.log(diarys);
-
   return (
     <div className="grid grid-cols-2 justify-items-center md:gap-x-4">
       {/* <DiaryPreviewItem

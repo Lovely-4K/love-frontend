@@ -3,15 +3,13 @@ import useGetDiarys from '~/pages/Diary/hooks/useGetDiarys';
 
 const DiaryRecordsHeader = () => {
   const [sortMethod, setSortMethod] = useState('createdDate');
-  const { data: diarys, isSuccess } = useGetDiarys({ sortMethod });
+  const { isSuccess } = useGetDiarys({ sortMethod });
 
   const handleSortMethodChange = (newSortMethod: string) => {
     setSortMethod(newSortMethod);
   };
 
   if (!isSuccess) return null;
-
-  console.log(diarys);
 
   return (
     <div className="flex items-center justify-between">

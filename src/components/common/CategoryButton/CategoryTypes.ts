@@ -1,3 +1,3 @@
-type categoryType = 'cafe' | 'food' | 'sleep' | 'culture' | 'etc';
+type categoryType = 'CAFE' | 'FOOD' | 'ACCOMODATION' | 'CULTURE' | 'ETC';
 
 export default categoryType;
