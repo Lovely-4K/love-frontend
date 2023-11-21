@@ -7,7 +7,7 @@ const DiaryContentHeader = () => {
 
   const HeaderButton = () =>
     editMode || (
-      <div className="font-small flex gap-2 text-grey-400">
+      <div className="flex gap-2 text-sm text-grey-400">
         <button onClick={handleEditMode}>수정</button>
         <button>삭제</button>
       </div>
