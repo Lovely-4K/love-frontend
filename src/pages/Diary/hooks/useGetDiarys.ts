@@ -26,8 +26,8 @@ const useGetDiarys = (
   { sortMethod, category }: getDiarysParams = { sortMethod: 'createdDated' },
 ) => {
   return useQuery({
-    queryKey: ['Diarys', sortMethod, category], // queryKey에 category 추가
-    queryFn: () => getDiarys({ sortMethod, category }), // getDiarys 호출 시 객체 전달
+    queryKey: ['Diarys', sortMethod, category],
+    queryFn: () => getDiarys({ sortMethod, category }),
   });
 };
 
