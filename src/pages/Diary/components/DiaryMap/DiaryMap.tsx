@@ -5,6 +5,7 @@ import {
 import DiaryCustomInfo from './DiaryCustomInfo';
 import DiaryMapButtons from './DiaryMapButtons';
 import DiaryMapMarker from './DiaryMapMarker';
+import DiaryMapCategories from '~/pages/Diary/components/DiaryMap/DiaryMapCategories';
 import useCurrentLocation from '~/pages/Diary/hooks/useCurrentLocation';
 import useInfoToggle from '~/pages/Diary/hooks/useInfoToggle';
 import useInputRef from '~/pages/Diary/hooks/useInputRef';
@@ -38,6 +39,7 @@ const DiaryMap = () => {
       <DiaryMapMarker userPosition={userPosition} />
       {infoOpen && info && <DiaryCustomInfo info={info} />}
       <DiaryMapButtons />
+      <DiaryMapCategories />
     </Map>
   );
 };

@@ -5,7 +5,7 @@ const DiaryMapButtons = () => {
   const { setCenter } = useCurrentLocation();
 
   return (
-    <div className="absolute right-4 top-4 z-50 flex flex-col gap-2">
+    <div className="absolute right-2 top-[7rem] z-50 flex flex-col gap-2 md:top-4">
       <button className="">
         <SelectCoupleBtn className="h-12" />
       </button>
