@@ -1,9 +1,10 @@
 import { CategoryButton } from '~/components/common';
+import useMapCategory from '~/pages/Diary/hooks/useMapCategory';
 
 const categories = ['CAFE', 'FOOD', 'ACCOMODATION', 'CULTURE'] as const;
 
 const DiaryMapCategoryList = () => {
-  //   const { selectCategory, handleCategoryClick } = useSelectCategory();
+  const { mapCategory, handleMapCategory } = useMapCategory();
 
   return (
     <ul className="flex w-full items-center justify-center gap-5">
@@ -11,8 +12,8 @@ const DiaryMapCategoryList = () => {
         <li key={category}>
           <CategoryButton
             type={category}
-            active={false}
-            // onClick={() => handleCategoryClick(category)}
+            active={mapCategory === category}
+            onClick={() => handleMapCategory(category)}
           />
         </li>
       ))}
