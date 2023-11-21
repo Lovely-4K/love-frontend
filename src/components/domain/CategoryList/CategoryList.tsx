@@ -1,20 +1,10 @@
-import { useState } from 'react';
 import { CategoryButton } from '~/components/common';
-import useGetDiarys from '~/pages/Diary/hooks/useGetDiarys';
+import useSelectCategory from '~/pages/Diary/hooks/useSelectCategory';
 
 const categories = ['CAFE', 'FOOD', 'ACCOMODATION', 'CULTURE', 'ETC'] as const;
 
 const CategoryList = () => {
-  const [selectCategory, setSelectCategory] = useState('');
-  const { data: diarys, isSuccess } = useGetDiarys({ selectCategory });
-
-  const handleCategoryClick = (category: string) => {
-    setSelectCategory(category);
-  };
-
-  if (!isSuccess) return null;
-
-  console.log(diarys);
+  const { selectCategory, handleCategoryClick } = useSelectCategory();
 
   return (
     <ul className="flex w-full items-center justify-center gap-5">

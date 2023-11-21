@@ -10,6 +10,8 @@ interface DiaryContextProps {
   setSideBarToggle: React.Dispatch<React.SetStateAction<boolean>>;
   markers: MapMarker[];
   setMarkers: React.Dispatch<React.SetStateAction<MapMarker[]>>;
+  selectCategory: string;
+  setSelectCategory: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const DiaryContext = createContext<DiaryContextProps | null>(null);
@@ -19,6 +21,7 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
   const [searchMode, setSearchMode] = useState(false);
   const [sideBarToggle, setSideBarToggle] = useState(true);
   const [markers, setMarkers] = useState<MapMarker[]>([]);
+  const [selectCategory, setSelectCategory] = useState('');
 
   return (
     <DiaryContext.Provider
@@ -31,6 +34,8 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
         setSideBarToggle,
         markers,
         setMarkers,
+        selectCategory,
+        setSelectCategory,
       }}
     >
       {children}

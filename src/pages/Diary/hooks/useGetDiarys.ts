@@ -14,7 +14,7 @@ const getDiarys = async ({
   let apiUrl = `/diaries?page=0&size=10&sort=${sortMethod}`;
 
   if (selectCategory) {
-    apiUrl += `&selectCategory=${selectCategory}`;
+    apiUrl += `&category=${selectCategory}`;
   }
 
   const response = await apiClient.get(apiUrl);
