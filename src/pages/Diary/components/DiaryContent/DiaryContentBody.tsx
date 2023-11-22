@@ -15,7 +15,7 @@ const DiaryContentBody = () => {
 
     return (
       <div className="flex w-full flex-col gap-6 overflow-y-auto overflow-x-hidden">
-        <DiaryContentHeader />
+        {!editable && <DiaryContentHeader />}
         <div className="flex flex-col gap-6 overflow-y-auto px-3">
           <div className="flex items-center justify-between">
             <DiaryContentDate />
