@@ -1,7 +1,7 @@
 import { colors } from '~/theme';
 
 const personalColors = {
-  'bg-grey-200': colors.grey[200],
+  'bg-personal-indigo': colors.personal.indigo,
   'bg-personal-blue': colors.personal.blue,
   'bg-personal-orange': colors.personal.orange,
   'bg-personal-green': colors.personal.green,

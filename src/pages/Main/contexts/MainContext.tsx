@@ -1,6 +1,6 @@
 import type { CoupleProfile } from '~/types/couple';
 import { PropsWithChildren, createContext, useMemo } from 'react';
-import { useGetCoupleProfile } from '~/hooks/couple';
+import { useGetCoupleProfile } from '~/services/couple';
 
 interface MainContextProps {
   coupleProfile: CoupleProfile;

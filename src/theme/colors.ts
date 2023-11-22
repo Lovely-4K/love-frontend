@@ -17,7 +17,7 @@ const colors = {
     green: '#7EB934',
     pink: '#EB366C',
     purple: '#7E50DF',
-    grey: '#C2C2C2',
+    indigo: '#265073',
   },
   grey: {
     100: '#F9F9F9',

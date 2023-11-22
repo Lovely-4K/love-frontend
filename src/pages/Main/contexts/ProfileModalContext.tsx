@@ -10,7 +10,7 @@ import {
 } from 'react';
 import { personalColors } from '~/constants';
 import { useProfile } from '../hooks';
-import { useEditProfile } from '~/hooks/user';
+import { useEditProfile } from '~/services/user';
 
 interface ProfileModalContextProps {
   handleActiveEdit: () => void;

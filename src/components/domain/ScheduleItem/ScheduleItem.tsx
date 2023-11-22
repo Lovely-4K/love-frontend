@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { colors, fontSize, screens } from '~/theme';
 
 interface ScheduleItemProps extends React.HTMLAttributes<HTMLDivElement> {
-  customColor: keyof typeof colors.personal;
+  customColor: string;
   startDate: string;
   endDate: string;
   title: string;
@@ -37,8 +37,9 @@ const ScheduleDate = styled.span`
 `;
 
 const ScheduleTitle = styled.span<StyledProps>`
+  width: 100%;
   font-size: ${fontSize.base};
-  color: ${colors.grey[500]};
+  color: ${({ customColor }) => customColor};
 `;
 
 const ScheduleItem = ({
@@ -47,12 +48,10 @@ const ScheduleItem = ({
   endDate,
   title,
 }: ScheduleItemProps) => {
-  const { personal } = colors;
-
   const hasEndDate = startDate !== endDate;
 
   return (
-    <ScheduleItemContainer customColor={personal[customColor]}>
+    <ScheduleItemContainer customColor={customColor}>
       <div className="flex flex-wrap items-center">
         <span className="flex">
           <ScheduleDate>{startDate}</ScheduleDate>
@@ -60,12 +59,7 @@ const ScheduleItem = ({
         </span>
         {hasEndDate && <ScheduleDate>{endDate}</ScheduleDate>}
       </div>
-      <div
-        className={`w-full text-base`}
-        style={{ color: personal[customColor] }}
-      >
-        {title}
-      </div>
+      <ScheduleTitle customColor={customColor}>{title}</ScheduleTitle>
     </ScheduleItemContainer>
   );
 };

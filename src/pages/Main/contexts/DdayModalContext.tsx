@@ -7,7 +7,7 @@ import {
   useState,
 } from 'react';
 import { useMain, useProfile } from '../hooks';
-import { useEditCoupleProfile } from '~/hooks/couple';
+import { useEditCoupleProfile } from '~/services/couple';
 
 interface DdayModalContextProps {
   editDday: string;

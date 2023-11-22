@@ -1,5 +1,5 @@
 import { MainContent, MainModalButtons, MainProfile } from './components';
-import { MainProvider, ProfileProvider } from './contexts';
+import { MainContentProvider, MainProvider, ProfileProvider } from './contexts';
 
 const MainPage = () => {
   return (
@@ -9,7 +9,9 @@ const MainPage = () => {
           <MainModalButtons />
           <MainProfile />
         </ProfileProvider>
-        <MainContent />
+        <MainContentProvider>
+          <MainContent />
+        </MainContentProvider>
       </MainProvider>
     </div>
   );
