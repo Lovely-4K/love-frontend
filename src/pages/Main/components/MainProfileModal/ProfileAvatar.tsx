@@ -36,7 +36,7 @@ const ProfileAvatar = () => {
       onClick={handleAvatarClick}
       className={`avatar z-10 ml-6 -translate-y-1/2 ${activeStyle}`}
     >
-      <div className="w-28 rounded-full border border-grey-200 lg:w-32">
+      <div className="w-28 rounded-full border border-grey-100 bg-grey-100 shadow-lg lg:w-32">
         <img ref={imageRef} src={imageURL} alt="user avatar" />
       </div>
       {activeEdit && (

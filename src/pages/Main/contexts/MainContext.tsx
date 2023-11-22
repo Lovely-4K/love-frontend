@@ -16,29 +16,20 @@ const MainProvider = ({ children }: PropsWithChildren) => {
     if (!getCoupleProfileQuery.isSuccess) return false;
 
     return getCoupleProfileQuery.data.opponentId !== null;
-    // return false;
   }, [getCoupleProfileQuery]);
 
-  if (getCoupleProfileQuery.isLoading) {
-    return <div>스켈레톤 UI...</div>;
-  }
+  const value = useMemo(() => {
+    if (!getCoupleProfileQuery.isSuccess) return null;
 
-  if (getCoupleProfileQuery.isError) {
-    return <div>에러 UI...</div>;
-  }
+    return {
+      coupleProfile: getCoupleProfileQuery.data,
+      coupleMode,
+    };
+  }, [getCoupleProfileQuery, coupleMode]);
 
-  if (!getCoupleProfileQuery.isSuccess) return;
+  if (!getCoupleProfileQuery.isSuccess) return null;
 
-  return (
-    <MainContext.Provider
-      value={{
-        coupleProfile: getCoupleProfileQuery.data,
-        coupleMode,
-      }}
-    >
-      {children}
-    </MainContext.Provider>
-  );
+  return <MainContext.Provider value={value}>{children}</MainContext.Provider>;
 };
 
 export { MainContext, MainProvider };

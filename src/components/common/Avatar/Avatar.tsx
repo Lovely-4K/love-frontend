@@ -14,7 +14,7 @@ const Avatar = ({ src, size = 'medium', className, ...props }: AvatarProps) => {
   return (
     <div className="avatar" {...props}>
       <div
-        className={`rounded-full border border-grey-200 ${avatarSizes[size]} ${className}`}
+        className={`rounded-full border border-grey-100 bg-grey-100 ${avatarSizes[size]} ${className}`}
       >
         <img src={src} />
       </div>

@@ -11,19 +11,18 @@ interface DiaryPreviewItemProps {
 const DiaryPreviewItemContainer = styled.div`
   position: relative;
   display: flex;
-  min-height: 7rem;
-  min-width: 7rem;
-  height: 100%;
-  width: 100%;
+  min-height: 3rem;
+  min-width: 3rem;
+  max-width: 8rem;
+  max-width: 8rem;
   cursor: pointer;
   align-items: center;
   justify-content: center;
+  aspect-ratio: 1 / 1;
 
   @media screen and (min-width: ${screens.lg}) {
-    min-height: auto;
-    min-width: auto;
-    height: 100%;
-    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
   }
 
   &:hover {

@@ -25,6 +25,9 @@ const useEditProfile = () => {
       await queryClient.invalidateQueries({
         queryKey: ['coupleProfile'],
       });
+      await queryClient.invalidateQueries({
+        queryKey: ['recentSchedule'],
+      });
     },
   });
 };
