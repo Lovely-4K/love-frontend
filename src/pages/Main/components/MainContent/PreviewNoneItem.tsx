@@ -1,13 +1,20 @@
+import { Link } from 'react-router-dom';
+import { paths } from '~/router';
+
 interface MainPreviewNoneItemProps {
-  itemName: string;
+  title: string;
+  content: string;
+  to: (typeof paths)[keyof typeof paths];
+  className?: string;
 }
 
-const PreviewNoneItem = ({ itemName }: MainPreviewNoneItemProps) => {
-  const placeholder = `아직 등록된 '${itemName}' 이(가) 없어요`;
-
+const PreviewNoneItem = ({ title, content, to }: MainPreviewNoneItemProps) => {
   return (
-    <div className="flex h-full w-full items-center justify-center">
-      <span className="text-grey-500">{placeholder}</span>
+    <div className="flex h-20 w-full flex-col items-center justify-center lg:h-56 ">
+      <div className="text-base">{title}</div>
+      <Link to={to} className="text-base text-grey-400">
+        {content} →
+      </Link>
     </div>
   );
 };

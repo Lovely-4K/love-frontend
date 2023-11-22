@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom';
 import { scheduleColors } from '~/constants';
 import { paths } from '~/router';
 import type { ColorInfo, Schedule } from '~/types';
 import { useMainContent } from '../../hooks';
+import PreviewNoneItem from './PreviewNoneItem';
 import { ScheduleItem } from '~/components/domain';
 
 const getScheduleColor = (schedule: Schedule, colorInfo: ColorInfo) => {
@@ -33,12 +33,11 @@ const PreviewCalendar = () => {
         />
       ))
     ) : (
-      <div className="flex h-20 w-full flex-col items-center justify-center gap-1 lg:h-56">
-        <div className="text-base">추가된 일정이 없네요!</div>
-        <Link to={paths.CALENDAR} className="text-base text-grey-400">
-          일정 추가하러 가기 →
-        </Link>
-      </div>
+      <PreviewNoneItem
+        title="추가된 일정이 없네요!"
+        content="일정 추가하러 가기"
+        to={paths.CALENDAR}
+      />
     );
 
   return (

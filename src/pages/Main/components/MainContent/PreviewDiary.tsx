@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
 import { paths } from '~/router';
 import { useMainContent } from '../../hooks';
+import PreviewNoneItem from './PreviewNoneItem';
 import { DiaryPreviewItem } from '~/components/domain';
 
 const PreviewDiary = () => {
@@ -18,12 +18,11 @@ const PreviewDiary = () => {
       ))}
     </div>
   ) : (
-    <div className="flex h-32 flex-col items-center justify-center lg:h-56">
-      <div className="text-base">작성한 다이어리가 없네요!</div>
-      <Link to={paths.DIARY} className="text-base text-grey-400">
-        다이어리 작성하러 가기 →
-      </Link>
-    </div>
+    <PreviewNoneItem
+      content="다이어리 작성하러 가기"
+      title="작성한 다이어리가 없네요!"
+      to={paths.DIARY}
+    />
   );
 };
 
