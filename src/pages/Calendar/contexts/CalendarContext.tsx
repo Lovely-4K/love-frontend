@@ -1,4 +1,4 @@
-import type { UseQueryResult } from '@tanstack/react-query';
+import { UseQueryResult } from '@tanstack/react-query';
 import {
   endOfMonth,
   endOfWeek,
@@ -46,10 +46,13 @@ const CalendarProvider = ({ children }: PropsWithChildren) => {
     setPickedDate(date);
   }, []);
 
-  const value = useMemo(
-    () => ({ pickedDate, changePickedDate, getMonthScheduleQuery }),
-    [pickedDate, changePickedDate, getMonthScheduleQuery],
-  );
+  const value = useMemo(() => {
+    return {
+      pickedDate,
+      changePickedDate,
+      getMonthScheduleQuery,
+    };
+  }, [pickedDate, changePickedDate, getMonthScheduleQuery]);
 
   return (
     <CalendarContext.Provider value={value}>
