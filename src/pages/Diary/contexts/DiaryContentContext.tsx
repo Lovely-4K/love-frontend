@@ -1,20 +1,40 @@
 import { PropsWithChildren, createContext, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { Diary } from '~/types';
+import useGetDiaryDetail from '~/services/Diary/useGetDiaryDetail';
 
 interface DiaryContentContextProps {
-  editMode: boolean;
-  setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
+  editable: boolean;
+  setEditable: React.Dispatch<React.SetStateAction<boolean>>;
+  diary: Diary | undefined;
+  spotId: string | undefined;
+  diaryId: string | undefined;
 }
 
+interface DiaryContentProviderParams extends PropsWithChildren {
+  mode: 'read' | 'create' | 'edit';
+}
 const DiaryContentContext = createContext({} as DiaryContentContextProps);
 
-const DiaryContentProvider = ({ children }: PropsWithChildren) => {
-  const [editMode, setEditMode] = useState(false);
+const DiaryContentProvider = ({
+  mode,
+  children,
+}: DiaryContentProviderParams) => {
+  const params = useParams();
+  const [editable, setEditable] = useState(
+    mode === 'create' || mode === 'edit',
+  );
+  const { spotId, diaryId } = params;
+  const { data: diary } = useGetDiaryDetail({ diaryId });
 
   return (
     <DiaryContentContext.Provider
       value={{
-        editMode,
-        setEditMode,
+        editable,
+        setEditable,
+        diary,
+        spotId,
+        diaryId,
       }}
     >
       {children}
