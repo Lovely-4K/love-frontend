@@ -1,11 +1,13 @@
 import { DiaryPreviewItem } from '~/components/domain';
 import useGetDiarys from '~/pages/Diary/hooks/useGetDiarys';
 import useSelectCategory from '~/pages/Diary/hooks/useSelectCategory';
+import useSelectSortMethod from '~/pages/Diary/hooks/useSelectSortMethod';
 
 const DiaryRecordsPreviews = () => {
   const { selectCategory } = useSelectCategory();
+  const { selectSortMethod } = useSelectSortMethod();
   const { data: diarys, isSuccess } = useGetDiarys({
-    sortMethod: 'createdDate',
+    selectSortMethod,
     selectCategory,
   });
 

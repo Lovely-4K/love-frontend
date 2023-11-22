@@ -3,15 +3,17 @@ import { Diarys } from '~/types';
 import apiClient from '~/api/apiClient';
 
 interface getDiarysParams {
-  sortMethod?: string;
+  selectSortMethod?: string;
   selectCategory?: string;
 }
 
 const getDiarys = async ({
-  sortMethod = 'createdDate',
+  selectSortMethod = 'createdDate',
   selectCategory,
 }: getDiarysParams): Promise<Diarys> => {
-  let apiUrl = `/diaries?page=0&size=10&sort=${sortMethod}`;
+  console.log(selectSortMethod);
+
+  let apiUrl = `/diaries?page=0&size=10&sort=${selectSortMethod}`;
 
   if (selectCategory) {
     apiUrl += `&category=${selectCategory}`;
@@ -23,13 +25,13 @@ const getDiarys = async ({
 };
 
 const useGetDiarys = (
-  { sortMethod, selectCategory }: getDiarysParams = {
-    sortMethod: 'createdDated',
+  { selectSortMethod, selectCategory }: getDiarysParams = {
+    selectSortMethod: 'createdDated',
   },
 ) => {
   return useQuery({
-    queryKey: ['Diarys', sortMethod, selectCategory],
-    queryFn: () => getDiarys({ sortMethod, selectCategory }),
+    queryKey: ['Diarys', selectSortMethod, selectCategory],
+    queryFn: () => getDiarys({ selectSortMethod, selectCategory }),
   });
 };
 

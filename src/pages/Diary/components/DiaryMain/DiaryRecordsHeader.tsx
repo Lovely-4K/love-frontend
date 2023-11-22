@@ -1,15 +1,7 @@
-import { useState } from 'react';
-import useGetDiarys from '~/pages/Diary/hooks/useGetDiarys';
+import useSelectSortMethod from '~/pages/Diary/hooks/useSelectSortMethod';
 
 const DiaryRecordsHeader = () => {
-  const [sortMethod, setSortMethod] = useState('createdDate');
-  const { isSuccess } = useGetDiarys({ sortMethod });
-
-  const handleSortMethodChange = (newSortMethod: string) => {
-    setSortMethod(newSortMethod);
-  };
-
-  if (!isSuccess) return null;
+  const { handleSortMethodClick } = useSelectSortMethod();
 
   return (
     <div className="flex items-center justify-between">
@@ -22,7 +14,7 @@ const DiaryRecordsHeader = () => {
           type="radio"
           name="options"
           aria-label="날짜 순"
-          onClick={() => handleSortMethodChange('createdDate')}
+          onClick={() => handleSortMethodClick('createdDate')}
           defaultChecked
         />
         <input
@@ -30,7 +22,7 @@ const DiaryRecordsHeader = () => {
           type="radio"
           name="options"
           aria-label="평점 순"
-          onClick={() => handleSortMethodChange('rating')}
+          onClick={() => handleSortMethodClick('score')}
         />
       </div>
     </div>
