@@ -5,9 +5,10 @@ import { DiarySpotContext } from '~/pages/Diary/contexts/DiarySpotContent';
 interface DiarySpotPreviewProps {
   picture: string;
   id: number;
+  date: string;
 }
 
-const DiarySpotPreview = ({ picture, id }: DiarySpotPreviewProps) => {
+const DiarySpotPreview = ({ picture, id, date }: DiarySpotPreviewProps) => {
   const { deleteMode } = useContext(DiarySpotContext);
 
   return (
@@ -32,7 +33,7 @@ const DiarySpotPreview = ({ picture, id }: DiarySpotPreviewProps) => {
         )}
       </div>
       <div className="font-small py-2">
-        <span>2023년 9월 13일</span>
+        <span>{date}</span>
       </div>
     </div>
   );

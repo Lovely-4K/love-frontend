@@ -49,4 +49,12 @@ interface Diarys {
   empty: boolean;
 }
 
-export type { Diary, Diarys };
+interface SpotDiarys {
+  diaries: {
+    diaryId: number;
+    imageUrl: string;
+    datingDay: string;
+  }[];
+}
+
+export type { Diary, Diarys, SpotDiarys };

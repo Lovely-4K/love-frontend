@@ -1,12 +1,17 @@
-import { useContext } from 'react';
 import DiaryNotContent from './DiaryNotContent';
 import DiarySpotPreviews from './DiarySpotPreviews';
-import { DiarySpotContext } from '~/pages/Diary/contexts/DiarySpotContent';
+import useGetSpotDiarys from '~/services/diary/useGetSpotDiarys';
 
 const DiaryListArea = () => {
-  const { pictures } = useContext(DiarySpotContext);
+  const { data: spotDiarys, isSuccess } = useGetSpotDiarys({ kakaoMapId: 10 });
 
-  return pictures.length ? <DiarySpotPreviews /> : <DiaryNotContent />;
+  if (!isSuccess) return;
+
+  return spotDiarys.diaries.length ? (
+    <DiarySpotPreviews spotDiarys={spotDiarys} />
+  ) : (
+    <DiaryNotContent />
+  );
 };
 
 export default DiaryListArea;

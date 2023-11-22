@@ -1,18 +1,22 @@
-import { useContext } from 'react';
+import { SpotDiarys } from '~/types';
 import DiarySpotPreview from './DiarySpotPreview';
-import { Button } from '~/components/common';
-import { DiarySpotContext } from '~/pages/Diary/contexts/DiarySpotContent';
+import DiaryCreateButton from '~/pages/Diary/components/DiarySpot/DiaryCreateButton';
 
-const DiarySpotPreviews = () => {
-  const { pictures } = useContext(DiarySpotContext);
+interface DiarySpotPreviewsProps {
+  spotDiarys: SpotDiarys;
+}
 
+const DiarySpotPreviews = ({ spotDiarys }: DiarySpotPreviewsProps) => {
   return (
     <div className="flex flex-col items-center justify-center gap-4">
-      <Button size="large" className=" mb-5 bg-base-primary text-base-white">
-        다이어리 작성하기
-      </Button>
-      {pictures.map((image, id) => (
-        <DiarySpotPreview picture={image} id={id} />
+      <DiaryCreateButton />
+      {spotDiarys.diaries.map((diary) => (
+        <DiarySpotPreview
+          key={diary.diaryId}
+          picture={diary.imageUrl}
+          id={diary.diaryId}
+          date={diary.datingDay}
+        />
       ))}
     </div>
   );
