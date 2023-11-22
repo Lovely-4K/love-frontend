@@ -1,12 +1,20 @@
+import { Link } from 'react-router-dom';
 import { IconTopArrow } from '~/assets/icons';
 
-const DiaryHeader = () => {
+interface DiaryHeaderProps {
+  prevLink: string;
+  spotName: string;
+}
+
+const DiaryHeader = ({ prevLink, spotName }: DiaryHeaderProps) => {
   return (
     <div className="font-title flex gap-2 font-bold">
-      <button className="text-grey-300">
-        <IconTopArrow className="h-4 w-4 -rotate-90 fill-grey-300" />
-      </button>
-      <span>김선익 내과</span>
+      <Link to={prevLink}>
+        <button className="text-grey-300">
+          <IconTopArrow className="h-4 w-4 -rotate-90 fill-grey-300" />
+        </button>
+      </Link>
+      <span>{spotName}</span>
     </div>
   );
 };

@@ -5,6 +5,7 @@ import { DiaryHeader } from '~/pages/Diary/components/DiaryCommon';
 const DiaryContentHeader = () => {
   const { editable, handleEditMode, spotId } = useDiaryContent();
   const { DIARY } = paths;
+  const prevLink = `${DIARY.ROOT}/${spotId}`;
 
   const HeaderButton = () =>
     editable || (
@@ -16,7 +17,7 @@ const DiaryContentHeader = () => {
 
   return (
     <div className="flex items-center justify-between">
-      <DiaryHeader keyword={''} prevPageLink={`${DIARY.ROOT}/${spotId}`} />
+      <DiaryHeader prevLink={prevLink} spotName={''} />
       <HeaderButton />
     </div>
   );
