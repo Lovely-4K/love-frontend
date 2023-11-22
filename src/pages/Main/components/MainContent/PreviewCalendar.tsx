@@ -33,8 +33,8 @@ const PreviewCalendar = () => {
         />
       ))
     ) : (
-      <div className="flex h-20 w-full flex-col items-center justify-center gap-1 lg:h-64">
-        <div className="text-base">일정이 없네요!</div>
+      <div className="flex h-20 w-full flex-col items-center justify-center gap-1 lg:h-56">
+        <div className="text-base">추가된 일정이 없네요!</div>
         <Link to={paths.CALENDAR} className="text-base text-grey-400">
           일정 추가하러 가기 →
         </Link>

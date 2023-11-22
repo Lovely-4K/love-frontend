@@ -8,7 +8,7 @@ const SoloProfile = () => {
     coupleProfile;
 
   return (
-    <div className="flex justify-center">
+    <div className="flex h-1/2 justify-center">
       <Profile
         nickname={myNickname}
         mbti={myMbti}
