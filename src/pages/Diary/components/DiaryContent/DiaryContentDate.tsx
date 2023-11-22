@@ -1,7 +1,7 @@
 import useDiaryContent from '../../hooks/DiaryContent/useDiaryContent';
 
 const DiaryContentDate = () => {
-  const { editMode } = useDiaryContent();
+  const { editable, diary } = useDiaryContent();
 
   return (
     <div className="flex flex-col gap-2">
@@ -10,8 +10,8 @@ const DiaryContentDate = () => {
         <input
           className="font-medium text-base-black focus:outline-none"
           type="date"
-          value={'2023-10-31'}
-          readOnly={!editMode}
+          value={diary?.datingDay}
+          readOnly={!editable}
         />
       </div>
     </div>

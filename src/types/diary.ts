@@ -1,10 +1,4 @@
-interface Diary {
-  kakaoMapId: number;
-  datingDay: number[];
-  score: number;
-  category: string;
-  boyText: string;
-  girlText: string;
+interface Pictures {
   pictures: {
     firstImage: string | null;
     secondImage: string | null;
@@ -12,6 +6,16 @@ interface Diary {
     fourthImage: string | null;
     fifthImage: string | null;
   };
+}
+
+interface Diary {
+  kakaoMapId: number;
+  datingDay: string;
+  score: number;
+  category: string;
+  boyText: string;
+  girlText: string;
+  pictures: Pictures;
 }
 
 interface Diarys {
@@ -47,4 +51,4 @@ interface Diarys {
   empty: boolean;
 }
 
-export type { Diary, Diarys };
+export type { Diary, Diarys, Pictures };

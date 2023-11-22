@@ -1,10 +1,10 @@
 import useDiaryContent from '../../hooks/DiaryContent/useDiaryContent';
 
 const DiaryContentEditButton = () => {
-  const { editMode, handleEditComplete, handleEditCancel } = useDiaryContent();
+  const { editable, handleEditComplete, handleEditCancel } = useDiaryContent();
 
   return (
-    editMode && (
+    editable && (
       <div className="flex justify-end gap-2">
         <button
           onClick={handleEditCancel}

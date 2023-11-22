@@ -3,6 +3,10 @@ import { DiaryImgsContext } from '~/pages/Diary/contexts/DiaryImgsContext';
 
 const useDiaryContentImgs = () => {
   const diaryImgContext = useContext(DiaryImgsContext);
+
+  if (!diaryImgContext) {
+    throw new Error('DiaryImgContext is null');
+  }
   const { images, setImages } = diaryImgContext;
 
   const handleAddImages = (event: ChangeEvent<HTMLInputElement>) => {

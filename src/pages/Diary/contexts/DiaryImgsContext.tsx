@@ -5,10 +5,17 @@ interface DiaryImgsContextProps {
   setImages: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const DiaryImgsContext = createContext({} as DiaryImgsContextProps);
+interface DiaryImgsProviderProps extends PropsWithChildren {
+  defaultImages?: string[];
+}
 
-const DiaryImgsProvider = ({ children }: PropsWithChildren) => {
-  const [images, setImages] = useState<string[]>([]);
+const DiaryImgsContext = createContext<DiaryImgsContextProps | null>(null);
+
+const DiaryImgsProvider = ({
+  defaultImages = [],
+  children,
+}: DiaryImgsProviderProps) => {
+  const [images, setImages] = useState<string[]>(defaultImages);
 
   return (
     <DiaryImgsContext.Provider value={{ images, setImages }}>

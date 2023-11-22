@@ -1,17 +1,12 @@
+import useDiaryContentImgs from '../../hooks/DiaryContent/useDiaryContentImgs';
 import { Carousel } from '~/components/domain';
 
-const pictures = [
-  'https://picsum.photos/200',
-  'https://picsum.photos/200',
-  'https://picsum.photos/200',
-  'https://picsum.photos/200',
-  'https://picsum.photos/200',
-];
-
 const DiaryImgsCarousel = () => {
+  const { images } = useDiaryContentImgs();
+
   return (
-    <div className="h-[10rem]">
-      <Carousel pictures={pictures} />
+    <div className="h-[auto] max-h-[10rem]">
+      <Carousel pictures={images} />
     </div>
   );
 };

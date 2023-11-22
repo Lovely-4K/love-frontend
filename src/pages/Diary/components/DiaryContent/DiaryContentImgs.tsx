@@ -3,9 +3,9 @@ import DiaryImgsCarousel from './DiaryImgsCarousel';
 import DiaryImgsUpload from './DiaryImgsUpload';
 
 const DiaryContentImgs = () => {
-  const { editMode } = useDiaryContent();
+  const { editable } = useDiaryContent();
 
-  return <>{editMode ? <DiaryImgsUpload /> : <DiaryImgsCarousel />}</>;
+  return <>{editable ? <DiaryImgsUpload /> : <DiaryImgsCarousel />}</>;
 };
 
 export default DiaryContentImgs;

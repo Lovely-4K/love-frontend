@@ -39,7 +39,7 @@ const Carousel = memo(({ pictures }: CarouselProps) => {
             id={`item${index}`}
             className="carousel-item h-full w-full"
           >
-            <img src={picture} className="w-full" />
+            <img src={picture} className="w-full object-cover" />
           </div>
         ))}
       </div>

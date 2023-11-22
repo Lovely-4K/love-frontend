@@ -3,7 +3,7 @@ import { DiaryContentContext } from '~/pages/Diary/contexts/DiaryContentContext'
 
 const useDiaryContent = () => {
   const diaryContentContext = useContext(DiaryContentContext);
-  const { editable, setEditable } = diaryContentContext;
+  const { editable, setEditable, diary, spotId, diaryId } = diaryContentContext;
 
   const handleEditMode = () => {
     setEditable(true);
@@ -22,6 +22,9 @@ const useDiaryContent = () => {
     handleEditMode,
     handleEditComplete,
     handleEditCancel,
+    spotId,
+    diaryId,
+    diary,
   };
 };
 
