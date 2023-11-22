@@ -1,3 +1,5 @@
+import type categoryType from '~/components/common/CategoryButton/CategoryTypes';
+
 interface Pictures {
   pictures: {
     firstImage: string | null;
@@ -12,7 +14,7 @@ interface Diary {
   kakaoMapId: number;
   datingDay: string;
   score: number;
-  category: string;
+  category: categoryType;
   boyText: string;
   girlText: string;
   pictures: Pictures;

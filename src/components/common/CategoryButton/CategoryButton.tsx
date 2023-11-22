@@ -6,6 +6,7 @@ import CategoryIcon from './CategoryIcon';
 interface CategoryButtonProps extends HtmlHTMLAttributes<HTMLDivElement> {
   type: categoryType;
   active: boolean;
+  editable: boolean;
   handleClickButton: (categoryType: categoryType) => void;
 }
 
@@ -18,6 +19,7 @@ const titles: Record<categoryType, string> = {
 };
 
 const CategoryButton = ({
+  editable,
   type,
   active,
   handleClickButton,
@@ -26,7 +28,12 @@ const CategoryButton = ({
 
   return (
     <div onClick={() => handleClickButton(type)}>
-      <CircleButton active={active} icon={icon} label={titles[type]} />
+      <CircleButton
+        editable={editable}
+        active={active}
+        icon={icon}
+        label={titles[type]}
+      />
     </div>
   );
 };

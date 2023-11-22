@@ -7,7 +7,7 @@ import DiaryContentRating from './DiaryContentRating';
 import { DiaryCategories } from '~/pages/Diary/components/DiaryCommon';
 
 const DiaryContentBody = () => {
-  const { diary } = useDiaryContent();
+  const { diary, editable } = useDiaryContent();
 
   const Body = () => {
     // if (!diary) return <Loading />;
@@ -21,7 +21,10 @@ const DiaryContentBody = () => {
             <DiaryContentDate />
             <DiaryContentRating />
           </div>
-          <DiaryCategories defaultCategory={diary?.category} />
+          <DiaryCategories
+            defaultCategory={diary?.category}
+            editable={editable}
+          />
           <DiaryContentDetail />
           <DiaryContentEditButton />
         </div>

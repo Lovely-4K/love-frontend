@@ -3,13 +3,17 @@ import CategoryList from '~/components/domain/CategoryList/CategoryList';
 
 interface DiaryCategoriesProps {
   defaultCategory: categoryType | undefined;
+  editable: boolean;
 }
 
-const DiaryCategories = ({ defaultCategory }: DiaryCategoriesProps) => {
+const DiaryCategories = ({
+  defaultCategory,
+  editable = false,
+}: DiaryCategoriesProps) => {
   return (
     <div className="flex flex-col gap-4">
       <span className="text-lg font-bold text-base-black">카테고리</span>
-      <CategoryList defaultCategory={defaultCategory} />
+      <CategoryList editable={editable} defaultCategory={defaultCategory} />
     </div>
   );
 };
