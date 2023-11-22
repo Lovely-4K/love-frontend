@@ -21,7 +21,7 @@ const DiaryContentBody = () => {
             <DiaryContentDate />
             <DiaryContentRating />
           </div>
-          <DiaryCategories />
+          <DiaryCategories defaultCategory={diary?.category} />
           <DiaryContentDetail />
           <DiaryContentEditButton />
         </div>

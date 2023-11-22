@@ -1,13 +1,31 @@
+import type categoryType from '~/components/common/CategoryButton/CategoryTypes';
+import { useState } from 'react';
 import { CategoryButton } from '~/components/common';
 
-const categories = ['cafe', 'food', 'sleep', 'culture', 'etc'] as const;
+const categories = ['CAFE', 'FOOD', 'SLEEP', 'CULTURE', 'ETC'] as const;
 
-const CategoryList = () => {
+interface CategoryListProps {
+  defaultCategory: categoryType | undefined;
+}
+
+const CategoryList = ({ defaultCategory }: CategoryListProps) => {
+  const [selectedCategory, setSelectedCategory] = useState<
+    categoryType | undefined
+  >(defaultCategory);
+
+  const handleClickButton = (categoryType: categoryType) => {
+    setSelectedCategory(categoryType);
+  };
+
   return (
     <ul className="flex w-full items-center justify-center gap-5">
       {categories.map((category) => (
         <li key={category}>
-          <CategoryButton type={category} active={false} />
+          <CategoryButton
+            type={category}
+            active={category === selectedCategory}
+            handleClickButton={handleClickButton}
+          />
         </li>
       ))}
     </ul>

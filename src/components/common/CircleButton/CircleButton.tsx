@@ -1,6 +1,6 @@
-import { FunctionComponent, SVGProps } from 'react';
+import { FunctionComponent, HTMLAttributes, SVGProps } from 'react';
 
-interface CircleButtonProps {
+interface CircleButtonProps extends HTMLAttributes<HTMLButtonElement> {
   label?: string | undefined;
   icon: FunctionComponent<SVGProps<SVGSVGElement>>;
   active: boolean;
