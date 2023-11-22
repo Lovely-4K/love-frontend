@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { Img } from '~/components/common';
 import { DiarySpotContext } from '~/pages/Diary/contexts/DiarySpotContent';
 
 interface DiarySpotPreviewProps {
@@ -16,9 +17,10 @@ const DiarySpotPreview = ({ picture, id }: DiarySpotPreviewProps) => {
       className="group flex flex-col items-center justify-center rounded-xl border border-grey-200"
     >
       <div className="h-32 ">
-        <img
+        <Img
+          shape="rectangle"
+          className="image-rectangle h-full"
           src={picture}
-          className="image-rectangle h-full "
           alt={`${picture}-${id}`}
         />
         {deleteMode && (

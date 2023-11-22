@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import DiarySpotPreview from './DiarySpotPreview';
+import { Button } from '~/components/common';
 import { DiarySpotContext } from '~/pages/Diary/contexts/DiarySpotContent';
 
 const DiarySpotPreviews = () => {
@@ -7,9 +8,9 @@ const DiarySpotPreviews = () => {
 
   return (
     <div className="flex flex-col items-center justify-center gap-4">
-      <button className="btn-large btn mb-5 w-full bg-base-primary text-base-white">
+      <Button size="large" className=" mb-5 bg-base-primary text-base-white">
         다이어리 작성하기
-      </button>
+      </Button>
       {pictures.map((image, id) => (
         <DiarySpotPreview picture={image} id={id} />
       ))}

@@ -1,4 +1,5 @@
 import { useContext, useEffect } from 'react';
+import { MapMarker } from '~/types';
 import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
 import { DiaryMapContext } from '~/pages/Diary/contexts/DiaryMapContext';
 import useInputRef from '~/pages/Diary/hooks/useInputRef';
@@ -18,12 +19,11 @@ const useCategorySearch = () => {
   useEffect(() => {
     if (!map || !mapCategory) return;
 
-    const newLatLng = map.getCenter();
-
-    const tmpLatLng = new kakao.maps.LatLng(
-      newLatLng.getLat() + 0.0001,
-      newLatLng.getLng() + 0.0001,
-    );
+    // const newLatLng = map.getCenter();
+    // const tmpLatLng = new kakao.maps.LatLng(
+    //   newLatLng.getLat() + 0.0001,
+    //   newLatLng.getLng() + 0.0001,
+    // );
     // console.log(tmpLatLng);
 
     const position = new kakao.maps.services.Places(map);
@@ -78,6 +78,7 @@ const useCategorySearch = () => {
               });
             }
             // map.setCenter(newLatLng);
+
             setMarkers(markers);
           } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
             // 검색 결과가 없는 경우의 처리를 여기에 추가할 수 있습니다
@@ -88,8 +89,6 @@ const useCategorySearch = () => {
         { useMapBounds: true, bounds },
       );
     };
-
-    // setMap();
 
     // idle 이벤트가 발생하면 검색을 수행합니다
     kakao.maps.event.addListener(map, 'idle', searchPlaces);

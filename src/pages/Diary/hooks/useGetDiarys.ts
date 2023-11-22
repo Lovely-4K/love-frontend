@@ -11,8 +11,6 @@ const getDiarys = async ({
   selectSortMethod = 'createdDate',
   selectCategory,
 }: getDiarysParams): Promise<Diarys> => {
-  console.log(selectSortMethod);
-
   let apiUrl = `/diaries?page=0&size=10&sort=${selectSortMethod}`;
 
   if (selectCategory) {

@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { Button } from '~/components/common';
 import { DiaryHeader } from '~/pages/Diary/components/DiaryCommon';
 import { DiarySpotContext } from '~/pages/Diary/contexts/DiarySpotContent';
 
@@ -13,12 +14,13 @@ const DiarySpotHeader = () => {
 
   const DeleteButton = () =>
     pictures.length ? (
-      <button
+      <Button
+        size="small"
         onClick={handleDeleteMode}
-        className={`text btn-small w-full rounded-xl ${deleteButtonStyle}`}
+        className={`rounded-xl text-sm ${deleteButtonStyle}`}
       >
         {deleteButtonLabel}
-      </button>
+      </Button>
     ) : (
       <></>
     );
