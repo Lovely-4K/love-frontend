@@ -18,7 +18,7 @@ const Rating = ({ readonly, defaultScore = 4 }: RatingProps) => {
         onClick={() => setScore(assignedScore)}
         type="radio"
         name="rating-3"
-        className="mask mask-heart w-5 bg-base-primary"
+        className="mask mask-heart w-5 bg-base-primary [&]:disabled:cursor-default"
         disabled={readonly}
         checked={activateStatus}
       />
