@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
 import { DiaryMapContext } from '~/pages/Diary/contexts/DiaryMapContext';
+import useInputRef from '~/pages/Diary/hooks/useInputRef';
 
 const useCategorySearch = () => {
   const diaryMapContext = useContext(DiaryMapContext);
@@ -12,15 +13,23 @@ const useCategorySearch = () => {
   const { info, setInfo, map, setMap, mapCategory } = diaryMapContext;
   const { markers, setMarkers } = diaryContext;
 
+  const {} = useInputRef();
+
   useEffect(() => {
     if (!map || !mapCategory) return;
 
-    // 장소 검색 객체를 생성합니다
-    const ps = new kakao.maps.services.Places(map);
+    const newLatLng = map.getCenter();
+
+    const tmpLatLng = new kakao.maps.LatLng(
+      newLatLng.getLat() + 0.0001,
+      newLatLng.getLng() + 0.0001,
+    );
+    // console.log(tmpLatLng);
+
+    const position = new kakao.maps.services.Places(map);
 
     // idle 이벤트가 발생했을 때 호출될 함수
     const searchPlaces = () => {
-      // 현재 선택된 카테고리가 없으면 종료
       if (!mapCategory) {
         return;
       }
@@ -47,12 +56,13 @@ const useCategorySearch = () => {
           break;
       }
 
-      // Bounds를 이용하여 카테고리 검색을 요청합니다
-      ps.categorySearch(
+      // Bounds를 이용하여 카테고리 검색을 요청
+      position.categorySearch(
         category,
-        (data, status) => {
+        (data, status, _pagination) => {
           if (status === kakao.maps.services.Status.OK) {
             // 정상적으로 검색이 완료됐으면 지도에 마커를 표출합니다
+
             const markers = [];
 
             for (let i = 0; i < data.length; i++) {
@@ -67,7 +77,7 @@ const useCategorySearch = () => {
                 spotId: data[i].id,
               });
             }
-
+            // map.setCenter(newLatLng);
             setMarkers(markers);
           } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
             // 검색 결과가 없는 경우의 처리를 여기에 추가할 수 있습니다
@@ -78,7 +88,8 @@ const useCategorySearch = () => {
         { useMapBounds: true, bounds },
       );
     };
-    setMap(map);
+
+    // setMap();
 
     // idle 이벤트가 발생하면 검색을 수행합니다
     kakao.maps.event.addListener(map, 'idle', searchPlaces);

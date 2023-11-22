@@ -6,8 +6,6 @@ const DiarySearchResults = () => {
   const { searchKeyword, endSearchMode } = useInputRef();
   const { markers } = useMarkers();
 
-  //   console.log(markers);
-
   return (
     <div className="flex flex-col gap-4">
       <div className="flex gap-2">
@@ -18,7 +16,7 @@ const DiarySearchResults = () => {
       <div className="flex flex-col gap-2">
         {markers.map((marker) => (
           <div
-            key={marker.address}
+            key={`${marker.address}-${marker.content}`}
             className="flex flex-col gap-1 rounded-xl border-2 border-grey-100 px-5 py-3"
           >
             <DiaryMarkerData

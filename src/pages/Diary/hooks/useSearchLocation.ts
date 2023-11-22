@@ -1,7 +1,9 @@
 import { useContext, useEffect } from 'react';
 import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
 import { DiaryMapContext } from '~/pages/Diary/contexts/DiaryMapContext';
+import useCurrentLocation from '~/pages/Diary/hooks/useCurrentLocation';
 import useInputRef from '~/pages/Diary/hooks/useInputRef';
+import useMapCategory from '~/pages/Diary/hooks/useMapCategory';
 
 interface useSearchLocationProps {
   keyword: string;
@@ -14,12 +16,27 @@ const useSearchLocation = ({ keyword }: useSearchLocationProps) => {
   if (!diaryMapContext) throw new Error('Cannot find diaryMapProvider');
   if (!diaryContext) throw new Error('Cannot find diaryProvider');
 
-  const { info, setInfo, map, setMap } = diaryMapContext;
+  const { info, setInfo, map, setMap, mapCategory } = diaryMapContext;
   const { markers, setMarkers } = diaryContext;
   const { startSearchMode } = useInputRef();
+  const { userPosition } = useCurrentLocation();
+  const { resetMapCategory } = useMapCategory();
 
   useEffect(() => {
     if (!map || !keyword) return;
+    if (!userPosition) return;
+
+    console.log(mapCategory);
+
+    const newLatLng = new kakao.maps.LatLng(userPosition.lat, userPosition.lng); // 현재 내위치
+    // const newLatLng = map.getCenter() // 현재 지도 중심
+
+    // 거리순 으로 데이터 정렬
+    const options = {
+      location: newLatLng,
+      radius: 10000,
+      sort: kakao.maps.services.SortBy.DISTANCE,
+    };
 
     const position = new kakao.maps.services.Places();
 
@@ -48,12 +65,14 @@ const useSearchLocation = ({ keyword }: useSearchLocationProps) => {
             );
           }
 
+          resetMapCategory();
           setMarkers(markers);
           map.setBounds(bounds); // 검색된 장소 위치를 기준으로 지도 범위를 재설정
 
           startSearchMode();
         }
       },
+      // options,
     );
   }, [map, keyword, setMarkers]);
 
