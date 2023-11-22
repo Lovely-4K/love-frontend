@@ -1,3 +1,5 @@
+import { Avatar } from '~/components/common';
+
 interface QuestionChatItemProps {
   type: 'start' | 'end';
   answerStatus: boolean;
@@ -25,11 +27,12 @@ const QuestionChatItem = ({
 
   return (
     <div className={`chat ${chatType} my-3`}>
-      <div className="avatar chat-image">
-        <div className="avatar-small lg:avatar-medium rounded-full">
-          <img src={getTempImageUrl()} />
-        </div>
-      </div>
+      <Avatar
+        src={getTempImageUrl()}
+        size={'small'}
+        className={'lg:avatar-medium rounded-full'}
+        chatImage={true}
+      ></Avatar>
       <div className="chat-header">
         <time className="text-xs opacity-50">{author}</time>
       </div>
