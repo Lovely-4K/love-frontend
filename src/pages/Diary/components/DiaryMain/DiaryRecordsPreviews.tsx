@@ -1,4 +1,5 @@
 import { DiaryPreviewItem } from '~/components/domain';
+import useClickPreview from '~/pages/Diary/hooks/useClickPreview';
 import useGetDiarys from '~/pages/Diary/hooks/useGetDiarys';
 import useSelectCategory from '~/pages/Diary/hooks/useSelectCategory';
 import useSelectSortMethod from '~/pages/Diary/hooks/useSelectSortMethod';
@@ -6,6 +7,7 @@ import useSelectSortMethod from '~/pages/Diary/hooks/useSelectSortMethod';
 const DiaryRecordsPreviews = () => {
   const { selectCategory } = useSelectCategory();
   const { selectSortMethod } = useSelectSortMethod();
+  const { handleClickPreview } = useClickPreview();
   const { data: diarys, isSuccess } = useGetDiarys({
     selectSortMethod,
     selectCategory,
@@ -30,12 +32,13 @@ const DiaryRecordsPreviews = () => {
         location={'카페 녹다'}
         imgSrc={'https://picsum.photos/200'}
       /> */}
-      {diarys.content.map(({ imageUrl }, index) => (
+      {diarys.content.map((diary) => (
         <DiaryPreviewItem
-          key={index}
-          date={'2023월 09월 05일'}
-          location={'카페 녹다'}
-          imgSrc={imageUrl}
+          key={diary.diaryId}
+          date={diary.datingDay}
+          location={diary.placeName}
+          imgSrc={diary.imageUrl}
+          onClick={() => handleClickPreview(diary)}
         />
       ))}
     </div>

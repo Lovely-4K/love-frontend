@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
+import { HtmlHTMLAttributes } from 'react';
 import { Img } from '~/components/common';
 
-interface DiaryPreviewItemProps {
+interface DiaryPreviewItemProps extends HtmlHTMLAttributes<HTMLDivElement> {
   date: string;
   location: string;
   imgSrc: string;
@@ -47,9 +48,10 @@ const DiaryPreviewItem = ({
   date,
   location,
   imgSrc,
+  onClick,
 }: DiaryPreviewItemProps) => {
   return (
-    <DiaryPreviewItemContainer>
+    <DiaryPreviewItemContainer onClick={onClick}>
       <PreviewTextItemContainer className="rounded-xl bg-base-deem font-medium text-base-white">
         <div>{date}</div>
         <div>{location}</div>

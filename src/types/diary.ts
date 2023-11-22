@@ -14,14 +14,18 @@ interface Diary {
   };
 }
 
+interface DiaryContent {
+  diaryId: number;
+  kakaoMapId: number;
+  imageUrl: string;
+  datingDay: string;
+  placeName: string;
+  latitude: number;
+  longitude: number;
+}
+
 interface Diarys {
-  content: {
-    diaryId: number;
-    kakaoMapId: number;
-    imageUrl: string;
-    datingDay: string;
-    placeName: string;
-  }[];
+  content: DiaryContent[];
   pageable: {
     pageNumber: number;
     pageSize: number;
@@ -57,4 +61,4 @@ interface SpotDiarys {
   }[];
 }
 
-export type { Diary, Diarys, SpotDiarys };
+export type { Diary, Diarys, SpotDiarys, DiaryContent };
