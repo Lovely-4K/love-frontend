@@ -1,10 +1,4 @@
-type ScheduleType =
-  | 'TRAVEL'
-  | 'DATE'
-  | 'ANNIVERSARY'
-  | 'PERSONAL'
-  | 'ETC'
-  | null;
+type ScheduleType = 'TRAVEL' | 'DATE' | 'ANNIVERSARY' | 'PERSONAL' | 'ETC';
 
 interface Schedule {
   calendarId: number;

@@ -4,14 +4,18 @@ interface CoupleInviteLink {
 }
 
 interface CoupleProfile {
-  boyNickname: string;
-  boyMbti: string;
-  boyImageUrl: string;
-  boyId: number;
-  girlNickname: string;
-  girlMbti: string;
-  girlImageUrl: string;
-  girlId: number;
+  myNickname: string;
+  myBirthday: string;
+  myMbti: string;
+  myImageUrl: string;
+  myCalendarColor: string;
+  myId: number;
+  opponentNickname: string;
+  opponentBirthday: string;
+  opponentMbti: string;
+  opponentImageUrl: string;
+  opponentCalendarColor: string;
+  opponentId: number;
   meetDay: string;
 }
 

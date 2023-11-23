@@ -1,27 +1,38 @@
 import { memo } from 'react';
+import { User } from '~/types';
 import { useProfile } from '../../hooks';
 import { Avatar } from '~/components/common';
 
-interface MainProfileProps {
-  name: string;
-  mbti: string;
-  src: string;
-  id: number;
-}
+const Profile = memo(
+  ({ nickname, mbti, imageUrl, birthday, calendarColor, id }: User) => {
+    const { handleOpenProfileModal } = useProfile();
 
-const Profile = memo(({ name, mbti, src, id }: MainProfileProps) => {
-  const { handleOpenProfileModal } = useProfile();
-
-  return (
-    <div
-      onClick={() => handleOpenProfileModal(id)}
-      className="flex cursor-pointer flex-col items-center justify-center gap-2"
-    >
-      <Avatar src={src} size="large" className="lg:avatar-extra-large" />
-      <span className="font-title font-bold">{name}</span>
-      <span className="font-medium text-grey-500">{mbti}</span>
-    </div>
-  );
-});
+    return (
+      <div
+        onClick={() =>
+          handleOpenProfileModal({
+            nickname,
+            mbti,
+            imageUrl,
+            birthday,
+            calendarColor,
+            id,
+          })
+        }
+        className="flex cursor-pointer flex-col items-center justify-center"
+      >
+        <Avatar
+          src={imageUrl as string}
+          size="large"
+          className="md:h-[9.375rem] md:w-[9.375rem]"
+        />
+        <div className="mt-2 flex flex-col items-center">
+          <span className="text-lg font-bold">{nickname}</span>
+          <span className="text-base font-medium text-grey-500">{mbti}</span>
+        </div>
+      </div>
+    );
+  },
+);
 
 export default Profile;

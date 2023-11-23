@@ -1,11 +1,9 @@
 import ProfileItemWrapper from './ProfileItemWrapper';
-import { useProfileModal } from '~/pages/Main/hooks';
+import { useProfile, useProfileModal } from '~/pages/Main/hooks';
 
 const ProfileBirthdayItem = () => {
-  const { activeEdit, editUserInfo, handleInputChange, userInfo } =
-    useProfileModal();
-
-  const birthday = activeEdit ? editUserInfo.birthday : userInfo.birthday;
+  const { activeEdit, handleInputChange } = useProfileModal();
+  const { modalInfo } = useProfile();
 
   return (
     <ProfileItemWrapper label="birthday" title="생일">
@@ -14,7 +12,7 @@ const ProfileBirthdayItem = () => {
         readOnly={!activeEdit}
         type="date"
         className="font-large input m-0 h-5 p-0 pl-1 focus:outline-none"
-        value={birthday}
+        value={modalInfo.birthday}
         onChange={handleInputChange}
       />
     </ProfileItemWrapper>

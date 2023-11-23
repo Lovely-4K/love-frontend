@@ -1,14 +1,12 @@
 import { useRef } from 'react';
 import { IconCamera } from '~/assets/icons';
-import { useProfileModal } from '~/pages/Main/hooks';
+import { useProfile, useProfileModal } from '~/pages/Main/hooks';
 
 const ProfileAvatar = () => {
-  const { activeEdit, editUserInfo, handleAvatarChange, userInfo } =
-    useProfileModal();
+  const { activeEdit, handleAvatarChange } = useProfileModal();
+  const { modalInfo } = useProfile();
   const inputRef = useRef<HTMLInputElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
-
-  const activeStyle = activeEdit ? 'hover:cursor-pointer' : 'cursor-default';
 
   const handleAvatarClick = () => {
     if (!inputRef.current) return;
@@ -26,18 +24,19 @@ const ProfileAvatar = () => {
     handleAvatarChange(files[0]);
   };
 
-  const imageURL = activeEdit
-    ? editUserInfo.imageUrl instanceof File
-      ? URL.createObjectURL(editUserInfo.imageUrl)
-      : (editUserInfo.imageUrl as string)
-    : (userInfo.imageUrl as string);
+  const activeStyle = activeEdit ? 'hover:cursor-pointer' : 'cursor-default';
+
+  const imageURL =
+    modalInfo.imageUrl instanceof File
+      ? URL.createObjectURL(modalInfo.imageUrl)
+      : (modalInfo.imageUrl as string);
 
   return (
     <div
       onClick={handleAvatarClick}
       className={`avatar z-10 ml-6 -translate-y-1/2 ${activeStyle}`}
     >
-      <div className="w-32 rounded-full">
+      <div className="w-28 rounded-full border border-grey-100 bg-grey-100 shadow-lg lg:w-32">
         <img ref={imageRef} src={imageURL} alt="user avatar" />
       </div>
       {activeEdit && (

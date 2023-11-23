@@ -13,10 +13,10 @@ const FooterItem = ({ url, svg, label }: FooterItemProps) => {
   return (
     <NavLink
       to={url}
-      className="group flex h-20 w-20 flex-col items-center justify-center rounded-xl hover:bg-grey-200 aria-[current]:bg-grey-100"
+      className="group flex h-14 w-14 flex-col items-center justify-center rounded-xl hover:bg-grey-200 aria-[current]:bg-grey-100 lg:h-20 lg:w-20"
     >
-      <SvgComponent className="h-10 w-10 stroke-base-black group-hover:stroke-primary group-aria-[current]:stroke-primary" />
-      <span className="font-medium group-hover:text-primary group-aria-[current]:text-primary">
+      <SvgComponent className="h-7 w-7 stroke-base-black group-hover:stroke-primary group-aria-[current]:stroke-primary lg:h-10 lg:w-10" />
+      <span className="text-sm font-medium group-hover:text-primary group-aria-[current]:text-primary lg:text-base">
         {label}
       </span>
     </NavLink>

@@ -8,7 +8,7 @@ import {
   useState,
 } from 'react';
 import type { CalendarSchedule } from '~/types';
-import { useGetMonthSchedule } from '~/hooks/calendar';
+import { useGetMonthSchedule } from '~/services/calendar';
 
 interface CalendarContextProps {
   pickedDate: Date;
