@@ -9,6 +9,7 @@ import {
 } from 'react';
 import type { EditSchedule } from '~/types';
 import { useCalendar } from '../hooks';
+import { useCreateSchedule } from '~/hooks/calendar';
 
 interface CalendarSideBarContextProps {
   activeEdit: boolean;
@@ -24,6 +25,7 @@ const CalendarSideBarContext =
 
 const CalendarSideBarProvider = ({ children }: PropsWithChildren) => {
   const { pickedDate } = useCalendar();
+  const { mutate: createSchedule } = useCreateSchedule();
   const [activeEdit, setActiveEdit] = useState(false);
 
   const initialEditDate = useMemo(() => {
@@ -54,8 +56,9 @@ const CalendarSideBarProvider = ({ children }: PropsWithChildren) => {
   }, []);
 
   const saveEditSchedule = useCallback(() => {
+    createSchedule({ schedule: scheduleInfo });
     setActiveEdit(false);
-  }, []);
+  }, [scheduleInfo, createSchedule]);
 
   const handleEditInput = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
