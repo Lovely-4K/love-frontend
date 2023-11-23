@@ -14,6 +14,10 @@ interface DiaryContextProps {
   setSelectCategory: React.Dispatch<React.SetStateAction<string>>;
   selectSortMethod: string;
   setSelectSortMethod: React.Dispatch<React.SetStateAction<string>>;
+  info: MapMarker | undefined;
+  setInfo: React.Dispatch<React.SetStateAction<MapMarker | undefined>>;
+  infoOpen: boolean;
+  setInfoOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const DiaryContext = createContext<DiaryContextProps | null>(null);
@@ -25,6 +29,8 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
   const [markers, setMarkers] = useState<MapMarker[]>([]);
   const [selectCategory, setSelectCategory] = useState('');
   const [selectSortMethod, setSelectSortMethod] = useState('');
+  const [info, setInfo] = useState<MapMarker>();
+  const [infoOpen, setInfoOpen] = useState<boolean>(false);
 
   return (
     <DiaryContext.Provider
@@ -41,6 +47,10 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
         setSelectCategory,
         selectSortMethod,
         setSelectSortMethod,
+        info,
+        setInfo,
+        infoOpen,
+        setInfoOpen,
       }}
     >
       {children}

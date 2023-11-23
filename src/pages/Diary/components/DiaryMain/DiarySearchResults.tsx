@@ -19,8 +19,8 @@ const DiarySearchResults = () => {
         {markers.map((marker) => (
           <div
             key={`${marker.address}-${marker.content}`}
-            className="flex flex-col gap-1 rounded-xl border-2 border-grey-100 px-5 py-3"
-            onClick={() => handleMarker}
+            className="flex cursor-pointer flex-col gap-1 rounded-xl border-2 border-grey-100 px-5 py-3 hover:border-base-secondary"
+            onClick={() => handleMarker(marker)}
           >
             <DiaryMarkerData
               content={marker.content}

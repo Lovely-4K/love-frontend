@@ -7,7 +7,7 @@ const DiaryListArea = () => {
 
   if (!isSuccess) return;
 
-  return spotDiarys.diaries.length ? (
+  return spotDiarys.diaries ? (
     <DiarySpotPreviews spotDiarys={spotDiarys} />
   ) : (
     <DiaryNotContent />

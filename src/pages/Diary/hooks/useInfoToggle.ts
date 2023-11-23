@@ -1,12 +1,12 @@
 import { useContext } from 'react';
-import { DiaryMapContext } from '~/pages/Diary/contexts/DiaryMapContext';
+import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
 
 const useInfoToggle = () => {
-  const diaryMapContext = useContext(DiaryMapContext);
+  const diaryContext = useContext(DiaryContext);
 
-  if (!diaryMapContext) throw new Error('Cannot find diaryMapProvider');
+  if (!diaryContext) throw new Error('Cannot find diaryProvider');
 
-  const { infoOpen, setInfoOpen } = diaryMapContext;
+  const { infoOpen, setInfoOpen } = diaryContext;
 
   const toggleInfo = () => {
     setInfoOpen(!infoOpen);

@@ -1,8 +1,6 @@
 import { useContext, useEffect } from 'react';
-import { MapMarker } from '~/types';
 import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
 import { DiaryMapContext } from '~/pages/Diary/contexts/DiaryMapContext';
-import useInputRef from '~/pages/Diary/hooks/useInputRef';
 
 const useCategorySearch = () => {
   const diaryMapContext = useContext(DiaryMapContext);
@@ -11,32 +9,20 @@ const useCategorySearch = () => {
   if (!diaryMapContext) throw new Error('Cannot find diaryMapProvider');
   if (!diaryContext) throw new Error('Cannot find diaryProvider');
 
-  const { info, setInfo, map, setMap, mapCategory } = diaryMapContext;
-  const { markers, setMarkers } = diaryContext;
-
-  const {} = useInputRef();
+  const { map, setMap, mapCategory } = diaryMapContext;
+  const { markers, setMarkers, info, setInfo } = diaryContext;
 
   useEffect(() => {
     if (!map || !mapCategory) return;
-
-    // const newLatLng = map.getCenter();
-    // const tmpLatLng = new kakao.maps.LatLng(
-    //   newLatLng.getLat() + 0.0001,
-    //   newLatLng.getLng() + 0.0001,
-    // );
-    // console.log(tmpLatLng);
 
     const position = new kakao.maps.services.Places(map);
 
     // idle 이벤트가 발생했을 때 호출될 함수
     const searchPlaces = () => {
-      if (!mapCategory) {
-        return;
-      }
+      if (!mapCategory) return;
 
       setMarkers([]);
 
-      // 현재 지도의 Bounds를 얻어옵니다
       const bounds = new kakao.maps.LatLngBounds();
 
       let category: 'CE7' | 'FD6' | 'AD5' | 'CT1' | '' = '';
@@ -61,8 +47,6 @@ const useCategorySearch = () => {
         category,
         (data, status, _pagination) => {
           if (status === kakao.maps.services.Status.OK) {
-            // 정상적으로 검색이 완료됐으면 지도에 마커를 표출합니다
-
             const markers = [];
 
             for (let i = 0; i < data.length; i++) {
@@ -77,29 +61,27 @@ const useCategorySearch = () => {
                 spotId: data[i].id,
               });
             }
-            // map.setCenter(newLatLng);
 
             setMarkers(markers);
           } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-            // 검색 결과가 없는 경우의 처리를 여기에 추가할 수 있습니다
+            // 검색 결과가 없는 경우
           } else if (status === kakao.maps.services.Status.ERROR) {
-            // 에러로 인해 검색 결과가 나오지 않은 경우의 처리를 여기에 추가할 수 있습니다
+            // 에러로 인해 검색 결과가 나오지 않은 경우
           }
         },
         { useMapBounds: true, bounds },
       );
     };
 
-    // idle 이벤트가 발생하면 검색을 수행합니다
+    // idle 이벤트가 발생하면 검색을 수행
     kakao.maps.event.addListener(map, 'idle', searchPlaces);
 
-    // 컴포넌트가 언마운트되면 이벤트 리스너를 정리합니다
+    // 컴포넌트가 언마운트 -> 이벤트 리스너 정리
     return () => {
       kakao.maps.event.removeListener(map, 'idle', searchPlaces);
     };
-  }, [map, mapCategory, setMarkers, markers, setMap]); // 의존성 배열에 필요한 변수들을 넣어줍니다
+  }, [map, mapCategory, setMarkers, markers, setMap]);
 
-  // 이 훅이 필요한 상태나 함수 등을 반환합니다
   return { info, setInfo, markers, setMarkers, map, setMap };
 };
 

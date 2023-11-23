@@ -9,7 +9,7 @@ interface DiaryCustomInfoProps {
 const DiaryCustomInfo = ({ info }: DiaryCustomInfoProps) => {
   return (
     <CustomOverlayMap position={info.position}>
-      <div className="absolute -right-32 bottom-[2.75rem] z-30 flex w-[16rem] flex-col justify-center gap-1 rounded-xl bg-base-white p-4 drop-shadow-xl">
+      <div className="absolute -right-32 bottom-[2.75rem] z-30 flex min-w-[16rem] flex-col justify-center gap-1 rounded-xl bg-base-white p-4 drop-shadow-xl">
         <DiaryMarkerData
           content={info.content}
           address={info.address}
