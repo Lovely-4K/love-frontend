@@ -52,6 +52,7 @@ const DiaryContentProvider = ({
   const [datingDay, setDatingDay] = useState<string>(
     diary?.datingDay ?? getTodayDate(),
   );
+  console.log(diary);
   const [score, setScore] = useState<number>(diary?.score ?? 5);
   const [category, setCategory] = useState<categoryType>(
     diary?.category ?? 'CAFE',
