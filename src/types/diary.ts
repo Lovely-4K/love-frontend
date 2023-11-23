@@ -11,13 +11,22 @@ interface Pictures {
 }
 
 interface Diary {
+  placeName: string;
   kakaoMapId: number;
   datingDay: string;
   score: number;
   category: categoryType;
-  boyText: string;
-  girlText: string;
+  myText: string;
+  opponentText: string;
   pictures: Pictures;
+}
+
+interface DiaryDetailForm {
+  datingDay: string;
+  score: number;
+  category: categoryType;
+  myText: string;
+  opponentText: string;
 }
 
 interface Diarys {
@@ -53,4 +62,4 @@ interface Diarys {
   empty: boolean;
 }
 
-export type { Diary, Diarys, Pictures };
+export type { Diary, Diarys, Pictures, DiaryDetailForm };

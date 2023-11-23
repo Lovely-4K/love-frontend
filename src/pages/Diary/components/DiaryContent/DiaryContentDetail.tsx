@@ -19,11 +19,14 @@ const DiaryContentDetail = () => {
         <div>
           <div>
             <div className="text-lg font-bold">나의 기록</div>
-            <DiaryContentText editable={editable} diaryText={diary?.boyText} />
+            <DiaryContentText editable={editable} diaryText={diary?.myText} />
           </div>
           <div>
             <div className="text-lg font-bold">상대방의 기록</div>
-            <DiaryContentText editable={false} diaryText={diary?.girlText} />
+            <DiaryContentText
+              editable={false}
+              diaryText={diary?.opponentText}
+            />
           </div>
         </div>
       </div>
