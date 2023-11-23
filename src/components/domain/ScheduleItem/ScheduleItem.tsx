@@ -47,11 +47,12 @@ const ScheduleItem = ({
   startDate,
   endDate,
   title,
+  ...props
 }: ScheduleItemProps) => {
   const hasEndDate = startDate !== endDate;
 
   return (
-    <ScheduleItemContainer customColor={customColor}>
+    <ScheduleItemContainer customColor={customColor} {...props}>
       <div className="flex flex-wrap items-center">
         <span className="flex">
           <ScheduleDate>{startDate}</ScheduleDate>

@@ -7,16 +7,20 @@ import {
   useMemo,
   useState,
 } from 'react';
-import type { EditSchedule } from '~/types';
+import type { EditSchedule, Schedule } from '~/types';
 import { useCalendar } from '../hooks';
-import { useCreateSchedule } from '~/services/calendar';
+import { useCreateSchedule, useEditSchedule } from '~/services/calendar';
+
+interface ScheduleInfo extends EditSchedule {
+  scheduleId: number | null;
+}
 
 interface CalendarSideBarContextProps {
   activeEdit: boolean;
-  editSchedule(): void;
+  editSchedule(prevInfo?: Schedule | null): void;
   closeEditSchedule(): void;
   saveEditSchedule(): void;
-  scheduleInfo: EditSchedule;
+  scheduleInfo: ScheduleInfo;
   handleEditInput(event: React.ChangeEvent<HTMLInputElement>): void;
 }
 
@@ -26,39 +30,70 @@ const CalendarSideBarContext =
 const CalendarSideBarProvider = ({ children }: PropsWithChildren) => {
   const { pickedDate } = useCalendar();
   const { mutate: createSchedule } = useCreateSchedule();
+  const { mutate: patchSchedule } = useEditSchedule();
   const [activeEdit, setActiveEdit] = useState(false);
 
   const initialEditDate = useMemo(() => {
     return format(pickedDate, 'yyyy-MM-dd');
   }, [pickedDate]);
 
-  const [scheduleInfo, setScheduleInfo] = useState<EditSchedule>({
+  const [scheduleInfo, setScheduleInfo] = useState<ScheduleInfo>({
     startDate: initialEditDate,
     endDate: initialEditDate,
     scheduleDetails: '',
     scheduleType: 'PERSONAL',
+    scheduleId: null,
   });
 
   useEffect(() => {
-    setScheduleInfo((prev) => ({
-      ...prev,
-      startDate: initialEditDate,
-      endDate: initialEditDate,
-    }));
+    setActiveEdit(false);
   }, [initialEditDate]);
 
-  const editSchedule = useCallback(() => {
-    setActiveEdit(true);
-  }, []);
+  const editSchedule = useCallback(
+    (prevInfo: Schedule) => {
+      if (prevInfo) {
+        setScheduleInfo({
+          startDate: prevInfo.startDate,
+          endDate: prevInfo.endDate,
+          scheduleDetails: prevInfo.scheduleDetails,
+          scheduleType: prevInfo.scheduleType,
+          scheduleId: prevInfo.calendarId,
+        });
+      } else {
+        setScheduleInfo({
+          startDate: initialEditDate,
+          endDate: initialEditDate,
+          scheduleDetails: '',
+          scheduleType: 'PERSONAL',
+          scheduleId: null,
+        });
+      }
+      setActiveEdit(true);
+    },
+    [initialEditDate],
+  );
 
   const closeEditSchedule = useCallback(() => {
     setActiveEdit(false);
   }, []);
 
   const saveEditSchedule = useCallback(() => {
-    createSchedule({ schedule: scheduleInfo });
+    const newScheduleInfo = {
+      startDate: scheduleInfo.startDate,
+      endDate: scheduleInfo.endDate,
+      scheduleDetails: scheduleInfo.scheduleDetails,
+      scheduleType: scheduleInfo.scheduleType,
+    };
+    if (scheduleInfo.scheduleId) {
+      patchSchedule({
+        schedule: newScheduleInfo,
+        scheduleId: scheduleInfo.scheduleId,
+      });
+    } else {
+      createSchedule({ schedule: newScheduleInfo });
+    }
     setActiveEdit(false);
-  }, [scheduleInfo, createSchedule]);
+  }, [scheduleInfo, createSchedule, patchSchedule]);
 
   const handleEditInput = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {

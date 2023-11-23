@@ -1,4 +1,6 @@
-interface LoadingProps {
+import { HtmlHTMLAttributes } from 'react';
+
+interface LoadingProps extends HtmlHTMLAttributes<HTMLSpanElement> {
   size?: 'small' | 'medium' | 'large';
 }
 
@@ -8,11 +10,12 @@ const loaderSize = {
   large: 'loading-lg',
 };
 
-const Loading = ({ size = 'medium' }: LoadingProps) => {
+const Loading = ({ size = 'medium', className, ...props }: LoadingProps) => {
   return (
     <span
-      className={`loading loading-dots ${loaderSize[size]} text-center text-base-primary`}
-    ></span>
+      className={`loading loading-dots ${loaderSize[size]} text-center text-base-primary ${className}}`}
+      {...props}
+    />
   );
 };
 

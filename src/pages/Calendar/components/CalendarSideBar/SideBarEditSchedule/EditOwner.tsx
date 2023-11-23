@@ -2,11 +2,12 @@ import styled from '@emotion/styled';
 import { colors } from '~/theme';
 import { useCalendarSideBar } from '~/pages/Calendar/hooks';
 
-const StyledSelect = styled.label`
+const StyledSelect = styled.div`
   display: flex;
   width: 100%;
   gap: 0.5rem;
   padding: 0 1rem;
+  font-weight: 900;
 
   input[type='radio'] {
     display: none;
@@ -21,8 +22,7 @@ const StyledSelect = styled.label`
   }
 
   input[type='radio']:checked + label {
-    background-color: ${colors.grey[300]};
-    color: ${colors.base.white};
+    color: ${colors.base.primary};
   }
 `;
 

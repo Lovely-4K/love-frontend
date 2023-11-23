@@ -18,7 +18,7 @@ const CalendarSideBar = () => {
       <div className="flex justify-between lg:pb-3">
         <h1 className="font-black lg:text-lg">{pickedDate.getDate()}일 일정</h1>
         {!activeEdit && (
-          <button onClick={editSchedule}>
+          <button onClick={() => editSchedule()}>
             <IconPlus className="h-5 w-5 stroke-base-black" />
           </button>
         )}
