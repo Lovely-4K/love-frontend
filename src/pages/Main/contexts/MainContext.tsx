@@ -1,6 +1,6 @@
 import type { CoupleProfile } from '~/types/couple';
-import { PropsWithChildren, createContext } from 'react';
-import useGetCoupleProfile from '../hooks/useGetCoupleProfile';
+import { PropsWithChildren, createContext, useMemo } from 'react';
+import { useGetCoupleProfile } from '~/services/couple';
 
 interface MainContextProps {
   coupleProfile: CoupleProfile;
@@ -12,28 +12,24 @@ const MainContext = createContext<MainContextProps | null>(null);
 const MainProvider = ({ children }: PropsWithChildren) => {
   const getCoupleProfileQuery = useGetCoupleProfile();
 
-  if (getCoupleProfileQuery.isLoading) {
-    return <div>스켈레톤 UI...</div>;
-  }
+  const coupleMode = useMemo(() => {
+    if (!getCoupleProfileQuery.isSuccess) return false;
 
-  if (getCoupleProfileQuery.isError) {
-    return <div>에러 UI...</div>;
-  }
+    return getCoupleProfileQuery.data.opponentId !== null;
+  }, [getCoupleProfileQuery]);
 
-  if (!getCoupleProfileQuery.isSuccess) return;
+  const value = useMemo(() => {
+    if (!getCoupleProfileQuery.isSuccess) return null;
 
-  const coupleMode = getCoupleProfileQuery.data.girlId !== null;
+    return {
+      coupleProfile: getCoupleProfileQuery.data,
+      coupleMode,
+    };
+  }, [getCoupleProfileQuery, coupleMode]);
 
-  return (
-    <MainContext.Provider
-      value={{
-        coupleProfile: getCoupleProfileQuery.data,
-        coupleMode,
-      }}
-    >
-      {children}
-    </MainContext.Provider>
-  );
+  if (!getCoupleProfileQuery.isSuccess) return null;
+
+  return <MainContext.Provider value={value}>{children}</MainContext.Provider>;
 };
 
 export { MainContext, MainProvider };

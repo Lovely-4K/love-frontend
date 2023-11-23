@@ -1,14 +1,46 @@
+import { scheduleColors } from '~/constants';
+import { paths } from '~/router';
+import type { ColorInfo, Schedule } from '~/types';
+import { useMainContent } from '../../hooks';
+import PreviewNoneItem from './PreviewNoneItem';
 import { ScheduleItem } from '~/components/domain';
 
+const getScheduleColor = (schedule: Schedule, colorInfo: ColorInfo) => {
+  const { scheduleType, ownerId } = schedule;
+  const { boyCalendarColor, boyId, girlCalendarColor } = colorInfo;
+  if (scheduleType === 'PERSONAL') {
+    return ownerId === boyId ? boyCalendarColor : girlCalendarColor;
+  }
+
+  return scheduleColors[scheduleType];
+};
+
 const PreviewCalendar = () => {
-  return (
-    <div className="flex w-full overflow-auto scroll-smooth md:flex-col">
-      <ScheduleItem
-        customColor="blue"
-        startDate="2023-01-10"
-        endDate="2023-01-10"
-        title="집가기"
+  const { recentSchedule } = useMainContent();
+  const { colorInfo, schedules } = recentSchedule;
+
+  const scheduleList =
+    schedules.length > 0 ? (
+      schedules.map((schedule) => (
+        <ScheduleItem
+          startDate={schedule.startDate}
+          endDate={schedule.endDate}
+          key={schedule.calendarId}
+          title={schedule.scheduleDetails}
+          customColor={getScheduleColor(schedule, colorInfo)}
+        />
+      ))
+    ) : (
+      <PreviewNoneItem
+        title="추가된 일정이 없네요!"
+        content="일정 추가하러 가기"
+        to={paths.CALENDAR}
       />
+    );
+
+  return (
+    <div className="flex w-full gap-3 overflow-auto scroll-smooth lg:flex-col">
+      {scheduleList}
     </div>
   );
 };

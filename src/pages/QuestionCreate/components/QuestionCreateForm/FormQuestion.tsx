@@ -1,4 +1,5 @@
 import useQuestionCreateForm from '../../hooks/useQuestionCreateForm';
+import { Input } from '~/components/common';
 
 const FormQuestion = () => {
   const { question, handleQuestionChange } = useQuestionCreateForm();
@@ -8,7 +9,7 @@ const FormQuestion = () => {
       <label className="font-bold">
         상대방에게 물어보고 싶은 질문이 있나요?{' '}
       </label>
-      <input
+      <Input
         value={question}
         onChange={handleQuestionChange}
         maxLength={100}

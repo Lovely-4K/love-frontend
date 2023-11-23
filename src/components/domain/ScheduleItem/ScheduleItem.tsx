@@ -23,6 +23,7 @@ const ScheduleItemContainer = styled.div<StyledProps>`
   cursor: pointer;
   min-width: 13rem;
   gap: 0.3rem;
+
   @media screen and (min-width: ${screens.lg}) {
     width: 100%;
   }

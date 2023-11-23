@@ -1,5 +1,6 @@
 import useUserAnswer from '../../hooks/useUserAnswer';
 import FormAnswerItem from './FormAnswerItem';
+import { Button } from '~/components/common';
 import useQuestion from '~/pages/Question/hooks/useQuestion';
 
 const FormAnswers = () => {
@@ -26,13 +27,14 @@ const FormAnswers = () => {
         ))}
       </div>
       <div className="flex w-full justify-end">
-        <button
+        <Button
           disabled={userAnswer === -1}
           onClick={() => handleSubmitUserAnswer(userAnswer)}
-          className="btn-small btn-primary w-full rounded-xl hover:border-none hover:bg-base-secondary disabled:cursor-not-allowed disabled:bg-grey-300"
+          size="small"
+          className="btn-primary rounded-xl hover:border-none hover:bg-base-secondary disabled:cursor-not-allowed disabled:bg-grey-300"
         >
           {buttonContent}
-        </button>
+        </Button>
       </div>
     </>
   );

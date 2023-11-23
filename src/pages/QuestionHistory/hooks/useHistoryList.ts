@@ -1,39 +1,46 @@
-import { useState, useEffect, MutableRefObject } from 'react';
+import { useState, useEffect } from 'react';
 import type { QuestionHistoryPreview } from '~/types';
 import useObserve from '~/hooks/useObserve';
 import useGetQuestionHistory from '~/services/question/useGetQuestionHistory';
 
-interface useHistoryListProps {
-  historyListRef: MutableRefObject<null>;
-}
-
-const useHistoryList = ({ historyListRef }: useHistoryListProps) => {
+const useHistoryList = () => {
   const [histories, setHistories] = useState<QuestionHistoryPreview[]>([]);
-  const [lastQuestionId, setLastQuestionId] = useState(0);
-  const { data } = useGetQuestionHistory({ lastQuestionId });
+  const [lastQuestionId, setLastQuestionId] = useState<number | null>(null);
+  const { data: histoiresResponse } = useGetQuestionHistory({
+    lastQuestionId,
+  });
   const [observe] = useObserve(() => {
-    const lastQuestion = histories[histories.length - 1];
-    const { questionId: lastQuestionId } = lastQuestion;
-    setLastQuestionId(lastQuestionId);
+    if (histories.length === 0) return;
+
+    const lastChild = histories[histories.length - 1];
+    const { questionId } = lastChild;
+    setLastQuestionId(questionId);
   });
 
   useEffect(() => {
-    if (data !== undefined) {
-      setHistories((currHistories) => {
-        return [...currHistories, ...data];
-      });
-    }
-  }, [data]);
+    if (histoiresResponse === undefined) return;
+
+    const { answeredQuestions } = histoiresResponse;
+    setHistories((currHistories) => {
+      return [...currHistories, ...answeredQuestions];
+    });
+  }, [histoiresResponse]);
 
   useEffect(() => {
-    if (data && data.length < 10) return;
-    const historyListNode = historyListRef.current;
-
-    if (historyListNode) {
-      const { lastChild } = historyListNode;
-      observe(lastChild);
+    if (!histoiresResponse || histoiresResponse.answeredQuestions.length < 10) {
+      return;
     }
-  }, [data, observe, historyListRef]);
+
+    const lastQuestion = histories[histories.length - 1];
+
+    if (lastQuestion) {
+      const { questionId } = lastQuestion;
+      const lastChild = document.getElementById(String(questionId));
+      if (lastChild) {
+        observe(lastChild);
+      }
+    }
+  }, [histories]);
 
   return {
     histories,

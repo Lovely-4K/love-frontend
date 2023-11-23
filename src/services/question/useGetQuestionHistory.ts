@@ -1,18 +1,20 @@
 import { useQuery } from '@tanstack/react-query';
-import { QuestionHistoryPreview } from '~/types';
+import { QuestionHistoryList } from '~/types';
 import apiClient from '~/api/apiClient';
 
 interface useGetQuestionHistoryParams {
-  lastQuestionId: number;
+  lastQuestionId: number | null;
 }
 
 const getQuestionHistory = async (
-  lastQuestionId: number = 0,
-): Promise<QuestionHistoryPreview[]> => {
-  const url = `/questions?id=${lastQuestionId}&limit=20`;
+  lastQuestionId: number | null = null,
+): Promise<QuestionHistoryList> => {
+  const url = lastQuestionId
+    ? `/questions?id=${lastQuestionId}&limit=10`
+    : `questions?limit=10`;
   const response = await apiClient.get(url);
 
-  return response.data;
+  return response.data.body;
 };
 
 const useGetQuestionHistory = ({

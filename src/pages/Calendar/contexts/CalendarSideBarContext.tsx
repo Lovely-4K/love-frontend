@@ -9,7 +9,7 @@ import {
 } from 'react';
 import type { EditSchedule } from '~/types';
 import { useCalendar } from '../hooks';
-import { useCreateSchedule } from '~/hooks/calendar';
+import { useCreateSchedule } from '~/services/calendar';
 
 interface CalendarSideBarContextProps {
   activeEdit: boolean;

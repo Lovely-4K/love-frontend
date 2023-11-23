@@ -19,6 +19,10 @@ interface Diarys {
     diaryId: number;
     kakaoMapId: number;
     imageUrl: string;
+    datingDay: string;
+    latitude: number;
+    longitude: number;
+    placeName: string;
   }[];
   pageable: {
     pageNumber: number;
