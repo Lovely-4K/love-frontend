@@ -9,9 +9,7 @@ const getScheduleColor = (schedule: Schedule, colorInfo: ColorInfo) => {
   const { scheduleType, ownerId } = schedule;
   const { boyCalendarColor, boyId, girlCalendarColor } = colorInfo;
   if (scheduleType === 'PERSONAL') {
-    if (ownerId === boyId) return boyCalendarColor;
-
-    return girlCalendarColor;
+    return ownerId === boyId ? boyCalendarColor : girlCalendarColor;
   }
 
   return scheduleColors[scheduleType];
