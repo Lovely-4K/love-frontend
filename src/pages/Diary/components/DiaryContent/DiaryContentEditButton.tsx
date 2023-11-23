@@ -11,7 +11,7 @@ const DiaryContentEditButton = () => {
         <Button
           onClick={handleEditCancel}
           size="small"
-          className="w-full rounded-xl border border-grey-200 text-grey-400"
+          className="rounded-xl border border-grey-200 text-grey-400"
         >
           취소
         </Button>
@@ -19,7 +19,7 @@ const DiaryContentEditButton = () => {
           type="submit"
           onClick={handleSubmitForm}
           size="small"
-          className="w-full rounded-xl border bg-base-primary text-base-white"
+          className="rounded-xl border bg-base-primary text-base-white"
         >
           완료
         </Button>
