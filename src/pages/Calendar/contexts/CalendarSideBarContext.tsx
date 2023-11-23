@@ -33,13 +33,13 @@ const CalendarSideBarProvider = ({ children }: PropsWithChildren) => {
   const { mutate: patchSchedule } = useEditSchedule();
   const [activeEdit, setActiveEdit] = useState(false);
 
-  const initialEditDate = useMemo(() => {
+  const formatPickedDate = useMemo(() => {
     return format(pickedDate, 'yyyy-MM-dd');
   }, [pickedDate]);
 
   const [scheduleInfo, setScheduleInfo] = useState<ScheduleInfo>({
-    startDate: initialEditDate,
-    endDate: initialEditDate,
+    startDate: formatPickedDate,
+    endDate: formatPickedDate,
     scheduleDetails: '',
     scheduleType: 'PERSONAL',
     scheduleId: null,
@@ -47,7 +47,7 @@ const CalendarSideBarProvider = ({ children }: PropsWithChildren) => {
 
   useEffect(() => {
     setActiveEdit(false);
-  }, [initialEditDate]);
+  }, [formatPickedDate]);
 
   const editSchedule = useCallback(
     (prevInfo: Schedule) => {
@@ -61,8 +61,8 @@ const CalendarSideBarProvider = ({ children }: PropsWithChildren) => {
         });
       } else {
         setScheduleInfo({
-          startDate: initialEditDate,
-          endDate: initialEditDate,
+          startDate: formatPickedDate,
+          endDate: formatPickedDate,
           scheduleDetails: '',
           scheduleType: 'PERSONAL',
           scheduleId: null,
@@ -70,7 +70,7 @@ const CalendarSideBarProvider = ({ children }: PropsWithChildren) => {
       }
       setActiveEdit(true);
     },
-    [initialEditDate],
+    [formatPickedDate],
   );
 
   const closeEditSchedule = useCallback(() => {

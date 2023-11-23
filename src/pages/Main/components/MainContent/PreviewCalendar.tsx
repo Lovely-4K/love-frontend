@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { scheduleColors } from '~/constants';
 import { paths } from '~/router';
 import type { ColorInfo, Schedule } from '~/types';
@@ -22,13 +23,15 @@ const PreviewCalendar = () => {
   const scheduleList =
     schedules.length > 0 ? (
       schedules.map((schedule) => (
-        <ScheduleItem
-          startDate={schedule.startDate}
-          endDate={schedule.endDate}
-          key={schedule.calendarId}
-          title={schedule.scheduleDetails}
-          customColor={getScheduleColor(schedule, colorInfo)}
-        />
+        <Link to={paths.CALENDAR}>
+          <ScheduleItem
+            startDate={schedule.startDate}
+            endDate={schedule.endDate}
+            key={schedule.calendarId}
+            title={schedule.scheduleDetails}
+            customColor={getScheduleColor(schedule, colorInfo)}
+          />
+        </Link>
       ))
     ) : (
       <PreviewNoneItem

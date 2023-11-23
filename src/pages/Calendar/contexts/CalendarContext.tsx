@@ -20,6 +20,7 @@ interface CalendarContextProps {
   pickedDate: Date;
   changePickedDate(date: Date): void;
   getMonthScheduleQuery: UseQueryResult<CalendarSchedule, Error>;
+  validSchedules: CalendarSchedule['schedules'];
 }
 
 const CalendarContext = createContext<CalendarContextProps | null>(null);
@@ -42,6 +43,17 @@ const CalendarProvider = ({ children }: PropsWithChildren) => {
     to: endDate,
   });
 
+  const validSchedules = useMemo(() => {
+    const formatPickedDate = format(pickedDate, 'yyyy-MM-dd');
+    if (!getMonthScheduleQuery.isSuccess) return [];
+
+    return getMonthScheduleQuery.data.schedules.filter(
+      (schedule) =>
+        schedule.startDate <= formatPickedDate &&
+        schedule.endDate >= formatPickedDate,
+    );
+  }, [pickedDate, getMonthScheduleQuery]);
+
   const changePickedDate = useCallback((date: Date) => {
     setPickedDate(date);
   }, []);
@@ -51,8 +63,9 @@ const CalendarProvider = ({ children }: PropsWithChildren) => {
       pickedDate,
       changePickedDate,
       getMonthScheduleQuery,
+      validSchedules,
     };
-  }, [pickedDate, changePickedDate, getMonthScheduleQuery]);
+  }, [pickedDate, changePickedDate, getMonthScheduleQuery, validSchedules]);
 
   return (
     <CalendarContext.Provider value={value}>
