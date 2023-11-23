@@ -29,9 +29,8 @@ const DiaryContentText = ({
         maxLength={200}
         placeholder="데이트를 하며 좋았던 순간을 기록해보세요"
         readOnly={!editable}
-      >
-        {diaryText}
-      </textarea>
+        defaultValue={diaryText}
+      ></textarea>
     </div>
   );
 };

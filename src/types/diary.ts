@@ -21,7 +21,7 @@ interface Diary {
   pictures: Pictures;
 }
 
-interface DiaryDetailForm {
+interface DiaryDetailEditTexts {
   datingDay: string;
   score: number;
   category: categoryType;
@@ -62,4 +62,4 @@ interface Diarys {
   empty: boolean;
 }
 
-export type { Diary, Diarys, Pictures, DiaryDetailForm };
+export type { Diary, Diarys, Pictures, DiaryDetailEditTexts };

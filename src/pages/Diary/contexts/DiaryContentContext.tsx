@@ -1,4 +1,4 @@
-import { PropsWithChildren, createContext, useState } from 'react';
+import { PropsWithChildren, createContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Diary, Pictures } from '~/types';
 import categoryType from '~/components/common/CategoryButton/CategoryTypes';
@@ -48,20 +48,35 @@ const DiaryContentProvider = ({
   );
   const { spotId, diaryId } = params;
   const { data: diary } = useGetDiaryDetail({ diaryId });
-  const placeName = diary?.placeName ?? '';
-  const [datingDay, setDatingDay] = useState<string>(
-    diary?.datingDay ?? getTodayDate(),
-  );
-  console.log(diary);
-  const [score, setScore] = useState<number>(diary?.score ?? 5);
-  const [category, setCategory] = useState<categoryType>(
-    diary?.category ?? 'CAFE',
-  );
-  const [myText, setMyText] = useState<string>(diary?.myText ?? '');
-  const opponentText = diary?.opponentText ?? '';
-  const [pictures, setPictures] = useState<Pictures>(
-    diary?.pictures ?? ({} as Pictures),
-  );
+  const [placeName, setPlaceName] = useState<string>('');
+  const [datingDay, setDatingDay] = useState<string>(getTodayDate());
+  const [score, setScore] = useState<number>(5);
+  const [category, setCategory] = useState<categoryType>('CAFE');
+  const [myText, setMyText] = useState<string>('');
+  const [opponentText, setOpponentText] = useState<string>('');
+  const [pictures, setPictures] = useState<Pictures>({} as Pictures);
+
+  useEffect(() => {
+    if (diary === undefined) return;
+
+    const {
+      placeName,
+      datingDay,
+      score,
+      category,
+      myText,
+      opponentText,
+      pictures,
+    } = diary;
+
+    setPlaceName(placeName);
+    setDatingDay(datingDay);
+    setScore(score);
+    setCategory(category);
+    setMyText(myText);
+    setOpponentText(opponentText);
+    setPictures(pictures);
+  }, [diary]);
 
   return (
     <DiaryContentContext.Provider

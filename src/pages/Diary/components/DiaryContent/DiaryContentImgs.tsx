@@ -3,7 +3,8 @@ import DiaryImgsCarousel from './DiaryImgsCarousel';
 import DiaryImgsUpload from './DiaryImgsUpload';
 
 const DiaryContentImgs = () => {
-  const { editable } = useDiaryContent();
+  const { data } = useDiaryContent();
+  const { editable } = data;
 
   return <>{editable ? <DiaryImgsUpload /> : <DiaryImgsCarousel />}</>;
 };

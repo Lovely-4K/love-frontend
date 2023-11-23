@@ -15,6 +15,7 @@ const getDiaryDetail = async (diaryId: string): Promise<Diary> => {
 
 const useGetDiaryDetail = ({ diaryId }: useGetDiaryDetailParams) => {
   return useQuery({
+    enabled: diaryId !== undefined,
     queryKey: ['diaryDetail', diaryId],
     queryFn: () => getDiaryDetail(diaryId as string),
   });
