@@ -1,5 +1,6 @@
 interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   src: string | undefined;
+  chatImage?: boolean;
   size?: 'small' | 'medium' | 'large' | 'extra-large';
 }
 
@@ -10,9 +11,17 @@ const avatarSizes = {
   'extra-large': 'w-[9.375rem] h-[9.375rem]',
 };
 
-const Avatar = ({ src, size = 'medium', className, ...props }: AvatarProps) => {
+const Avatar = ({
+  src,
+  chatImage = false,
+  size = 'medium',
+  className,
+  ...props
+}: AvatarProps) => {
+  const chatImageStyle = chatImage ? 'chat-image' : '';
+
   return (
-    <div className="avatar" {...props}>
+    <div className={`avatar ${chatImageStyle}`} {...props}>
       <div
         className={`rounded-full border border-grey-100 bg-grey-100 ${avatarSizes[size]} ${className}`}
       >

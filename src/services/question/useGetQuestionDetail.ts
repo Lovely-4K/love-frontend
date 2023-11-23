@@ -11,9 +11,9 @@ const getQuestionDetail = async (
   return response.data.body;
 };
 
-const useGetQuestionDetail = (questionId: number) => {
+const useGetQuestionDetail = (questionId: number, openedStatus: boolean) => {
   return useQuery({
-    enabled: questionId !== -1,
+    enabled: questionId !== -1 && openedStatus,
     queryKey: ['questionDetail', questionId],
     queryFn: () => getQuestionDetail(questionId),
   });
