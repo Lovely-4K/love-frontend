@@ -7,8 +7,9 @@ import DiaryContentRating from './DiaryContentRating';
 import { DiaryCategories } from '~/pages/Diary/components/DiaryCommon';
 
 const DiaryContentBody = () => {
-  const { diary, editable } = useDiaryContent();
-
+  const { data, methods } = useDiaryContent();
+  const { diary, editable, category } = data;
+  const { handleSubmitForm, handleChangeCategory } = methods;
   const Body = () => {
     // if (!diary) return <Loading />;
     if (!diary) return;
@@ -16,18 +17,22 @@ const DiaryContentBody = () => {
     return (
       <div className="flex w-full flex-col gap-6 overflow-y-auto overflow-x-hidden">
         {!editable && <DiaryContentHeader />}
-        <div className="flex flex-col gap-6 overflow-y-auto px-3">
+        <form
+          onSubmit={handleSubmitForm}
+          className="flex flex-col gap-6 overflow-y-auto px-3"
+        >
           <div className="flex items-center justify-between">
             <DiaryContentDate />
             <DiaryContentRating />
           </div>
           <DiaryCategories
-            defaultCategory={diary?.category}
+            defaultCategory={category}
             editable={editable}
+            handleChangeCategory={handleChangeCategory}
           />
           <DiaryContentDetail />
           <DiaryContentEditButton />
-        </div>
+        </form>
       </div>
     );
   };

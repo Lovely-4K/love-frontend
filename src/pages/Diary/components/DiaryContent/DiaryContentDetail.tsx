@@ -1,4 +1,3 @@
-import { Pictures } from '~/types';
 import useDiaryContent from '../../hooks/DiaryContent/useDiaryContent';
 import DiaryContentImgs from './DiaryContentImgs';
 import DiaryContentText from './DiaryContentText';
@@ -6,8 +5,10 @@ import { DiaryImgsProvider } from '~/pages/Diary/contexts/DiaryImgsContext';
 import { changeImageType } from '~/utils/DiaryContentImgs';
 
 const DiaryContentDetail = () => {
-  const { diary, editable } = useDiaryContent();
-  const imageArray = changeImageType(diary?.pictures as Pictures);
+  const { data, methods } = useDiaryContent();
+  const { editable, pictures, myText, opponentText } = data;
+  const { handleChangeMyText } = methods;
+  const imageArray = changeImageType(pictures);
 
   return (
     <div className="flex flex-col gap-2">
@@ -19,13 +20,18 @@ const DiaryContentDetail = () => {
         <div>
           <div>
             <div className="text-lg font-bold">나의 기록</div>
-            <DiaryContentText editable={editable} diaryText={diary?.myText} />
+            <DiaryContentText
+              editable={editable}
+              diaryText={myText}
+              handleChangeText={handleChangeMyText}
+            />
           </div>
           <div>
             <div className="text-lg font-bold">상대방의 기록</div>
             <DiaryContentText
               editable={false}
-              diaryText={diary?.opponentText}
+              diaryText={opponentText}
+              handleChangeText={() => {}}
             />
           </div>
         </div>

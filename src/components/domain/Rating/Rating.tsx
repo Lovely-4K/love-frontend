@@ -1,21 +1,19 @@
-import { useState } from 'react';
-
 interface RatingProps {
   readonly: boolean;
-  defaultScore?: undefined | number;
+  score?: undefined | number;
+  handleChangeScore: (score: number) => void;
 }
 
 interface RatingInputProps {
   assignedScore: number;
   activateStatus: boolean;
 }
-const Rating = ({ readonly, defaultScore = 4 }: RatingProps) => {
-  const [score, setScore] = useState(defaultScore);
+const Rating = ({ readonly, score = 5, handleChangeScore }: RatingProps) => {
   const ratingInputArray = [...new Array(5)].map((_, index) => index < score);
   const RatingInput = ({ assignedScore, activateStatus }: RatingInputProps) => {
     return (
       <input
-        onClick={() => setScore(assignedScore)}
+        onClick={() => handleChangeScore(assignedScore)}
         type="radio"
         name="rating-3"
         className="mask mask-heart w-5 bg-base-primary [&]:disabled:cursor-default"

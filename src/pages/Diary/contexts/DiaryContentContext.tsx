@@ -9,7 +9,7 @@ interface DiaryFormValue {
   placeName: string;
   datingDay: string;
   score: number;
-  category: string;
+  category: categoryType;
   myText: string;
   opponentText: string;
   pictures: Pictures;

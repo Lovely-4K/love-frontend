@@ -1,9 +1,12 @@
+import { memo } from 'react';
 import { paths } from '~/router';
 import useDiaryContent from '../../hooks/DiaryContent/useDiaryContent';
 import { DiaryHeader } from '~/pages/Diary/components/DiaryCommon';
 
-const DiaryContentHeader = () => {
-  const { editable, handleEditMode, spotId, diary } = useDiaryContent();
+const DiaryContentHeader = memo(() => {
+  const { data, methods } = useDiaryContent();
+  const { placeName, spotId, editable } = data;
+  const { handleEditMode } = methods;
   const { DIARY } = paths;
   const prevLink = `${DIARY.ROOT}/${spotId}`;
 
@@ -17,10 +20,10 @@ const DiaryContentHeader = () => {
 
   return (
     <div className="flex items-center justify-between">
-      <DiaryHeader prevLink={prevLink} spotName={diary?.placeName as string} />
+      <DiaryHeader prevLink={prevLink} spotName={placeName} />
       <HeaderButton />
     </div>
   );
-};
+});
 
 export default DiaryContentHeader;
