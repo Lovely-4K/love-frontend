@@ -16,8 +16,8 @@ const useSearchLocation = ({ keyword }: useSearchLocationProps) => {
   if (!diaryMapContext) throw new Error('Cannot find diaryMapProvider');
   if (!diaryContext) throw new Error('Cannot find diaryProvider');
 
-  const { map, setMap, mapCategory } = diaryMapContext;
-  const { markers, setMarkers, info, setInfo } = diaryContext;
+  const { mapCategory } = diaryMapContext;
+  const { markers, setMarkers, info, setInfo, map, setMap } = diaryContext;
   const { startSearchMode } = useInputRef();
   const { userPosition } = useCurrentLocation();
   const { resetMapCategory } = useMapCategory();

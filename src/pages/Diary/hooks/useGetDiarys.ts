@@ -24,7 +24,7 @@ const getDiarys = async ({
 
 const useGetDiarys = (
   { selectSortMethod, selectCategory }: getDiarysParams = {
-    selectSortMethod: 'createdDated',
+    selectSortMethod: 'createdDate',
   },
 ) => {
   return useQuery({

@@ -1,5 +1,7 @@
 import { MapMarker } from 'react-kakao-maps-sdk';
 import { UserPosition } from '~/types';
+import useDiaryToMarker from '~/pages/Diary/hooks/useDiarytoMarker';
+import useGetDiarys from '~/pages/Diary/hooks/useGetDiarys';
 import useHandleMarker from '~/pages/Diary/hooks/useHandleMarker';
 import useInputRef from '~/pages/Diary/hooks/useInputRef';
 import useSearchLocation from '~/pages/Diary/hooks/useSearchLocation';
@@ -10,8 +12,10 @@ const DiaryMapMarker = ({ userPosition }: UserPosition) => {
     keyword: searchKeyword,
   });
   const { handleMarker } = useHandleMarker();
+  const { data: diarys, isSuccess } = useGetDiarys();
+  const diaryMarkers = useDiaryToMarker({ diarys });
 
-  if (!userPosition) return;
+  if (!userPosition || !isSuccess || !diarys) return;
 
   return (
     <>
@@ -26,7 +30,22 @@ const DiaryMapMarker = ({ userPosition }: UserPosition) => {
           },
         }}
       />
-      {/* 다이어리 마커 */}
+      {/* 다이어리 목록 마커 */}
+      {diaryMarkers?.map((marker) => (
+        <MapMarker
+          key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}
+          position={marker.position}
+          onClick={() => handleMarker(marker)}
+          image={{
+            src: '/src/assets/icons/mapMarkerGone.svg',
+            size: {
+              width: 35,
+              height: 40,
+            },
+          }}
+        />
+      ))}
+      {/* 일반 마커 */}
       {markers.map((marker) => (
         <MapMarker
           key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}

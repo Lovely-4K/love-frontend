@@ -18,6 +18,8 @@ interface DiaryContextProps {
   setInfo: React.Dispatch<React.SetStateAction<MapMarker | undefined>>;
   infoOpen: boolean;
   setInfoOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  map: kakao.maps.Map | undefined;
+  setMap: React.Dispatch<React.SetStateAction<kakao.maps.Map | undefined>>;
 }
 
 const DiaryContext = createContext<DiaryContextProps | null>(null);
@@ -31,6 +33,7 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
   const [selectSortMethod, setSelectSortMethod] = useState('');
   const [info, setInfo] = useState<MapMarker>();
   const [infoOpen, setInfoOpen] = useState<boolean>(false);
+  const [map, setMap] = useState<kakao.maps.Map>();
 
   return (
     <DiaryContext.Provider
@@ -51,6 +54,8 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
         setInfo,
         infoOpen,
         setInfoOpen,
+        map,
+        setMap,
       }}
     >
       {children}
