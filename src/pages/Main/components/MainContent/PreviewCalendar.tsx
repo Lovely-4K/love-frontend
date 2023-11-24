@@ -23,11 +23,10 @@ const PreviewCalendar = () => {
   const scheduleList =
     schedules.length > 0 ? (
       schedules.map((schedule) => (
-        <Link to={paths.CALENDAR}>
+        <Link to={paths.CALENDAR} key={schedule.calendarId}>
           <ScheduleItem
             startDate={schedule.startDate}
             endDate={schedule.endDate}
-            key={schedule.calendarId}
             title={schedule.scheduleDetails}
             customColor={getScheduleColor(schedule, colorInfo)}
           />

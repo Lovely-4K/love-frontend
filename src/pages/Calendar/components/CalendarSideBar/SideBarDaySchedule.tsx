@@ -12,6 +12,7 @@ const SideBarDaySchedule = () => {
     validSchedules.length > 0 ? (
       validSchedules.map((schedule) => (
         <ScheduleItem
+          key={schedule.calendarId}
           customColor={getScheduleColor(schedule, data.colorInfo)}
           startDate={schedule.startDate}
           endDate={schedule.endDate}
