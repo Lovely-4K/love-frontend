@@ -8,23 +8,29 @@ interface RatingInputProps {
   assignedScore: number;
   activateStatus: boolean;
 }
+
 const Rating = ({ readonly, score = 5, handleChangeScore }: RatingProps) => {
   const ratingInputArray = [...new Array(5)].map((_, index) => index < score);
   const RatingInput = ({ assignedScore, activateStatus }: RatingInputProps) => {
     return (
       <input
-        onClick={() => handleChangeScore(assignedScore)}
+        onChange={(event) => {
+          event.target.checked = !event.target.checked;
+        }}
+        onClick={() => {
+          handleChangeScore(assignedScore);
+        }}
         type="radio"
         name="rating-3"
-        className="mask mask-heart w-5 bg-base-primary [&]:disabled:cursor-default"
+        className="mask mask-heart w-5 animate-none bg-base-primary [&]:disabled:cursor-default"
         disabled={readonly}
-        checked={activateStatus}
+        defaultChecked={activateStatus}
       />
     );
   };
 
   return (
-    <div className="rating gap-1">
+    <fieldset className="rating gap-1">
       {ratingInputArray.map((activateStatus, index) => {
         return (
           <RatingInput
@@ -34,7 +40,7 @@ const Rating = ({ readonly, score = 5, handleChangeScore }: RatingProps) => {
           />
         );
       })}
-    </div>
+    </fieldset>
   );
 };
 

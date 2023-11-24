@@ -1,38 +1,69 @@
 import type categoryType from '~/components/common/CategoryButton/CategoryTypes';
-import { useContext, ChangeEvent } from 'react';
-import type { Pictures } from '~/types';
-import { DiaryContentContext } from '~/pages/Diary/contexts/DiaryContentContext';
+import { ChangeEvent } from 'react';
+import type { Pictures, DiaryResponse, DiaryEditRequest } from '~/types';
 
-const useDiaryContent = () => {
-  const diaryContentContext = useContext(DiaryContentContext);
-  const {
-    editable,
-    setEditable,
-    diary,
-    spotId,
-    diaryId,
-    formValue,
-    formSetMethod,
-  } = diaryContentContext;
-  const { setDatingDay, setScore, setCategory, setMyText, setPictures } =
-    formSetMethod;
+interface useDiaryContentParams {
+  diary: DiaryResponse | DiaryEditRequest;
+  setDiary: React.Dispatch<
+    React.SetStateAction<DiaryResponse | DiaryEditRequest>
+  >;
+  editable: boolean;
+  setEditable: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
+const useDiaryContent = ({
+  diary,
+  setDiary,
+  setEditable,
+}: useDiaryContentParams) => {
   const handleChangeDatingDay = (event: ChangeEvent<HTMLInputElement>) => {
-    setDatingDay(event.target.value);
+    if (!diary) return;
+
+    const { value } = event.target;
+
+    setDiary({
+      ...diary,
+      datingDay: value,
+    });
   };
 
   const handleChangeMyText = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    if (event.target instanceof HTMLInputElement) {
-      setMyText(event.target.value);
+    if (!diary) return;
+    if (event.target instanceof HTMLTextAreaElement) {
+      const { value } = event.target;
+
+      setDiary({
+        ...diary,
+        myText: value,
+      });
     }
   };
 
   const handleChangeCategory = (category: categoryType) => {
-    setCategory(category);
+    if (!diary) return;
+
+    setDiary({
+      ...diary,
+      category,
+    });
   };
 
   const handleChangePictures = (pictures: Pictures) => {
-    setPictures(pictures);
+    if (!diary) return;
+
+    setDiary({
+      ...diary,
+      pictures,
+    });
+  };
+
+  const handleChangeScore = (score: number) => {
+    if (!diary) return;
+
+    setDiary({
+      ...diary,
+      score,
+    });
   };
 
   const handleEditMode = () => {
@@ -47,28 +78,15 @@ const useDiaryContent = () => {
     setEditable(false);
   };
 
-  const handleChangeScore = (score: number) => {
-    setScore(score);
-  };
-
   return {
-    data: {
-      editable,
-      spotId,
-      diaryId,
-      diary,
-      ...formValue,
-    },
-    methods: {
-      handleEditCancel,
-      handleEditMode,
-      handleSubmitForm,
-      handleChangeDatingDay,
-      handleChangeMyText,
-      handleChangeScore,
-      handleChangeCategory,
-      handleChangePictures,
-    },
+    handleEditCancel,
+    handleEditMode,
+    handleSubmitForm,
+    handleChangeDatingDay,
+    handleChangeMyText,
+    handleChangeScore,
+    handleChangeCategory,
+    handleChangePictures,
   };
 };
 

@@ -1,9 +1,9 @@
-import useDiaryContent from '../../hooks/DiaryContent/useDiaryContent';
+import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
 import { Rating } from '~/components/domain';
 
 const DiaryContentRating = () => {
-  const { data, methods } = useDiaryContent();
-  const { score, editable } = data;
+  const { diary, editable, methods } = useDiaryContentContext();
+  const { score } = diary;
   const { handleChangeScore } = methods;
 
   return (

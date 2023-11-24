@@ -1,4 +1,4 @@
-import { PropsWithChildren, createContext, useState } from 'react';
+import { PropsWithChildren, createContext, useEffect, useState } from 'react';
 
 interface DiaryImgsContextProps {
   images: string[];
@@ -16,6 +16,10 @@ const DiaryImgsProvider = ({
   children,
 }: DiaryImgsProviderProps) => {
   const [images, setImages] = useState<string[]>(defaultImages);
+
+  useEffect(() => {
+    setImages(defaultImages);
+  }, [defaultImages]);
 
   return (
     <DiaryImgsContext.Provider value={{ images, setImages }}>

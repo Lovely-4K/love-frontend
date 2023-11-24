@@ -1,10 +1,9 @@
-import useDiaryContent from '../../hooks/DiaryContent/useDiaryContent';
+import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
 import DiaryImgsCarousel from './DiaryImgsCarousel';
 import DiaryImgsUpload from './DiaryImgsUpload';
 
 const DiaryContentImgs = () => {
-  const { data } = useDiaryContent();
-  const { editable } = data;
+  const { editable } = useDiaryContentContext();
 
   return <>{editable ? <DiaryImgsUpload /> : <DiaryImgsCarousel />}</>;
 };

@@ -1,8 +1,7 @@
-import useDiaryContent from '../../hooks/DiaryContent/useDiaryContent';
+import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
 import { Button } from '~/components/common';
 const DiaryContentEditButton = () => {
-  const { data, methods } = useDiaryContent();
-  const { editable } = data;
+  const { editable, methods } = useDiaryContentContext();
   const { handleEditCancel, handleSubmitForm } = methods;
 
   return (

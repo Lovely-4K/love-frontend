@@ -1,14 +1,15 @@
 import { memo } from 'react';
 import { paths } from '~/router';
-import useDiaryContent from '../../hooks/DiaryContent/useDiaryContent';
+import { DiaryResponse } from '~/types';
+import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
 import { DiaryHeader } from '~/pages/Diary/components/DiaryCommon';
 
 const DiaryContentHeader = memo(() => {
-  const { data, methods } = useDiaryContent();
-  const { placeName, spotId, editable } = data;
+  const { editable, diary, methods } = useDiaryContentContext();
+  const { kakaoMapId, placeName } = diary as DiaryResponse;
   const { handleEditMode } = methods;
   const { DIARY } = paths;
-  const prevLink = `${DIARY.ROOT}/${spotId}`;
+  const prevLink = `${DIARY.ROOT}/${kakaoMapId}`;
 
   const HeaderButton = () =>
     editable || (

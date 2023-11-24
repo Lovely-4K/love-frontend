@@ -1,9 +1,9 @@
 import { memo } from 'react';
-import useDiaryContent from '../../hooks/DiaryContent/useDiaryContent';
+import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
 
 const DiaryContentDate = memo(() => {
-  const { data, methods } = useDiaryContent();
-  const { datingDay, editable } = data;
+  const { diary, editable, methods } = useDiaryContentContext();
+  const { datingDay } = diary;
   const { handleChangeDatingDay } = methods;
 
   return (

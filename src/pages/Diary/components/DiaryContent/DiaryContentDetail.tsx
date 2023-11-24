@@ -1,14 +1,15 @@
-import useDiaryContent from '../../hooks/DiaryContent/useDiaryContent';
+import { useMemo } from 'react';
+import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
 import DiaryContentImgs from './DiaryContentImgs';
 import DiaryContentText from './DiaryContentText';
 import { DiaryImgsProvider } from '~/pages/Diary/contexts/DiaryImgsContext';
-import { changeImageType } from '~/utils/DiaryContentImgs';
+import { changeImageType } from '~/utils/Diary';
 
 const DiaryContentDetail = () => {
-  const { data, methods } = useDiaryContent();
-  const { editable, pictures, myText, opponentText } = data;
+  const { editable, diary, methods } = useDiaryContentContext();
+  const { pictures, myText, opponentText } = diary;
   const { handleChangeMyText } = methods;
-  const imageArray = changeImageType(pictures);
+  const imageArray = useMemo(() => changeImageType(pictures), [pictures]);
 
   return (
     <div className="flex flex-col gap-2">
