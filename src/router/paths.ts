@@ -10,7 +10,6 @@ const PATHS = {
     SPOT: '/diary/:spotId',
     DIARY_CREATE: '/diary/:spotId/create',
     DIARY_DETAIL: '/diary/:spotId/:diaryId',
-    DIARY_EDIT: '/diary/:spotId/:diaryId/edit',
   },
   SETTING: '/setting',
   KAKAO: 'https://love-back.kro.kr/oauth2/authorization/kakao',
