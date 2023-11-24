@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { Fragment } from 'react';
-import { colors, fontSize, screens } from '~/theme';
+import { colors, fontSize } from '~/theme';
 import { SETTING_TAB } from '../constants';
 import { useSetting } from '../hooks';
 
