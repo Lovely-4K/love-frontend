@@ -22,6 +22,7 @@ export { default as IconTopArrow } from './topArrow.svg?react';
 export { default as IconLeftArrow } from './leftArrow.svg?react';
 export { default as IconClose } from './close.svg?react';
 export { default as MapMarkerGone } from './mapMarkerGone.svg?react';
+export { default as MapMarkerYet } from './mapMarkerYet.svg?react';
 export { default as CurrentMarker } from './currentMarker.svg?react';
 export { default as SelectCoupleBtn } from './selectCoupleBtn.svg?react';
 export { default as SelectCurrentBtn } from './selectCurrentBtn.svg?react';

@@ -1,5 +1,6 @@
 import { PropsWithChildren, createContext, useState } from 'react';
-import { MapMarker } from '~/types';
+import { Diarys, MapMarker } from '~/types';
+import useGetDiarys from '~/pages/Diary/hooks/useGetDiarys';
 
 interface DiaryContextProps {
   searchKeyword: string;
@@ -20,6 +21,7 @@ interface DiaryContextProps {
   setInfoOpen: React.Dispatch<React.SetStateAction<boolean>>;
   map: kakao.maps.Map | undefined;
   setMap: React.Dispatch<React.SetStateAction<kakao.maps.Map | undefined>>;
+  diarys: Diarys;
 }
 
 const DiaryContext = createContext<DiaryContextProps | null>(null);
@@ -34,6 +36,9 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
   const [info, setInfo] = useState<MapMarker>();
   const [infoOpen, setInfoOpen] = useState<boolean>(false);
   const [map, setMap] = useState<kakao.maps.Map>();
+  const { data: diarys, isSuccess } = useGetDiarys();
+
+  if (!isSuccess) return;
 
   return (
     <DiaryContext.Provider
@@ -56,6 +61,7 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
         setInfoOpen,
         map,
         setMap,
+        diarys,
       }}
     >
       {children}

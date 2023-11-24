@@ -2,36 +2,36 @@ import { HtmlHTMLAttributes, memo } from 'react';
 import { IconHeart } from '~/assets/icons';
 
 interface MapFilterButtonProps extends HtmlHTMLAttributes<HTMLButtonElement> {
-  type: 'all' | 'visited' | 'unvisited';
+  type: 'ALL' | 'GONE' | 'YET' | '';
 }
 
 const iconStyles = {
-  visited: 'fill-base-primary stroke-base-primary h-5 w-5',
-  unvisited: 'fill-grey-300 stroke-grey-300 h-5 w-5',
+  GONE: 'fill-base-primary stroke-base-primary h-5 w-5',
+  YET: 'fill-grey-300 stroke-grey-300 h-5 w-5',
 };
 
-const IconAll = memo(() => {
+const IconALL = memo(() => {
   return (
     <div className="relative h-full w-full">
       <IconHeart
-        className={`${iconStyles.visited} absolute left-0 top-1/2 z-10 -translate-y-1/2 translate-x-[45%]`}
+        className={`${iconStyles.GONE} absolute left-0 top-1/2 z-10 -translate-y-1/2 translate-x-[45%]`}
       />
       <IconHeart
-        className={`${iconStyles.unvisited} z-10] absolute right-0 top-1/2 -translate-x-[45%] -translate-y-1/2`}
+        className={`${iconStyles.YET} z-10] absolute right-0 top-1/2 -translate-x-[45%] -translate-y-1/2`}
       />
     </div>
   );
 });
 
 const MapFilterButton = memo(
-  ({ onClick, type, ...props }: MapFilterButtonProps) => {
+  ({ onClick, type = 'ALL', ...props }: MapFilterButtonProps) => {
     const IconElement =
-      type === 'all' ? (
-        <IconAll />
-      ) : type === 'visited' ? (
-        <IconHeart className={iconStyles.visited} />
+      type === 'ALL' ? (
+        <IconALL />
+      ) : type === 'GONE' ? (
+        <IconHeart className={iconStyles.GONE} />
       ) : (
-        <IconHeart className={iconStyles.unvisited} />
+        <IconHeart className={iconStyles.YET} />
       );
 
     return (

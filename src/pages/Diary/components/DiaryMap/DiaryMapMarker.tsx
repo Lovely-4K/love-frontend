@@ -15,14 +15,9 @@ const DiaryMapMarker = ({ userPosition }: UserPosition) => {
   const { handleMarker } = useHandleMarker();
   const { data: diarys, isSuccess } = useGetDiarys();
   const diaryMarkers = useDiaryToMarker({ diarys });
-  const { handleFilterMarker } = useFilterMarker();
+  const { yetMarkers, goneMarkers } = useFilterMarker();
 
   if (!userPosition || !isSuccess || !diarys) return;
-
-  const diaryContent = diarys.content;
-  const filterType = 'GONE';
-
-  const testData = handleFilterMarker({ markers, diaryContent, filterType });
 
   return (
     <>
@@ -38,13 +33,29 @@ const DiaryMapMarker = ({ userPosition }: UserPosition) => {
         }}
       />
       {/* 다이어리 목록 마커 */}
-      {diaryMarkers?.map((marker) => (
+      {markers.length ||
+        diaryMarkers?.map((marker) => (
+          <MapMarker
+            key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}
+            position={marker.position}
+            onClick={() => handleMarker(marker)}
+            image={{
+              src: '/src/assets/icons/mapMarkerGone.svg',
+              size: {
+                width: 35,
+                height: 40,
+              },
+            }}
+          />
+        ))}
+      {/* 안 가본 곳 */}
+      {yetMarkers.map((marker) => (
         <MapMarker
           key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}
           position={marker.position}
           onClick={() => handleMarker(marker)}
           image={{
-            src: '/src/assets/icons/mapMarkerGone.svg',
+            src: '/src/assets/icons/mapMarkerYet.svg',
             size: {
               width: 35,
               height: 40,
@@ -52,8 +63,8 @@ const DiaryMapMarker = ({ userPosition }: UserPosition) => {
           }}
         />
       ))}
-      {/* 일반 마커 */}
-      {testData.map((marker) => (
+      {/* 가본 곳 */}
+      {goneMarkers.map((marker) => (
         <MapMarker
           key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}
           position={marker.position}
