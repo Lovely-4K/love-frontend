@@ -7,6 +7,7 @@ import {
   Question,
   QuestionCreate,
   QuestionHistory,
+  Setting,
 } from '~/pages';
 import Layout from './Layout';
 import PATHS from './paths';
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
           {
             path: PATHS.QUESTION_HISTORY,
             element: <QuestionHistory />,
+          },
+          {
+            path: PATHS.SETTING,
+            element: <Setting />,
           },
         ],
       },
