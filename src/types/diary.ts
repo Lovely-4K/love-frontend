@@ -1,32 +1,41 @@
 import type categoryType from '~/components/common/CategoryButton/CategoryTypes';
 
 interface Pictures {
-  pictures: {
-    firstImage: string | null;
-    secondImage: string | null;
-    thirdImage: string | null;
-    fourthImage: string | null;
-    fifthImage: string | null;
-  };
+  firstImage: string | null;
+  secondImage: string | null;
+  thirdImage: string | null;
+  fourthImage: string | null;
+  fifthImage: string | null;
 }
 
-interface Diary {
-  placeName: string;
-  kakaoMapId: number;
-  datingDay: string;
-  score: number;
-  category: categoryType;
+interface Text {
+  text: string;
+}
+
+interface Texts {
   myText: string;
   opponentText: string;
+}
+
+interface DiaryForm {
+  datingDay: string;
+  category: categoryType;
+  score: number;
   pictures: Pictures;
 }
 
-interface DiaryDetailEditTexts {
-  datingDay: string;
-  score: number;
-  category: categoryType;
-  myText: string;
-  opponentText: string;
+interface DiaryResponse extends DiaryForm, Texts {
+  placeName: string;
+  kakaoMapId: number;
+}
+
+interface DiaryEditRequest extends DiaryForm, Texts {}
+
+interface DiaryCreateReqeust extends DiaryForm, Text {
+  placeName: string;
+  kakaoMapId: number;
+  latitude: number;
+  longitude: number;
 }
 
 interface Diarys {
@@ -62,4 +71,10 @@ interface Diarys {
   empty: boolean;
 }
 
-export type { Diary, Diarys, Pictures, DiaryDetailEditTexts };
+export type {
+  Diarys,
+  Pictures,
+  DiaryResponse,
+  DiaryEditRequest,
+  DiaryCreateReqeust,
+};
