@@ -1,14 +1,25 @@
+import * as React from 'react';
+import DiaryContentProvider from '../../contexts/DiaryContent/DiaryContentContext';
+import ReadProvider from '../../contexts/DiaryContent/ReadContext';
 import DiaryContentBody from './DiaryContentBody';
-import { DiaryContentProvider } from '~/pages/Diary/contexts/DiaryContentContext';
+import { Loading } from '~/components/common';
 
 interface DiaryContentProps {
-  mode: 'create' | 'edit' | 'read';
+  mode: 'edit' | 'read';
 }
 
 const DiaryContent = ({ mode }: DiaryContentProps) => {
   return (
     <DiaryContentProvider mode={mode}>
-      <DiaryContentBody />
+      {mode === 'edit' ? (
+        <DiaryContentBody />
+      ) : (
+        <React.Suspense fallback={<Loading />}>
+          <ReadProvider>
+            <DiaryContentBody />
+          </ReadProvider>
+        </React.Suspense>
+      )}
     </DiaryContentProvider>
   );
 };

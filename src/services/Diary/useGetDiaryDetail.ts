@@ -1,12 +1,12 @@
-import { useQuery } from '@tanstack/react-query';
-import type { Diary } from '~/types';
+import { useSuspenseQuery } from '@tanstack/react-query';
+import type { DiaryResponse } from '~/types';
 import apiClient from '~/api/apiClient';
 
 interface useGetDiaryDetailParams {
   diaryId: string | undefined;
 }
 
-const getDiaryDetail = async (diaryId: string): Promise<Diary> => {
+const getDiaryDetail = async (diaryId: string): Promise<DiaryResponse> => {
   const url = `/diaries/${diaryId}`;
   const response = await apiClient.get(url);
 
@@ -14,8 +14,7 @@ const getDiaryDetail = async (diaryId: string): Promise<Diary> => {
 };
 
 const useGetDiaryDetail = ({ diaryId }: useGetDiaryDetailParams) => {
-  return useQuery({
-    enabled: diaryId !== undefined,
+  return useSuspenseQuery({
     queryKey: ['diaryDetail', diaryId],
     queryFn: () => getDiaryDetail(diaryId as string),
   });
