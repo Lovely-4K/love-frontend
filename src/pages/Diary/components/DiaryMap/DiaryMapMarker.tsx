@@ -1,6 +1,7 @@
 import { MapMarker } from 'react-kakao-maps-sdk';
 import { UserPosition } from '~/types';
 import useDiaryToMarker from '~/pages/Diary/hooks/useDiarytoMarker';
+import useFilterMarker from '~/pages/Diary/hooks/useFilterMarker';
 import useGetDiarys from '~/pages/Diary/hooks/useGetDiarys';
 import useHandleMarker from '~/pages/Diary/hooks/useHandleMarker';
 import useInputRef from '~/pages/Diary/hooks/useInputRef';
@@ -14,8 +15,14 @@ const DiaryMapMarker = ({ userPosition }: UserPosition) => {
   const { handleMarker } = useHandleMarker();
   const { data: diarys, isSuccess } = useGetDiarys();
   const diaryMarkers = useDiaryToMarker({ diarys });
+  const { handleFilterMarker } = useFilterMarker();
 
   if (!userPosition || !isSuccess || !diarys) return;
+
+  const diaryContent = diarys.content;
+  const filterType = 'GONE';
+
+  const testData = handleFilterMarker({ markers, diaryContent, filterType });
 
   return (
     <>
@@ -46,7 +53,7 @@ const DiaryMapMarker = ({ userPosition }: UserPosition) => {
         />
       ))}
       {/* 일반 마커 */}
-      {markers.map((marker) => (
+      {testData.map((marker) => (
         <MapMarker
           key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}
           position={marker.position}

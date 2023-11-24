@@ -1,29 +1,28 @@
 import { PropsWithChildren, createContext, useState } from 'react';
 
+type MapCategory = 'CAFE' | 'FOOD' | 'ACCOMODATION' | 'CULTURE' | '';
+type MarkerFilter = 'ALL' | 'GONE' | 'YET' | '';
+
 interface DiaryMapContextProps {
-  // map: kakao.maps.Map | undefined;
-  // setMap: React.Dispatch<React.SetStateAction<kakao.maps.Map | undefined>>;
-  mapCategory: 'CAFE' | 'FOOD' | 'ACCOMODATION' | 'CULTURE' | '';
-  setMapCategory: React.Dispatch<
-    React.SetStateAction<'CAFE' | 'FOOD' | 'ACCOMODATION' | 'CULTURE' | ''>
-  >;
+  mapCategory: MapCategory;
+  setMapCategory: React.Dispatch<React.SetStateAction<MapCategory>>;
+  markerFilter: MarkerFilter;
+  setMarkerFilter: React.Dispatch<React.SetStateAction<MarkerFilter>>;
 }
 
 const DiaryMapContext = createContext<DiaryMapContextProps | null>(null);
 
 const DiaryMapProvider = ({ children }: PropsWithChildren) => {
-  // const [map, setMap] = useState<kakao.maps.Map>();
-  const [mapCategory, setMapCategory] = useState<
-    'CAFE' | 'FOOD' | 'ACCOMODATION' | 'CULTURE' | ''
-  >('');
+  const [mapCategory, setMapCategory] = useState<MapCategory>('');
+  const [markerFilter, setMarkerFilter] = useState<MarkerFilter>('');
 
   return (
     <DiaryMapContext.Provider
       value={{
-        // map,
-        // setMap,
         mapCategory,
         setMapCategory,
+        markerFilter,
+        setMarkerFilter,
       }}
     >
       {children}
