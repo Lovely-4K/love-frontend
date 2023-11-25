@@ -14,7 +14,7 @@ const DiaryContent = ({ mode }: DiaryContentProps) => {
       {mode === 'edit' ? (
         <DiaryContentBody />
       ) : (
-        <React.Suspense fallback={<Loading />}>
+        <React.Suspense fallback={<Loading size="large" />}>
           <ReadProvider>
             <DiaryContentBody />
           </ReadProvider>
