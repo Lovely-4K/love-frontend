@@ -28,10 +28,8 @@ const useSearchLocation = ({ keyword }: useSearchLocationProps) => {
 
     console.log(mapCategory);
 
-    const newLatLng = new kakao.maps.LatLng(userPosition.lat, userPosition.lng); // 현재 내위치
-    // const newLatLng = map.getCenter() // 현재 지도 중심
-
     // 거리순 으로 데이터 정렬
+    const newLatLng = new kakao.maps.LatLng(userPosition.lat, userPosition.lng); // 현재 내위치
     const options = {
       location: newLatLng,
       radius: 10000,
