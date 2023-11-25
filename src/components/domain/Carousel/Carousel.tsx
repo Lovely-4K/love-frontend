@@ -1,10 +1,10 @@
 import { memo, useRef, useState } from 'react';
 
 interface CarouselProps {
-  pictures: string[];
+  pictures?: string[];
 }
 
-const Carousel = memo(({ pictures }: CarouselProps) => {
+const Carousel = memo(({ pictures = [] }: CarouselProps) => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
