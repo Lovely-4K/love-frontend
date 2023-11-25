@@ -1,7 +1,8 @@
 import type categoryType from '~/components/common/CategoryButton/CategoryTypes';
 import { ChangeEvent, useEffect, useRef } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import type { DiaryResponse, DiaryCreateTextRequest } from '~/types';
+import useCreateDiaryDetail from '~/services/Diary/useCreateDiaryDetail';
 import useEditDiaryDetail from '~/services/Diary/useEditDiaryDetail';
 
 interface useDiaryContentParams {
@@ -20,8 +21,11 @@ const useDiaryContent = ({
   images,
   setImages,
 }: useDiaryContentParams) => {
-  const locate = useLocation();
+  // const locate = useLocation();
   const params = useParams();
+  const { mutate: createFormMutate } = useCreateDiaryDetail(
+    editDiary.kakaoMapId,
+  );
   const { mutate: editFormMutate } = useEditDiaryDetail(editDiary.kakaoMapId);
   const files = useRef<File[]>([]);
 
@@ -113,28 +117,33 @@ const useDiaryContent = ({
     setEditable(true);
   };
 
+  // todo: 빈 문자열이면 오류 띄어야ㅏㅎㅁ
   const handleSubmitCreate = () => {
     const formData = new FormData();
-    const { datingDay, category, score, files, myText } = editDiary;
-    const { placeName, kakaoMapId, latitude, longitude } = locate.state;
+    const { datingDay, category, score, myText } = editDiary;
+    const { spotId } = params;
+    // const { latitude, longitude } = locate.state;
     const texts: DiaryCreateTextRequest = {
-      placeName,
-      kakaoMapId,
-      latitude,
-      longitude,
+      placeName: '두냉심열',
+      kakaoMapId: Number(spotId),
+      latitude: 37.4742361692428,
+      longitude: 126.96667714943,
+      address: '서울 관악구 봉천동 1638-13',
       datingDay,
       category,
       score,
       text: myText,
     };
-    formData.append('text', JSON.stringify(texts));
-    if (files) {
-      for (const file of files) {
-        formData.append('images', file);
-      }
-    }
-
-    //! create API 요청
+    formData.append(
+      'texts',
+      new Blob([JSON.stringify(texts)], { type: 'application/json' }),
+    );
+    // if (files) {
+    //   for (const file of files) {
+    //     formData.append('images', file);
+    //   }
+    // }
+    createFormMutate({ formData });
   };
 
   const handleSubmitEdit = (diaryId: string) => {
@@ -151,7 +160,6 @@ const useDiaryContent = ({
       'texts',
       new Blob([JSON.stringify(texts)], { type: 'application/json' }),
     );
-    console.log(texts);
 
     // if (files.current) {
     //   for (const file of files.current) {

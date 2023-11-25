@@ -10,7 +10,7 @@ interface Pictures {
 
 interface Diary {
   diaryId?: string;
-  kakaoMapId?: string;
+  kakaoMapId?: string | number;
   placeName?: string;
   datingDay: string;
   category: categoryType;
@@ -31,7 +31,8 @@ interface DiaryCreateTextRequest extends Diary {
   latitude: number;
   longitude: number;
   placeName: string;
-  kakaoMapId: string;
+  kakaoMapId: string | number;
+  address: string;
   text: string;
 }
 
