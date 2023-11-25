@@ -8,34 +8,35 @@ interface Pictures {
   fifthImage: string | null;
 }
 
-interface Text {
-  text: string;
+interface Diary {
+  kakaoMapId?: string;
+  placeName?: string;
+  datingDay: string;
+  category: categoryType;
+  score: number;
+  images?: string[];
+  files?: FileList;
 }
 
-interface Texts {
+interface DiaryResponse extends Diary {
+  kakaoMapId: string;
+  placeName: string;
+  pictures: Pictures;
   myText: string;
   opponentText: string;
 }
 
-interface DiaryForm {
-  datingDay: string;
-  category: categoryType;
-  score: number;
-  pictures: Pictures;
-}
-
-interface DiaryResponse extends DiaryForm, Texts {
-  placeName: string;
-  kakaoMapId: number;
-}
-
-interface DiaryEditRequest extends DiaryForm, Texts {}
-
-interface DiaryCreateReqeust extends DiaryForm, Text {
-  placeName: string;
-  kakaoMapId: number;
+interface DiaryCreateTextRequest extends Diary {
   latitude: number;
   longitude: number;
+  placeName: string;
+  kakaoMapId: string;
+  text: string;
+}
+
+interface DiaryEditTextRequest extends Diary {
+  myText: null | string;
+  opponentText: null | string;
 }
 
 interface Diarys {
@@ -74,7 +75,8 @@ interface Diarys {
 export type {
   Diarys,
   Pictures,
+  Diary,
   DiaryResponse,
-  DiaryEditRequest,
-  DiaryCreateReqeust,
+  DiaryCreateTextRequest,
+  DiaryEditTextRequest,
 };
