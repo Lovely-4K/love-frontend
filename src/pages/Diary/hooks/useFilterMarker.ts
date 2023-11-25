@@ -45,8 +45,6 @@ const useFilterMarker = () => {
       );
     });
 
-    console.log(gone, yet, markerFilter, diaryContent, markers);
-
     if (markerFilter === 'ALL') {
       setGoneMarkers(gone);
       setYetMarkers(yet);

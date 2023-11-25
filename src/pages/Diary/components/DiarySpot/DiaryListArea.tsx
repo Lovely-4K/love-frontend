@@ -1,9 +1,13 @@
+import { useParams } from 'react-router-dom';
 import DiaryNotContent from './DiaryNotContent';
 import DiarySpotPreviews from './DiarySpotPreviews';
 import useGetSpotDiarys from '~/services/diary/useGetSpotDiarys';
 
 const DiaryListArea = () => {
-  const { data: spotDiarys, isSuccess } = useGetSpotDiarys({ kakaoMapId: 10 });
+  const { spotId } = useParams();
+  const { data: spotDiarys, isSuccess } = useGetSpotDiarys({
+    kakaoMapId: Number(spotId),
+  });
 
   if (!isSuccess) return;
 
