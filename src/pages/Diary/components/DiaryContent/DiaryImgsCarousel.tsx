@@ -1,8 +1,10 @@
-import useDiaryContentImgs from '../../hooks/DiaryContent/useDiaryContentImgs';
+import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
 import { Carousel } from '~/components/domain';
 
 const DiaryImgsCarousel = () => {
-  const { images } = useDiaryContentImgs();
+  const diaryContentContext = useDiaryContentContext();
+  const { diary } = diaryContentContext;
+  const { images } = diary;
 
   return (
     <div className="h-[auto] max-h-[10rem]">
