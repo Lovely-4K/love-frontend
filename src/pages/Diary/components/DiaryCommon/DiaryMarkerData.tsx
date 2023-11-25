@@ -3,20 +3,17 @@ import { HtmlHTMLAttributes } from 'react';
 interface DiaryMarkerDataProps extends HtmlHTMLAttributes<HTMLDivElement> {
   content: string;
   address: string;
-  phone: string;
 }
 
 const DiaryMarkerData = ({
   content,
   address,
-  phone,
   onClick,
 }: DiaryMarkerDataProps) => {
   return (
-    <div onClick={onClick}>
+    <div onClick={onClick} className="flex flex-col justify-center gap-1">
       <p className="text-lg text-base-black">{content}</p>
-      <p className="text-sm text-grey-400">{address}</p>
-      <p className="text-sm text-base-secondary">{phone}</p>
+      <p className="text-sm text-base-secondary">{address}</p>
     </div>
   );
 };

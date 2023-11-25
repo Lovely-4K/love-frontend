@@ -16,8 +16,7 @@ const useDiaryToMarker = ({ diarys }: useDiaryToMarkerProps) => {
         lng: diary.longitude,
       },
       content: diary.placeName,
-      address: diary.placeName,
-      phone: '010-010',
+      address: diary.address,
       spotId: String(diary.kakaoMapId),
     };
 

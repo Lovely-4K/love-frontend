@@ -20,6 +20,7 @@ interface DiaryContent {
   imageUrl: string;
   datingDay: string;
   placeName: string;
+  address: string;
   latitude: number;
   longitude: number;
 }
