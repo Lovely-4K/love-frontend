@@ -6,7 +6,7 @@ import { DiaryHeader } from '~/pages/Diary/components/DiaryCommon';
 const DiaryContentHeader = memo(() => {
   const { editable, diary, methods } = useDiaryContentContext();
   const { kakaoMapId, placeName } = diary;
-  const { handleEditMode } = methods;
+  const { handleEditMode, handleDeleteDiary } = methods;
   const { DIARY } = paths;
   const prevLink = `${DIARY.ROOT}/${kakaoMapId}`;
 
@@ -14,7 +14,7 @@ const DiaryContentHeader = memo(() => {
     editable || (
       <div className="flex gap-2 text-sm text-grey-400">
         <button onClick={handleEditMode}>수정</button>
-        <button>삭제</button>
+        <button onClick={handleDeleteDiary}>삭제</button>
       </div>
     );
 

@@ -3,6 +3,7 @@ import { ChangeEvent, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import type { DiaryResponse, DiaryCreateTextRequest } from '~/types';
 import useCreateDiaryDetail from '~/services/Diary/useCreateDiaryDetail';
+import useDeleteDiaryDetail from '~/services/Diary/useDeleteDiaryDetail';
 import useEditDiaryDetail from '~/services/Diary/useEditDiaryDetail';
 
 interface useDiaryContentParams {
@@ -27,6 +28,7 @@ const useDiaryContent = ({
     editDiary.kakaoMapId,
   );
   const { mutate: editFormMutate } = useEditDiaryDetail(editDiary.kakaoMapId);
+  const { mutate: deleteMutate } = useDeleteDiaryDetail(editDiary.kakaoMapId);
   const files = useRef<File[]>([]);
 
   async function fetchImageAsBlob(url: string) {
@@ -58,6 +60,14 @@ const useDiaryContent = ({
       ...editDiary,
       datingDay: value,
     });
+  };
+
+  const handleDeleteDiary = () => {
+    const { diaryId } = params;
+
+    if (diaryId) {
+      deleteMutate({ diaryId });
+    }
   };
 
   const handleChangeMyText = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -194,6 +204,7 @@ const useDiaryContent = ({
     handleChangeImgaes,
     handleAddImages,
     handleDeleteImage,
+    handleDeleteDiary,
   };
 };
 
