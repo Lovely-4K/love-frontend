@@ -2,10 +2,10 @@ import { MapMarker } from 'react-kakao-maps-sdk';
 import { UserPosition } from '~/types';
 import useDiaryToMarker from '~/pages/Diary/hooks/useDiarytoMarker';
 import useFilterMarker from '~/pages/Diary/hooks/useFilterMarker';
-import useGetDiarys from '~/pages/Diary/hooks/useGetDiarys';
 import useHandleMarker from '~/pages/Diary/hooks/useHandleMarker';
 import useInputRef from '~/pages/Diary/hooks/useInputRef';
 import useSearchLocation from '~/pages/Diary/hooks/useSearchLocation';
+import useGetDiarys from '~/services/diary/useGetDiarys';
 
 const DiaryMapMarker = ({ userPosition }: UserPosition) => {
   const { searchKeyword } = useInputRef();

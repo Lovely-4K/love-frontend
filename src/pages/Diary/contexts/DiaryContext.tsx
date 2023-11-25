@@ -1,6 +1,6 @@
 import { PropsWithChildren, createContext, useState } from 'react';
 import { Diarys, MapMarker } from '~/types';
-import useGetDiarys from '~/pages/Diary/hooks/useGetDiarys';
+import useGetDiarys from '~/services/diary/useGetDiarys';
 
 interface DiaryContextProps {
   searchKeyword: string;

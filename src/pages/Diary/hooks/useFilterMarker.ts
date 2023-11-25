@@ -5,7 +5,7 @@ import {
   DiaryMapContext,
   MarkerFilter,
 } from '~/pages/Diary/contexts/DiaryMapContext';
-import useGetDiarys from '~/pages/Diary/hooks/useGetDiarys';
+import useGetDiarys from '~/services/diary/useGetDiarys';
 
 // interface HandleFilterMarkerProps {
 //   markers: MapMarker[];
