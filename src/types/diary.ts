@@ -9,6 +9,7 @@ interface Pictures {
 }
 
 interface Diary {
+  diaryId?: string;
   kakaoMapId?: string;
   placeName?: string;
   datingDay: string;

@@ -1,27 +1,34 @@
 import { useMutation } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 import apiClient from '~/api/apiClient';
 
-interface editDiaryDetail {
+interface EditDiaryDetailParams {
   diaryId: string;
   formData: FormData;
 }
 
-interface useEditDiaryDetail {
-  diaryId: string;
-  formData: FormData;
-}
-
-const editDiaryDetail = async ({ diaryId, formData }: editDiaryDetail) => {
+const editDiaryDetail = async ({
+  diaryId,
+  formData,
+}: EditDiaryDetailParams) => {
   const url = `/diaries/${diaryId}`;
-  const response = await apiClient.patch(url, formData);
+  const response = await apiClient.patch(url, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
 
   return response.data;
 };
 
-const useEditDiaryDetail = ({ diaryId, formData }: useEditDiaryDetail) => {
+const useEditDiaryDetail = (kakaoMapId: string) => {
+  const navigate = useNavigate();
+
   return useMutation({
     mutationKey: ['diaryEdit'],
-    mutationFn: () => editDiaryDetail({ diaryId, formData }),
+    mutationFn: ({ diaryId, formData }: EditDiaryDetailParams) =>
+      editDiaryDetail({ diaryId, formData }),
+    onSuccess: () => {
+      navigate(`/diary/${kakaoMapId}`);
+    },
   });
 };
 

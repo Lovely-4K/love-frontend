@@ -1,34 +1,57 @@
 import type categoryType from '~/components/common/CategoryButton/CategoryTypes';
-import { ChangeEvent, useEffect, useMemo } from 'react';
+import { ChangeEvent, useEffect, useRef } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import type { Pictures, DiaryResponse, DiaryCreateTextRequest } from '~/types';
-import { changeImageType } from './../../../../utils/Diary';
+import type { DiaryResponse, DiaryCreateTextRequest } from '~/types';
+import useEditDiaryDetail from '~/services/Diary/useEditDiaryDetail';
 
 interface useDiaryContentParams {
-  diary: DiaryResponse;
-  setDiary: React.Dispatch<React.SetStateAction<DiaryResponse>>;
+  editDiary: DiaryResponse;
+  setEditDiary: React.Dispatch<React.SetStateAction<DiaryResponse>>;
   editable: boolean;
   setEditable: React.Dispatch<React.SetStateAction<boolean>>;
+  images: string[];
+  setImages: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const useDiaryContent = ({
-  diary,
-  setDiary,
+  editDiary,
+  setEditDiary,
   setEditable,
+  images,
+  setImages,
 }: useDiaryContentParams) => {
   const locate = useLocation();
   const params = useParams();
-  const { placeName, kakaoMapId, latitude, longitude } = useMemo(
-    () => locate.state,
-    [locate],
-  );
-  const { diaryId } = useMemo(() => params, [params]);
+  const { mutate: editFormMutate } = useEditDiaryDetail(editDiary.kakaoMapId);
+  const files = useRef<File[]>([]);
+
+  async function fetchImageAsBlob(url: string) {
+    const response = await fetch(url);
+    const blob = await response.blob();
+
+    return blob;
+  }
+
+  function blobToFile(blob: Blob, fileName: string) {
+    const file = new File([blob], fileName, { type: blob.type });
+    files.current.push(file);
+  }
+
+  const changeUrlToFile = async (url: string) => {
+    const imageBlob = await fetchImageAsBlob(url);
+    blobToFile(imageBlob, url);
+  };
+
+  useEffect(() => {
+    files.current = [];
+    images.forEach((imageUrl) => changeUrlToFile(imageUrl));
+  }, [images]);
 
   const handleChangeDatingDay = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
 
-    setDiary({
-      ...diary,
+    setEditDiary({
+      ...editDiary,
       datingDay: value,
     });
   };
@@ -37,73 +60,51 @@ const useDiaryContent = ({
     if (event.target instanceof HTMLTextAreaElement) {
       const { value } = event.target;
 
-      setDiary({
-        ...diary,
+      setEditDiary({
+        ...editDiary,
         myText: value,
       });
     }
   };
 
   const handleChangeCategory = (category: categoryType) => {
-    setDiary({
-      ...diary,
+    setEditDiary({
+      ...editDiary,
       category,
     });
   };
 
   const handleChangeImgaes = (images: string[]) => {
-    setDiary({
-      ...diary,
-      images,
-    });
+    setImages(images);
   };
 
   const handleChangeScore = (score: number) => {
-    setDiary({
-      ...diary,
+    setEditDiary({
+      ...editDiary,
       score,
     });
   };
 
-  const changePictureToImage = (pictures: Pictures) => {
-    const images = changeImageType(pictures);
-
-    setDiary({
-      ...diary,
-      images,
-    });
-  };
-
-  const handleChangeFileList = (fileList: FileList) => {
-    setDiary({
-      ...diary,
-      files: fileList,
-    });
-  };
-
   const handleAddImages = (event: ChangeEvent<HTMLInputElement>) => {
-    if (diary.images === undefined) return;
-
     const fileLists = event.target.files!;
-    const images = [...diary.images];
-    if (images.length > 5) {
-      alert('사진은 최대 5개까지 첨부가능해요!');
-
-      return;
-    }
+    const copyImages = [...images];
 
     for (let i = 0; i < fileLists.length; i++) {
+      if (copyImages.length === 5) {
+        alert('파일은 최대 5장까지 첨부가능해요!');
+
+        return;
+      }
       const currentImageUrl = URL.createObjectURL(fileLists[i]);
-      images.push(currentImageUrl);
+      copyImages.push(currentImageUrl);
     }
 
-    handleChangeFileList(fileLists);
-    handleChangeImgaes(images);
+    handleChangeImgaes(copyImages);
   };
 
   const handleDeleteImage = (id: number) => {
-    if (diary.images === undefined) return;
-    const images = [...diary.images].filter((_, index) => index !== id);
+    if (editDiary.images === undefined) return;
+    const images = [...editDiary.images].filter((_, index) => index !== id);
 
     handleChangeImgaes(images);
   };
@@ -114,7 +115,8 @@ const useDiaryContent = ({
 
   const handleSubmitCreate = () => {
     const formData = new FormData();
-    const { datingDay, category, score, files, myText } = diary;
+    const { datingDay, category, score, files, myText } = editDiary;
+    const { placeName, kakaoMapId, latitude, longitude } = locate.state;
     const texts: DiaryCreateTextRequest = {
       placeName,
       kakaoMapId,
@@ -135,34 +137,43 @@ const useDiaryContent = ({
     //! create API 요청
   };
 
-  const handleSubmitEdit = () => {
+  const handleSubmitEdit = (diaryId: string) => {
     const formData = new FormData();
-    const { datingDay, category, myText, opponentText, score } = diary;
-    const texts = JSON.stringify({
+    const { datingDay, category, myText, opponentText, score } = editDiary;
+    const texts = {
       datingDay,
       category,
       myText,
       opponentText,
       score,
-    });
-    formData.append('text', texts);
+    };
+    formData.append(
+      'texts',
+      new Blob([JSON.stringify(texts)], { type: 'application/json' }),
+    );
+    console.log(texts);
+
+    // if (files.current) {
+    //   for (const file of files.current) {
+    //     formData.append('images', file);
+    //   }
+    // }
+    // formData.append('images', null);
+    editFormMutate({ diaryId, formData });
   };
 
   const handleSubmitForm = () => {
+    const { diaryId } = params;
     if (diaryId === undefined) {
       handleSubmitCreate();
     } else {
-      handleSubmitEdit();
+      handleSubmitEdit(diaryId);
     }
   };
 
   const handleEditCancel = () => {
     setEditable(false);
   };
-
-  useEffect(() => {
-    changePictureToImage(diary.pictures);
-  }, []);
 
   return {
     handleEditCancel,

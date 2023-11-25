@@ -3,9 +3,8 @@ import { IconImageGallery } from '~/assets/icons';
 
 const DiaryImgsUpload = () => {
   const diaryContentContext = useDiaryContentContext();
-  const { diary, methods } = diaryContentContext;
+  const { images, methods } = diaryContentContext;
   const { handleAddImages, handleDeleteImage } = methods;
-  const { images } = diary;
 
   const imageLength = images === undefined ? 0 : images.length;
 

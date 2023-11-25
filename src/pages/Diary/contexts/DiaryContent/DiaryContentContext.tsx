@@ -2,11 +2,13 @@ import { PropsWithChildren, createContext, useEffect, useState } from 'react';
 import type { DiaryResponse } from '~/types';
 import useDiaryContent from '../../hooks/DiaryContent/useDiaryContent';
 import { getTodayDate } from '~/utils/Common';
+import { changeImageType } from '~/utils/Diary';
 
 interface DiaryContentContextProps {
   editable: boolean;
   setEditable: React.Dispatch<React.SetStateAction<boolean>>;
   diary: DiaryResponse;
+  images: string[];
   setDiary: React.Dispatch<React.SetStateAction<DiaryResponse>>;
   methods: ReturnType<typeof useDiaryContent>;
 }
@@ -33,21 +35,24 @@ const DiaryContentProvider = ({ mode, children }: DiaryContentProvider) => {
       fourthImage: null,
       fifthImage: null,
     },
-    images: [],
     kakaoMapId: '',
     placeName: '',
   });
+  const [images, setImages] = useState<string[]>([]);
   const [editDiary, setEditDiary] = useState<DiaryResponse>({ ...originDiary });
 
   const diaryContent = useDiaryContent({
-    diary: editDiary,
-    setDiary: setEditDiary,
+    editDiary,
+    setEditDiary,
     editable,
     setEditable,
+    images,
+    setImages,
   });
 
   useEffect(() => {
     setEditDiary({ ...originDiary });
+    setImages(changeImageType(originDiary.pictures));
   }, [originDiary]);
 
   return (
@@ -58,6 +63,7 @@ const DiaryContentProvider = ({ mode, children }: DiaryContentProvider) => {
         setDiary: setOriginDiary,
         diary: editable ? editDiary : originDiary,
         methods: diaryContent,
+        images,
       }}
     >
       {children}
