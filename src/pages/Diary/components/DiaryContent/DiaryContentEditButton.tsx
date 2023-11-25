@@ -8,15 +8,18 @@ const DiaryContentEditButton = () => {
     editable && (
       <div className="flex justify-end gap-2">
         <Button
-          onClick={handleEditCancel}
+          onClick={() => {
+            handleEditCancel();
+          }}
           size="small"
           className="rounded-xl border border-grey-200 text-grey-400"
         >
           취소
         </Button>
         <Button
-          type="submit"
-          onClick={handleSubmitForm}
+          onClick={() => {
+            handleSubmitForm();
+          }}
           size="small"
           className="rounded-xl border bg-base-primary text-base-white"
         >

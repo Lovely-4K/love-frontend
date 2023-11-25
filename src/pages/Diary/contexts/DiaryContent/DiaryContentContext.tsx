@@ -1,15 +1,13 @@
 import { PropsWithChildren, createContext, useEffect, useState } from 'react';
-import { DiaryResponse, DiaryEditRequest } from '~/types';
+import type { DiaryResponse } from '~/types';
 import useDiaryContent from '../../hooks/DiaryContent/useDiaryContent';
 import { getTodayDate } from '~/utils/Common';
 
 interface DiaryContentContextProps {
   editable: boolean;
   setEditable: React.Dispatch<React.SetStateAction<boolean>>;
-  diary: DiaryResponse | DiaryEditRequest;
-  setDiary: React.Dispatch<
-    React.SetStateAction<DiaryResponse | DiaryEditRequest>
-  >;
+  diary: DiaryResponse;
+  setDiary: React.Dispatch<React.SetStateAction<DiaryResponse>>;
   methods: ReturnType<typeof useDiaryContent>;
 }
 
@@ -22,9 +20,7 @@ export const DiaryContentContext =
 
 const DiaryContentProvider = ({ mode, children }: DiaryContentProvider) => {
   const [editable, setEditable] = useState(mode === 'edit');
-  const [originDiary, setOriginDiary] = useState<
-    DiaryResponse | DiaryEditRequest
-  >({
+  const [originDiary, setOriginDiary] = useState<DiaryResponse>({
     datingDay: getTodayDate(),
     category: 'CAFE',
     score: 5,
@@ -37,8 +33,11 @@ const DiaryContentProvider = ({ mode, children }: DiaryContentProvider) => {
       fourthImage: null,
       fifthImage: null,
     },
+    images: [],
+    kakaoMapId: '',
+    placeName: '',
   });
-  const [editDiary, setEditDiary] = useState({ ...originDiary });
+  const [editDiary, setEditDiary] = useState<DiaryResponse>({ ...originDiary });
 
   const diaryContent = useDiaryContent({
     diary: editDiary,
