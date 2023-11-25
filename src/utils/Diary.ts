@@ -1,15 +1,15 @@
 import { Pictures } from '~/types';
 
-export const changeImageType = (img: Pictures) => {
-  const imgArray: string[] = [];
+export const changeImageType = (pictures: Pictures) => {
+  const picturesArray: string[] = [];
 
-  if (img === undefined || img === null) return imgArray;
+  if (pictures === undefined || pictures === null) return picturesArray;
 
-  Object.entries(img).forEach(([_, value]) => {
+  Object.entries(pictures).forEach(([_, value]) => {
     if (value === null) return;
 
-    imgArray.push(value);
+    picturesArray.push(value);
   });
 
-  return imgArray;
+  return picturesArray;
 };
