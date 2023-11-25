@@ -6,9 +6,15 @@ interface DiarySpotPreviewProps {
   picture: string;
   id: number;
   date: string;
+  onClick: () => void;
 }
 
-const DiarySpotPreview = ({ picture, id, date }: DiarySpotPreviewProps) => {
+const DiarySpotPreview = ({
+  picture,
+  id,
+  date,
+  onClick,
+}: DiarySpotPreviewProps) => {
   const { deleteMode } = useContext(DiarySpotContext);
 
   return (
@@ -16,6 +22,7 @@ const DiarySpotPreview = ({ picture, id, date }: DiarySpotPreviewProps) => {
       key={id}
       id={`item_${id}`}
       className="group flex flex-col items-center justify-center rounded-xl border border-grey-200"
+      onClick={onClick}
     >
       <div className="h-32 ">
         <Img
