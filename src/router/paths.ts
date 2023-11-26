@@ -9,6 +9,7 @@ const PATHS = {
     ROOT: '/diary',
     SPOT: '/diary/:spotId',
     DIARY_DETAIL: '/diary/:spotId/:diaryId',
+    DIARY_CREATE: '/diary/:spotId/create',
   },
   SETTING: '/setting',
   KAKAO: 'https://love-back.kro.kr/oauth2/authorization/kakao',
