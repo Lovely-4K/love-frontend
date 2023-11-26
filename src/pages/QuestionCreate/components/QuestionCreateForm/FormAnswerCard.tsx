@@ -19,7 +19,12 @@ const FormAnswerCard = ({ answer, index }: FormAnswerCardProps) => {
           onClick={handleDeleteButton}
           className="card-actions"
         >
-          <CircleButton data-index={index} icon={IconClose} active={false} />
+          <CircleButton
+            editable={true}
+            data-index={index}
+            icon={IconClose}
+            active={false}
+          />
         </div>
       </div>
     </div>

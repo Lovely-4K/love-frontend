@@ -4,6 +4,7 @@ import useHandleMarker from '~/pages/Diary/hooks/useHandleMarker';
 import useInputRef from '~/pages/Diary/hooks/useInputRef';
 import useSearchLocation from '~/pages/Diary/hooks/useSearchLocation';
 
+/** @todo: 추후 내 위치 마커와 장소 표시 마커 분리시키기 */
 const DiaryMapMarker = ({ userPosition }: UserPosition) => {
   const { searchKeyword } = useInputRef();
   const { markers } = useSearchLocation({
@@ -19,7 +20,7 @@ const DiaryMapMarker = ({ userPosition }: UserPosition) => {
       <MapMarker
         position={userPosition}
         image={{
-          src: 'src/assets/icons/currentMarker.svg',
+          src: '/src/assets/icons/currentMarker.svg',
           size: {
             width: 55,
             height: 55,
@@ -33,7 +34,7 @@ const DiaryMapMarker = ({ userPosition }: UserPosition) => {
           position={marker.position}
           onClick={() => handleMarker(marker)}
           image={{
-            src: 'src/assets/icons/mapMarkerGone.svg',
+            src: '/src/assets/icons/mapMarkerGone.svg',
             size: {
               width: 35,
               height: 40,

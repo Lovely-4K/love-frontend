@@ -1,10 +1,12 @@
-import { useContext } from 'react';
+import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
 import { IconImageGallery } from '~/assets/icons';
-import { DiaryImgsContext } from '~/pages/Diary/contexts/DiaryImgsContext';
 
 const DiaryImgsUpload = () => {
-  const { showImages, handleAddImages, handleDeleteImage } =
-    useContext(DiaryImgsContext);
+  const diaryContentContext = useDiaryContentContext();
+  const { images, methods } = diaryContentContext;
+  const { handleAddImages, handleDeleteImage } = methods;
+
+  const imageLength = images === undefined ? 0 : images.length;
 
   return (
     <div className="flex h-[7rem] w-full gap-4 overflow-x-auto pt-2">
@@ -21,13 +23,11 @@ const DiaryImgsUpload = () => {
 
           <div className="btn flex h-20 w-20 flex-col items-center justify-center bg-grey-100">
             <IconImageGallery className="h-8 w-8" />
-            <span className="font-small text-grey-400">
-              ({showImages.length}/5)
-            </span>
+            <span className="font-small text-grey-400">({imageLength}/5)</span>
           </div>
         </label>
       </form>
-      {showImages.map((image, id) => (
+      {images?.map((image, id) => (
         <div
           key={id}
           id={`item${id}`}

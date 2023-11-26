@@ -1,29 +1,30 @@
-import { useState } from 'react';
+import type categoryType from '~/components/common/CategoryButton/CategoryTypes';
+
 import { CategoryButton } from '~/components/common';
 import useGetDiarys from '~/pages/Diary/hooks/useGetDiarys';
 
-const categories = ['cafe', 'food', 'sleep', 'culture', 'etc'] as const;
+const categories = ['CAFE', 'FOOD', 'SLEEP', 'CULTURE', 'ETC'] as const;
 
-const CategoryList = () => {
-  const [category, setCategory] = useState('cafe');
-  const { data: diarys, isSuccess } = useGetDiarys({ category });
+interface CategoryListProps {
+  seletedCategory?: categoryType;
+  editable: boolean;
+  handleChangeCategory: (category: categoryType) => void;
+}
 
-  const handleCategoryClick = (category: string) => {
-    setCategory(category);
-  };
-
-  if (!isSuccess) return null;
-
-  console.log(diarys);
-
+const CategoryList = ({
+  seletedCategory,
+  editable = false,
+  handleChangeCategory,
+}: CategoryListProps) => {
   return (
     <ul className="flex w-full items-center justify-center gap-5">
       {categories.map((category) => (
         <li key={category}>
           <CategoryButton
+            editable={editable}
             type={category}
-            active={false}
-            onClick={() => handleCategoryClick(category)}
+            active={category === seletedCategory}
+            handleClickButton={handleChangeCategory}
           />
         </li>
       ))}

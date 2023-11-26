@@ -46,7 +46,7 @@ const QuestionProvider = ({ children }: PropsWithChildren) => {
   const { mutate: createTodayQuestionMutate } = useCreateTodayQuestion();
   const { data: questionResponse } = useGetQuestion();
   const { data: questionDetailResponse, refetch: questionDetailRefetch } =
-    useGetQuestionDetail(questionResponse?.questionId || -1);
+    useGetQuestionDetail(questionResponse?.questionId || -1, true);
   const { data: updateAnswerResponse, mutate: mutateUserAnswer } =
     useUpdateUserAnswer();
   const [questionForm, setQuestionForm] =

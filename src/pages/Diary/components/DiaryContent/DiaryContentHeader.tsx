@@ -1,24 +1,29 @@
-import { useContext } from 'react';
+import { memo } from 'react';
+import { paths } from '~/router';
+import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
 import { DiaryHeader } from '~/pages/Diary/components/DiaryCommon';
-import { DiaryContentContext } from '~/pages/Diary/contexts/DiaryContentContext';
 
-const DiaryContentHeader = () => {
-  const { editMode, handleEditMode } = useContext(DiaryContentContext);
+const DiaryContentHeader = memo(() => {
+  const { editable, diary, methods } = useDiaryContentContext();
+  const { kakaoMapId, placeName } = diary;
+  const { handleEditMode, handleDeleteDiary } = methods;
+  const { DIARY } = paths;
+  const prevLink = `${DIARY.ROOT}/${kakaoMapId}`;
 
   const HeaderButton = () =>
-    editMode || (
-      <div className="font-small flex gap-2 text-grey-400">
+    editable || (
+      <div className="flex gap-2 text-sm text-grey-400">
         <button onClick={handleEditMode}>수정</button>
-        <button>삭제</button>
+        <button onClick={handleDeleteDiary}>삭제</button>
       </div>
     );
 
   return (
     <div className="flex items-center justify-between">
-      <DiaryHeader />
+      <DiaryHeader prevLink={prevLink} spotName={placeName} />
       <HeaderButton />
     </div>
   );
-};
+});
 
 export default DiaryContentHeader;
