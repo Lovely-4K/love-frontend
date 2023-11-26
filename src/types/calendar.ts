@@ -10,10 +10,10 @@ interface Schedule {
 }
 
 interface ColorInfo {
-  boyId: number;
-  boyCalendarColor: string;
-  girlId: number;
-  girlCalendarColor: string;
+  myId: number;
+  myCalendarColor: string;
+  opponentId: number;
+  opponentCalendarColor: string;
 }
 
 interface CalendarSchedule {

@@ -1,20 +1,9 @@
 import { Link } from 'react-router-dom';
-import { scheduleColors } from '~/constants';
 import { paths } from '~/router';
-import type { ColorInfo, Schedule } from '~/types';
+import { getScheduleColor } from '~/utils';
 import { useMainContent } from '../../hooks';
 import PreviewNoneItem from './PreviewNoneItem';
 import { ScheduleItem } from '~/components/domain';
-
-const getScheduleColor = (schedule: Schedule, colorInfo: ColorInfo) => {
-  const { scheduleType, ownerId } = schedule;
-  const { boyCalendarColor, boyId, girlCalendarColor } = colorInfo;
-  if (scheduleType === 'PERSONAL') {
-    return ownerId === boyId ? boyCalendarColor : girlCalendarColor;
-  }
-
-  return scheduleColors[scheduleType];
-};
 
 const PreviewCalendar = () => {
   const { recentSchedule } = useMainContent();
