@@ -1,9 +1,14 @@
 import { useContext } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Button } from '~/components/common';
 import { DiaryHeader } from '~/pages/Diary/components/DiaryCommon';
 import { DiarySpotContext } from '~/pages/Diary/contexts/DiarySpotContent';
 
 const DiarySpotHeader = () => {
+  const locate = useLocation();
+  if (!locate.state) return;
+  console.log(locate.content);
+
   const contextValue = useContext(DiarySpotContext);
 
   if (!contextValue) {

@@ -31,28 +31,6 @@ const useDiaryContent = ({
   const { mutate: deleteMutate } = useDeleteDiaryDetail(editDiary.kakaoMapId);
   const files = useRef<File[]>([]);
 
-  async function fetchImageAsBlob(url: string) {
-    const response = await fetch(url);
-    const blob = await response.blob();
-
-    return blob;
-  }
-
-  function blobToFile(blob: Blob, fileName: string) {
-    const file = new File([blob], fileName, { type: blob.type });
-    files.current.push(file);
-  }
-
-  const changeUrlToFile = async (url: string) => {
-    const imageBlob = await fetchImageAsBlob(url);
-    blobToFile(imageBlob, url);
-  };
-
-  useEffect(() => {
-    files.current = [];
-    images.forEach((imageUrl) => changeUrlToFile(imageUrl));
-  }, [images]);
-
   const handleChangeDatingDay = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
 
@@ -110,6 +88,7 @@ const useDiaryContent = ({
         return;
       }
       const currentImageUrl = URL.createObjectURL(fileLists[i]);
+      files.current.push(fileLists[i]);
       copyImages.push(currentImageUrl);
     }
 
@@ -148,11 +127,11 @@ const useDiaryContent = ({
       'texts',
       new Blob([JSON.stringify(texts)], { type: 'application/json' }),
     );
-    // if (files) {
-    //   for (const file of files) {
-    //     formData.append('images', file);
-    //   }
-    // }
+
+    for (const file of files.current) {
+      formData.append('images', file);
+    }
+
     createFormMutate({ formData });
   };
 

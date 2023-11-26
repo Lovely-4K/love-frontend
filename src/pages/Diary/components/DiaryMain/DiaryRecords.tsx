@@ -11,6 +11,7 @@ const DiaryRecords = () => {
       <DiaryRecordsHeader />
       <CategoryList
         handleChangeCategory={handleCategoryClick}
+        editable={true}
         selectedCategory={selectCategory}
       />
       <DiaryRecordsPreviews />

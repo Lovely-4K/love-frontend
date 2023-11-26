@@ -4,13 +4,13 @@ import { CategoryButton } from '~/components/common';
 const categories = ['CAFE', 'FOOD', 'ACCOMODATION', 'CULTURE', 'ETC'] as const;
 
 interface CategoryListProps {
-  seletedCategory?: categoryType;
+  selectedCategory?: categoryType | undefined;
   editable: boolean;
   handleChangeCategory: (category: categoryType) => void;
 }
 
 const CategoryList = ({
-  seletedCategory,
+  selectedCategory,
   editable = false,
   handleChangeCategory,
 }: CategoryListProps) => {
@@ -21,7 +21,7 @@ const CategoryList = ({
           <CategoryButton
             editable={editable}
             type={category}
-            active={category === seletedCategory}
+            active={category === selectedCategory}
             handleClickButton={handleChangeCategory}
           />
         </li>

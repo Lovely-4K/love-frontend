@@ -13,7 +13,8 @@ const DiaryMapCategoryList = () => {
           <CategoryButton
             type={category}
             active={mapCategory === category}
-            onClick={() => handleMapCategory(category)}
+            editable={true}
+            handleClickButton={handleMapCategory}
           />
         </li>
       ))}

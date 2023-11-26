@@ -17,7 +17,7 @@ const DiaryCategories = ({
       <span className="text-lg font-bold text-base-black">카테고리</span>
       <CategoryList
         editable={editable}
-        seletedCategory={defaultCategory}
+        selectedCategory={defaultCategory}
         handleChangeCategory={handleChangeCategory}
       />
     </div>
