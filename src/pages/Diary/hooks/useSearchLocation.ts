@@ -1,6 +1,6 @@
-import { useCallback, useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
-import { DiaryMapContext } from '~/pages/Diary/contexts/DiaryMapContext';
+
 import useCurrentLocation from '~/pages/Diary/hooks/useCurrentLocation';
 import useInputRef from '~/pages/Diary/hooks/useInputRef';
 import useMapCategory from '~/pages/Diary/hooks/useMapCategory';
@@ -10,23 +10,18 @@ interface useSearchLocationProps {
 }
 
 const useSearchLocation = ({ keyword }: useSearchLocationProps) => {
-  // const diaryMapContext = useContext(DiaryMapContext);
   const diaryContext = useContext(DiaryContext);
 
-  // if (!diaryMapContext) throw new Error('Cannot find diaryMapProvider');
   if (!diaryContext) throw new Error('Cannot find diaryProvider');
 
-  // const { mapCategory } = diaryMapContext;
   const { markers, setMarkers, info, setInfo, map, setMap } = diaryContext;
   const { startSearchMode, searchKeyword, setSearchKeyword } = useInputRef();
   const { userPosition } = useCurrentLocation();
-  const { mapCategory, resetMapCategory } = useMapCategory();
+  const { resetMapCategory } = useMapCategory();
 
   useEffect(() => {
     if (!map || !keyword) return;
     if (!userPosition) return;
-
-    console.log(mapCategory);
 
     // 거리순 으로 데이터 정렬
     const newLatLng = new kakao.maps.LatLng(userPosition.lat, userPosition.lng); // 현재 내위치
@@ -65,25 +60,14 @@ const useSearchLocation = ({ keyword }: useSearchLocationProps) => {
 
           resetMapCategory();
           setSearchKeyword(keyword);
-
-          console.log(mapCategory, keyword);
-
           setMarkers(markers);
           map.setBounds(bounds); // 검색된 장소 위치를 기준으로 지도 범위를 재설정
-
           startSearchMode();
         }
       },
       // options,
     );
-  }, [
-    map,
-    keyword,
-    setMarkers,
-    searchKeyword,
-    setSearchKeyword,
-    // resetMapCategory,
-  ]);
+  }, [map, keyword, setMarkers, searchKeyword, setSearchKeyword]);
 
   return { info, setInfo, markers, setMarkers, map, setMap };
 };

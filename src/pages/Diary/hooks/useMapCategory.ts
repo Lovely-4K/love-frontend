@@ -1,6 +1,5 @@
 import { useContext, useEffect } from 'react';
 import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
-import { DiaryMapContext } from '~/pages/Diary/contexts/DiaryMapContext';
 import useInfoToggle from '~/pages/Diary/hooks/useInfoToggle';
 import useInputRef from '~/pages/Diary/hooks/useInputRef';
 
@@ -40,11 +39,9 @@ const useMapCategory = () => {
   const handleMapCategory = (
     category: 'CAFE' | 'FOOD' | 'ACCOMODATION' | 'CULTURE',
   ) => {
-    console.log(category);
     setMapCategory(category);
     startSearchMode();
     closeInfo();
-    // setSearchKeyword(translateCategory(category));
   };
 
   const resetMapCategory = () => {

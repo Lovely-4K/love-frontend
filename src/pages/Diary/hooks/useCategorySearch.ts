@@ -1,16 +1,12 @@
 import { useContext, useEffect } from 'react';
 import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
-import { DiaryMapContext } from '~/pages/Diary/contexts/DiaryMapContext';
 import useInputRef from '~/pages/Diary/hooks/useInputRef';
 
 const useCategorySearch = () => {
-  // const diaryMapContext = useContext(DiaryMapContext);
   const diaryContext = useContext(DiaryContext);
 
-  // if (!diaryMapContext) throw new Error('Cannot find diaryMapProvider');
   if (!diaryContext) throw new Error('Cannot find diaryProvider');
 
-  // const { mapCategory } = diaryMapContext;
   const { markers, setMarkers, info, setInfo, map, setMap, mapCategory } =
     diaryContext;
   const { categorySearchMode } = useInputRef();

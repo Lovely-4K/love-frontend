@@ -1,17 +1,10 @@
-import { useCallback, useContext, useEffect } from 'react';
-import { DiaryContent, MapMarker } from '~/types';
+import { useContext, useEffect } from 'react';
+
 import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
 import {
   DiaryMapContext,
   MarkerFilter,
 } from '~/pages/Diary/contexts/DiaryMapContext';
-import useGetDiarys from '~/services/diary/useGetDiarys';
-
-// interface HandleFilterMarkerProps {
-//   markers: MapMarker[];
-//   diaryContent: DiaryContent[];
-//   markerFilter: MarkerFilter;
-// }
 
 const useFilterMarker = () => {
   const diaryMapContext = useContext(DiaryMapContext);

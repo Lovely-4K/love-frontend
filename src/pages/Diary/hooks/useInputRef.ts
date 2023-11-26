@@ -1,14 +1,10 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
-import { DiaryMapContext } from '~/pages/Diary/contexts/DiaryMapContext';
-import useMapCategory from '~/pages/Diary/hooks/useMapCategory';
 
 const useInputRef = () => {
   const diaryContext = useContext(DiaryContext);
-  // const diaryMapContext = useContext(DiaryMapContext);
 
   if (!diaryContext) throw new Error('Cannot find diaryProvider');
-  // if (!diaryMapContext) throw new Error('Cannot find diaryMapProvider');
 
   const {
     searchKeyword,
@@ -39,7 +35,6 @@ const useInputRef = () => {
   const categorySearchMode = () => {
     setSearchMode(true);
     if (mapCategory) {
-      console.log(mapCategory);
       setSearchKeyword('');
     }
   };
