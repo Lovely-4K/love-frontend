@@ -8,6 +8,7 @@ const PATHS = {
   DIARY: {
     ROOT: '/diary',
     SPOT: '/diary/:spotId',
+    DIARY_CREATE: '/diary/:spotId/create',
     DIARY_DETAIL: '/diary/:spotId/:diaryId',
     DIARY_CREATE: '/diary/:spotId/create',
   },

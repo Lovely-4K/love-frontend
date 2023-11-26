@@ -1,41 +1,46 @@
 interface RatingProps {
   readonly: boolean;
+  score?: undefined | number;
+  handleChangeScore: (score: number) => void;
 }
 
-const Rating = ({ readonly }: RatingProps) => {
+interface RatingInputProps {
+  assignedScore: number;
+  activateStatus: boolean;
+}
+
+const Rating = ({ readonly, score = 5, handleChangeScore }: RatingProps) => {
+  const ratingInputArray = [...new Array(5)].map((_, index) => index < score);
+  const RatingInput = ({ assignedScore, activateStatus }: RatingInputProps) => {
+    return (
+      <input
+        onChange={(event) => {
+          event.target.checked = !event.target.checked;
+        }}
+        onClick={() => {
+          handleChangeScore(assignedScore);
+        }}
+        type="radio"
+        name="rating-3"
+        className="mask mask-heart w-5 animate-none bg-base-primary [&]:disabled:cursor-default"
+        disabled={readonly}
+        defaultChecked={activateStatus}
+      />
+    );
+  };
+
   return (
-    <div className="rating gap-1">
-      <input
-        type="radio"
-        name="rating-3"
-        className="mask mask-heart w-5 bg-base-primary"
-        disabled={readonly}
-      />
-      <input
-        type="radio"
-        name="rating-3"
-        className="mask mask-heart w-5 bg-base-primary"
-        disabled={readonly}
-      />
-      <input
-        type="radio"
-        name="rating-3"
-        className="mask mask-heart w-5 bg-base-primary"
-        disabled={readonly}
-      />
-      <input
-        type="radio"
-        name="rating-3"
-        className="mask mask-heart w-5 bg-base-primary"
-        disabled={readonly}
-      />
-      <input
-        type="radio"
-        name="rating-3"
-        className="mask mask-heart w-5 bg-base-primary"
-        disabled={readonly}
-      />
-    </div>
+    <fieldset className="rating gap-1">
+      {ratingInputArray.map((activateStatus, index) => {
+        return (
+          <RatingInput
+            key={index}
+            assignedScore={index + 1}
+            activateStatus={activateStatus}
+          />
+        );
+      })}
+    </fieldset>
   );
 };
 

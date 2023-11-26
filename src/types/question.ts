@@ -24,4 +24,13 @@ interface QuestionHistoryPreview {
   questionType: string;
 }
 
-export type { QuestionForm, QuestionHistoryPreview, QuestionHistoryDetail };
+interface QuestionHistoryList {
+  answeredQuestions: QuestionHistoryPreview[];
+}
+
+export type {
+  QuestionForm,
+  QuestionHistoryPreview,
+  QuestionHistoryDetail,
+  QuestionHistoryList,
+};

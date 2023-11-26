@@ -32,7 +32,7 @@ const DiarySpotHeader = () => {
 
   return (
     <div className="flex items-center justify-between">
-      <DiaryHeader />
+      <DiaryHeader prevLink="/diary" spotName="" />
       <DeleteButton />
     </div>
   );

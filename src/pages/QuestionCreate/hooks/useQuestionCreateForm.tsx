@@ -43,17 +43,13 @@ const useQuestionCreateForm = () => {
     event:
       | React.FormEvent<HTMLFormElement>
       | React.MouseEvent<HTMLButtonElement>,
-    inputRef: React.MutableRefObject<HTMLInputElement | null>,
+    inputValue: string,
   ) => {
     event.preventDefault();
 
     const nextAnswers = [...answers];
 
-    if (inputRef.current && inputRef.current.value) {
-      nextAnswers.push(inputRef.current.value);
-      inputRef.current.value = '';
-    }
-
+    nextAnswers.push(inputValue);
     setAnswers(nextAnswers);
   };
 

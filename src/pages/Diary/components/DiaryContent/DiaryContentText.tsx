@@ -1,23 +1,38 @@
-import { useContext } from 'react';
-import { DiaryContentContext } from '~/pages/Diary/contexts/DiaryContentContext';
+import { ChangeEvent } from 'react';
 
-const DiaryContentText = () => {
-  const contextValue = useContext(DiaryContentContext);
+interface DiaryContentTextProps {
+  editable: boolean;
+  diaryText: string;
+  handleChangeText: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+}
 
-  if (!contextValue) {
-    return null;
-  }
-
-  const { editMode } = contextValue;
+const DiaryContentText = ({
+  editable,
+  diaryText,
+  handleChangeText,
+}: DiaryContentTextProps) => {
+  const handleTextAreaHeight = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    if (event.target instanceof HTMLTextAreaElement) {
+      const { scrollHeight } = event.target;
+      event.target.style.height = String(scrollHeight) + 'px';
+    }
+  };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-4 rounded-xl">
+    <div>
       <textarea
-        className="text-small placeholder:font-small textarea h-[15rem] w-[95%] resize-none placeholder:text-grey-300 focus:outline-none"
+        onChange={(event) => {
+          handleTextAreaHeight(event);
+          handleChangeText(event);
+        }}
+        className="h-autos min-h-[4rem] w-[95%] resize-none text-sm placeholder:text-grey-300 focus:outline-none"
         maxLength={200}
         placeholder="데이트를 하며 좋았던 순간을 기록해보세요"
-        readOnly={editMode ? false : true}
-      ></textarea>
+        readOnly={!editable}
+        value={diaryText === null ? '' : diaryText}
+      >
+        {diaryText}
+      </textarea>
     </div>
   );
 };

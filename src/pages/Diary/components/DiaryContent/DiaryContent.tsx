@@ -1,24 +1,25 @@
-import DiaryContentDate from './DiaryContentDate';
-import DiaryContentDetail from './DiaryContentDetail';
-import DiaryContentEditButton from './DiaryContentEditButton';
-import DiaryContentHeader from './DiaryContentHeader';
-import DiaryContentRating from './DiaryContentRating';
-import { DiaryCategories } from '~/pages/Diary/components/DiaryCommon';
-import { DiaryContentProvider } from '~/pages/Diary/contexts/DiaryContentContext';
+import * as React from 'react';
+import DiaryContentProvider from '../../contexts/DiaryContent/DiaryContentContext';
+import ReadProvider from '../../contexts/DiaryContent/ReadContext';
+import DiaryContentBody from './DiaryContentBody';
+import { Loading } from '~/components/common';
 
-const DiaryContent = () => {
+interface DiaryContentProps {
+  mode: 'edit' | 'read';
+}
+
+const DiaryContent = ({ mode }: DiaryContentProps) => {
   return (
-    <DiaryContentProvider>
-      <div className="flex w-full flex-col gap-6 overflow-y-auto overflow-x-hidden">
-        <DiaryContentHeader />
-        <div className="flex items-center justify-between">
-          <DiaryContentDate />
-          <DiaryContentRating />
-        </div>
-        <DiaryCategories />
-        <DiaryContentDetail />
-        <DiaryContentEditButton />
-      </div>
+    <DiaryContentProvider mode={mode}>
+      {mode === 'edit' ? (
+        <DiaryContentBody />
+      ) : (
+        <React.Suspense fallback={<Loading size="large" />}>
+          <ReadProvider>
+            <DiaryContentBody />
+          </ReadProvider>
+        </React.Suspense>
+      )}
     </DiaryContentProvider>
   );
 };

@@ -1,5 +1,5 @@
+import type categoryType from './CategoryTypes';
 import { HtmlHTMLAttributes } from 'react';
-import categoryType from './CategoryTypes';
 import {
   IconActivity,
   IconCafe,
