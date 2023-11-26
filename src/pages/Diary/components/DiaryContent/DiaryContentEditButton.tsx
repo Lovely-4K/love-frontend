@@ -2,8 +2,13 @@ import { useContext } from 'react';
 import { DiaryContentContext } from '~/pages/Diary/contexts/DiaryContentContext';
 
 const DiaryContentEditButton = () => {
-  const { editMode, handleEditComplete, handleEditCancel } =
-    useContext(DiaryContentContext);
+  const contextValue = useContext(DiaryContentContext);
+
+  if (!contextValue) {
+    return null;
+  }
+
+  const { editMode, handleEditComplete, handleEditCancel } = contextValue;
 
   return (
     editMode && (

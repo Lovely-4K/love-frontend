@@ -4,8 +4,13 @@ import { DiaryHeader } from '~/pages/Diary/components/DiaryCommon';
 import { DiarySpotContext } from '~/pages/Diary/contexts/DiarySpotContent';
 
 const DiarySpotHeader = () => {
-  const { pictures, deleteMode, handleDeleteMode } =
-    useContext(DiarySpotContext);
+  const contextValue = useContext(DiarySpotContext);
+
+  if (!contextValue) {
+    return null;
+  }
+
+  const { pictures, deleteMode, handleDeleteMode } = contextValue;
 
   const deleteButtonStyle = deleteMode
     ? 'bg-base-primary text-base-white'

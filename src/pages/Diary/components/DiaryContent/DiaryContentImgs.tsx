@@ -4,7 +4,13 @@ import DiaryImgsUpload from './DiaryImgsUpload';
 import { DiaryContentContext } from '~/pages/Diary/contexts/DiaryContentContext';
 
 const DiaryContentImgs = () => {
-  const { editMode } = useContext(DiaryContentContext);
+  const contextValue = useContext(DiaryContentContext);
+
+  if (!contextValue) {
+    return null;
+  }
+
+  const { editMode } = contextValue;
 
   return <>{editMode ? <DiaryImgsUpload /> : <DiaryImgsCarousel />}</>;
 };

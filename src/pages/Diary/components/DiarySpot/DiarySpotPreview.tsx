@@ -15,7 +15,13 @@ const DiarySpotPreview = ({
   date,
   onClick,
 }: DiarySpotPreviewProps) => {
-  const { deleteMode } = useContext(DiarySpotContext);
+  const contextValue = useContext(DiarySpotContext);
+
+  if (!contextValue) {
+    return null;
+  }
+
+  const { deleteMode } = contextValue;
 
   return (
     <div

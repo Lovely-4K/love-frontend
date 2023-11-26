@@ -3,7 +3,13 @@ import { DiaryHeader } from '~/pages/Diary/components/DiaryCommon';
 import { DiaryContentContext } from '~/pages/Diary/contexts/DiaryContentContext';
 
 const DiaryContentHeader = () => {
-  const { editMode, handleEditMode } = useContext(DiaryContentContext);
+  const contextValue = useContext(DiaryContentContext);
+
+  if (!contextValue) {
+    return null;
+  }
+
+  const { editMode, handleEditMode } = contextValue;
 
   const HeaderButton = () =>
     editMode || (

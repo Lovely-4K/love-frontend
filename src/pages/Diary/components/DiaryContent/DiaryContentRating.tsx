@@ -3,7 +3,13 @@ import { Rating } from '~/components/domain';
 import { DiaryContentContext } from '~/pages/Diary/contexts/DiaryContentContext';
 
 const DiaryContentRating = () => {
-  const { editMode } = useContext(DiaryContentContext);
+  const contextValue = useContext(DiaryContentContext);
+
+  if (!contextValue) {
+    return null;
+  }
+
+  const { editMode } = contextValue;
 
   return (
     <div className="flex flex-col gap-2">

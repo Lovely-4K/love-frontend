@@ -3,8 +3,13 @@ import { IconImageGallery } from '~/assets/icons';
 import { DiaryImgsContext } from '~/pages/Diary/contexts/DiaryImgsContext';
 
 const DiaryImgsUpload = () => {
-  const { showImages, handleAddImages, handleDeleteImage } =
-    useContext(DiaryImgsContext);
+  const contextValue = useContext(DiaryImgsContext);
+
+  if (!contextValue) {
+    return null;
+  }
+
+  const { showImages, handleAddImages, handleDeleteImage } = contextValue;
 
   return (
     <div className="flex h-[7rem] w-full gap-4 overflow-x-auto pt-2">
