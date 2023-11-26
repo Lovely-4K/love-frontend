@@ -1,5 +1,6 @@
 import { PropsWithChildren, createContext, useState } from 'react';
 import { Diarys, MapMarker } from '~/types';
+import categoryType from '~/components/common/CategoryButton/CategoryTypes';
 import { MapCategory } from '~/pages/Diary/contexts/DiaryMapContext';
 import useGetDiarys from '~/services/diary/useGetDiarys';
 
@@ -12,8 +13,10 @@ interface DiaryContextProps {
   setSideBarToggle: React.Dispatch<React.SetStateAction<boolean>>;
   markers: MapMarker[];
   setMarkers: React.Dispatch<React.SetStateAction<MapMarker[]>>;
-  selectCategory: string;
-  setSelectCategory: React.Dispatch<React.SetStateAction<string>>;
+  selectCategory: categoryType | undefined;
+  setSelectCategory: React.Dispatch<
+    React.SetStateAction<categoryType | undefined>
+  >;
   selectSortMethod: string;
   setSelectSortMethod: React.Dispatch<React.SetStateAction<string>>;
   info: MapMarker | undefined;
@@ -34,8 +37,10 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
   const [searchMode, setSearchMode] = useState(false);
   const [sideBarToggle, setSideBarToggle] = useState(true);
   const [markers, setMarkers] = useState<MapMarker[]>([]);
-  const [selectCategory, setSelectCategory] = useState('');
-  const [selectSortMethod, setSelectSortMethod] = useState('');
+  const [selectCategory, setSelectCategory] = useState<
+    categoryType | undefined
+  >(undefined);
+  const [selectSortMethod, setSelectSortMethod] = useState<string>('');
   const [info, setInfo] = useState<MapMarker>();
   const [infoOpen, setInfoOpen] = useState<boolean>(false);
   const [map, setMap] = useState<kakao.maps.Map>();

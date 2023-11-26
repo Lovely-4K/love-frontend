@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import categoryType from '~/components/common/CategoryButton/CategoryTypes';
 import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
 
 const useSelectCategory = () => {
@@ -8,7 +9,7 @@ const useSelectCategory = () => {
 
   const { selectCategory, setSelectCategory } = diaryContext;
 
-  const handleCategoryClick = (category: string) => {
+  const handleCategoryClick = (category: categoryType) => {
     setSelectCategory(category);
   };
 
