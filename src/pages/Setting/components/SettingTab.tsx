@@ -1,12 +1,13 @@
 import styled from '@emotion/styled';
 import { Fragment } from 'react';
-import { colors, fontSize } from '~/theme';
+import { colors, fontSize, screens } from '~/theme';
 import { SETTING_TAB } from '../constants';
 import { useSetting } from '../hooks';
 
 const StyledTab = styled.label`
-  font-size: ${() => fontSize.base};
-  width: 7rem;
+  font-size: ${() => fontSize.sm};
+  width: 6rem;
+  height: 2rem;
   text-align: center;
   font-weight: 100;
   padding: 0.5rem;
@@ -16,6 +17,11 @@ const StyledTab = styled.label`
     font-weight: 700;
     border-bottom: 3px solid ${colors.base.primary};
     color: ${colors.base.primary};
+  }
+  @media (min-width: ${screens.lg}) {
+    font-size: ${fontSize.base};
+    height: 2.5rem;
+    width: 7rem;
   }
 `;
 
