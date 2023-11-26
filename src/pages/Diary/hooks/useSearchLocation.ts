@@ -24,12 +24,12 @@ const useSearchLocation = ({ keyword }: useSearchLocationProps) => {
     if (!userPosition) return;
 
     // 거리순 으로 데이터 정렬
-    const newLatLng = new kakao.maps.LatLng(userPosition.lat, userPosition.lng); // 현재 내위치
-    const options = {
-      location: newLatLng,
-      radius: 10000,
-      sort: kakao.maps.services.SortBy.DISTANCE,
-    };
+    // const newLatLng = new kakao.maps.LatLng(userPosition.lat, userPosition.lng); // 현재 내위치
+    // const options = {
+    //   location: newLatLng,
+    //   radius: 10000,
+    //   sort: kakao.maps.services.SortBy.DISTANCE,
+    // };
 
     const position = new kakao.maps.services.Places();
 
