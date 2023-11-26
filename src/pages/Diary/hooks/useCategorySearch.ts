@@ -1,19 +1,22 @@
 import { useContext, useEffect } from 'react';
 import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
 import { DiaryMapContext } from '~/pages/Diary/contexts/DiaryMapContext';
+import useInputRef from '~/pages/Diary/hooks/useInputRef';
 
 const useCategorySearch = () => {
-  const diaryMapContext = useContext(DiaryMapContext);
+  // const diaryMapContext = useContext(DiaryMapContext);
   const diaryContext = useContext(DiaryContext);
 
-  if (!diaryMapContext) throw new Error('Cannot find diaryMapProvider');
+  // if (!diaryMapContext) throw new Error('Cannot find diaryMapProvider');
   if (!diaryContext) throw new Error('Cannot find diaryProvider');
 
-  const { mapCategory } = diaryMapContext;
-  const { markers, setMarkers, info, setInfo, map, setMap } = diaryContext;
+  // const { mapCategory } = diaryMapContext;
+  const { markers, setMarkers, info, setInfo, map, setMap, mapCategory } =
+    diaryContext;
+  const { categorySearchMode } = useInputRef();
 
   const searchPlaces = () => {
-    if (!mapCategory || !map) return;
+    if (!map || !mapCategory) return;
 
     setMarkers([]);
 
@@ -58,6 +61,7 @@ const useCategorySearch = () => {
             });
           }
 
+          categorySearchMode();
           setMarkers(markers);
         } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
           // 검색 결과가 없는 경우

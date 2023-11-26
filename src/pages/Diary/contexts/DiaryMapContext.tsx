@@ -5,8 +5,8 @@ export type MapCategory = 'CAFE' | 'FOOD' | 'ACCOMODATION' | 'CULTURE' | '';
 export type MarkerFilter = 'ALL' | 'GONE' | 'YET' | '';
 
 interface DiaryMapContextProps {
-  mapCategory: MapCategory;
-  setMapCategory: React.Dispatch<React.SetStateAction<MapCategory>>;
+  // mapCategory: MapCategory;
+  // setMapCategory: React.Dispatch<React.SetStateAction<MapCategory>>;
   markerFilter: MarkerFilter;
   setMarkerFilter: React.Dispatch<React.SetStateAction<MarkerFilter>>;
   goneMarkers: MapMarker[];
@@ -18,7 +18,7 @@ interface DiaryMapContextProps {
 const DiaryMapContext = createContext<DiaryMapContextProps | null>(null);
 
 const DiaryMapProvider = ({ children }: PropsWithChildren) => {
-  const [mapCategory, setMapCategory] = useState<MapCategory>('');
+  // const [mapCategory, setMapCategory] = useState<MapCategory>('');
   const [markerFilter, setMarkerFilter] = useState<MarkerFilter>('ALL');
   const [goneMarkers, setGoneMarkers] = useState<MapMarker[]>([]);
   const [yetMarkers, setYetMarkers] = useState<MapMarker[]>([]);
@@ -26,8 +26,8 @@ const DiaryMapProvider = ({ children }: PropsWithChildren) => {
   return (
     <DiaryMapContext.Provider
       value={{
-        mapCategory,
-        setMapCategory,
+        // mapCategory,
+        // setMapCategory,
         markerFilter,
         setMarkerFilter,
         goneMarkers,

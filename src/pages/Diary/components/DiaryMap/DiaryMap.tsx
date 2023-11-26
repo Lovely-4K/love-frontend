@@ -15,10 +15,10 @@ import useSearchLocation from '~/pages/Diary/hooks/useSearchLocation';
 const DiaryMap = () => {
   const { userPosition } = useCurrentLocation();
   const { searchKeyword } = useInputRef();
+  useCategorySearch();
   const { info, setMap } = useSearchLocation({
     keyword: searchKeyword,
   });
-  useCategorySearch();
   const { infoOpen, closeInfo } = useInfoToggle();
 
   useKakaoLoaderOrigin({

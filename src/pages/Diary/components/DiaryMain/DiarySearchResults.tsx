@@ -25,7 +25,6 @@ const DiarySearchResults = () => {
             <DiaryMarkerData
               content={marker.content}
               address={marker.address}
-              phone={marker.phone}
             />
           </div>
         ))}

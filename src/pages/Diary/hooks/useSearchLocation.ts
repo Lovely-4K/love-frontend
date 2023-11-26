@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useCallback, useContext, useEffect } from 'react';
 import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
 import { DiaryMapContext } from '~/pages/Diary/contexts/DiaryMapContext';
 import useCurrentLocation from '~/pages/Diary/hooks/useCurrentLocation';
@@ -10,17 +10,17 @@ interface useSearchLocationProps {
 }
 
 const useSearchLocation = ({ keyword }: useSearchLocationProps) => {
-  const diaryMapContext = useContext(DiaryMapContext);
+  // const diaryMapContext = useContext(DiaryMapContext);
   const diaryContext = useContext(DiaryContext);
 
-  if (!diaryMapContext) throw new Error('Cannot find diaryMapProvider');
+  // if (!diaryMapContext) throw new Error('Cannot find diaryMapProvider');
   if (!diaryContext) throw new Error('Cannot find diaryProvider');
 
-  const { mapCategory } = diaryMapContext;
+  // const { mapCategory } = diaryMapContext;
   const { markers, setMarkers, info, setInfo, map, setMap } = diaryContext;
-  const { startSearchMode } = useInputRef();
+  const { startSearchMode, searchKeyword, setSearchKeyword } = useInputRef();
   const { userPosition } = useCurrentLocation();
-  const { resetMapCategory } = useMapCategory();
+  const { mapCategory, resetMapCategory } = useMapCategory();
 
   useEffect(() => {
     if (!map || !keyword) return;
@@ -64,6 +64,11 @@ const useSearchLocation = ({ keyword }: useSearchLocationProps) => {
           }
 
           resetMapCategory();
+          setSearchKeyword(keyword);
+
+          console.log(mapCategory, keyword);
+          console.log(searchKeyword);
+
           setMarkers(markers);
           map.setBounds(bounds); // 검색된 장소 위치를 기준으로 지도 범위를 재설정
 
@@ -72,7 +77,14 @@ const useSearchLocation = ({ keyword }: useSearchLocationProps) => {
       },
       // options,
     );
-  }, [map, keyword, setMarkers]);
+  }, [
+    map,
+    keyword,
+    setMarkers,
+    searchKeyword,
+    setSearchKeyword,
+    // resetMapCategory,
+  ]);
 
   return { info, setInfo, markers, setMarkers, map, setMap };
 };

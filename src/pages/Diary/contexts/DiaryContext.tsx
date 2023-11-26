@@ -1,5 +1,6 @@
 import { PropsWithChildren, createContext, useState } from 'react';
 import { Diarys, MapMarker } from '~/types';
+import { MapCategory } from '~/pages/Diary/contexts/DiaryMapContext';
 import useGetDiarys from '~/services/diary/useGetDiarys';
 
 interface DiaryContextProps {
@@ -22,6 +23,8 @@ interface DiaryContextProps {
   map: kakao.maps.Map | undefined;
   setMap: React.Dispatch<React.SetStateAction<kakao.maps.Map | undefined>>;
   diarys: Diarys;
+  mapCategory: MapCategory;
+  setMapCategory: React.Dispatch<React.SetStateAction<MapCategory>>;
 }
 
 const DiaryContext = createContext<DiaryContextProps | null>(null);
@@ -37,6 +40,7 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
   const [infoOpen, setInfoOpen] = useState<boolean>(false);
   const [map, setMap] = useState<kakao.maps.Map>();
   const { data: diarys, isSuccess } = useGetDiarys();
+  const [mapCategory, setMapCategory] = useState<MapCategory>('');
 
   if (!isSuccess) return;
 
@@ -62,6 +66,8 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
         map,
         setMap,
         diarys,
+        mapCategory,
+        setMapCategory,
       }}
     >
       {children}

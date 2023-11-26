@@ -1,14 +1,15 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
+import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
 import { DiaryMapContext } from '~/pages/Diary/contexts/DiaryMapContext';
 import useInfoToggle from '~/pages/Diary/hooks/useInfoToggle';
 import useInputRef from '~/pages/Diary/hooks/useInputRef';
 
 const useMapCategory = () => {
-  const diaryMapContext = useContext(DiaryMapContext);
+  const diaryContext = useContext(DiaryContext);
 
-  if (!diaryMapContext) throw new Error('Cannot find diaryMapProvider');
+  if (!diaryContext) throw new Error('Cannot find diaryProvider');
 
-  const { mapCategory, setMapCategory } = diaryMapContext;
+  const { mapCategory, setMapCategory } = diaryContext;
   const { startSearchMode, setSearchKeyword } = useInputRef();
   const { closeInfo } = useInfoToggle();
 
@@ -47,6 +48,7 @@ const useMapCategory = () => {
 
   const resetMapCategory = () => {
     setMapCategory('');
+    console.log('reset한다', mapCategory);
   };
 
   return { mapCategory, setMapCategory, handleMapCategory, resetMapCategory };
