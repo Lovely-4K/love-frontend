@@ -4,10 +4,15 @@ interface CircleButtonProps extends HTMLAttributes<HTMLButtonElement> {
   label?: string | undefined;
   icon: FunctionComponent<SVGProps<SVGSVGElement>>;
   active: boolean;
-  editable: boolean;
+  editable?: boolean;
 }
 
-const CircleButton = ({ label, icon, active, editable }: CircleButtonProps) => {
+const CircleButton = ({
+  label,
+  icon,
+  active,
+  editable = true,
+}: CircleButtonProps) => {
   const IconComponent = icon;
   const activeButtonStyle = active
     ? 'bg-base-primary'
