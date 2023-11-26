@@ -1,12 +1,17 @@
 import DiaryMarkerData from '~/pages/Diary/components/DiaryCommon/DiaryMarkerData';
 import useHandleMarker from '~/pages/Diary/hooks/useHandleMarker';
 import useInputRef from '~/pages/Diary/hooks/useInputRef';
+import useMapCategory from '~/pages/Diary/hooks/useMapCategory';
 import useMarkers from '~/pages/Diary/hooks/useMarkers';
 
 const DiarySearchResults = () => {
   const { searchKeyword, endSearchMode } = useInputRef();
   const { markers } = useMarkers();
   const { handleMarker } = useHandleMarker();
+  // const { mapCategory, translateCategory } = useMapCategory();
+
+  // const category = translateCategory(mapCategory);
+  // const resultMessage = mapCategory ? `내 주변 ${category}` : searchKeyword;
 
   return (
     <div className="flex flex-col gap-4">

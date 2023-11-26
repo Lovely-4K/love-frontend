@@ -67,7 +67,6 @@ const useSearchLocation = ({ keyword }: useSearchLocationProps) => {
           setSearchKeyword(keyword);
 
           console.log(mapCategory, keyword);
-          console.log(searchKeyword);
 
           setMarkers(markers);
           map.setBounds(bounds); // 검색된 장소 위치를 기준으로 지도 범위를 재설정

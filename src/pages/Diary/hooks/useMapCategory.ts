@@ -10,11 +10,11 @@ const useMapCategory = () => {
   if (!diaryContext) throw new Error('Cannot find diaryProvider');
 
   const { mapCategory, setMapCategory } = diaryContext;
-  const { startSearchMode, setSearchKeyword } = useInputRef();
+  const { startSearchMode, setSearchKeyword, searchKeyword } = useInputRef();
   const { closeInfo } = useInfoToggle();
 
   const translateCategory = (
-    category: 'CAFE' | 'FOOD' | 'ACCOMODATION' | 'CULTURE',
+    category: 'CAFE' | 'FOOD' | 'ACCOMODATION' | 'CULTURE' | '',
   ) => {
     let newCategory = '';
 
@@ -40,6 +40,7 @@ const useMapCategory = () => {
   const handleMapCategory = (
     category: 'CAFE' | 'FOOD' | 'ACCOMODATION' | 'CULTURE',
   ) => {
+    console.log(category);
     setMapCategory(category);
     startSearchMode();
     closeInfo();
@@ -48,10 +49,19 @@ const useMapCategory = () => {
 
   const resetMapCategory = () => {
     setMapCategory('');
-    console.log('reset한다', mapCategory);
   };
 
-  return { mapCategory, setMapCategory, handleMapCategory, resetMapCategory };
+  useEffect(() => {
+    if (searchKeyword) resetMapCategory();
+  }, [searchKeyword, setSearchKeyword]);
+
+  return {
+    mapCategory,
+    setMapCategory,
+    handleMapCategory,
+    resetMapCategory,
+    translateCategory,
+  };
 };
 
 export default useMapCategory;
