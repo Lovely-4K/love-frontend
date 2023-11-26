@@ -2,8 +2,8 @@ import type categoryType from '~/components/common/CategoryButton/CategoryTypes'
 import CategoryList from '~/components/domain/CategoryList/CategoryList';
 
 interface DiaryCategoriesProps {
-  defaultCategory: categoryType;
-  editable: boolean;
+  defaultCategory?: categoryType;
+  editable?: boolean;
   handleChangeCategory: (category: categoryType) => void;
 }
 

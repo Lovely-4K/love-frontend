@@ -8,7 +8,7 @@ const DiaryMain = () => {
     <DiaryMainProvider>
       <div className="flex w-full flex-col gap-10 overflow-y-auto overflow-x-hidden">
         <DiarySearchBar />
-        <DiaryCategories />
+        <DiaryCategories handleChangeCategory={() => {}} />
         <DiaryRecords />
       </div>
     </DiaryMainProvider>

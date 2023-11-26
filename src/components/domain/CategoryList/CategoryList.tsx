@@ -4,7 +4,7 @@ import { CategoryButton } from '~/components/common';
 const categories = ['CAFE', 'FOOD', 'SLEEP', 'CULTURE', 'ETC'] as const;
 
 interface CategoryListProps {
-  seletedCategory: categoryType;
+  seletedCategory?: categoryType;
   editable: boolean;
   handleChangeCategory: (category: categoryType) => void;
 }
