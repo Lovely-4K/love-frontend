@@ -1,8 +1,8 @@
 import { PropsWithChildren, createContext, useEffect } from 'react';
 import type { CalendarSchedule, Diarys, QuestionForm } from '~/types';
 import { useMain } from '../hooks';
-import useGetDiarys from '~/pages/Diary/hooks/useGetDiarys';
 import { useGetRecentSchedule } from '~/services/calendar';
+import useGetDiarys from '~/services/diary/useGetDiarys';
 import { useCreateTodayQuestion, useGetQuestion } from '~/services/question';
 
 interface MainContentContextProps {
