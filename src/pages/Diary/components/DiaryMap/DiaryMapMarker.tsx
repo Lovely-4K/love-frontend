@@ -3,18 +3,19 @@ import { UserPosition } from '~/types';
 import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
 import useDiaryToMarker from '~/pages/Diary/hooks/Diary/useDiarytoMarker';
 import useFilterMarker from '~/pages/Diary/hooks/Diary/useFilterMarker';
-import useInputRef from '~/pages/Diary/hooks/Diary/useInputRef';
 import useSearchLocation from '~/pages/Diary/hooks/Diary/useSearchLocation';
 import useGetDiarys from '~/services/diary/useGetDiarys';
 
 /** @todo: 추후 내 위치 마커와 장소 표시 마커 분리시키기 */
 const DiaryMapMarker = ({ userPosition }: UserPosition) => {
-  const { searchKeyword } = useInputRef();
+  const {
+    searchKeyword,
+    methods: { handleMarkers },
+  } = useDiary();
   const { markers } = useSearchLocation({
     keyword: searchKeyword,
   });
-  const { methods } = useDiary();
-  const { handleMarker } = methods.handleMarker;
+  const { handleMarker } = handleMarkers;
   const { data: diarys, isSuccess } = useGetDiarys();
   const diaryMarkers = useDiaryToMarker({ diarys });
   const { yetMarkers, goneMarkers } = useFilterMarker();

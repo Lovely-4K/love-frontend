@@ -4,9 +4,14 @@ import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
 import useInputRef from '~/pages/Diary/hooks/Diary/useInputRef';
 
 const useMapCategory = () => {
-  const { mapCategory, setMapCategory, methods } = useDiary();
-  const { startSearchMode, setSearchKeyword, searchKeyword } = useInputRef();
-  const { closeInfo } = methods.handleInfo;
+  const {
+    mapCategory,
+    setMapCategory,
+    searchKeyword,
+    methods: { handleInfo, handleInput },
+  } = useDiary();
+  const { startSearchMode, setSearchKeyword } = handleInput;
+  const { closeInfo } = handleInfo;
 
   const translateCategory = (
     category: 'CAFE' | 'FOOD' | 'ACCOMODATION' | 'CULTURE' | '',

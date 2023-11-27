@@ -15,7 +15,6 @@ const useHandleMarker = ({
   handleSideBar,
 }: useHandleMarkerProps) => {
   const navigate = useNavigate();
-
   const { openInfo, setInfo } = handleInfo;
   const { openSideBar } = handleSideBar;
 

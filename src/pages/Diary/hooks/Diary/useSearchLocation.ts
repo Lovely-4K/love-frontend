@@ -9,8 +9,17 @@ interface useSearchLocationProps {
 }
 
 const useSearchLocation = ({ keyword }: useSearchLocationProps) => {
-  const { markers, setMarkers, info, setInfo, map, setMap } = useDiary();
-  const { startSearchMode, searchKeyword, setSearchKeyword } = useInputRef();
+  const {
+    markers,
+    setMarkers,
+    info,
+    setInfo,
+    map,
+    setMap,
+    searchKeyword,
+    methods,
+  } = useDiary();
+  const { startSearchMode, setSearchKeyword } = methods.handleInput;
   const { userPosition } = useCurrentLocation();
   const { resetMapCategory } = useMapCategory();
 

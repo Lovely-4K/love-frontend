@@ -1,13 +1,16 @@
 import DiaryMarkerData from '~/pages/Diary/components/DiaryCommon/DiaryMarkerData';
-import useHandleMarker from '~/pages/Diary/hooks/Diary/useHandleMarker';
-import useInputRef from '~/pages/Diary/hooks/Diary/useInputRef';
+import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
 import useMapCategory from '~/pages/Diary/hooks/Diary/useMapCategory';
 import useMarkers from '~/pages/Diary/hooks/Diary/useMarkers';
 
 const DiarySearchResults = () => {
-  const { searchKeyword, endSearchMode } = useInputRef();
+  const {
+    searchKeyword,
+    methods: { handleInput, handleMarkers },
+  } = useDiary();
+  const { endSearchMode } = handleInput;
   const { markers } = useMarkers();
-  const { handleMarker } = useHandleMarker();
+  const { handleMarker } = handleMarkers;
   const { mapCategory, translateCategory } = useMapCategory();
 
   const category = translateCategory(mapCategory);

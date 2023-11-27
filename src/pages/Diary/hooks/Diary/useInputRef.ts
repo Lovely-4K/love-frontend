@@ -1,14 +1,18 @@
-import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
+import { DiaryContextProps } from '~/pages/Diary/contexts/DiaryContext';
 
-const useInputRef = () => {
-  const {
-    searchKeyword,
-    setSearchKeyword,
-    searchMode,
-    setSearchMode,
-    mapCategory,
-  } = useDiary();
+interface useInputRefProps {
+  setSearchKeyword: DiaryContextProps['setSearchKeyword'];
+  searchMode: DiaryContextProps['searchMode'];
+  setSearchMode: DiaryContextProps['setSearchMode'];
+  mapCategory: DiaryContextProps['mapCategory'];
+}
 
+const useInputRef = ({
+  setSearchKeyword,
+  searchMode,
+  setSearchMode,
+  mapCategory,
+}: useInputRefProps) => {
   const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       setSearchKeyword(event.currentTarget.value);
@@ -35,10 +39,8 @@ const useInputRef = () => {
   };
 
   return {
-    searchKeyword,
     setSearchKeyword,
     handleKeyUp,
-    searchMode,
     searchModeToggle,
     endSearchMode,
     startSearchMode,
