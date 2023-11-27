@@ -1,10 +1,24 @@
 import { useContext } from 'react';
+import { useLocation } from 'react-router-dom';
+import { Button } from '~/components/common';
 import { DiaryHeader } from '~/pages/Diary/components/DiaryCommon';
 import { DiarySpotContext } from '~/pages/Diary/contexts/DiarySpotContent';
+import useInfo from '~/pages/Diary/hooks/useInfo';
 
 const DiarySpotHeader = () => {
-  const { pictures, deleteMode, handleDeleteMode } =
-    useContext(DiarySpotContext);
+  const locate = useLocation();
+  const { info } = useInfo();
+  if (!info) return;
+
+  if (!locate.state) return;
+
+  const contextValue = useContext(DiarySpotContext);
+
+  if (!contextValue) {
+    return null;
+  }
+
+  const { pictures, deleteMode, handleDeleteMode } = contextValue;
 
   const deleteButtonStyle = deleteMode
     ? 'bg-base-primary text-base-white'
@@ -13,19 +27,20 @@ const DiarySpotHeader = () => {
 
   const DeleteButton = () =>
     pictures.length ? (
-      <button
+      <Button
+        size="small"
         onClick={handleDeleteMode}
-        className={`text btn-small w-full rounded-xl ${deleteButtonStyle}`}
+        className={`rounded-xl text-sm ${deleteButtonStyle}`}
       >
         {deleteButtonLabel}
-      </button>
+      </Button>
     ) : (
       <></>
     );
 
   return (
     <div className="flex items-center justify-between">
-      <DiaryHeader />
+      <DiaryHeader prevLink="/diary" spotName={info.content} />
       <DeleteButton />
     </div>
   );

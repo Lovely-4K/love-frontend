@@ -1,12 +1,21 @@
-import { useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import DiaryNotContent from './DiaryNotContent';
 import DiarySpotPreviews from './DiarySpotPreviews';
-import { DiarySpotContext } from '~/pages/Diary/contexts/DiarySpotContent';
+import useGetSpotDiarys from '~/services/diary/useGetSpotDiarys';
 
 const DiaryListArea = () => {
-  const { pictures } = useContext(DiarySpotContext);
+  const { spotId } = useParams();
+  const { data: spotDiarys, isSuccess } = useGetSpotDiarys({
+    kakaoMapId: Number(spotId),
+  });
 
-  return pictures.length ? <DiarySpotPreviews /> : <DiaryNotContent />;
+  if (!isSuccess) return;
+
+  return spotDiarys.diaries ? (
+    <DiarySpotPreviews spotDiarys={spotDiarys} />
+  ) : (
+    <DiaryNotContent />
+  );
 };
 
 export default DiaryListArea;

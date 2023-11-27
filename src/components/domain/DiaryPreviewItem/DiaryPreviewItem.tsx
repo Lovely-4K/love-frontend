@@ -52,6 +52,7 @@ const DiaryPreviewItem = ({
   date,
   location,
   imgSrc,
+  onClick,
 }: DiaryPreviewItemProps) => {
   return (
     <DiaryPreviewItemContainer>

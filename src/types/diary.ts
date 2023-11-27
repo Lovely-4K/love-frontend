@@ -1,29 +1,59 @@
+import type categoryType from '~/components/common/CategoryButton/CategoryTypes';
+
+interface Pictures {
+  firstImage: string | null;
+  secondImage: string | null;
+  thirdImage: string | null;
+  fourthImage: string | null;
+  fifthImage: string | null;
+}
+
 interface Diary {
-  kakaoMapId: number;
-  datingDay: number[];
+  diaryId?: string;
+  kakaoMapId?: string | number;
+  placeName?: string;
+  datingDay: string;
+  category: categoryType;
   score: number;
-  category: string;
-  boyText: string;
-  girlText: string;
-  pictures: {
-    firstImage: string | null;
-    secondImage: string | null;
-    thirdImage: string | null;
-    fourthImage: string | null;
-    fifthImage: string | null;
-  };
+  images?: string[];
+  files?: FileList;
+}
+
+interface DiaryResponse extends Diary {
+  kakaoMapId: string;
+  placeName: string;
+  pictures: Pictures;
+  myText: string;
+  opponentText: string;
+}
+
+interface DiaryCreateTextRequest extends Diary {
+  latitude: number;
+  longitude: number;
+  placeName: string;
+  kakaoMapId: string | number;
+  address: string;
+  text: string;
+}
+
+interface DiaryEditTextRequest extends Diary {
+  myText: null | string;
+  opponentText: null | string;
+}
+
+interface DiaryContent {
+  diaryId: number;
+  kakaoMapId: number;
+  imageUrl: string;
+  datingDay: string;
+  placeName: string;
+  address: string;
+  latitude: number;
+  longitude: number;
 }
 
 interface Diarys {
-  content: {
-    diaryId: number;
-    kakaoMapId: number;
-    imageUrl: string;
-    datingDay: string;
-    latitude: number;
-    longitude: number;
-    placeName: string;
-  }[];
+  content: DiaryContent[];
   pageable: {
     pageNumber: number;
     pageSize: number;
@@ -51,4 +81,21 @@ interface Diarys {
   empty: boolean;
 }
 
-export type { Diary, Diarys };
+interface SpotDiarys {
+  diaries: {
+    diaryId: number;
+    imageUrl: string;
+    datingDay: string;
+  }[];
+}
+
+export type {
+  Diarys,
+  Pictures,
+  Diary,
+  DiaryResponse,
+  DiaryCreateTextRequest,
+  DiaryEditTextRequest,
+  SpotDiarys,
+  DiaryContent,
+};

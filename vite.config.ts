@@ -16,6 +16,7 @@ export default ({ mode }) => {
       proxy: {
         '/api': {
           target: process.env.VITE_API_END_POINT,
+          changeOrigin: false,
           rewrite: (path) => path.replace(/^\/api/, ''),
           secure: false,
         },

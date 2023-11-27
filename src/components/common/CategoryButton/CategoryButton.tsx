@@ -1,27 +1,39 @@
+import type categoryType from './CategoryTypes';
 import { HtmlHTMLAttributes } from 'react';
 import { CircleButton } from '..';
 import CategoryIcon from './CategoryIcon';
-import categoryType from './CategoryTypes';
 
 interface CategoryButtonProps extends HtmlHTMLAttributes<HTMLDivElement> {
   type: categoryType;
   active: boolean;
+  editable: boolean;
+  handleClickButton: (categoryType: categoryType) => void;
 }
 
 const titles: Record<categoryType, string> = {
-  cafe: '카페',
-  food: '음식점',
-  sleep: '숙박',
-  culture: '문화시설',
-  etc: '기타',
+  CAFE: '카페',
+  FOOD: '음식점',
+  ACCOMODATION: '숙박',
+  CULTURE: '문화시설',
+  ETC: '기타',
 };
 
-const CategoryButton = ({ type, active, onClick }: CategoryButtonProps) => {
+const CategoryButton = ({
+  editable,
+  type,
+  active,
+  handleClickButton,
+}: CategoryButtonProps) => {
   const icon = CategoryIcon({ type });
 
   return (
-    <div onClick={onClick}>
-      <CircleButton active={active} icon={icon} label={titles[type]} />
+    <div onClick={() => handleClickButton(type)}>
+      <CircleButton
+        editable={editable}
+        active={active}
+        icon={icon}
+        label={titles[type]}
+      />
     </div>
   );
 };

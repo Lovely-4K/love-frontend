@@ -1,17 +1,27 @@
-import { useContext } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { SpotDiarys } from '~/types';
 import DiarySpotPreview from './DiarySpotPreview';
-import { DiarySpotContext } from '~/pages/Diary/contexts/DiarySpotContent';
+import DiaryCreateButton from '~/pages/Diary/components/DiarySpot/DiaryCreateButton';
 
-const DiarySpotPreviews = () => {
-  const { pictures } = useContext(DiarySpotContext);
+interface DiarySpotPreviewsProps {
+  spotDiarys: SpotDiarys;
+}
+
+const DiarySpotPreviews = ({ spotDiarys }: DiarySpotPreviewsProps) => {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   return (
     <div className="flex flex-col items-center justify-center gap-4">
-      <button className="btn-large btn mb-5 w-full bg-base-primary text-base-white">
-        다이어리 작성하기
-      </button>
-      {pictures.map((image, id) => (
-        <DiarySpotPreview picture={image} id={id} />
+      <DiaryCreateButton />
+      {spotDiarys.diaries.map((diary) => (
+        <DiarySpotPreview
+          key={diary.diaryId}
+          picture={diary.imageUrl}
+          id={diary.diaryId}
+          date={diary.datingDay}
+          onClick={() => navigate(`${pathname}/${diary.diaryId}`)}
+        />
       ))}
     </div>
   );

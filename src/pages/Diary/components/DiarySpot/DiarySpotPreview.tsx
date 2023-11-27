@@ -1,24 +1,40 @@
 import { useContext } from 'react';
+import { Img } from '~/components/common';
 import { DiarySpotContext } from '~/pages/Diary/contexts/DiarySpotContent';
 
 interface DiarySpotPreviewProps {
   picture: string;
   id: number;
+  date: string;
+  onClick: () => void;
 }
 
-const DiarySpotPreview = ({ picture, id }: DiarySpotPreviewProps) => {
-  const { deleteMode } = useContext(DiarySpotContext);
+const DiarySpotPreview = ({
+  picture,
+  id,
+  date,
+  onClick,
+}: DiarySpotPreviewProps) => {
+  const contextValue = useContext(DiarySpotContext);
+
+  if (!contextValue) {
+    return null;
+  }
+
+  const { deleteMode } = contextValue;
 
   return (
     <div
       key={id}
       id={`item_${id}`}
-      className="group flex flex-col items-center justify-center rounded-xl border border-grey-200"
+      className="group flex cursor-pointer flex-col items-center justify-center rounded-xl border border-grey-200"
+      onClick={onClick}
     >
       <div className="h-32 ">
-        <img
+        <Img
+          shape="rectangle"
+          className="image-rectangle h-full"
           src={picture}
-          className="image-rectangle h-full "
           alt={`${picture}-${id}`}
         />
         {deleteMode && (
@@ -30,7 +46,7 @@ const DiarySpotPreview = ({ picture, id }: DiarySpotPreviewProps) => {
         )}
       </div>
       <div className="font-small py-2">
-        <span>2023년 9월 13일</span>
+        <span>{date}</span>
       </div>
     </div>
   );

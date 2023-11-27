@@ -1,25 +1,34 @@
 import { useContext } from 'react';
-import { DiaryMapContext } from '~/pages/Diary/contexts/DiaryMapContext';
+import { useNavigate } from 'react-router-dom';
+import { paths } from '~/router';
+import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
 import useInfoToggle from '~/pages/Diary/hooks/useInfoToggle';
 import useSideBar from '~/pages/Diary/hooks/useSideBar';
 import { MapMarker } from '~/types/map';
 
 const useHandleMarker = () => {
-  const diaryMapContext = useContext(DiaryMapContext);
+  const navigate = useNavigate();
+  const diaryContext = useContext(DiaryContext);
 
-  if (!diaryMapContext) throw new Error('Cannot find diaryMapProvider');
+  if (!diaryContext) throw new Error('Cannot find diaryProvider');
 
-  const { setInfo } = diaryMapContext;
-  const { openInfo } = useInfoToggle();
+  const { setInfo } = diaryContext;
+  const { openInfo, infoOpen } = useInfoToggle();
   const { openSideBar } = useSideBar();
 
   const handleMarker = (marker: MapMarker) => {
-    openInfo();
+    const { spotId, position, content } = marker;
+    const { lat, lng } = position;
+
     setInfo(marker);
+    openInfo();
     openSideBar();
+    navigate(`${paths.DIARY.ROOT}/${spotId}`, {
+      state: { lat, lng, spotId, content },
+    });
   };
 
-  return { handleMarker };
+  return { handleMarker, infoOpen, openInfo };
 };
 
 export default useHandleMarker;

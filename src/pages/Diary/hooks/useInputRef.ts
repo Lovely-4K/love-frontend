@@ -6,7 +6,13 @@ const useInputRef = () => {
 
   if (!diaryContext) throw new Error('Cannot find diaryProvider');
 
-  const { searchKeyword, setSearchKeyword } = diaryContext;
+  const {
+    searchKeyword,
+    setSearchKeyword,
+    searchMode,
+    setSearchMode,
+    mapCategory,
+  } = diaryContext;
 
   const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
@@ -14,10 +20,34 @@ const useInputRef = () => {
     }
   };
 
+  const searchModeToggle = () => {
+    setSearchMode(!searchMode);
+  };
+
+  const endSearchMode = () => {
+    setSearchMode(false);
+  };
+
+  const startSearchMode = () => {
+    setSearchMode(true);
+  };
+
+  const categorySearchMode = () => {
+    setSearchMode(true);
+    if (mapCategory) {
+      setSearchKeyword('');
+    }
+  };
+
   return {
     searchKeyword,
     setSearchKeyword,
     handleKeyUp,
+    searchMode,
+    searchModeToggle,
+    endSearchMode,
+    startSearchMode,
+    categorySearchMode,
   };
 };
 

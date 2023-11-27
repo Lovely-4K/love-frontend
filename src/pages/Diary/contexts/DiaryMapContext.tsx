@@ -1,36 +1,39 @@
 import { PropsWithChildren, createContext, useState } from 'react';
 import { MapMarker } from '~/types';
 
+export type MapCategory = 'CAFE' | 'FOOD' | 'ACCOMODATION' | 'CULTURE' | '';
+export type MarkerFilter = 'ALL' | 'GONE' | 'YET' | '';
+
 interface DiaryMapContextProps {
-  markers: MapMarker[];
-  setMarkers: React.Dispatch<React.SetStateAction<MapMarker[]>>;
-  info: MapMarker | undefined;
-  setInfo: React.Dispatch<React.SetStateAction<MapMarker | undefined>>;
-  map: kakao.maps.Map | undefined;
-  setMap: React.Dispatch<React.SetStateAction<kakao.maps.Map | undefined>>;
-  infoOpen: boolean;
-  setInfoOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  // mapCategory: MapCategory;
+  // setMapCategory: React.Dispatch<React.SetStateAction<MapCategory>>;
+  markerFilter: MarkerFilter;
+  setMarkerFilter: React.Dispatch<React.SetStateAction<MarkerFilter>>;
+  goneMarkers: MapMarker[];
+  setGoneMarkers: React.Dispatch<React.SetStateAction<MapMarker[]>>;
+  yetMarkers: MapMarker[];
+  setYetMarkers: React.Dispatch<React.SetStateAction<MapMarker[]>>;
 }
 
-const DiaryMapContext = createContext({} as DiaryMapContextProps);
+const DiaryMapContext = createContext<DiaryMapContextProps | null>(null);
 
 const DiaryMapProvider = ({ children }: PropsWithChildren) => {
-  const [info, setInfo] = useState<MapMarker>();
-  const [markers, setMarkers] = useState<MapMarker[]>([]);
-  const [map, setMap] = useState<kakao.maps.Map>();
-  const [infoOpen, setInfoOpen] = useState<boolean>(false);
+  // const [mapCategory, setMapCategory] = useState<MapCategory>('');
+  const [markerFilter, setMarkerFilter] = useState<MarkerFilter>('ALL');
+  const [goneMarkers, setGoneMarkers] = useState<MapMarker[]>([]);
+  const [yetMarkers, setYetMarkers] = useState<MapMarker[]>([]);
 
   return (
     <DiaryMapContext.Provider
       value={{
-        info,
-        setInfo,
-        markers,
-        setMarkers,
-        map,
-        setMap,
-        infoOpen,
-        setInfoOpen,
+        // mapCategory,
+        // setMapCategory,
+        markerFilter,
+        setMarkerFilter,
+        goneMarkers,
+        setGoneMarkers,
+        yetMarkers,
+        setYetMarkers,
       }}
     >
       {children}

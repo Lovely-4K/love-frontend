@@ -10,8 +10,8 @@ const imgShapes = {
 const Img = ({ shape = 'square', className, ...props }: ImgProps) => {
   return (
     <img
-      {...props}
       className={`rounded-xl object-cover ${imgShapes[shape]} ${className}`}
+      {...props}
     />
   );
 };

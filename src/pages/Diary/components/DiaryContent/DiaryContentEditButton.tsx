@@ -1,25 +1,30 @@
-import { useContext } from 'react';
-import { DiaryContentContext } from '~/pages/Diary/contexts/DiaryContentContext';
-
+import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
+import { Button } from '~/components/common';
 const DiaryContentEditButton = () => {
-  const { editMode, handleEditComplete, handleEditCancel } =
-    useContext(DiaryContentContext);
+  const { editable, methods } = useDiaryContentContext();
+  const { handleEditCancel, handleSubmitForm } = methods;
 
   return (
-    editMode && (
+    editable && (
       <div className="flex justify-end gap-2">
-        <button
-          onClick={handleEditCancel}
-          className="btn-small w-full rounded-xl border border-grey-200 text-grey-400"
+        <Button
+          onClick={() => {
+            handleEditCancel();
+          }}
+          size="small"
+          className="rounded-xl border border-grey-200 text-grey-400"
         >
           취소
-        </button>
-        <button
-          onClick={handleEditComplete}
-          className="btn-small w-full rounded-xl border bg-base-primary text-base-white"
+        </Button>
+        <Button
+          onClick={() => {
+            handleSubmitForm();
+          }}
+          size="small"
+          className="rounded-xl border bg-base-primary text-base-white"
         >
           완료
-        </button>
+        </Button>
       </div>
     )
   );
