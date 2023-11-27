@@ -26,7 +26,6 @@ const DiarySpotProvider = ({ children }: PropsWithChildren) => {
   const { data: spotDiaries } = useGetSpotDiarys({
     kakaoMapId: Number(info.spotId),
   });
-  console.log(spotDiaries);
 
   const handleDeleteMode = () => {
     setDeleteMode(!deleteMode);
