@@ -1,7 +1,10 @@
-import useSelectSortMethod from '~/pages/Diary/hooks/Diary/useSelectSortMethod';
+import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
 
 const DiaryRecordsHeader = () => {
-  const { handleSortMethodClick } = useSelectSortMethod();
+  const {
+    methods: { handleSortMethod },
+  } = useDiary();
+  const { handleSortMethodClick } = handleSortMethod;
 
   return (
     <div className="flex items-center justify-between">

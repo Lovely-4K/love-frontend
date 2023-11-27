@@ -12,10 +12,9 @@ import useHandleMarker from '~/pages/Diary/hooks/Diary/useHandleMarker';
 import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
 import useInputRef from '~/pages/Diary/hooks/Diary/useInputRef';
 import useMapCategory from '~/pages/Diary/hooks/Diary/useMapCategory';
-import useSearchLocation from '~/pages/Diary/hooks/Diary/useMapLocation';
 import useSearch from '~/pages/Diary/hooks/Diary/useMapLocation';
+import useSelectSortMethod from '~/pages/Diary/hooks/Diary/useSelectSortMethod';
 import useSideBar from '~/pages/Diary/hooks/Diary/useSideBar';
-import useDiaryMap from '~/pages/Diary/hooks/DiaryMap/useDiaryMap';
 import useGetDiarys from '~/services/diary/useGetDiarys';
 
 export interface DiaryContextProps {
@@ -53,6 +52,7 @@ export interface DiaryContextProps {
     handleLocation: ReturnType<typeof useMapLocation>;
     handleSearch: ReturnType<typeof useSearch>;
     handleDiaryCategories: ReturnType<typeof useDiaryCategories>;
+    handleSortMethod: ReturnType<typeof useSelectSortMethod>;
   };
 }
 
@@ -106,6 +106,7 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
     handleMarkers,
   });
   const handleDiaryCategories = useDiaryCategories({ setDiaryCategory });
+  const handleSortMethod = useSelectSortMethod({ setSelectSortMethod });
 
   if (!isSuccess) return;
 
@@ -144,6 +145,7 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
           handleLocation,
           handleSearch,
           handleDiaryCategories,
+          handleSortMethod,
         },
       }}
     >

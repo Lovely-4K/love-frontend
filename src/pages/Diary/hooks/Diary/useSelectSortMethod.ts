@@ -1,13 +1,17 @@
-import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
+import { DiaryContextProps } from '~/pages/Diary/contexts/DiaryContext';
 
-const useSelectSortMethod = () => {
-  const { selectSortMethod, setSelectSortMethod } = useDiary();
+interface useSelectSortMethodProps {
+  setSelectSortMethod: DiaryContextProps['setSelectSortMethod'];
+}
 
+const useSelectSortMethod = ({
+  setSelectSortMethod,
+}: useSelectSortMethodProps) => {
   const handleSortMethodClick = (sortMethod: string) => {
     setSelectSortMethod(sortMethod);
   };
 
-  return { selectSortMethod, setSelectSortMethod, handleSortMethodClick };
+  return { setSelectSortMethod, handleSortMethodClick };
 };
 
 export default useSelectSortMethod;
