@@ -1,6 +1,5 @@
-import { useContext } from 'react';
+import useDiarySpotContext from '../../hooks/useDiarySpotContext';
 import { Img } from '~/components/common';
-import { DiarySpotContext } from '~/pages/Diary/contexts/DiarySpotContent';
 
 interface DiarySpotPreviewProps {
   picture: string;
@@ -15,13 +14,8 @@ const DiarySpotPreview = ({
   date,
   onClick,
 }: DiarySpotPreviewProps) => {
-  const contextValue = useContext(DiarySpotContext);
-
-  if (!contextValue) {
-    return null;
-  }
-
-  const { deleteMode } = contextValue;
+  const diarySpotContext = useDiarySpotContext();
+  const { deleteMode } = diarySpotContext;
 
   return (
     <div
