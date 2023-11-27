@@ -32,7 +32,6 @@ const StyledDivider = styled.div`
 const SideBarEditSchedule = () => {
   const { closeEditSchedule, saveEditSchedule } = useCalendarSideBar();
 
-  /** @todo nickname에 따라 label content 변경 */
   return (
     <div>
       <EditInput />

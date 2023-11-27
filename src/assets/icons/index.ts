@@ -28,3 +28,4 @@ export { default as SelectCoupleBtn } from './selectCoupleBtn.svg?react';
 export { default as SelectCurrentBtn } from './selectCurrentBtn.svg?react';
 export { default as SelectGoneBtn } from './selectGoneBtn.svg?react';
 export { default as SelectNotBtn } from './selectNotBtn.svg?react';
+export { default as IconTrash } from './trash.svg?react';

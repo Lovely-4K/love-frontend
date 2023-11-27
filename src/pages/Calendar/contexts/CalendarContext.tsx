@@ -1,5 +1,11 @@
-import type { UseQueryResult } from '@tanstack/react-query';
-import { endOfMonth, endOfWeek, startOfMonth, startOfWeek } from 'date-fns';
+import { UseQueryResult } from '@tanstack/react-query';
+import {
+  endOfMonth,
+  endOfWeek,
+  format,
+  startOfMonth,
+  startOfWeek,
+} from 'date-fns';
 import {
   PropsWithChildren,
   createContext,
@@ -14,15 +20,20 @@ interface CalendarContextProps {
   pickedDate: Date;
   changePickedDate(date: Date): void;
   getMonthScheduleQuery: UseQueryResult<CalendarSchedule, Error>;
+  validSchedules: CalendarSchedule['schedules'];
 }
 
 const CalendarContext = createContext<CalendarContextProps | null>(null);
 
 const CalendarProvider = ({ children }: PropsWithChildren) => {
   const [pickedDate, setPickedDate] = useState(new Date());
+
   const { startDate, endDate } = useMemo(() => {
-    const startDate = startOfWeek(startOfMonth(pickedDate));
-    const endDate = endOfWeek(endOfMonth(pickedDate));
+    const startDate = format(
+      startOfWeek(startOfMonth(pickedDate)),
+      'yyyy-MM-dd',
+    );
+    const endDate = format(endOfWeek(endOfMonth(pickedDate)), 'yyyy-MM-dd');
 
     return { startDate, endDate };
   }, [pickedDate]);
@@ -32,14 +43,29 @@ const CalendarProvider = ({ children }: PropsWithChildren) => {
     to: endDate,
   });
 
+  const validSchedules = useMemo(() => {
+    const formatPickedDate = format(pickedDate, 'yyyy-MM-dd');
+    if (!getMonthScheduleQuery.isSuccess) return [];
+
+    return getMonthScheduleQuery.data.schedules.filter(
+      (schedule) =>
+        schedule.startDate <= formatPickedDate &&
+        schedule.endDate >= formatPickedDate,
+    );
+  }, [pickedDate, getMonthScheduleQuery]);
+
   const changePickedDate = useCallback((date: Date) => {
     setPickedDate(date);
   }, []);
 
-  const value = useMemo(
-    () => ({ pickedDate, changePickedDate, getMonthScheduleQuery }),
-    [pickedDate, changePickedDate, getMonthScheduleQuery],
-  );
+  const value = useMemo(() => {
+    return {
+      pickedDate,
+      changePickedDate,
+      getMonthScheduleQuery,
+      validSchedules,
+    };
+  }, [pickedDate, changePickedDate, getMonthScheduleQuery, validSchedules]);
 
   return (
     <CalendarContext.Provider value={value}>

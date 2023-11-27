@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import apiClient from '~/api/apiClient';
 
 const deleteSchedule = async ({ scheduleId }: { scheduleId: number }) => {
@@ -8,8 +8,15 @@ const deleteSchedule = async ({ scheduleId }: { scheduleId: number }) => {
 };
 
 const useDeleteSchedule = () => {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: deleteSchedule,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['monthSchedule'],
+      });
+    },
   });
 };
 

@@ -1,19 +1,9 @@
-import { scheduleColors } from '~/constants';
+import { Link } from 'react-router-dom';
 import { paths } from '~/router';
-import type { ColorInfo, Schedule } from '~/types';
+import { getScheduleColor } from '~/utils';
 import { useMainContent } from '../../hooks';
 import PreviewNoneItem from './PreviewNoneItem';
 import { ScheduleItem } from '~/components/domain';
-
-const getScheduleColor = (schedule: Schedule, colorInfo: ColorInfo) => {
-  const { scheduleType, ownerId } = schedule;
-  const { boyCalendarColor, boyId, girlCalendarColor } = colorInfo;
-  if (scheduleType === 'PERSONAL') {
-    return ownerId === boyId ? boyCalendarColor : girlCalendarColor;
-  }
-
-  return scheduleColors[scheduleType];
-};
 
 const PreviewCalendar = () => {
   const { recentSchedule } = useMainContent();
@@ -22,13 +12,14 @@ const PreviewCalendar = () => {
   const scheduleList =
     schedules.length > 0 ? (
       schedules.map((schedule) => (
-        <ScheduleItem
-          startDate={schedule.startDate}
-          endDate={schedule.endDate}
-          key={schedule.calendarId}
-          title={schedule.scheduleDetails}
-          customColor={getScheduleColor(schedule, colorInfo)}
-        />
+        <Link to={paths.CALENDAR} key={schedule.calendarId}>
+          <ScheduleItem
+            startDate={schedule.startDate}
+            endDate={schedule.endDate}
+            title={schedule.scheduleDetails}
+            customColor={getScheduleColor(schedule, colorInfo)}
+          />
+        </Link>
       ))
     ) : (
       <PreviewNoneItem

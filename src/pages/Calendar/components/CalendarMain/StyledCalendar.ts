@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import Calendar from 'react-calendar';
 import { colors, fontSize, screens } from '~/theme';
 
-const StyledCalendar = styled(Calendar)`
+const StyledCalendar = styled(Calendar)<{ activate: boolean }>`
   width: 100%;
   height: 100%;
   border: none;
@@ -108,6 +108,11 @@ const StyledCalendar = styled(Calendar)`
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
+        ${({ activate }) => !activate && 'opacity: 0.6'};
+
+        @media (min-width: ${screens.md}) {
+          height: 4.5rem;
+        }
 
         @media (min-width: ${screens.lg}) {
           height: 5.5rem;
