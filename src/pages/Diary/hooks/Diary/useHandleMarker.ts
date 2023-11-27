@@ -1,17 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import { paths } from '~/router';
 import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
-import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
-import useSideBar from '~/pages/Diary/hooks/Diary/useSideBar';
 import { MapMarker } from '~/types/map';
 
 const useHandleMarker = () => {
   const navigate = useNavigate();
   const { setInfo, infoOpen, methods } = useDiary();
-  const { handleToggleInfo } = methods;
-  const { openInfo } = handleToggleInfo;
-  // const { openInfo, infoOpen } = useInfoToggle();
-  const { openSideBar } = useSideBar();
+  const { openInfo } = methods.handleInfo;
+  const { openSideBar } = methods.handleSideBar;
 
   const handleMarker = (marker: MapMarker) => {
     const { spotId, position, content } = marker;

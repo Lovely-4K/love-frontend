@@ -1,15 +1,12 @@
 import { useEffect } from 'react';
 import categoryType from '~/components/common/CategoryButton/CategoryTypes';
 import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
-import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
 import useInputRef from '~/pages/Diary/hooks/Diary/useInputRef';
 
 const useMapCategory = () => {
   const { mapCategory, setMapCategory, methods } = useDiary();
   const { startSearchMode, setSearchKeyword, searchKeyword } = useInputRef();
-  // const { closeInfo } = useInfoToggle();
-  const { handleToggleInfo } = methods;
-  const { closeInfo } = handleToggleInfo;
+  const { closeInfo } = methods.handleInfo;
 
   const translateCategory = (
     category: 'CAFE' | 'FOOD' | 'ACCOMODATION' | 'CULTURE' | '',

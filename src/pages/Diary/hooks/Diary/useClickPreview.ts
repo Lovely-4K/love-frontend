@@ -8,8 +8,7 @@ const useClickPreview = () => {
   const navigate = useNavigate();
   const { setInfo, map, methods } = useDiary();
   // const { openInfo } = useInfoToggle();
-  const { handleToggleInfo } = methods;
-  const { openInfo } = handleToggleInfo;
+  const { openInfo } = methods.handleInfo;
 
   const handleClickPreview = (preview: DiaryContent) => {
     if (!map) return;

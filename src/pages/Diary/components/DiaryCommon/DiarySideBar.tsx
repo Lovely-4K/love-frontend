@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { PropsWithChildren } from 'react';
 import { colors, fontSize, screens } from '~/theme';
 import { IconTopArrow } from '~/assets/icons';
+import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
 import useSideBar from '~/pages/Diary/hooks/Diary/useSideBar';
 
 const StyledDiarySideBar = styled.div`
@@ -99,7 +100,9 @@ const StyledArrowIcon = styled(IconTopArrow)`
 `;
 
 const DiarySideBar = ({ children }: PropsWithChildren) => {
-  const { sideBarToggle, toggleSideBar } = useSideBar();
+  // const { sideBarToggle, toggleSideBar } = useSideBar();
+  const { methods, sideBarToggle } = useDiary();
+  const { toggleSideBar } = methods.handleSideBar;
 
   return (
     <StyledDiarySideBar className={sideBarToggle ? 'open' : 'closed'}>

@@ -3,11 +3,11 @@ import { useLocation } from 'react-router-dom';
 import { Button } from '~/components/common';
 import { DiaryHeader } from '~/pages/Diary/components/DiaryCommon';
 import { DiarySpotContext } from '~/pages/Diary/contexts/DiarySpotContent';
-import useInfo from '~/pages/Diary/hooks/Diary/useInfo';
+import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
 
 const DiarySpotHeader = () => {
   const locate = useLocation();
-  const { info } = useInfo();
+  const { info } = useDiary();
   if (!info) return;
 
   if (!locate.state) return;

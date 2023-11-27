@@ -1,8 +1,11 @@
-import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
+import { DiaryContextProps } from '~/pages/Diary/contexts/DiaryContext';
 
-const useSideBar = () => {
-  const { sideBarToggle, setSideBarToggle } = useDiary();
+interface useSideBarProps {
+  sideBarToggle: DiaryContextProps['sideBarToggle'];
+  setSideBarToggle: DiaryContextProps['setSideBarToggle'];
+}
 
+const useSideBar = ({ sideBarToggle, setSideBarToggle }: useSideBarProps) => {
   const toggleSideBar = () => {
     setSideBarToggle(!sideBarToggle);
   };
@@ -12,8 +15,6 @@ const useSideBar = () => {
   };
 
   return {
-    sideBarToggle,
-    setSideBarToggle,
     toggleSideBar,
     openSideBar,
   };
