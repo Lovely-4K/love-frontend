@@ -2,7 +2,7 @@ import { PropsWithChildren, createContext, useState } from 'react';
 import { Diarys, MapMarker } from '~/types';
 import categoryType from '~/components/common/CategoryButton/CategoryTypes';
 import { MapCategory } from '~/pages/Diary/contexts/DiaryMapContext';
-import useGetDiarys from '~/services/diarys/useGetDiarys';
+import useGetDiarys from '~/services/diary/useGetDiarys';
 
 interface DiaryContextProps {
   searchKeyword: string;

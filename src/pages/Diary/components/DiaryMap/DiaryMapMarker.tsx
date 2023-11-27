@@ -5,7 +5,7 @@ import useFilterMarker from '~/pages/Diary/hooks/useFilterMarker';
 import useHandleMarker from '~/pages/Diary/hooks/useHandleMarker';
 import useInputRef from '~/pages/Diary/hooks/useInputRef';
 import useSearchLocation from '~/pages/Diary/hooks/useSearchLocation';
-import useGetDiarys from '~/services/diarys/useGetDiarys';
+import useGetDiarys from '~/services/diary/useGetDiarys';
 
 /** @todo: 추후 내 위치 마커와 장소 표시 마커 분리시키기 */
 const DiaryMapMarker = ({ userPosition }: UserPosition) => {
