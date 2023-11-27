@@ -1,15 +1,18 @@
 import { PropsWithChildren, createContext, useState } from 'react';
 import { Diarys, MapMarker } from '~/types';
 import categoryType from '~/components/common/CategoryButton/CategoryTypes';
-import { MapCategory } from '~/pages/Diary/contexts/DiaryMapContext';
+import {
+  DiaryMapProvider,
+  MapCategory,
+} from '~/pages/Diary/contexts/DiaryMapContext';
 import useClickPreview from '~/pages/Diary/hooks/Diary/useClickPreview';
-import useCurrentLocation from '~/pages/Diary/hooks/Diary/useCurrentLocation';
 import useMapLocation from '~/pages/Diary/hooks/Diary/useCurrentLocation';
 import useHandleMarker from '~/pages/Diary/hooks/Diary/useHandleMarker';
 import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
 import useInputRef from '~/pages/Diary/hooks/Diary/useInputRef';
 import useMapCategory from '~/pages/Diary/hooks/Diary/useMapCategory';
 import useSideBar from '~/pages/Diary/hooks/Diary/useSideBar';
+import useDiaryMap from '~/pages/Diary/hooks/DiaryMap/useDiaryMap';
 import useGetDiarys from '~/services/diary/useGetDiarys';
 
 export interface DiaryContextProps {
@@ -36,6 +39,7 @@ export interface DiaryContextProps {
   diarys: Diarys;
   mapCategory: MapCategory;
   setMapCategory: React.Dispatch<React.SetStateAction<MapCategory>>;
+
   methods: {
     handleInfo: ReturnType<typeof useInfoToggle>;
     handleSideBar: ReturnType<typeof useSideBar>;
@@ -61,13 +65,12 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
   const [info, setInfo] = useState<MapMarker>();
   const [infoOpen, setInfoOpen] = useState<boolean>(false);
   const [map, setMap] = useState<kakao.maps.Map>();
-  const { data: diarys, isSuccess } = useGetDiarys();
   const [mapCategory, setMapCategory] = useState<MapCategory>('');
+  const { data: diarys, isSuccess } = useGetDiarys();
 
   const handleInfo = useInfoToggle({ infoOpen, setInfoOpen, setInfo });
   const handleSideBar = useSideBar({ sideBarToggle, setSideBarToggle });
   const handleMarkers = useHandleMarker({
-    infoOpen,
     handleInfo,
     handleSideBar,
     setMarkers,
@@ -116,6 +119,7 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
         diarys,
         mapCategory,
         setMapCategory,
+
         methods: {
           handleInfo,
           handleSideBar,
@@ -127,7 +131,7 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
         },
       }}
     >
-      {children}
+      <DiaryMapProvider>{children}</DiaryMapProvider>
     </DiaryContext.Provider>
   );
 };

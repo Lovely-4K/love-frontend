@@ -2,8 +2,8 @@ import { MapMarker } from 'react-kakao-maps-sdk';
 import { UserPosition } from '~/types';
 import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
 import useDiaryToMarker from '~/pages/Diary/hooks/Diary/useDiarytoMarker';
-import useFilterMarker from '~/pages/Diary/hooks/Diary/useFilterMarker';
 import useSearchLocation from '~/pages/Diary/hooks/Diary/useMapLocation';
+import useDiaryMap from '~/pages/Diary/hooks/DiaryMap/useDiaryMap';
 import useGetDiarys from '~/services/diary/useGetDiarys';
 
 /** @todo: 추후 내 위치 마커와 장소 표시 마커 분리시키기 */
@@ -18,7 +18,7 @@ const DiaryMapMarker = ({ userPosition }: UserPosition) => {
   const { handleMarker } = handleMarkers;
   const { data: diarys, isSuccess } = useGetDiarys();
   const diaryMarkers = useDiaryToMarker({ diarys });
-  const { yetMarkers, goneMarkers } = useFilterMarker();
+  const { yetMarkers, goneMarkers } = useDiaryMap();
 
   if (!userPosition || !isSuccess || !diarys) return;
 

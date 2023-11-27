@@ -4,14 +4,12 @@ import { DiaryContextProps } from '~/pages/Diary/contexts/DiaryContext';
 import { MapMarker } from '~/types/map';
 
 interface useHandleMarkerProps {
-  infoOpen: DiaryContextProps['infoOpen'];
   handleInfo: DiaryContextProps['methods']['handleInfo'];
   handleSideBar: DiaryContextProps['methods']['handleSideBar'];
   setMarkers: DiaryContextProps['setMarkers'];
 }
 
 const useHandleMarker = ({
-  infoOpen,
   handleInfo,
   handleSideBar,
   setMarkers,
@@ -32,7 +30,7 @@ const useHandleMarker = ({
     });
   };
 
-  return { handleMarker, infoOpen, openInfo, setMarkers };
+  return { handleMarker, openInfo, setMarkers };
 };
 
 export default useHandleMarker;
