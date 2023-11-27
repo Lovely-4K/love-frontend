@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import DiaryNotContent from './DiaryNotContent';
 import DiarySpotPreviews from './DiarySpotPreviews';
-import useGetSpotDiarys from '~/services/Diary/useGetSpotDiarys';
+import useGetSpotDiarys from '~/services/diarys/useGetSpotDiarys';
 
 const DiaryListArea = () => {
   const { spotId } = useParams();
