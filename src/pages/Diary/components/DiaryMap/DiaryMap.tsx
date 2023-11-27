@@ -6,7 +6,7 @@ import DiaryCustomInfo from './DiaryCustomInfo';
 import DiaryMapButtons from './DiaryMapButtons';
 import DiaryMapMarker from './DiaryMapMarker';
 import DiaryMapCategories from '~/pages/Diary/components/DiaryMap/DiaryMapCategories';
-import useCategorySearch from '~/pages/Diary/hooks/useCategorySearch';
+import useCategorySearch from '~/pages/Diary/hooks/Diary/useCategorySearch';
 import useCurrentLocation from '~/pages/Diary/hooks/useCurrentLocation';
 import useInfoToggle from '~/pages/Diary/hooks/useInfoToggle';
 import useInputRef from '~/pages/Diary/hooks/useInputRef';
