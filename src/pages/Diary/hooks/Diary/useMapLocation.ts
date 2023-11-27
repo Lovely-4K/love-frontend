@@ -63,7 +63,6 @@ const useSearch = ({
             startSearchMode();
           }
         },
-        // options,
       );
     }, [map, keyword, setMarkers, searchKeyword, setSearchKeyword]);
   };

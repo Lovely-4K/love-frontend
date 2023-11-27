@@ -7,6 +7,7 @@ import {
 } from '~/pages/Diary/contexts/DiaryMapContext';
 import useClickPreview from '~/pages/Diary/hooks/Diary/useClickPreview';
 import useMapLocation from '~/pages/Diary/hooks/Diary/useCurrentLocation';
+import useDiaryCategories from '~/pages/Diary/hooks/Diary/useDiaryCategories';
 import useHandleMarker from '~/pages/Diary/hooks/Diary/useHandleMarker';
 import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
 import useInputRef from '~/pages/Diary/hooks/Diary/useInputRef';
@@ -26,8 +27,8 @@ export interface DiaryContextProps {
   setSideBarToggle: React.Dispatch<React.SetStateAction<boolean>>;
   markers: MapMarker[];
   setMarkers: React.Dispatch<React.SetStateAction<MapMarker[]>>;
-  selectCategory: categoryType | undefined;
-  setSelectCategory: React.Dispatch<
+  diaryCategory: categoryType | undefined;
+  setDiaryCategory: React.Dispatch<
     React.SetStateAction<categoryType | undefined>
   >;
   selectSortMethod: string;
@@ -51,6 +52,7 @@ export interface DiaryContextProps {
     handleClickPreviews: ReturnType<typeof useClickPreview>;
     handleLocation: ReturnType<typeof useMapLocation>;
     handleSearch: ReturnType<typeof useSearch>;
+    handleDiaryCategories: ReturnType<typeof useDiaryCategories>;
   };
 }
 
@@ -61,9 +63,9 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
   const [searchMode, setSearchMode] = useState(false);
   const [sideBarToggle, setSideBarToggle] = useState(true);
   const [markers, setMarkers] = useState<MapMarker[]>([]);
-  const [selectCategory, setSelectCategory] = useState<
-    categoryType | undefined
-  >(undefined);
+  const [diaryCategory, setDiaryCategory] = useState<categoryType | undefined>(
+    undefined,
+  );
   const [selectSortMethod, setSelectSortMethod] = useState<string>('');
   const [info, setInfo] = useState<MapMarker>();
   const [infoOpen, setInfoOpen] = useState<boolean>(false);
@@ -103,6 +105,7 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
     handleLocation,
     handleMarkers,
   });
+  const handleDiaryCategories = useDiaryCategories({ setDiaryCategory });
 
   if (!isSuccess) return;
 
@@ -117,8 +120,8 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
         setSideBarToggle,
         markers,
         setMarkers,
-        selectCategory,
-        setSelectCategory,
+        diaryCategory,
+        setDiaryCategory,
         selectSortMethod,
         setSelectSortMethod,
         info,
@@ -140,6 +143,7 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
           handleClickPreviews,
           handleLocation,
           handleSearch,
+          handleDiaryCategories,
         },
       }}
     >
