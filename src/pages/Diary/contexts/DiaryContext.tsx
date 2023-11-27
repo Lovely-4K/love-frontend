@@ -63,6 +63,7 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
     infoOpen,
     handleInfo,
     handleSideBar,
+    setMarkers,
   });
   const handleInput = useInputRef({
     setSearchKeyword,

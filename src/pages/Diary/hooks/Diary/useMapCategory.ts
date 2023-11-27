@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import categoryType from '~/components/common/CategoryButton/CategoryTypes';
 import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
-import useInputRef from '~/pages/Diary/hooks/Diary/useInputRef';
 
 const useMapCategory = () => {
   const {

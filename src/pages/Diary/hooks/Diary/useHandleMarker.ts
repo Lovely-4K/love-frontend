@@ -7,6 +7,7 @@ interface useHandleMarkerProps {
   infoOpen: DiaryContextProps['infoOpen'];
   handleInfo: DiaryContextProps['methods']['handleInfo'];
   handleSideBar: DiaryContextProps['methods']['handleSideBar'];
+  setMarkers: DiaryContextProps['setMarkers'];
 }
 
 const useHandleMarker = ({
