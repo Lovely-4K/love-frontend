@@ -16,15 +16,17 @@ const DiaryRecordsPreviews = () => {
   if (!isSuccess) return;
 
   return (
-    <div className="grid grid-cols-2 justify-items-center md:gap-x-4">
+    <div className="flex w-full flex-wrap justify-center gap-2">
       {diarys.content.map((diary) => (
-        <DiaryPreviewItem
-          key={diary.diaryId}
-          date={diary.datingDay}
-          location={diary.placeName}
-          imgSrc={diary.imageUrl}
-          onClick={() => handleClickPreview(diary)}
-        />
+        <div className="flex items-center justify-center md:max-w-[45%]">
+          <DiaryPreviewItem
+            key={diary.diaryId}
+            date={diary.datingDay}
+            location={diary.placeName}
+            imgSrc={diary.imageUrl}
+            onClick={() => handleClickPreview(diary)}
+          />
+        </div>
       ))}
     </div>
   );

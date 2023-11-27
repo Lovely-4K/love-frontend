@@ -37,9 +37,6 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
   const [searchMode, setSearchMode] = useState(false);
   const [sideBarToggle, setSideBarToggle] = useState(true);
   const [markers, setMarkers] = useState<MapMarker[]>([]);
-  const [selectCategory, setSelectCategory] = useState<
-    categoryType | undefined
-  >(undefined);
   const [selectSortMethod, setSelectSortMethod] = useState<string>('');
   const [info, setInfo] = useState<MapMarker>();
   const [infoOpen, setInfoOpen] = useState<boolean>(false);
@@ -47,6 +44,9 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
   const { data: diarys, isSuccess } = useGetDiarys();
   const [mapCategory, setMapCategory] = useState<MapCategory>('');
 
+  const [selectCategory, setSelectCategory] = useState<
+    categoryType | undefined
+  >(undefined);
   if (!isSuccess) return;
 
   return (

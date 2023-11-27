@@ -55,6 +55,8 @@ const DiaryPreviewItem = ({
   imgSrc,
   onClick,
 }: DiaryPreviewItemProps) => {
+  console.log(imgSrc);
+
   return (
     <DiaryPreviewItemContainer onClick={onClick}>
       <Img
