@@ -1,14 +1,10 @@
 interface User {
-  imageUrl: string | null;
-  name: string;
+  imageUrl: string | File | null;
   nickname: string;
   birthday: string;
   mbti: string;
   calendarColor: string;
+  id?: number;
 }
 
-interface EditUser extends Omit<User, 'imageUrl'> {
-  imageUrl: string | File | null;
-}
-
-export type { User, EditUser };
+export type { User };

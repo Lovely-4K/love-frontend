@@ -1,55 +1,53 @@
-import { useCallback, useEffect, useState } from 'react';
+import styled from '@emotion/styled';
+import { colors, screens } from '~/theme';
 import { IconHeart } from '~/assets/icons';
-
-const DESKTOP_WIDTH = 1024;
 
 interface TemperatureBarProps {
   percent: number;
 }
 
+const ActiveTempBar = styled.div<TemperatureBarProps>`
+  position: relative;
+  background-color: ${colors.base.primary};
+  height: 0.7rem;
+  width: ${({ percent }) =>
+    percent >= 97.5 ? 97.5 : percent <= 2.5 ? 2.5 : percent}%;
+
+  @media screen and (min-width: ${screens.md}) {
+    width: ${({ percent }) =>
+      percent >= 98.5 ? 98.5 : percent <= 1.5 ? 1.5 : percent}%;
+  }
+
+  @media screen and (min-width: ${screens.lg}) {
+    height: ${({ percent }) =>
+      percent >= 99 ? 99 : percent <= 2 ? 2 : percent}%;
+    width: 1rem;
+  }
+`;
+
+const ActiveIcon = styled(IconHeart)<TemperatureBarProps>`
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -25%);
+  height: 1.5rem;
+  width: 1.5rem;
+  fill: ${colors.base.primary};
+  stroke: ${colors.base.primary};
+
+  @media screen and (min-width: ${screens.lg}) {
+    height: 2.5rem;
+    width: 2.5rem;
+    transform: translate(30%, -35%);
+  }
+`;
+
 const TemperatureBar = ({ percent = 0 }: TemperatureBarProps) => {
-  const [horizontal, setHorizontal] = useState(
-    window.innerWidth <= DESKTOP_WIDTH,
-  );
-
-  const getModifiedPercent = useCallback(
-    (percent: number) => {
-      if (percent >= 99) {
-        return horizontal ? 95 : 99;
-      }
-      if (percent < 2.5) {
-        return horizontal ? 4 : 2.5;
-      }
-
-      return percent;
-    },
-    [horizontal],
-  );
-
-  const modifiedPercent = getModifiedPercent(percent);
-
-  const progressStyle = {
-    width: horizontal ? `${modifiedPercent}%` : '1rem',
-    height: horizontal ? '1rem' : `${modifiedPercent}%`,
-  };
-
-  useEffect(() => {
-    const handleResize = () => {
-      setHorizontal(window.innerWidth <= DESKTOP_WIDTH);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
   return (
     <div className="flex h-full w-full flex-col-reverse bg-grey-100">
-      <div className="relative bg-base-primary" style={progressStyle}>
-        <IconHeart className="absolute -top-3 right-0 h-10 w-10 translate-x-1/2 fill-base-primary stroke-base-primary lg:left-1/2 lg:-translate-x-1/2" />
-      </div>
+      <ActiveTempBar percent={percent}>
+        <ActiveIcon percent={percent} />
+      </ActiveTempBar>
     </div>
   );
 };

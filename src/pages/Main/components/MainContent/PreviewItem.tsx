@@ -1,20 +1,40 @@
+import styled from '@emotion/styled';
 import { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
+import { paths } from '~/router';
+import { colors, screens } from '~/theme';
+
+const StyledContainer = styled.div`
+  margin: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.75rem;
+
+  @media (min-width: ${screens.lg}) {
+    height: 22rem;
+    width: 33.333333%;
+    border: 1px solid ${colors.grey[200]};
+    padding: 0.75rem 1.5rem;
+  }
+`;
 
 interface MainPreviewItemProps {
   title: string;
-  pageLink: '/calendar' | '/diary' | '/question';
+  pageLink: (typeof paths)[keyof typeof paths];
   content: ReactElement;
 }
 
 const PreviewItem = ({ title, pageLink, content }: MainPreviewItemProps) => {
   return (
-    <div className="mx-4 flex flex-col rounded-xl px-4 py-3 md:h-[22rem] md:w-1/3 md:border md:border-solid md:border-grey-200">
-      <Link to={pageLink} className="font-title my-2 w-full font-bold">
+    <StyledContainer>
+      <Link
+        to={pageLink}
+        className="font-title my-2 w-fit pl-1 font-bold lg:mb-4"
+      >
         {title}
       </Link>
       {content}
-    </div>
+    </StyledContainer>
   );
 };
 
