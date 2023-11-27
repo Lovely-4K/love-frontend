@@ -2,6 +2,7 @@ import { PropsWithChildren, createContext, useState } from 'react';
 import { Diarys, MapMarker } from '~/types';
 import categoryType from '~/components/common/CategoryButton/CategoryTypes';
 import { MapCategory } from '~/pages/Diary/contexts/DiaryMapContext';
+import useHandleMarker from '~/pages/Diary/hooks/Diary/useHandleMarker';
 import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
 import useSideBar from '~/pages/Diary/hooks/Diary/useSideBar';
 import useGetDiarys from '~/services/diary/useGetDiarys';
@@ -33,6 +34,7 @@ export interface DiaryContextProps {
   methods: {
     handleInfo: ReturnType<typeof useInfoToggle>;
     handleSideBar: ReturnType<typeof useSideBar>;
+    handleMarker: ReturnType<typeof useHandleMarker>;
   };
 }
 
@@ -53,8 +55,9 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
   const { data: diarys, isSuccess } = useGetDiarys();
   const [mapCategory, setMapCategory] = useState<MapCategory>('');
 
-  const handleInfo = useInfoToggle({ infoOpen, setInfoOpen });
+  const handleInfo = useInfoToggle({ infoOpen, setInfoOpen, setInfo });
   const handleSideBar = useSideBar({ sideBarToggle, setSideBarToggle });
+  const handleMarker = useHandleMarker({ infoOpen, handleInfo, handleSideBar });
   if (!isSuccess) return;
 
   return (
@@ -81,7 +84,7 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
         diarys,
         mapCategory,
         setMapCategory,
-        methods: { handleInfo, handleSideBar },
+        methods: { handleInfo, handleSideBar, handleMarker },
       }}
     >
       {children}

@@ -3,9 +3,14 @@ import { DiaryContextProps } from '~/pages/Diary/contexts/DiaryContext';
 interface useInfoToggleProps {
   infoOpen: DiaryContextProps['infoOpen'];
   setInfoOpen: DiaryContextProps['setInfoOpen'];
+  setInfo: DiaryContextProps['setInfo'];
 }
 
-const useInfoToggle = ({ infoOpen, setInfoOpen }: useInfoToggleProps) => {
+const useInfoToggle = ({
+  infoOpen,
+  setInfoOpen,
+  setInfo,
+}: useInfoToggleProps) => {
   const toggleInfo = () => {
     setInfoOpen(!infoOpen);
   };
@@ -18,7 +23,7 @@ const useInfoToggle = ({ infoOpen, setInfoOpen }: useInfoToggleProps) => {
     setInfoOpen(true);
   };
 
-  return { toggleInfo, closeInfo, openInfo };
+  return { toggleInfo, closeInfo, openInfo, setInfo };
 };
 
 export default useInfoToggle;
