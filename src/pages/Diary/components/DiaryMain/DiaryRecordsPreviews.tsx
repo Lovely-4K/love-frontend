@@ -9,7 +9,6 @@ const DiaryRecordsPreviews = () => {
     selectSortMethod,
     methods: { handleClickPreviews },
   } = useDiary();
-
   const { handleClickPreview } = handleClickPreviews;
   const { data: diarys, isSuccess } = useGetDiarys({
     selectSortMethod,

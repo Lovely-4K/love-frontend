@@ -30,7 +30,7 @@ const useHandleMarker = ({
     });
   };
 
-  return { handleMarker, openInfo, setMarkers };
+  return { handleMarker, setMarkers };
 };
 
 export default useHandleMarker;
