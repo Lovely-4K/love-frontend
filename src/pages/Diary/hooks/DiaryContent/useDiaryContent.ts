@@ -3,9 +3,9 @@ import { ChangeEvent, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import type { DiaryResponse, DiaryCreateTextRequest } from '~/types';
 import useInfo from '~/pages/Diary/hooks/useInfo';
-import useCreateDiaryDetail from '~/services/diary/useCreateDiaryDetail';
-import useDeleteDiaryDetail from '~/services/diary/useDeleteDiaryDetail';
-import useEditDiaryDetail from '~/services/diary/useEditDiaryDetail';
+import useCreateDiaryDetail from '~/services/Diary/useCreateDiaryDetail';
+import useDeleteDiaryDetail from '~/services/Diary/useDeleteDiaryDetail';
+import useEditDiaryDetail from '~/services/Diary/useEditDiaryDetail';
 
 interface useDiaryContentParams {
   editDiary: DiaryResponse;

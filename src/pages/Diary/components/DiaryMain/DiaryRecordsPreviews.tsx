@@ -2,7 +2,7 @@ import { DiaryPreviewItem } from '~/components/domain';
 import useClickPreview from '~/pages/Diary/hooks/useClickPreview';
 import useSelectCategory from '~/pages/Diary/hooks/useSelectCategory';
 import useSelectSortMethod from '~/pages/Diary/hooks/useSelectSortMethod';
-import useGetDiarys from '~/services/diary/useGetDiarys';
+import useGetDiarys from '~/services/Diary/useGetDiarys';
 
 const DiaryRecordsPreviews = () => {
   const { selectCategory } = useSelectCategory();
