@@ -17,15 +17,12 @@ const useHandleMarker = () => {
   const { openSideBar } = useSideBar();
 
   const handleMarker = (marker: MapMarker) => {
-    const { spotId, position, content } = marker;
-    const { lat, lng } = position;
+    const { spotId } = marker;
 
     setInfo(marker);
     openInfo();
     openSideBar();
-    navigate(`${paths.DIARY.ROOT}/${spotId}`, {
-      state: { lat, lng, spotId, content },
-    });
+    navigate(`${paths.DIARY.ROOT}/${spotId}`);
   };
 
   return { handleMarker, infoOpen, openInfo };
