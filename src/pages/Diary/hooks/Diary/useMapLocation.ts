@@ -1,8 +1,5 @@
 import { useEffect } from 'react';
-import useCurrentLocation from '~/pages/Diary/hooks/Diary/useCurrentLocation';
 import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
-
-import useMapCategory from '~/pages/Diary/hooks/Diary/useMapCategory';
 
 interface useSearchLocationProps {
   keyword: string;
@@ -17,10 +14,11 @@ const useSearchLocation = ({ keyword }: useSearchLocationProps) => {
     map,
     setMap,
     searchKeyword,
-    methods: { handleInput, handleMapCategories },
+    methods: { handleInput, handleMapCategories, handleLocation },
   } = useDiary();
   const { startSearchMode, setSearchKeyword } = handleInput;
   const { resetMapCategory } = handleMapCategories;
+  const { useCurrentLocation } = handleLocation;
   const { userPosition } = useCurrentLocation();
 
   useEffect(() => {

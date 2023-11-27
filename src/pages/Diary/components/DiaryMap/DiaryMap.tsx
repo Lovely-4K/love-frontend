@@ -6,17 +6,18 @@ import DiaryCustomInfo from './DiaryCustomInfo';
 import DiaryMapButtons from './DiaryMapButtons';
 import DiaryMapMarker from './DiaryMapMarker';
 import DiaryMapCategories from '~/pages/Diary/components/DiaryMap/DiaryMapCategories';
-import useCurrentLocation from '~/pages/Diary/hooks/Diary/useCurrentLocation';
+
 import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
-import useSearchLocation from '~/pages/Diary/hooks/Diary/useSearchLocation';
+import useSearchLocation from '~/pages/Diary/hooks/Diary/useMapLocation';
 
 const DiaryMap = () => {
-  const { userPosition } = useCurrentLocation();
   const {
     infoOpen,
     searchKeyword,
-    methods: { handleMapCategories, handleInfo },
+    methods: { handleMapCategories, handleInfo, handleLocation },
   } = useDiary();
+  const { useCurrentLocation } = handleLocation;
+  const { userPosition } = useCurrentLocation();
   const { useCategorySearch } = handleMapCategories;
   useCategorySearch();
   const { info, setMap } = useSearchLocation({

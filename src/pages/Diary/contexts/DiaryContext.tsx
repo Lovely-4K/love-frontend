@@ -3,6 +3,8 @@ import { Diarys, MapMarker } from '~/types';
 import categoryType from '~/components/common/CategoryButton/CategoryTypes';
 import { MapCategory } from '~/pages/Diary/contexts/DiaryMapContext';
 import useClickPreview from '~/pages/Diary/hooks/Diary/useClickPreview';
+import useCurrentLocation from '~/pages/Diary/hooks/Diary/useCurrentLocation';
+import useMapLocation from '~/pages/Diary/hooks/Diary/useCurrentLocation';
 import useHandleMarker from '~/pages/Diary/hooks/Diary/useHandleMarker';
 import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
 import useInputRef from '~/pages/Diary/hooks/Diary/useInputRef';
@@ -41,6 +43,7 @@ export interface DiaryContextProps {
     handleInput: ReturnType<typeof useInputRef>;
     handleMapCategories: ReturnType<typeof useMapCategory>;
     handleClickPreviews: ReturnType<typeof useClickPreview>;
+    handleLocation: ReturnType<typeof useMapLocation>;
   };
 }
 
@@ -85,6 +88,7 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
     mapCategory,
   });
   const handleClickPreviews = useClickPreview({ map, handleInfo });
+  const handleLocation = useMapLocation({ map });
 
   if (!isSuccess) return;
 
@@ -119,6 +123,7 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
           handleInput,
           handleMapCategories,
           handleClickPreviews,
+          handleLocation,
         },
       }}
     >
