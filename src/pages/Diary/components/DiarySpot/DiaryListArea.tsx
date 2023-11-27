@@ -1,18 +1,13 @@
-import { useParams } from 'react-router-dom';
+import useDiarySpotContext from '../../hooks/useDiarySpotContext';
 import DiaryNotContent from './DiaryNotContent';
 import DiarySpotPreviews from './DiarySpotPreviews';
-import useGetSpotDiarys from '~/services/diary/useGetSpotDiarys';
 
 const DiaryListArea = () => {
-  const { spotId } = useParams();
-  const { data: spotDiarys, isSuccess } = useGetSpotDiarys({
-    kakaoMapId: Number(spotId),
-  });
+  const diarySpotContext = useDiarySpotContext();
+  const { spotDiaries } = diarySpotContext;
 
-  if (!isSuccess) return;
-
-  return spotDiarys.diaries ? (
-    <DiarySpotPreviews spotDiarys={spotDiarys} />
+  return spotDiaries.diaries ? (
+    <DiarySpotPreviews spotDiaries={spotDiaries} />
   ) : (
     <DiaryNotContent />
   );

@@ -1,5 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
-import { SpotDiarys } from '~/types';
+import { useSuspenseQuery } from '@tanstack/react-query';
+import { SpotDiaries } from '~/types';
 import apiClient from '~/api/apiClient';
 
 interface getSpotDiarys {
@@ -8,14 +8,14 @@ interface getSpotDiarys {
 
 const getSpotDiarys = async ({
   kakaoMapId,
-}: getSpotDiarys): Promise<SpotDiarys> => {
+}: getSpotDiarys): Promise<SpotDiaries> => {
   const response = await apiClient.get(`/diaries/marker/${kakaoMapId}`);
 
-  return response.data.body as SpotDiarys;
+  return response.data.body;
 };
 
 const useGetSpotDiarys = ({ kakaoMapId }: getSpotDiarys) => {
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: ['Diarys', kakaoMapId],
     queryFn: () => getSpotDiarys({ kakaoMapId }),
   });
