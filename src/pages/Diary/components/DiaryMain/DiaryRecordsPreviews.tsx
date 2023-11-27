@@ -16,18 +16,24 @@ const DiaryRecordsPreviews = () => {
   if (!isSuccess) return;
 
   return (
-    <div className="flex w-full flex-wrap justify-center gap-2">
-      {diarys.content.map((diary) => (
-        <div className="flex items-center justify-center md:max-w-[45%]">
-          <DiaryPreviewItem
-            key={diary.diaryId}
-            date={diary.datingDay}
-            location={diary.placeName}
-            imgSrc={diary.imageUrl}
-            onClick={() => handleClickPreview(diary)}
-          />
-        </div>
-      ))}
+    <div>
+      <div className="grid grid-cols-3 md:grid-cols-2">
+        {diarys.content.map((diary) => (
+          <div className="m-2">
+            <DiaryPreviewItem
+              key={diary.diaryId}
+              date={diary.datingDay}
+              location={diary.placeName}
+              imgSrc={diary.imageUrl}
+              onClick={() => handleClickPreview(diary)}
+            />
+          </div>
+        ))}
+      </div>
+      <div className="flex w-full items-center justify-center py-3 text-sm text-grey-400">
+        {diarys.content.length === 0 &&
+          '아직 아무 다이어리도 작성하지 않았어요!'}
+      </div>
     </div>
   );
 };
