@@ -1,7 +1,11 @@
 import styled from '@emotion/styled';
+import * as React from 'react';
 import { PropsWithChildren } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import { colors, fontSize, screens } from '~/theme';
+import SideBarFallBack from './SideBarFallback';
 import { IconTopArrow } from '~/assets/icons';
+import { Loading } from '~/components/common';
 import useSideBar from '~/pages/Diary/hooks/useSideBar';
 
 const StyledDiarySideBar = styled.div`
@@ -106,7 +110,11 @@ const DiarySideBar = ({ children }: PropsWithChildren) => {
       <StyledToggleButton onClick={toggleSideBar}>
         <StyledArrowIcon className={sideBarToggle ? 'open' : 'closed'} />
       </StyledToggleButton>
-      {children}
+      <ErrorBoundary FallbackComponent={SideBarFallBack}>
+        <React.Suspense fallback={<Loading size="large" />}>
+          {children}
+        </React.Suspense>
+      </ErrorBoundary>
     </StyledDiarySideBar>
   );
 };
