@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { Coordinates, Position } from '~/types';
 import { DiaryContextProps } from '~/pages/Diary/contexts/DiaryContext';
 
-interface useMapLocation {
+interface useMapLocationProps {
   map: DiaryContextProps['map'];
 }
 
-const useMapLocation = ({ map }: useMapLocation) => {
+const useMapLocation = ({ map }: useMapLocationProps) => {
   const useCurrentLocation = () => {
     const [userPosition, setUserPosition] = useState<Coordinates | null>(null);
 

@@ -11,6 +11,8 @@ import useHandleMarker from '~/pages/Diary/hooks/Diary/useHandleMarker';
 import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
 import useInputRef from '~/pages/Diary/hooks/Diary/useInputRef';
 import useMapCategory from '~/pages/Diary/hooks/Diary/useMapCategory';
+import useSearchLocation from '~/pages/Diary/hooks/Diary/useMapLocation';
+import useSearch from '~/pages/Diary/hooks/Diary/useMapLocation';
 import useSideBar from '~/pages/Diary/hooks/Diary/useSideBar';
 import useDiaryMap from '~/pages/Diary/hooks/DiaryMap/useDiaryMap';
 import useGetDiarys from '~/services/diary/useGetDiarys';
@@ -48,6 +50,7 @@ export interface DiaryContextProps {
     handleMapCategories: ReturnType<typeof useMapCategory>;
     handleClickPreviews: ReturnType<typeof useClickPreview>;
     handleLocation: ReturnType<typeof useMapLocation>;
+    handleSearch: ReturnType<typeof useSearch>;
   };
 }
 
@@ -92,6 +95,14 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
   });
   const handleClickPreviews = useClickPreview({ map, handleInfo });
   const handleLocation = useMapLocation({ map });
+  const handleSearch = useSearch({
+    map,
+    searchKeyword,
+    handleInput,
+    handleMapCategories,
+    handleLocation,
+    handleMarkers,
+  });
 
   if (!isSuccess) return;
 
@@ -128,6 +139,7 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
           handleMapCategories,
           handleClickPreviews,
           handleLocation,
+          handleSearch,
         },
       }}
     >

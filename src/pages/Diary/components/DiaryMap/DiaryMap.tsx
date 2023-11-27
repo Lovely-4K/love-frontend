@@ -6,23 +6,22 @@ import DiaryCustomInfo from './DiaryCustomInfo';
 import DiaryMapButtons from './DiaryMapButtons';
 import DiaryMapMarker from './DiaryMapMarker';
 import DiaryMapCategories from '~/pages/Diary/components/DiaryMap/DiaryMapCategories';
-
 import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
-import useSearchLocation from '~/pages/Diary/hooks/Diary/useMapLocation';
 
 const DiaryMap = () => {
   const {
     infoOpen,
     searchKeyword,
-    methods: { handleMapCategories, handleInfo, handleLocation },
+    info,
+    setMap,
+    methods: { handleMapCategories, handleInfo, handleLocation, handleSearch },
   } = useDiary();
   const { useCurrentLocation } = handleLocation;
   const { userPosition } = useCurrentLocation();
   const { useCategorySearch } = handleMapCategories;
   useCategorySearch();
-  const { info, setMap } = useSearchLocation({
-    keyword: searchKeyword,
-  });
+  const { useSearchLocation } = handleSearch;
+  useSearchLocation(searchKeyword);
   const { closeInfo } = handleInfo;
 
   useKakaoLoaderOrigin({
