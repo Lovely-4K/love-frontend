@@ -2,6 +2,7 @@ import { PropsWithChildren, createContext, useState } from 'react';
 import { Diarys, MapMarker } from '~/types';
 import categoryType from '~/components/common/CategoryButton/CategoryTypes';
 import { MapCategory } from '~/pages/Diary/contexts/DiaryMapContext';
+import useClickPreview from '~/pages/Diary/hooks/Diary/useClickPreview';
 import useHandleMarker from '~/pages/Diary/hooks/Diary/useHandleMarker';
 import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
 import useInputRef from '~/pages/Diary/hooks/Diary/useInputRef';
@@ -39,6 +40,7 @@ export interface DiaryContextProps {
     handleMarkers: ReturnType<typeof useHandleMarker>;
     handleInput: ReturnType<typeof useInputRef>;
     handleMapCategories: ReturnType<typeof useMapCategory>;
+    handleClickPreviews: ReturnType<typeof useClickPreview>;
   };
 }
 
@@ -82,6 +84,7 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
     map,
     mapCategory,
   });
+  const handleClickPreviews = useClickPreview({ map, handleInfo });
 
   if (!isSuccess) return;
 
@@ -115,6 +118,7 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
           handleMarkers,
           handleInput,
           handleMapCategories,
+          handleClickPreviews,
         },
       }}
     >

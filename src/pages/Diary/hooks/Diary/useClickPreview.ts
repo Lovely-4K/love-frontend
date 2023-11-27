@@ -1,14 +1,17 @@
 import { useNavigate } from 'react-router-dom';
 import { paths } from '~/router';
 import { DiaryContent } from '~/types';
-import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
-import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
+import { DiaryContextProps } from '~/pages/Diary/contexts/DiaryContext';
 
-const useClickPreview = () => {
+interface useClickPreviewProps {
+  map: DiaryContextProps['map'];
+  handleInfo: DiaryContextProps['methods']['handleInfo'];
+}
+
+const useClickPreview = ({ map, handleInfo }: useClickPreviewProps) => {
   const navigate = useNavigate();
-  const { setInfo, map, methods } = useDiary();
-  // const { openInfo } = useInfoToggle();
-  const { openInfo } = methods.handleInfo;
+
+  const { openInfo, setInfo } = handleInfo;
 
   const handleClickPreview = (preview: DiaryContent) => {
     if (!map) return;
