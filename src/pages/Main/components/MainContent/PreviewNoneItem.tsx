@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom';
-import { paths } from '~/router';
 
 interface MainPreviewNoneItemProps {
   title: string;
   content: string;
-  to: (typeof paths)[keyof typeof paths];
+  to: string;
   className?: string;
 }
 

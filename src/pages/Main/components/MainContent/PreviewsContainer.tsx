@@ -15,7 +15,7 @@ const PreviewsContainer = () => {
           content={<PreviewCalendar />}
         />
         <PreviewItem
-          pageLink={paths.DIARY}
+          pageLink={paths.DIARY.ROOT}
           title={'우리의 추억들'}
           content={<PreviewDiary />}
         />

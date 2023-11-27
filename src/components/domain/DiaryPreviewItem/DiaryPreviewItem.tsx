@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
+import { HTMLAttributes } from 'react';
 import { colors, fontSize, screens } from '~/theme';
 import { Img } from '~/components/common';
 
-interface DiaryPreviewItemProps {
+interface DiaryPreviewItemProps extends HTMLAttributes<HTMLDivElement> {
   date: string;
   location: string;
   imgSrc: string;
@@ -55,7 +56,7 @@ const DiaryPreviewItem = ({
   onClick,
 }: DiaryPreviewItemProps) => {
   return (
-    <DiaryPreviewItemContainer>
+    <DiaryPreviewItemContainer onClick={onClick}>
       <Img
         shape="square"
         src={imgSrc}
