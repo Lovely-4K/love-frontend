@@ -21,7 +21,7 @@ const PreviewDiary = () => {
     <PreviewNoneItem
       content="다이어리 작성하러 가기"
       title="작성한 다이어리가 없네요!"
-      to={paths.DIARY}
+      to={paths.DIARY.ROOT}
     />
   );
 };

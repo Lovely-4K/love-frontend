@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
-import { paths } from '~/router';
 import { colors, screens } from '~/theme';
 
 const StyledContainer = styled.div`
@@ -20,7 +19,7 @@ const StyledContainer = styled.div`
 
 interface MainPreviewItemProps {
   title: string;
-  pageLink: (typeof paths)[keyof typeof paths];
+  pageLink: string;
   content: ReactElement;
 }
 

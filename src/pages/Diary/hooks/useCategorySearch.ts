@@ -13,11 +13,7 @@ const useCategorySearch = () => {
 
   const searchPlaces = () => {
     if (!map || !mapCategory) return;
-
-    setMarkers([]);
-
     const bounds = new kakao.maps.LatLngBounds();
-
     let category: 'CE7' | 'FD6' | 'AD5' | 'CT1' | '' = '';
 
     switch (mapCategory) {
