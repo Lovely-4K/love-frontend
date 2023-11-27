@@ -14,7 +14,7 @@ const DiarySpotHeader = () => {
     : 'border border-grey-200 bg-base-white text-grey-400';
 
   const DeleteButton = () =>
-    spotDiaries.diaries.length ? (
+    spotDiaries.diaries ? (
       <Button
         size="small"
         onClick={handleDeleteMode}
