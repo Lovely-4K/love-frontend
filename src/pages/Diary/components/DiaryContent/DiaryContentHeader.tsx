@@ -2,13 +2,17 @@ import { memo } from 'react';
 import { paths } from '~/router';
 import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
 import { DiaryHeader } from '~/pages/Diary/components/DiaryCommon';
+import useInfo from '~/pages/Diary/hooks/useInfo';
 
 const DiaryContentHeader = memo(() => {
   const { editable, diary, methods } = useDiaryContentContext();
-  const { kakaoMapId, placeName } = diary;
+  const { kakaoMapId } = diary;
   const { handleEditMode, handleDeleteDiary } = methods;
   const { DIARY } = paths;
   const prevLink = `${DIARY.ROOT}/${kakaoMapId}`;
+  const { info } = useInfo();
+
+  if (!info) return;
 
   const HeaderButton = () =>
     editable || (
@@ -20,7 +24,7 @@ const DiaryContentHeader = memo(() => {
 
   return (
     <div className="flex items-center justify-between">
-      <DiaryHeader prevLink={prevLink} spotName={placeName} />
+      <DiaryHeader prevLink={prevLink} spotName={info.content} />
       <HeaderButton />
     </div>
   );

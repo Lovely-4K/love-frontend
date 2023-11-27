@@ -3,11 +3,14 @@ import { useLocation } from 'react-router-dom';
 import { Button } from '~/components/common';
 import { DiaryHeader } from '~/pages/Diary/components/DiaryCommon';
 import { DiarySpotContext } from '~/pages/Diary/contexts/DiarySpotContent';
+import useInfo from '~/pages/Diary/hooks/useInfo';
 
 const DiarySpotHeader = () => {
   const locate = useLocation();
+  const { info } = useInfo();
+  if (!info) return;
+
   if (!locate.state) return;
-  console.log(locate.content);
 
   const contextValue = useContext(DiarySpotContext);
 
@@ -37,7 +40,7 @@ const DiarySpotHeader = () => {
 
   return (
     <div className="flex items-center justify-between">
-      <DiaryHeader prevLink="/diary" spotName="" />
+      <DiaryHeader prevLink="/diary" spotName={info.content} />
       <DeleteButton />
     </div>
   );

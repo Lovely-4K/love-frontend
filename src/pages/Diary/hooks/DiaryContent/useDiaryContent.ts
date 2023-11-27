@@ -2,6 +2,7 @@ import type categoryType from '~/components/common/CategoryButton/CategoryTypes'
 import { ChangeEvent, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import type { DiaryResponse, DiaryCreateTextRequest } from '~/types';
+import useInfo from '~/pages/Diary/hooks/useInfo';
 import useCreateDiaryDetail from '~/services/Diary/useCreateDiaryDetail';
 import useDeleteDiaryDetail from '~/services/Diary/useDeleteDiaryDetail';
 import useEditDiaryDetail from '~/services/Diary/useEditDiaryDetail';
@@ -30,6 +31,7 @@ const useDiaryContent = ({
   const { mutate: editFormMutate } = useEditDiaryDetail(editDiary.kakaoMapId);
   const { mutate: deleteMutate } = useDeleteDiaryDetail(editDiary.kakaoMapId);
   const files = useRef<File[]>([]);
+  const { info } = useInfo();
 
   const handleChangeDatingDay = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
@@ -110,14 +112,15 @@ const useDiaryContent = ({
   const handleSubmitCreate = () => {
     const formData = new FormData();
     const { datingDay, category, score, myText } = editDiary;
-    const { spotId } = params;
+    // const { spotId } = params;
     // const { latitude, longitude } = locate.state;
+    const { position, content, address, spotId } = info!;
     const texts: DiaryCreateTextRequest = {
-      placeName: '두냉심열',
+      placeName: content,
       kakaoMapId: Number(spotId),
-      latitude: 37.4742361692428,
-      longitude: 126.96667714943,
-      address: '서울 관악구 봉천동 1638-13',
+      latitude: position.lat,
+      longitude: position.lng,
+      address: address,
       datingDay,
       category,
       score,

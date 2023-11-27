@@ -23,7 +23,7 @@ const useClickPreview = () => {
         lng: preview.longitude,
       },
       content: preview.placeName,
-      address: preview.placeName,
+      address: preview.address,
       phone: '010-010',
       spotId: String(preview.kakaoMapId),
     };
