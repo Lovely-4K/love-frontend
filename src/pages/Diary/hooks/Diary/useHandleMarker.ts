@@ -1,18 +1,13 @@
-import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '~/router';
-import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
-import useInfoToggle from '~/pages/Diary/hooks/useInfoToggle';
-import useSideBar from '~/pages/Diary/hooks/useSideBar';
+import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
+import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
+import useSideBar from '~/pages/Diary/hooks/Diary/useSideBar';
 import { MapMarker } from '~/types/map';
 
 const useHandleMarker = () => {
   const navigate = useNavigate();
-  const diaryContext = useContext(DiaryContext);
-
-  if (!diaryContext) throw new Error('Cannot find diaryProvider');
-
-  const { setInfo } = diaryContext;
+  const { setInfo } = useDiary();
   const { openInfo, infoOpen } = useInfoToggle();
   const { openSideBar } = useSideBar();
 

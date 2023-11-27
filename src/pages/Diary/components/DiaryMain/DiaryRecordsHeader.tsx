@@ -1,4 +1,4 @@
-import useSelectSortMethod from '~/pages/Diary/hooks/useSelectSortMethod';
+import useSelectSortMethod from '~/pages/Diary/hooks/Diary/useSelectSortMethod';
 
 const DiaryRecordsHeader = () => {
   const { handleSortMethodClick } = useSelectSortMethod();

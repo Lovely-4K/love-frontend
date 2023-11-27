@@ -1,12 +1,7 @@
-import { useContext } from 'react';
-import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
+import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
 
 const useSideBar = () => {
-  const diaryContext = useContext(DiaryContext);
-
-  if (!diaryContext) throw new Error('Cannot find diaryProvider');
-
-  const { sideBarToggle, setSideBarToggle } = diaryContext;
+  const { sideBarToggle, setSideBarToggle } = useDiary();
 
   const toggleSideBar = () => {
     setSideBarToggle(!sideBarToggle);

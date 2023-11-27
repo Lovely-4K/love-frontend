@@ -1,17 +1,12 @@
-import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '~/router';
 import { DiaryContent } from '~/types';
-import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
-import useInfoToggle from '~/pages/Diary/hooks/useInfoToggle';
+import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
+import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
 
 const useClickPreview = () => {
   const navigate = useNavigate();
-  const diaryContext = useContext(DiaryContext);
-
-  if (!diaryContext) throw new Error('Cannot find diaryProvider');
-
-  const { setInfo, map } = diaryContext;
+  const { setInfo, map } = useDiary();
   const { openInfo } = useInfoToggle();
 
   const handleClickPreview = (preview: DiaryContent) => {

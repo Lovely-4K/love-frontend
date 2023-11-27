@@ -1,13 +1,8 @@
-import { useContext } from 'react';
 import categoryType from '~/components/common/CategoryButton/CategoryTypes';
-import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
+import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
 
 const useSelectCategory = () => {
-  const diaryContext = useContext(DiaryContext);
-
-  if (!diaryContext) throw new Error('Cannot find diaryProvider');
-
-  const { selectCategory, setSelectCategory } = diaryContext;
+  const { selectCategory, setSelectCategory } = useDiary();
 
   const handleCategoryClick = (category: categoryType) => {
     setSelectCategory(category);

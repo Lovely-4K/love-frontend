@@ -1,17 +1,9 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Coordinates, Position } from '~/types';
-import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
-import { DiaryMapContext } from '~/pages/Diary/contexts/DiaryMapContext';
+import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
 
 const useCurrentLocation = () => {
-  const diaryMapContext = useContext(DiaryMapContext);
-  const diaryContext = useContext(DiaryContext);
-
-  if (!diaryMapContext) throw new Error('Cannot find diaryMapProvider');
-  if (!diaryContext) throw new Error('Cannot find diaryProvider');
-
-  const {} = diaryMapContext;
-  const { map } = diaryContext;
+  const { map } = useDiary();
   const [userPosition, setUserPosition] = useState<Coordinates | null>(null);
 
   const onSuccess = (position: Position) => {

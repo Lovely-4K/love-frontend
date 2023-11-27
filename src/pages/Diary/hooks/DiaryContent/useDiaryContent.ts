@@ -2,7 +2,7 @@ import type categoryType from '~/components/common/CategoryButton/CategoryTypes'
 import { ChangeEvent, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import type { DiaryResponse, DiaryCreateTextRequest } from '~/types';
-import useInfo from '~/pages/Diary/hooks/useInfo';
+import useInfo from '~/pages/Diary/hooks/Diary/useInfo';
 import useCreateDiaryDetail from '~/services/diary/useCreateDiaryDetail';
 import useDeleteDiaryDetail from '~/services/diary/useDeleteDiaryDetail';
 import useEditDiaryDetail from '~/services/diary/useEditDiaryDetail';

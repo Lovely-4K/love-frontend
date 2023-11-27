@@ -1,15 +1,11 @@
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import categoryType from '~/components/common/CategoryButton/CategoryTypes';
-import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
-import useInfoToggle from '~/pages/Diary/hooks/useInfoToggle';
-import useInputRef from '~/pages/Diary/hooks/useInputRef';
+import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
+import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
+import useInputRef from '~/pages/Diary/hooks/Diary/useInputRef';
 
 const useMapCategory = () => {
-  const diaryContext = useContext(DiaryContext);
-
-  if (!diaryContext) throw new Error('Cannot find diaryProvider');
-
-  const { mapCategory, setMapCategory } = diaryContext;
+  const { mapCategory, setMapCategory } = useDiary();
   const { startSearchMode, setSearchKeyword, searchKeyword } = useInputRef();
   const { closeInfo } = useInfoToggle();
 

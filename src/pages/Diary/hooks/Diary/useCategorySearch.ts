@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
-import useInputRef from '~/pages/Diary/hooks/useInputRef';
+import useInputRef from '~/pages/Diary/hooks/Diary/useInputRef';
 
 const useCategorySearch = () => {
   const { setMarkers, map, mapCategory } = useDiary();

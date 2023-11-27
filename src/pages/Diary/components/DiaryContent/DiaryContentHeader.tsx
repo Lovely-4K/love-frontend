@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { paths } from '~/router';
 import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
 import { DiaryHeader } from '~/pages/Diary/components/DiaryCommon';
-import useInfo from '~/pages/Diary/hooks/useInfo';
+import useInfo from '~/pages/Diary/hooks/Diary/useInfo';
 
 const DiaryContentHeader = memo(() => {
   const { editable, diary, methods } = useDiaryContentContext();

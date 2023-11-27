@@ -7,10 +7,10 @@ import DiaryMapButtons from './DiaryMapButtons';
 import DiaryMapMarker from './DiaryMapMarker';
 import DiaryMapCategories from '~/pages/Diary/components/DiaryMap/DiaryMapCategories';
 import useCategorySearch from '~/pages/Diary/hooks/Diary/useCategorySearch';
-import useCurrentLocation from '~/pages/Diary/hooks/useCurrentLocation';
-import useInfoToggle from '~/pages/Diary/hooks/useInfoToggle';
-import useInputRef from '~/pages/Diary/hooks/useInputRef';
-import useSearchLocation from '~/pages/Diary/hooks/useSearchLocation';
+import useCurrentLocation from '~/pages/Diary/hooks/Diary/useCurrentLocation';
+import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
+import useInputRef from '~/pages/Diary/hooks/Diary/useInputRef';
+import useSearchLocation from '~/pages/Diary/hooks/Diary/useSearchLocation';
 
 const DiaryMap = () => {
   const { userPosition } = useCurrentLocation();

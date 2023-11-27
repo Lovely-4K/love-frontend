@@ -1,7 +1,7 @@
 import DiaryRecordsHeader from './DiaryRecordsHeader';
 import DiaryRecordsPreviews from './DiaryRecordsPreviews';
 import CategoryList from '~/components/domain/CategoryList/CategoryList';
-import useSelectCategory from '~/pages/Diary/hooks/useSelectCategory';
+import useSelectCategory from '~/pages/Diary/hooks/Diary/useSelectCategory';
 
 const DiaryRecords = () => {
   const { handleCategoryClick, selectCategory } = useSelectCategory();

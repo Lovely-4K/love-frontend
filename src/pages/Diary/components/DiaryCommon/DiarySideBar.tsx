@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { PropsWithChildren } from 'react';
 import { colors, fontSize, screens } from '~/theme';
 import { IconTopArrow } from '~/assets/icons';
-import useSideBar from '~/pages/Diary/hooks/useSideBar';
+import useSideBar from '~/pages/Diary/hooks/Diary/useSideBar';
 
 const StyledDiarySideBar = styled.div`
   position: absolute;

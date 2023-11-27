@@ -1,20 +1,15 @@
-import { useContext, useEffect } from 'react';
-import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
-
-import useCurrentLocation from '~/pages/Diary/hooks/useCurrentLocation';
-import useInputRef from '~/pages/Diary/hooks/useInputRef';
-import useMapCategory from '~/pages/Diary/hooks/useMapCategory';
+import { useEffect } from 'react';
+import useCurrentLocation from '~/pages/Diary/hooks/Diary/useCurrentLocation';
+import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
+import useInputRef from '~/pages/Diary/hooks/Diary/useInputRef';
+import useMapCategory from '~/pages/Diary/hooks/Diary/useMapCategory';
 
 interface useSearchLocationProps {
   keyword: string;
 }
 
 const useSearchLocation = ({ keyword }: useSearchLocationProps) => {
-  const diaryContext = useContext(DiaryContext);
-
-  if (!diaryContext) throw new Error('Cannot find diaryProvider');
-
-  const { markers, setMarkers, info, setInfo, map, setMap } = diaryContext;
+  const { markers, setMarkers, info, setInfo, map, setMap } = useDiary();
   const { startSearchMode, searchKeyword, setSearchKeyword } = useInputRef();
   const { userPosition } = useCurrentLocation();
   const { resetMapCategory } = useMapCategory();

@@ -1,10 +1,10 @@
 import { MapMarker } from 'react-kakao-maps-sdk';
 import { UserPosition } from '~/types';
-import useDiaryToMarker from '~/pages/Diary/hooks/useDiarytoMarker';
-import useFilterMarker from '~/pages/Diary/hooks/useFilterMarker';
-import useHandleMarker from '~/pages/Diary/hooks/useHandleMarker';
-import useInputRef from '~/pages/Diary/hooks/useInputRef';
-import useSearchLocation from '~/pages/Diary/hooks/useSearchLocation';
+import useDiaryToMarker from '~/pages/Diary/hooks/Diary/useDiarytoMarker';
+import useFilterMarker from '~/pages/Diary/hooks/Diary/useFilterMarker';
+import useHandleMarker from '~/pages/Diary/hooks/Diary/useHandleMarker';
+import useInputRef from '~/pages/Diary/hooks/Diary/useInputRef';
+import useSearchLocation from '~/pages/Diary/hooks/Diary/useSearchLocation';
 import useGetDiarys from '~/services/diary/useGetDiarys';
 
 /** @todo: 추후 내 위치 마커와 장소 표시 마커 분리시키기 */

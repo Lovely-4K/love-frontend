@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { IconSearch } from '~/assets/icons';
-import useInputRef from '~/pages/Diary/hooks/useInputRef';
+import useInputRef from '~/pages/Diary/hooks/Diary/useInputRef';
 
 const DiarySearchBar = () => {
   const { handleKeyUp, searchKeyword } = useInputRef();

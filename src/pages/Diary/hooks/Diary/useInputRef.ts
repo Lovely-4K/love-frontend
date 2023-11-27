@@ -1,18 +1,13 @@
-import { useContext } from 'react';
-import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
+import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
 
 const useInputRef = () => {
-  const diaryContext = useContext(DiaryContext);
-
-  if (!diaryContext) throw new Error('Cannot find diaryProvider');
-
   const {
     searchKeyword,
     setSearchKeyword,
     searchMode,
     setSearchMode,
     mapCategory,
-  } = diaryContext;
+  } = useDiary();
 
   const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {

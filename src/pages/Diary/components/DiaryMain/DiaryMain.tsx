@@ -2,7 +2,7 @@ import DiaryRecords from './DiaryRecords';
 import DiarySearchBar from './DiarySearchBar';
 import DiarySearchResults from '~/pages/Diary/components/DiaryMain/DiarySearchResults';
 import { DiaryMainProvider } from '~/pages/Diary/contexts/DiaryMainContext';
-import useInputRef from '~/pages/Diary/hooks/useInputRef';
+import useInputRef from '~/pages/Diary/hooks/Diary/useInputRef';
 
 const DiaryMain = () => {
   const { searchMode } = useInputRef();

@@ -1,18 +1,9 @@
-import { useContext, useEffect } from 'react';
-
-import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
-import {
-  DiaryMapContext,
-  MarkerFilter,
-} from '~/pages/Diary/contexts/DiaryMapContext';
+import { useEffect } from 'react';
+import { MarkerFilter } from '~/pages/Diary/contexts/DiaryMapContext';
+import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
+import useDiaryMap from '~/pages/Diary/hooks/DiaryMap/useDiaryMap';
 
 const useFilterMarker = () => {
-  const diaryMapContext = useContext(DiaryMapContext);
-  const diaryContext = useContext(DiaryContext);
-
-  if (!diaryMapContext) throw new Error('Cannot find diaryMapProvider');
-  if (!diaryContext) throw new Error('Cannot find diaryProvider');
-
   const {
     markerFilter,
     setMarkerFilter,
@@ -20,8 +11,8 @@ const useFilterMarker = () => {
     setGoneMarkers,
     yetMarkers,
     setYetMarkers,
-  } = diaryMapContext;
-  const { markers, diarys } = diaryContext;
+  } = useDiaryMap();
+  const { markers, diarys } = useDiary();
 
   const handleFilterMarker = () => {
     const diaryContent = diarys.content;
