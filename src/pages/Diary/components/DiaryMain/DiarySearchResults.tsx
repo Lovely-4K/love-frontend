@@ -1,17 +1,16 @@
 import DiaryMarkerData from '~/pages/Diary/components/DiaryCommon/DiaryMarkerData';
 import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
-import useMapCategory from '~/pages/Diary/hooks/Diary/useMapCategory';
 
 const DiarySearchResults = () => {
   const {
     searchKeyword,
     markers,
-    methods: { handleInput, handleMarkers },
+    mapCategory,
+    methods: { handleInput, handleMarkers, handleMapCategories },
   } = useDiary();
   const { endSearchMode } = handleInput;
   const { handleMarker } = handleMarkers;
-  const { mapCategory, translateCategory } = useMapCategory();
-
+  const { translateCategory } = handleMapCategories;
   const category = translateCategory(mapCategory);
   const searchMessage = mapCategory ? `내 주변 ${category}` : searchKeyword;
 
