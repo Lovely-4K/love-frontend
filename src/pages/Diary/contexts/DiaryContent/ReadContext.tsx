@@ -1,7 +1,7 @@
 import { PropsWithChildren, createContext, useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { DiaryContentContext } from './DiaryContentContext';
-import useGetDiaryDetail from '~/services/diarys/useGetDiaryDetail';
+import useGetDiaryDetail from '~/services/diary/useGetDiaryDetail';
 
 interface ReadContextProps {}
 interface ReadProviderProps extends PropsWithChildren {}
