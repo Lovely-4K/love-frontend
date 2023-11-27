@@ -2,9 +2,11 @@ import { PropsWithChildren, createContext, useState } from 'react';
 import { Diarys, MapMarker } from '~/types';
 import categoryType from '~/components/common/CategoryButton/CategoryTypes';
 import { MapCategory } from '~/pages/Diary/contexts/DiaryMapContext';
+import useInfo from '~/pages/Diary/hooks/Diary/useInfo';
+import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
 import useGetDiarys from '~/services/diary/useGetDiarys';
 
-interface DiaryContextProps {
+export interface DiaryContextProps {
   searchKeyword: string;
   setSearchKeyword: React.Dispatch<React.SetStateAction<string>>;
   searchMode: boolean;
@@ -28,6 +30,9 @@ interface DiaryContextProps {
   diarys: Diarys;
   mapCategory: MapCategory;
   setMapCategory: React.Dispatch<React.SetStateAction<MapCategory>>;
+  methods: {
+    handleToggleInfo: ReturnType<typeof useInfoToggle>;
+  };
 }
 
 const DiaryContext = createContext<DiaryContextProps | null>(null);
@@ -47,6 +52,8 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
   const { data: diarys, isSuccess } = useGetDiarys();
   const [mapCategory, setMapCategory] = useState<MapCategory>('');
 
+  // const handleInfo = useInfo();
+  const handleToggleInfo = useInfoToggle({ infoOpen, setInfoOpen });
   if (!isSuccess) return;
 
   return (
@@ -73,6 +80,7 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
         diarys,
         mapCategory,
         setMapCategory,
+        methods: { handleToggleInfo },
       }}
     >
       {children}

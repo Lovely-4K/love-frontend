@@ -6,8 +6,10 @@ import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
 
 const useClickPreview = () => {
   const navigate = useNavigate();
-  const { setInfo, map } = useDiary();
-  const { openInfo } = useInfoToggle();
+  const { setInfo, map, methods } = useDiary();
+  // const { openInfo } = useInfoToggle();
+  const { handleToggleInfo } = methods;
+  const { openInfo } = handleToggleInfo;
 
   const handleClickPreview = (preview: DiaryContent) => {
     if (!map) return;

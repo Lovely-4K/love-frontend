@@ -5,9 +5,11 @@ import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
 import useInputRef from '~/pages/Diary/hooks/Diary/useInputRef';
 
 const useMapCategory = () => {
-  const { mapCategory, setMapCategory } = useDiary();
+  const { mapCategory, setMapCategory, methods } = useDiary();
   const { startSearchMode, setSearchKeyword, searchKeyword } = useInputRef();
-  const { closeInfo } = useInfoToggle();
+  // const { closeInfo } = useInfoToggle();
+  const { handleToggleInfo } = methods;
+  const { closeInfo } = handleToggleInfo;
 
   const translateCategory = (
     category: 'CAFE' | 'FOOD' | 'ACCOMODATION' | 'CULTURE' | '',

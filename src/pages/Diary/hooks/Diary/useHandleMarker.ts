@@ -7,8 +7,10 @@ import { MapMarker } from '~/types/map';
 
 const useHandleMarker = () => {
   const navigate = useNavigate();
-  const { setInfo } = useDiary();
-  const { openInfo, infoOpen } = useInfoToggle();
+  const { setInfo, infoOpen, methods } = useDiary();
+  const { handleToggleInfo } = methods;
+  const { openInfo } = handleToggleInfo;
+  // const { openInfo, infoOpen } = useInfoToggle();
   const { openSideBar } = useSideBar();
 
   const handleMarker = (marker: MapMarker) => {
