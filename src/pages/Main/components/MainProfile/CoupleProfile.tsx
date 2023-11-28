@@ -22,7 +22,7 @@ const CoupleProfile = () => {
   } = coupleProfile;
 
   return (
-    <div className="flex flex-col items-center justify-center gap-1 py-5 md:py-5">
+    <div className="flex flex-col items-center justify-center gap-1 pb-6 pt-8 md:py-5">
       <div className="relative flex gap-3 md:gap-5">
         <Profile
           nickname={myNickname}

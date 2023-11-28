@@ -18,6 +18,10 @@ const DiaryPreviewItemContainer = styled.div`
   justify-content: center;
   aspect-ratio: 1 / 1;
 
+  @media (min-width: ${screens.md}) {
+    min-width: 9rem;
+  }
+
   &:hover {
     & > div {
       visibility: visible;
