@@ -1,22 +1,24 @@
 import { MapMarker } from 'react-kakao-maps-sdk';
 import { UserPosition } from '~/types';
-import useDiaryToMarker from '~/pages/Diary/hooks/useDiarytoMarker';
-import useFilterMarker from '~/pages/Diary/hooks/useFilterMarker';
-import useHandleMarker from '~/pages/Diary/hooks/useHandleMarker';
-import useInputRef from '~/pages/Diary/hooks/useInputRef';
-import useSearchLocation from '~/pages/Diary/hooks/useSearchLocation';
+import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
+import useDiaryToMarker from '~/pages/Diary/hooks/Diary/useDiarytoMarker';
+
+import useDiaryMap from '~/pages/Diary/hooks/DiaryMap/useDiaryMap';
 import useGetDiarys from '~/services/diary/useGetDiarys';
 
 /** @todo: 추후 내 위치 마커와 장소 표시 마커 분리시키기 */
 const DiaryMapMarker = ({ userPosition }: UserPosition) => {
-  const { searchKeyword } = useInputRef();
-  const { markers } = useSearchLocation({
-    keyword: searchKeyword,
-  });
-  const { handleMarker } = useHandleMarker();
+  const {
+    searchKeyword,
+    markers,
+    methods: { handleMarkers, handleSearch },
+  } = useDiary();
+  const { useSearchLocation } = handleSearch;
+  useSearchLocation(searchKeyword);
+  const { handleMarker } = handleMarkers;
   const { data: diarys, isSuccess } = useGetDiarys();
   const diaryMarkers = useDiaryToMarker({ diarys });
-  const { yetMarkers, goneMarkers } = useFilterMarker();
+  const { yetMarkers, goneMarkers } = useDiaryMap();
 
   if (!userPosition || !isSuccess || !diarys) return;
 

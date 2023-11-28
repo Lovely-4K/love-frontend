@@ -6,7 +6,7 @@ import { colors, fontSize, screens } from '~/theme';
 import SideBarFallBack from './SideBarFallback';
 import { IconTopArrow } from '~/assets/icons';
 import { Loading } from '~/components/common';
-import useSideBar from '~/pages/Diary/hooks/useSideBar';
+import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
 
 const StyledDiarySideBar = styled.div`
   position: absolute;
@@ -103,7 +103,9 @@ const StyledArrowIcon = styled(IconTopArrow)`
 `;
 
 const DiarySideBar = ({ children }: PropsWithChildren) => {
-  const { sideBarToggle, toggleSideBar } = useSideBar();
+  // const { sideBarToggle, toggleSideBar } = useSideBar();
+  const { methods, sideBarToggle } = useDiary();
+  const { toggleSideBar } = methods.handleSideBar;
 
   return (
     <StyledDiarySideBar className={sideBarToggle ? 'open' : 'closed'}>

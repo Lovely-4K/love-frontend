@@ -9,6 +9,7 @@ const DiarySpotHeader = () => {
   const { spotDiaries, deleteMode, handleDeleteMode } = diarySpotContext;
   const { info } = diaryContext;
   const deleteButtonLabel = deleteMode ? '삭제하기' : '선택 삭제';
+
   const deleteButtonStyle = deleteMode
     ? 'bg-base-primary text-base-white'
     : 'border border-grey-200 bg-base-white text-grey-400';

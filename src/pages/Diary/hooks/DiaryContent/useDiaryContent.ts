@@ -2,7 +2,7 @@ import type categoryType from '~/components/common/CategoryButton/CategoryTypes'
 import { ChangeEvent, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import type { DiaryResponse, DiaryCreateTextRequest } from '~/types';
-import useInfo from '~/pages/Diary/hooks/useInfo';
+import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
 import useCreateDiaryDetail from '~/services/diary/useCreateDiaryDetail';
 import useDeleteDiaryDetail from '~/services/diary/useDeleteDiaryDetail';
 import useEditDiaryDetail from '~/services/diary/useEditDiaryDetail';
@@ -31,7 +31,7 @@ const useDiaryContent = ({
   const { mutate: editFormMutate } = useEditDiaryDetail(editDiary.kakaoMapId);
   const { mutate: deleteMutate } = useDeleteDiaryDetail(editDiary.kakaoMapId);
   const files = useRef<File[]>([]);
-  const { info } = useInfo();
+  const { info } = useDiary();
 
   const handleChangeDatingDay = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;

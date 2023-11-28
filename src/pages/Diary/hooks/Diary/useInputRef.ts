@@ -1,19 +1,18 @@
-import { useContext } from 'react';
-import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
+import { DiaryContextProps } from '~/pages/Diary/contexts/DiaryContext';
 
-const useInputRef = () => {
-  const diaryContext = useContext(DiaryContext);
+interface useInputRefProps {
+  setSearchKeyword: DiaryContextProps['setSearchKeyword'];
+  searchMode: DiaryContextProps['searchMode'];
+  setSearchMode: DiaryContextProps['setSearchMode'];
+  mapCategory: DiaryContextProps['mapCategory'];
+}
 
-  if (!diaryContext) throw new Error('Cannot find diaryProvider');
-
-  const {
-    searchKeyword,
-    setSearchKeyword,
-    searchMode,
-    setSearchMode,
-    mapCategory,
-  } = diaryContext;
-
+const useInputRef = ({
+  setSearchKeyword,
+  searchMode,
+  setSearchMode,
+  mapCategory,
+}: useInputRefProps) => {
   const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       setSearchKeyword(event.currentTarget.value);
@@ -40,10 +39,8 @@ const useInputRef = () => {
   };
 
   return {
-    searchKeyword,
     setSearchKeyword,
     handleKeyUp,
-    searchMode,
     searchModeToggle,
     endSearchMode,
     startSearchMode,

@@ -1,18 +1,22 @@
 import DiaryRecordsHeader from './DiaryRecordsHeader';
 import DiaryRecordsPreviews from './DiaryRecordsPreviews';
 import CategoryList from '~/components/domain/CategoryList/CategoryList';
-import useSelectCategory from '~/pages/Diary/hooks/useSelectCategory';
+import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
 
 const DiaryRecords = () => {
-  const { handleCategoryClick, selectCategory } = useSelectCategory();
+  const {
+    diaryCategory,
+    methods: { handleDiaryCategories },
+  } = useDiary();
+  const { handleCategory } = handleDiaryCategories;
 
   return (
     <div className="flex flex-col gap-5">
       <DiaryRecordsHeader />
       <CategoryList
-        handleChangeCategory={handleCategoryClick}
+        handleChangeCategory={handleCategory}
         editable={true}
-        selectedCategory={selectCategory}
+        selectedCategory={diaryCategory}
       />
       <DiaryRecordsPreviews />
     </div>

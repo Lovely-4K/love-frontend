@@ -1,16 +1,18 @@
 import { DiaryPreviewItem } from '~/components/domain';
-import useClickPreview from '~/pages/Diary/hooks/useClickPreview';
-import useSelectCategory from '~/pages/Diary/hooks/useSelectCategory';
-import useSelectSortMethod from '~/pages/Diary/hooks/useSelectSortMethod';
+import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
+
 import useGetDiarys from '~/services/diary/useGetDiarys';
 
 const DiaryRecordsPreviews = () => {
-  const { selectCategory } = useSelectCategory();
-  const { selectSortMethod } = useSelectSortMethod();
-  const { handleClickPreview } = useClickPreview();
+  const {
+    diaryCategory,
+    selectSortMethod,
+    methods: { handleClickPreviews },
+  } = useDiary();
+  const { handleClickPreview } = handleClickPreviews;
   const { data: diarys, isSuccess } = useGetDiarys({
     selectSortMethod,
-    selectCategory,
+    diaryCategory,
   });
 
   if (!isSuccess) return;

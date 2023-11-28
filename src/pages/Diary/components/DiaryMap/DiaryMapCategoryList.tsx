@@ -1,10 +1,14 @@
 import { CategoryButton } from '~/components/common';
-import useMapCategory from '~/pages/Diary/hooks/useMapCategory';
+import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
 
 const categories = ['CAFE', 'FOOD', 'ACCOMODATION', 'CULTURE'] as const;
 
 const DiaryMapCategoryList = () => {
-  const { mapCategory, handleMapCategory } = useMapCategory();
+  const {
+    mapCategory,
+    methods: { handleMapCategories },
+  } = useDiary();
+  const { handleMapCategory } = handleMapCategories;
 
   return (
     <ul className="flex w-full items-center justify-center gap-5">

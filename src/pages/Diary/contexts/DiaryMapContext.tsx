@@ -4,9 +4,7 @@ import { MapMarker } from '~/types';
 export type MapCategory = 'CAFE' | 'FOOD' | 'ACCOMODATION' | 'CULTURE' | '';
 export type MarkerFilter = 'ALL' | 'GONE' | 'YET' | '';
 
-interface DiaryMapContextProps {
-  // mapCategory: MapCategory;
-  // setMapCategory: React.Dispatch<React.SetStateAction<MapCategory>>;
+export interface DiaryMapContextProps {
   markerFilter: MarkerFilter;
   setMarkerFilter: React.Dispatch<React.SetStateAction<MarkerFilter>>;
   goneMarkers: MapMarker[];
