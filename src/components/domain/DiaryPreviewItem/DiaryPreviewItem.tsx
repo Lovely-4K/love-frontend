@@ -36,12 +36,16 @@ const PreviewTextItemContainer = styled.div`
   visibility: hidden;
   border-radius: 0.75rem;
   background-color: ${colors.base.deem};
-  font-size: ${fontSize.base};
+  font-size: ${fontSize.sm};
   color: ${colors.base.white};
   z-index: 2;
   padding: 0.6rem;
   white-space: break-spaces;
   text-align: center;
+
+  @media (min-width: ${screens.lg}) {
+    font-size: ${fontSize.base};
+  }
 `;
 
 const DiaryPreviewItem = ({

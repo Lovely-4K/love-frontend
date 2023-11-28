@@ -14,7 +14,7 @@ const FormAnswers = () => {
 
   return (
     <>
-      <div className="my-3 flex flex-col flex-wrap gap-3 lg:flex-row">
+      <div className="grid grid-cols-2 gap-2 py-5 lg:grid-cols-4">
         {answers.map((answer, index) => (
           <FormAnswerItem
             key={index}
@@ -31,7 +31,7 @@ const FormAnswers = () => {
           disabled={userAnswer === -1}
           onClick={() => handleSubmitUserAnswer(userAnswer)}
           size="small"
-          className="btn-primary rounded-xl hover:border-none hover:bg-base-secondary disabled:cursor-not-allowed disabled:bg-grey-300"
+          className="btn-primary hover:border-none hover:bg-base-secondary disabled:cursor-not-allowed disabled:bg-grey-300"
         >
           {buttonContent}
         </Button>

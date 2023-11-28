@@ -1,5 +1,6 @@
 import FormAnswer from './FormAnswer';
 import FormQuestion from './FormQuestion';
+import { Button } from '~/components/common';
 import useQuestionCreateForm from '~/pages/QuestionCreate/hooks/useQuestionCreateForm';
 
 /** @todo- data === undefined 일 시, 로딩 기능 추가, isError 일 시 Toast UI 추가 */
@@ -12,14 +13,14 @@ const Form = () => {
       <FormQuestion />
       <FormAnswer />
       <div className="flex w-full justify-end">
-        <button
+        <Button
           disabled={buttonInvalidate}
-          className="btn-medium w-full cursor-pointer rounded-xl bg-base-primary text-base-white hover:bg-base-secondary disabled:cursor-not-allowed disabled:bg-grey-200 disabled:text-grey-400"
+          className="bg-base-primary text-base-white hover:bg-base-secondary disabled:cursor-not-allowed disabled:bg-grey-200 disabled:text-grey-400"
           type="submit"
           onClick={handleSubmitForm}
         >
           질문 저장
-        </button>
+        </Button>
       </div>
     </form>
   );

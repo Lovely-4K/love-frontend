@@ -5,7 +5,7 @@ const HistoryHeader = () => {
   const { QUESTION } = paths;
 
   return (
-    <div className="-mx-[3rem]">
+    <div>
       <NavigationHeader pageTitle="우리의 질문들" prevPageLink={QUESTION} />
     </div>
   );
