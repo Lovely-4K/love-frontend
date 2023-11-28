@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { HTMLAttributes } from 'react';
 import { colors, fontSize, screens } from '~/theme';
+import defaultImg from '~/assets/images/couple.jpeg';
 import { Img } from '~/components/common';
 
 interface DiaryPreviewItemProps extends HTMLAttributes<HTMLDivElement> {
@@ -59,7 +60,7 @@ const DiaryPreviewItem = ({
     <DiaryPreviewItemContainer onClick={onClick}>
       <Img
         shape="square"
-        src={imgSrc}
+        src={imgSrc || defaultImg}
         alt="다이어리 미리보기"
         className="h-full w-full"
       />
