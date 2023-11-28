@@ -3,7 +3,6 @@ import { PropsWithChildren } from 'react';
 import { colors, fontSize, screens } from '~/theme';
 import { IconTopArrow } from '~/assets/icons';
 import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
-import useSideBar from '~/pages/Diary/hooks/Diary/useSideBar';
 
 const StyledDiarySideBar = styled.div`
   position: absolute;
