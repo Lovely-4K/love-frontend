@@ -1,21 +1,12 @@
+import useDiaryContext from '../../hooks/Diary/useDiaryContext';
 import { DiaryPreviewItem } from '~/components/domain';
-import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
-
-import useGetDiarys from '~/services/diary/useGetDiarys';
 
 const DiaryRecordsPreviews = () => {
   const {
-    diaryCategory,
-    selectSortMethod,
+    diarys,
     methods: { handleClickPreviews },
-  } = useDiary();
+  } = useDiaryContext();
   const { handleClickPreview } = handleClickPreviews;
-  const { data: diarys, isSuccess } = useGetDiarys({
-    selectSortMethod,
-    diaryCategory,
-  });
-
-  if (!isSuccess) return;
 
   return (
     <div>

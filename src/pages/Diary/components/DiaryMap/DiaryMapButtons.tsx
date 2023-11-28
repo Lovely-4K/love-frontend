@@ -1,12 +1,12 @@
 import { SelectCurrentBtn } from '~/assets/icons';
 import { MapFilterButton } from '~/components/common';
-import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
+import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
 import useFilterMarker from '~/pages/Diary/hooks/Diary/useFilterMarker';
 
 const DiaryMapButtons = () => {
   const {
     methods: { handleLocation },
-  } = useDiary();
+  } = useDiaryContext();
   const { useCurrentLocation } = handleLocation;
   const { setCenter } = useCurrentLocation();
   const { markerFilter, handleFilter } = useFilterMarker();

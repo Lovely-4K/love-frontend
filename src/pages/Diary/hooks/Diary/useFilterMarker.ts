@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { MarkerFilter } from '~/pages/Diary/contexts/DiaryMapContext';
-import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
+import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
 import useDiaryMap from '~/pages/Diary/hooks/DiaryMap/useDiaryMap';
 
 const useFilterMarker = () => {
@@ -12,7 +12,7 @@ const useFilterMarker = () => {
     yetMarkers,
     setYetMarkers,
   } = useDiaryMap();
-  const { markers, diarys } = useDiary();
+  const { markers, diarys } = useDiaryContext();
 
   const handleFilterMarker = () => {
     const diaryContent = diarys.content;

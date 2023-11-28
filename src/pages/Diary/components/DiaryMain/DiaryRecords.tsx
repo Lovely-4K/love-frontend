@@ -1,13 +1,13 @@
 import DiaryRecordsHeader from './DiaryRecordsHeader';
 import DiaryRecordsPreviews from './DiaryRecordsPreviews';
 import CategoryList from '~/components/domain/CategoryList/CategoryList';
-import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
+import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
 
 const DiaryRecords = () => {
   const {
     diaryCategory,
     methods: { handleDiaryCategories },
-  } = useDiary();
+  } = useDiaryContext();
   const { handleCategory } = handleDiaryCategories;
 
   return (

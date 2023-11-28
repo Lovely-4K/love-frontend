@@ -1,10 +1,7 @@
 import { PropsWithChildren, createContext, useState } from 'react';
 import { Diarys, MapMarker } from '~/types';
 import categoryType from '~/components/common/CategoryButton/CategoryTypes';
-import {
-  DiaryMapProvider,
-  MapCategory,
-} from '~/pages/Diary/contexts/DiaryMapContext';
+import { DiaryMapProvider } from '~/pages/Diary/contexts/DiaryMapContext';
 import useClickPreview from '~/pages/Diary/hooks/Diary/useClickPreview';
 import useMapLocation from '~/pages/Diary/hooks/Diary/useCurrentLocation';
 import useDiaryCategories from '~/pages/Diary/hooks/Diary/useDiaryCategories';
@@ -39,8 +36,10 @@ export interface DiaryContextProps {
   map: kakao.maps.Map | undefined;
   setMap: React.Dispatch<React.SetStateAction<kakao.maps.Map | undefined>>;
   diarys: Diarys;
-  mapCategory: MapCategory;
-  setMapCategory: React.Dispatch<React.SetStateAction<MapCategory>>;
+  mapCategory: categoryType | undefined;
+  setMapCategory: React.Dispatch<
+    React.SetStateAction<categoryType | undefined>
+  >;
 
   methods: {
     handleInfo: ReturnType<typeof useInfoToggle>;
@@ -71,8 +70,10 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
   const [info, setInfo] = useState<MapMarker>();
   const [infoOpen, setInfoOpen] = useState<boolean>(false);
   const [map, setMap] = useState<kakao.maps.Map>();
-  const [mapCategory, setMapCategory] = useState<MapCategory>(undefined);
-  const { data: diarys, isSuccess } = useGetDiarys();
+  const [mapCategory, setMapCategory] = useState<categoryType | undefined>(
+    undefined,
+  );
+  const { data: diarys } = useGetDiarys();
 
   const handleInfo = useInfoToggle({ infoOpen, setInfoOpen, setInfo });
   const handleSideBar = useSideBar({ sideBarToggle, setSideBarToggle });
@@ -108,8 +109,6 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
   });
   const handleDiaryCategories = useDiaryCategories({ setDiaryCategory });
   const handleSortMethod = useSelectSortMethod({ setSelectSortMethod });
-
-  if (!isSuccess) return;
 
   return (
     <DiaryContext.Provider

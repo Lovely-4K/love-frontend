@@ -1,9 +1,9 @@
-import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
+import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
 
 const DiaryRecordsHeader = () => {
   const {
     methods: { handleSortMethod },
-  } = useDiary();
+  } = useDiaryContext();
   const { handleSortMethodClick } = handleSortMethod;
 
   return (

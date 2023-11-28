@@ -2,7 +2,7 @@ import type categoryType from '~/components/common/CategoryButton/CategoryTypes'
 import { ChangeEvent, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import type { DiaryResponse, DiaryCreateTextRequest } from '~/types';
-import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
+import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
 import useCreateDiaryDetail from '~/services/diary/useCreateDiaryDetail';
 import useDeleteDiaryDetail from '~/services/diary/useDeleteDiaryDetail';
 import useEditDiaryDetail from '~/services/diary/useEditDiaryDetail';
@@ -27,7 +27,7 @@ const useDiaryContent = ({
 }: useDiaryContentParams) => {
   const navigate = useNavigate();
   const params = useParams();
-  const { info } = useDiary();
+  const { info } = useDiaryContext();
   const { position, content, address, spotId } = info!;
   const { mutate: createFormMutate } = useCreateDiaryDetail(spotId, setLoading);
   const { mutate: editFormMutate } = useEditDiaryDetail(

@@ -6,7 +6,7 @@ import DiaryCustomInfo from './DiaryCustomInfo';
 import DiaryMapButtons from './DiaryMapButtons';
 import DiaryMapMarker from './DiaryMapMarker';
 import DiaryMapCategories from '~/pages/Diary/components/DiaryMap/DiaryMapCategories';
-import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
+import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
 
 const DiaryMap = () => {
   const {
@@ -15,7 +15,7 @@ const DiaryMap = () => {
     info,
     setMap,
     methods: { handleMapCategories, handleInfo, handleLocation, handleSearch },
-  } = useDiary();
+  } = useDiaryContext();
   const { useCurrentLocation } = handleLocation;
   const { userPosition } = useCurrentLocation();
   const { useCategorySearch } = handleMapCategories;
