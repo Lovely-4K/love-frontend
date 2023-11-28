@@ -71,7 +71,7 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
   const [info, setInfo] = useState<MapMarker>();
   const [infoOpen, setInfoOpen] = useState<boolean>(false);
   const [map, setMap] = useState<kakao.maps.Map>();
-  const [mapCategory, setMapCategory] = useState<MapCategory>('');
+  const [mapCategory, setMapCategory] = useState<MapCategory>(undefined);
   const { data: diarys, isSuccess } = useGetDiarys();
 
   const handleInfo = useInfoToggle({ infoOpen, setInfoOpen, setInfo });
