@@ -3,7 +3,7 @@ import { MainProvider, ProfileProvider } from './contexts';
 
 const MainPage = () => {
   return (
-    <div className="flex h-full w-full flex-col p-3 md:p-7">
+    <div className="flex h-full w-full flex-col p-3 md:p-7 lg:justify-between">
       <MainProvider>
         <ProfileProvider>
           <MainModalButtons />

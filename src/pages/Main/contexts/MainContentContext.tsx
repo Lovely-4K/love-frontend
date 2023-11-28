@@ -15,7 +15,10 @@ const MainContentContext = createContext<MainContentContextProps | null>(null);
 
 const MainContentProvider = ({ children }: PropsWithChildren) => {
   const { coupleMode } = useMain();
-  const getRecentScheduleQuery = useGetRecentSchedule({ limit: 5, coupleMode });
+  const getRecentScheduleQuery = useGetRecentSchedule({
+    limit: 10,
+    coupleMode,
+  });
   const { mutate: createTodayQuestion } = useCreateTodayQuestion();
   const getQuestionQuery = useGetQuestion();
   const getDiarysQuery = useGetDiarys();

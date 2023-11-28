@@ -9,30 +9,23 @@ const PreviewCalendar = () => {
   const { recentSchedule } = useMainContent();
   const { colorInfo, schedules } = recentSchedule;
 
-  const scheduleList =
-    schedules.length > 0 ? (
-      schedules.map((schedule) => (
+  return schedules.length > 0 ? (
+    <div className="flex h-full w-full gap-3 overflow-auto scroll-smooth lg:flex-col">
+      {schedules.map((schedule) => (
         <Link to={paths.CALENDAR} key={schedule.calendarId}>
           <ScheduleItem
-            startDate={schedule.startDate}
-            endDate={schedule.endDate}
-            title={schedule.scheduleDetails}
+            schedule={schedule}
             customColor={getScheduleColor(schedule, colorInfo)}
           />
         </Link>
-      ))
-    ) : (
-      <PreviewNoneItem
-        title="추가된 일정이 없네요!"
-        content="일정 추가하러 가기"
-        to={paths.CALENDAR}
-      />
-    );
-
-  return (
-    <div className="flex w-full gap-3 overflow-auto scroll-smooth lg:flex-col">
-      {scheduleList}
+      ))}
     </div>
+  ) : (
+    <PreviewNoneItem
+      title="추가된 일정이 없네요!"
+      content="일정 추가하러 가기"
+      to={paths.CALENDAR}
+    />
   );
 };
 

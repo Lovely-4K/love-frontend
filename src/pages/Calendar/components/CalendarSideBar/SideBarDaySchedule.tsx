@@ -1,15 +1,12 @@
 import { getScheduleColor } from '~/utils';
 import { useCalendar, useCalendarSideBar } from '../../hooks';
-import { IconTrash } from '~/assets/icons';
 import { Loading } from '~/components/common';
 import { ScheduleItem } from '~/components/domain';
-import { useDeleteSchedule } from '~/services/calendar';
 
 const SideBarDaySchedule = () => {
   const { getMonthScheduleQuery, validSchedules } = useCalendar();
   const { editSchedule } = useCalendarSideBar();
   const { isSuccess, data } = getMonthScheduleQuery;
-  const { mutate: deleteSchedule } = useDeleteSchedule();
 
   const schedules = isSuccess ? (
     validSchedules.length > 0 ? (
@@ -23,22 +20,11 @@ const SideBarDaySchedule = () => {
             <li key={schedule.calendarId} className="relative">
               <ScheduleItem
                 customColor={getScheduleColor(schedule, data.colorInfo)}
-                startDate={schedule.startDate}
-                endDate={schedule.endDate}
-                title={schedule.scheduleDetails}
+                schedule={schedule}
+                mySchedule={mySchedule}
                 onClick={mySchedule ? () => editSchedule(schedule) : undefined}
                 style={{ cursor: mySchedule ? 'pointer' : 'default' }}
               />
-              {mySchedule && (
-                <button
-                  className="group absolute right-6 top-3"
-                  onClick={() =>
-                    deleteSchedule({ scheduleId: schedule.calendarId })
-                  }
-                >
-                  <IconTrash className="h-4 w-4 stroke-grey-500 group-hover:stroke-base-black" />
-                </button>
-              )}
             </li>
           );
         })}
