@@ -81,7 +81,7 @@ interface Diarys {
   empty: boolean;
 }
 
-interface SpotDiarys {
+interface SpotDiaries {
   diaries: {
     diaryId: number;
     imageUrl: string;
@@ -96,6 +96,6 @@ export type {
   DiaryResponse,
   DiaryCreateTextRequest,
   DiaryEditTextRequest,
-  SpotDiarys,
+  SpotDiaries,
   DiaryContent,
 };

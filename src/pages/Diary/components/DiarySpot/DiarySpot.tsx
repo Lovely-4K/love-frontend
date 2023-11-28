@@ -1,6 +1,6 @@
 import DiaryListArea from './DiaryListArea';
 import DiarySpotHeader from './DiarySpotHeader';
-import { DiarySpotProvider } from '~/pages/Diary/contexts/DiarySpotContent';
+import DiarySpotProvider from '~/pages/Diary/contexts/DiarySpotContext';
 
 const DiarySpot = () => {
   return (

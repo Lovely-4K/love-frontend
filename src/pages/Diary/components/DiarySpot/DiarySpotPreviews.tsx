@@ -1,20 +1,20 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { SpotDiarys } from '~/types';
+import { SpotDiaries } from '~/types';
 import DiarySpotPreview from './DiarySpotPreview';
 import DiaryCreateButton from '~/pages/Diary/components/DiarySpot/DiaryCreateButton';
 
 interface DiarySpotPreviewsProps {
-  spotDiarys: SpotDiarys;
+  spotDiaries: SpotDiaries;
 }
 
-const DiarySpotPreviews = ({ spotDiarys }: DiarySpotPreviewsProps) => {
+const DiarySpotPreviews = ({ spotDiaries }: DiarySpotPreviewsProps) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
   return (
     <div className="flex flex-col items-center justify-center gap-4">
       <DiaryCreateButton />
-      {spotDiarys.diaries.map((diary) => (
+      {spotDiaries.diaries.map((diary) => (
         <DiarySpotPreview
           key={diary.diaryId}
           picture={diary.imageUrl}

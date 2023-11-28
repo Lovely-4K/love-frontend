@@ -1,8 +1,6 @@
-import * as React from 'react';
 import DiaryContentProvider from '../../contexts/DiaryContent/DiaryContentContext';
 import ReadProvider from '../../contexts/DiaryContent/ReadContext';
 import DiaryContentBody from './DiaryContentBody';
-import { Loading } from '~/components/common';
 
 interface DiaryContentProps {
   mode: 'edit' | 'read';
@@ -14,11 +12,9 @@ const DiaryContent = ({ mode }: DiaryContentProps) => {
       {mode === 'edit' ? (
         <DiaryContentBody />
       ) : (
-        <React.Suspense fallback={<Loading size="large" />}>
-          <ReadProvider>
-            <DiaryContentBody />
-          </ReadProvider>
-        </React.Suspense>
+        <ReadProvider>
+          <DiaryContentBody />
+        </ReadProvider>
       )}
     </DiaryContentProvider>
   );
