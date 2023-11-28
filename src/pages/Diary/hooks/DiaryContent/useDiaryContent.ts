@@ -1,6 +1,6 @@
 import type categoryType from '~/components/common/CategoryButton/CategoryTypes';
 import { ChangeEvent, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import type { DiaryResponse, DiaryCreateTextRequest } from '~/types';
 import useInfo from '~/pages/Diary/hooks/useInfo';
 import useCreateDiaryDetail from '~/services/diary/useCreateDiaryDetail';
@@ -23,7 +23,7 @@ const useDiaryContent = ({
   images,
   setImages,
 }: useDiaryContentParams) => {
-  // const locate = useLocation();
+  const navigate = useNavigate();
   const params = useParams();
   const { mutate: createFormMutate } = useCreateDiaryDetail(
     editDiary.kakaoMapId,
@@ -172,7 +172,12 @@ const useDiaryContent = ({
   };
 
   const handleEditCancel = () => {
+    const { diaryId } = params;
     setEditable(false);
+
+    if (diaryId === undefined) {
+      navigate(-1);
+    }
   };
 
   return {
