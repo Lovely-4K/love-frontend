@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { Diarys } from '~/types';
 import apiClient from '~/api/apiClient';
 
@@ -27,7 +27,7 @@ const useGetDiarys = (
     selectSortMethod: 'createdDate',
   },
 ) => {
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: ['Diarys', selectSortMethod, diaryCategory],
     queryFn: () => getDiarys({ selectSortMethod, diaryCategory }),
   });
