@@ -1,7 +1,7 @@
 import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
 import { Button } from '~/components/common';
 const DiaryContentEditButton = () => {
-  const { editable, methods } = useDiaryContentContext();
+  const { editable, methods, loading } = useDiaryContentContext();
   const { handleEditCancel, handleSubmitForm } = methods;
 
   return (
@@ -11,6 +11,7 @@ const DiaryContentEditButton = () => {
           onClick={() => {
             handleEditCancel();
           }}
+          disabled={loading}
           size="small"
           className="rounded-xl border border-grey-200 text-grey-400"
         >
@@ -20,8 +21,9 @@ const DiaryContentEditButton = () => {
           onClick={() => {
             handleSubmitForm();
           }}
+          disabled={loading}
           size="small"
-          className="rounded-xl border bg-base-primary text-base-white"
+          className="rounded-xl border bg-base-primary text-base-white disabled:bg-grey-300"
         >
           완료
         </Button>

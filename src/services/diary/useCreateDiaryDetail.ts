@@ -15,15 +15,24 @@ const createDiaryDetail = async ({ formData }: CreateDiaryDetailParams) => {
   return response.data;
 };
 
-const useCreateDiaryDetail = (kakaoMapId: string) => {
+const useCreateDiaryDetail = (
+  kakaoMapId: string,
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+) => {
   const navigate = useNavigate();
 
   return useMutation({
     mutationKey: ['diaryEdit'],
     mutationFn: ({ formData }: CreateDiaryDetailParams) =>
       createDiaryDetail({ formData }),
+    onMutate: () => {
+      setLoading(true);
+    },
     onSuccess: () => {
       navigate(`/diary/${kakaoMapId}`);
+    },
+    onSettled: () => {
+      setLoading(false);
     },
   });
 };

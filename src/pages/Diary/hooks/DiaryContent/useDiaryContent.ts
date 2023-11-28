@@ -8,6 +8,7 @@ import useDeleteDiaryDetail from '~/services/diary/useDeleteDiaryDetail';
 import useEditDiaryDetail from '~/services/diary/useEditDiaryDetail';
 
 interface useDiaryContentParams {
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   editDiary: DiaryResponse;
   setEditDiary: React.Dispatch<React.SetStateAction<DiaryResponse>>;
   editable: boolean;
@@ -17,6 +18,7 @@ interface useDiaryContentParams {
 }
 
 const useDiaryContent = ({
+  setLoading,
   editDiary,
   setEditDiary,
   setEditable,
@@ -25,13 +27,17 @@ const useDiaryContent = ({
 }: useDiaryContentParams) => {
   const navigate = useNavigate();
   const params = useParams();
-  const { mutate: createFormMutate } = useCreateDiaryDetail(
-    editDiary.kakaoMapId,
-  );
-  const { mutate: editFormMutate } = useEditDiaryDetail(editDiary.kakaoMapId);
-  const { mutate: deleteMutate } = useDeleteDiaryDetail(editDiary.kakaoMapId);
-  const files = useRef<File[]>([]);
   const { info } = useDiary();
+  const { position, content, address, spotId } = info!;
+  const { mutate: createFormMutate } = useCreateDiaryDetail(spotId, setLoading);
+  const { mutate: editFormMutate } = useEditDiaryDetail(
+    spotId || editDiary.kakaoMapId,
+    setLoading,
+  );
+  const { mutate: deleteMutate } = useDeleteDiaryDetail(
+    spotId || editDiary.kakaoMapId,
+  );
+  const files = useRef<File[]>([]);
 
   const handleChangeDatingDay = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
@@ -112,9 +118,6 @@ const useDiaryContent = ({
   const handleSubmitCreate = () => {
     const formData = new FormData();
     const { datingDay, category, score, myText } = editDiary;
-    // const { spotId } = params;
-    // const { latitude, longitude } = locate.state;
-    const { position, content, address, spotId } = info!;
     const texts: DiaryCreateTextRequest = {
       placeName: content,
       kakaoMapId: Number(spotId),
@@ -130,11 +133,9 @@ const useDiaryContent = ({
       'texts',
       new Blob([JSON.stringify(texts)], { type: 'application/json' }),
     );
-
-    for (const file of files.current) {
+    files.current.forEach((file) => {
       formData.append('images', file);
-    }
-
+    });
     createFormMutate({ formData });
   };
 
@@ -152,13 +153,8 @@ const useDiaryContent = ({
       'texts',
       new Blob([JSON.stringify(texts)], { type: 'application/json' }),
     );
+    files.current.forEach((file) => formData.append('images', file));
 
-    // if (files.current) {
-    //   for (const file of files.current) {
-    //     formData.append('images', file);
-    //   }
-    // }
-    // formData.append('images', null);
     editFormMutate({ diaryId, formData });
   };
 

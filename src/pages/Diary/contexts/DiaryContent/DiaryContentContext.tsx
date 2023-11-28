@@ -7,6 +7,8 @@ import { changeImageType } from '~/utils/Diary';
 interface DiaryContentContextProps {
   editable: boolean;
   setEditable: React.Dispatch<React.SetStateAction<boolean>>;
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   diary: DiaryResponse;
   images: string[];
   setDiary: React.Dispatch<React.SetStateAction<DiaryResponse>>;
@@ -22,6 +24,7 @@ export const DiaryContentContext =
 
 const DiaryContentProvider = ({ mode, children }: DiaryContentProvider) => {
   const [editable, setEditable] = useState(mode === 'edit');
+  const [loading, setLoading] = useState(false);
   const [originDiary, setOriginDiary] = useState<DiaryResponse>({
     datingDay: getTodayDate(),
     category: 'CAFE',
@@ -42,6 +45,7 @@ const DiaryContentProvider = ({ mode, children }: DiaryContentProvider) => {
   const [editDiary, setEditDiary] = useState<DiaryResponse>({ ...originDiary });
 
   const diaryContent = useDiaryContent({
+    setLoading,
     editDiary,
     setEditDiary,
     editable,
@@ -58,6 +62,8 @@ const DiaryContentProvider = ({ mode, children }: DiaryContentProvider) => {
   return (
     <DiaryContentContext.Provider
       value={{
+        loading,
+        setLoading,
         editable,
         setEditable,
         setDiary: setOriginDiary,
