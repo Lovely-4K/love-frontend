@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { MapMarker } from '~/types';
 import { DiaryContextProps } from '~/pages/Diary/contexts/DiaryContext';
 
 interface useSearchLocationProps {
@@ -18,11 +19,12 @@ const useSearch = ({
   handleLocation,
   handleMarkers,
 }: useSearchLocationProps) => {
+  const { startSearchMode, setSearchKeyword } = handleInput;
+  const { resetMapCategory } = handleMapCategories;
+  const { useCurrentLocation } = handleLocation;
+  const { setMarkers } = handleMarkers;
+
   const useSearchLocation = (keyword: string) => {
-    const { startSearchMode, setSearchKeyword } = handleInput;
-    const { resetMapCategory } = handleMapCategories;
-    const { useCurrentLocation } = handleLocation;
-    const { setMarkers } = handleMarkers;
     const { userPosition } = useCurrentLocation();
 
     useEffect(() => {
@@ -30,40 +32,54 @@ const useSearch = ({
       if (!userPosition) return;
 
       const position = new kakao.maps.services.Places();
+      const allMarkers: MapMarker[] = [];
 
-      position.keywordSearch(
-        keyword,
-        (data: kakao.maps.services.PlacesSearchResult, status, _pagination) => {
-          if (status === kakao.maps.services.Status.OK) {
-            // 검색 장소 기준으로 지도 범위를 재설정위해 LatLngBounds 객체에 좌표 추가
-            const bounds = new kakao.maps.LatLngBounds();
-            const markers = [];
+      const searchPlaces = (page: number) => {
+        position.keywordSearch(
+          keyword,
+          (
+            data: kakao.maps.services.PlacesSearchResult,
+            status,
+            _pagination,
+          ) => {
+            if (status === kakao.maps.services.Status.OK) {
+              const bounds = new kakao.maps.LatLngBounds();
+              const markers = [];
 
-            for (let i = 0; i < data.length; i++) {
-              markers.push({
-                position: {
-                  lat: Number(data[i].y),
-                  lng: Number(data[i].x),
-                },
-                content: data[i].place_name,
-                address: data[i].address_name,
-                phone: data[i].phone,
-                spotId: data[i].id,
-              });
+              for (let i = 0; i < data.length; i++) {
+                markers.push({
+                  position: {
+                    lat: Number(data[i].y),
+                    lng: Number(data[i].x),
+                  },
+                  content: data[i].place_name,
+                  address: data[i].address_name,
+                  phone: data[i].phone,
+                  spotId: data[i].id,
+                });
 
-              bounds.extend(
-                new kakao.maps.LatLng(Number(data[i].y), Number(data[i].x)),
-              );
+                bounds.extend(
+                  new kakao.maps.LatLng(Number(data[i].y), Number(data[i].x)),
+                );
+              }
+
+              allMarkers.push(...markers);
+              if (page < _pagination.last) {
+                searchPlaces(page + 1);
+              } else {
+                resetMapCategory();
+                setSearchKeyword(keyword);
+                setMarkers(allMarkers);
+                map.setBounds(bounds);
+                startSearchMode();
+              }
             }
+          },
+          { page },
+        );
+      };
 
-            resetMapCategory();
-            setSearchKeyword(keyword);
-            setMarkers(markers);
-            map.setBounds(bounds); // 검색된 장소 위치를 기준으로 지도 범위를 재설정
-            startSearchMode();
-          }
-        },
-      );
+      searchPlaces(1);
     }, [map, keyword, setMarkers, searchKeyword, setSearchKeyword]);
   };
 
