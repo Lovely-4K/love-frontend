@@ -1,4 +1,4 @@
-import type { MapCategory } from '~/pages/Diary/contexts/DiaryMapContext';
+import type categoryType from '~/components/common/CategoryButton/CategoryTypes';
 import { useEffect } from 'react';
 import { DiaryContextProps } from '~/pages/Diary/contexts/DiaryContext';
 
@@ -30,7 +30,7 @@ const useMapCategory = ({
   const { closeInfo } = handleInfo;
   const { setMarkers } = handleMarkers;
 
-  const handleMapCategory = (category: MapCategory) => {
+  const handleMapCategory = (category: categoryType) => {
     setMapCategory((currCategory) => {
       currCategory = currCategory === category ? undefined : category;
 
@@ -42,9 +42,7 @@ const useMapCategory = ({
     setMapCategory(undefined);
   };
 
-  const translateCategory = (
-    category: 'CAFE' | 'FOOD' | 'ACCOMODATION' | 'CULTURE' | undefined,
-  ) => {
+  const translateCategory = (category: categoryType | undefined) => {
     let newCategory = undefined;
 
     switch (category) {
@@ -89,6 +87,8 @@ const useMapCategory = ({
       }
 
       const position = new kakao.maps.services.Places(map);
+
+      if (category === undefined) return;
 
       // Bounds를 이용하여 카테고리 검색을 요청
       position.categorySearch(
