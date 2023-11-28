@@ -21,7 +21,7 @@ const DiaryRecordsPreviews = () => {
     <div>
       <div className="grid grid-cols-3 md:grid-cols-2">
         {diarys.content.map((diary) => (
-          <div className="m-2">
+          <div className="m-2" key={diary.diaryId}>
             <DiaryPreviewItem
               key={diary.diaryId}
               date={diary.datingDay}

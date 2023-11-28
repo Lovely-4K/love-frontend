@@ -2,7 +2,6 @@ import { MapMarker } from 'react-kakao-maps-sdk';
 import { UserPosition } from '~/types';
 import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
 import useDiaryToMarker from '~/pages/Diary/hooks/Diary/useDiarytoMarker';
-
 import useDiaryMap from '~/pages/Diary/hooks/DiaryMap/useDiaryMap';
 import useGetDiarys from '~/services/diary/useGetDiarys';
 
@@ -20,6 +19,7 @@ const DiaryMapMarker = ({ userPosition }: UserPosition) => {
   const diaryMarkers = useDiaryToMarker({ diarys });
   const { yetMarkers, goneMarkers } = useDiaryMap();
 
+  console.log(diaryMarkers, yetMarkers, goneMarkers);
   if (!userPosition || !isSuccess || !diarys) return;
 
   return (

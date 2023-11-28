@@ -1,10 +1,13 @@
 import { Diarys } from '~/types';
+// import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
 
 interface useDiaryToMarkerProps {
   diarys: Diarys | undefined;
 }
 
 const useDiaryToMarker = ({ diarys }: useDiaryToMarkerProps) => {
+  // const { diaryMarkers, setDiaryMarkers } = useDiary();
+
   if (!diarys) return;
 
   const markers = [];
@@ -22,6 +25,8 @@ const useDiaryToMarker = ({ diarys }: useDiaryToMarkerProps) => {
 
     markers.push(info);
   }
+
+  // setDiaryMarkers(markers);
 
   return markers;
 };

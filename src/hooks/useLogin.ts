@@ -2,11 +2,11 @@ import { saveValueToStorage, getValueFromStorage } from '~/utils/localStorage';
 
 const useLogin = (token: string | null) => {
   if (token !== null) {
-    saveValueToStorage('token', token);
+    saveValueToStorage('accessToken', token);
   }
 
   const isLoggedIn = () => {
-    const storageToken = getValueFromStorage('token');
+    const storageToken = getValueFromStorage('accessToken');
 
     return storageToken !== null && storageToken !== undefined;
   };
