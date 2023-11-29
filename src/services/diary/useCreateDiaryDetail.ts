@@ -33,8 +33,6 @@ const useCreateDiaryDetail = (
     onMutate: () => {
       setLoading(true);
     },
-    onSuccess: () => {
-      navigate(`/diary/${kakaoMapId}`);
     onSuccess: async () => {
       try {
         await queryClient.invalidateQueries([
