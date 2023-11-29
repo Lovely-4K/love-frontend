@@ -12,10 +12,10 @@ const useFilterMarker = () => {
     yetMarkers,
     setYetMarkers,
   } = useDiaryMap();
-  const { markers, diarys } = useDiaryContext();
+  const { markers, rootDiarys } = useDiaryContext();
 
   const handleFilterMarker = () => {
-    const diaryContent = diarys;
+    const diaryContent = rootDiarys;
     const gone = markers.filter((marker) => {
       return diaryContent.find(
         (diaryContent) => diaryContent.kakaoMapId === Number(marker.spotId),
@@ -58,7 +58,7 @@ const useFilterMarker = () => {
   };
   useEffect(() => {
     handleFilterMarker();
-  }, [markerFilter, markers, diarys]);
+  }, [markerFilter, markers, rootDiarys]);
 
   return {
     markerFilter,

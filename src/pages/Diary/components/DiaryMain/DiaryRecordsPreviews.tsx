@@ -4,9 +4,9 @@ import { DiaryPreviewItem } from '~/components/domain';
 
 const DiaryRecordsPreviews = () => {
   const {
-    diarys,
     methods: { handleClickPreviews },
   } = useDiaryContext();
+  const { diarys } = useDiaryMainContext();
   const { recordRef } = useDiaryMainContext();
   const { handleClickPreview } = handleClickPreviews;
 
@@ -19,7 +19,7 @@ const DiaryRecordsPreviews = () => {
             ref={diarys.length - 1 === index ? recordRef : null}
           >
             <DiaryPreviewItem
-              key={diary.diaryId}
+              key={`${diary.diaryId}-${index}`}
               date={diary.datingDay}
               location={diary.placeName}
               imgSrc={diary.imageUrl}
