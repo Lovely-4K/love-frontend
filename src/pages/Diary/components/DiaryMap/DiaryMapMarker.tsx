@@ -19,7 +19,6 @@ const DiaryMapMarker = ({ userPosition }: UserPosition) => {
   const diaryMarkers = useDiaryToMarker({ diarys });
   const { yetMarkers, goneMarkers } = useDiaryMap();
 
-  console.log(diaryMarkers, yetMarkers, goneMarkers);
   if (!userPosition || !isSuccess || !diarys) return;
 
   return (
