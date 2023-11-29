@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { MapMarker } from '~/types';
 import { DiaryContextProps } from '~/pages/Diary/contexts/DiaryContext';
 
