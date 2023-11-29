@@ -1,7 +1,7 @@
 import { PropsWithChildren, createContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { SpotDiaries } from '~/types';
-import useDiaryContext from '../hooks/useDiaryContext';
+import useDiaryContext from '../hooks/Diary/useDiaryContext';
 import useDeleteDiaryDetail from '~/services/diary/useDeleteDiaryDetail';
 import useGetSpotDiarys from '~/services/diary/useGetSpotDiarys';
 

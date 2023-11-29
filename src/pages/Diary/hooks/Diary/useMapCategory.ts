@@ -1,7 +1,6 @@
 import type categoryType from '~/components/common/CategoryButton/CategoryTypes';
 import { useEffect } from 'react';
 import { MapMarker } from '~/types';
-import categoryType from '~/components/common/CategoryButton/CategoryTypes';
 import { DiaryContextProps } from '~/pages/Diary/contexts/DiaryContext';
 
 interface useMapCategoryProps {
@@ -91,7 +90,7 @@ const useMapCategory = ({
       const position = new kakao.maps.services.Places(map);
 
       if (category === undefined) return;
-      
+
       const prevMarkers = [...allMarkers];
 
       // Bounds를 이용하여 카테고리 검색을 요청
