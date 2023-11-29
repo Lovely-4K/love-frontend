@@ -1,17 +1,27 @@
-import { saveValueToStorage, getValueFromStorage } from '~/utils/localStorage';
+import { useMemo } from 'react';
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '~/constants';
+import { setStoredData, getStoredData } from '~/utils/localStorage';
 
-const useLogin = (token: string | null) => {
-  if (token !== null) {
-    saveValueToStorage('token', token);
-  }
+const useLogin = () => {
+  const accessToken = getStoredData(ACCESS_TOKEN_KEY);
+  const refreshToken = getStoredData(REFRESH_TOKEN_KEY);
 
-  const isLoggedIn = () => {
-    const storageToken = getValueFromStorage('token');
-
-    return storageToken !== null && storageToken !== undefined;
+  const setLoginParams = ({
+    accessToken,
+    refreshToken,
+  }: {
+    accessToken: string;
+    refreshToken: string;
+  }) => {
+    setStoredData(ACCESS_TOKEN_KEY, accessToken);
+    setStoredData(REFRESH_TOKEN_KEY, refreshToken);
   };
 
-  return { isLoggedIn };
+  const isLoggedIn = useMemo(() => {
+    return accessToken !== null && refreshToken !== null;
+  }, [accessToken, refreshToken]);
+
+  return { isLoggedIn, setLoginParams };
 };
 
 export default useLogin;

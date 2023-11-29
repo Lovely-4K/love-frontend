@@ -1,13 +1,13 @@
-export const saveValueToStorage = (key: string, value: any) => {
-  localStorage.setItem(key, value);
+export const setStoredData = (key: string, value: unknown) => {
+  localStorage.setItem(key, JSON.stringify(value));
 };
 
-export const getValueFromStorage = (key: string) => {
+export const getStoredData = (key: string) => {
   const value = localStorage.getItem(key);
 
-  return value ? value : null;
+  return value ? JSON.parse(value) : null;
 };
 
-export const removeStorage = (key: string) => {
+export const clearStoredData = (key: string) => {
   localStorage.removeItem(key);
 };
