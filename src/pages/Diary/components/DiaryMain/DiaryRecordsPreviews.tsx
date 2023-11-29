@@ -4,9 +4,9 @@ import { DiaryPreviewItem } from '~/components/domain';
 
 const DiaryRecordsPreviews = () => {
   const {
-    diarys,
     methods: { handleClickPreviews },
   } = useDiaryContext();
+  const { diarys } = useDiaryMainContext();
   const { recordRef } = useDiaryMainContext();
   const { handleClickPreview } = handleClickPreviews;
 

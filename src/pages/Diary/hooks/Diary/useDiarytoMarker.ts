@@ -1,16 +1,15 @@
-
 import type { DiaryContent } from '~/types';
 
 interface useDiaryToMarkerProps {
-  diarys: DiaryContent[] | undefined;
+  rootDiarys: DiaryContent[] | undefined;
 }
 
-const useDiaryToMarker = ({ diarys }: useDiaryToMarkerProps) => {
-  if (!diarys) return;
+const useDiaryToMarker = ({ rootDiarys }: useDiaryToMarkerProps) => {
+  if (!rootDiarys) return;
 
   const markers = [];
 
-  for (const diary of diarys) {
+  for (const diary of rootDiarys) {
     const info = {
       position: {
         lat: diary.latitude,

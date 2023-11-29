@@ -1,9 +1,18 @@
 import { useRef, useEffect } from 'react';
+import type { DiaryContent } from '~/types';
 import useObserve from '~/hooks/useObserve';
-import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
 
-const useDiaryMainObserver = () => {
-  const { diarys, page, setPage } = useDiaryContext();
+interface useDiaryMainObserverProps {
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+  diarys: DiaryContent[];
+}
+
+const useDiaryMainObserver = ({
+  page,
+  setPage,
+  diarys,
+}: useDiaryMainObserverProps) => {
   const [observe] = useObserve(() => {
     setPage(page + 1);
   });
