@@ -33,9 +33,9 @@ const DiaryMapMarker = ({ userPosition }: UserPosition) => {
       />
       {/* 다이어리 목록 마커 */}
       {markers.length ||
-        diaryMarkers?.map((marker) => (
+        diaryMarkers?.map((marker, index) => (
           <MapMarker
-            key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}
+            key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}-${index}`}
             position={marker.position}
             onClick={() => handleMarker(marker)}
             image={{

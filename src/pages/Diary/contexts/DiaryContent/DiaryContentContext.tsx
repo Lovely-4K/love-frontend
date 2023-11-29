@@ -64,10 +64,6 @@ const DiaryContentProvider = ({ mode, children }: DiaryContentProvider) => {
     setExistedImg(imgURL);
   }, [originDiary]);
 
-  useEffect(() => {
-    console.log(imgUrl);
-  }, [imgUrl]);
-
   return (
     <DiaryContentContext.Provider
       value={{

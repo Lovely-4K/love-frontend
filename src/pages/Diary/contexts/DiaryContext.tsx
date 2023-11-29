@@ -89,7 +89,11 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
   }, [diaryCategory]);
 
   useEffect(() => {
-    setDiarys((prevPost) => [...prevPost, ...diaryResponse.content]);
+    if (page === 0) {
+      setDiarys(diaryResponse.content);
+    } else {
+      setDiarys([...diarys, ...diaryResponse.content]);
+    }
   }, [diaryResponse]);
 
   const handleInfo = useInfoToggle({ infoOpen, setInfoOpen, setInfo });
