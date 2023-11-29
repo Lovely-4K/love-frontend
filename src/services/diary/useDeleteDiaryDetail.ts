@@ -1,4 +1,8 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import {
+  InvalidateQueryFilters,
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import apiClient from '~/api/apiClient';
 
@@ -13,7 +17,7 @@ const deleteDiaryDetail = async ({ diaryList }: DeleteDiaryDetailParams) => {
   return response.data;
 };
 
-const useDeleteDiaryDetail = (kakaoMapId: string) => {
+const useDeleteDiaryDetail = (kakaoMapId: string | undefined) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
@@ -22,9 +26,10 @@ const useDeleteDiaryDetail = (kakaoMapId: string) => {
     mutationFn: ({ diaryList }: DeleteDiaryDetailParams) =>
       deleteDiaryDetail({ diaryList }),
     onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: ['Diarys', 'createdDate'],
-      });
+      await queryClient.invalidateQueries([
+        ['Diarys', 'createdDate'],
+        ['Diarys', kakaoMapId],
+      ] as InvalidateQueryFilters);
       navigate(`/diary/${kakaoMapId}`);
     },
   });
