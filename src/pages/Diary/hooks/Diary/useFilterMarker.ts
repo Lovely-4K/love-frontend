@@ -15,7 +15,7 @@ const useFilterMarker = () => {
   const { markers, diarys } = useDiaryContext();
 
   const handleFilterMarker = () => {
-    const diaryContent = diarys.content;
+    const diaryContent = diarys;
 
     const gone = markers.filter((marker) => {
       return diaryContent.find(
