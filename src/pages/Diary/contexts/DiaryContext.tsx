@@ -1,5 +1,5 @@
-import { PropsWithChildren, createContext, useState } from 'react';
-import { Diarys, MapMarker } from '~/types';
+import { PropsWithChildren, createContext, useEffect, useState } from 'react';
+import { DiaryContent, MapMarker } from '~/types';
 import categoryType from '~/components/common/CategoryButton/CategoryTypes';
 import { DiaryMapProvider } from '~/pages/Diary/contexts/DiaryMapContext';
 import useClickPreview from '~/pages/Diary/hooks/Diary/useClickPreview';
@@ -27,6 +27,8 @@ export interface DiaryContextProps {
   setDiaryCategory: React.Dispatch<
     React.SetStateAction<categoryType | undefined>
   >;
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
   selectSortMethod: string;
   setSelectSortMethod: React.Dispatch<React.SetStateAction<string>>;
   info: MapMarker | undefined;
@@ -35,7 +37,7 @@ export interface DiaryContextProps {
   setInfoOpen: React.Dispatch<React.SetStateAction<boolean>>;
   map: kakao.maps.Map | undefined;
   setMap: React.Dispatch<React.SetStateAction<kakao.maps.Map | undefined>>;
-  diarys: Diarys;
+  diarys: DiaryContent[];
   mapCategory: categoryType | undefined;
   setMapCategory: React.Dispatch<
     React.SetStateAction<categoryType | undefined>
@@ -65,6 +67,7 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
   const [diaryCategory, setDiaryCategory] = useState<categoryType | undefined>(
     undefined,
   );
+  useEffect(() => {}, [diaryCategory]);
   const [selectSortMethod, setSelectSortMethod] =
     useState<string>('createdDate');
   const [info, setInfo] = useState<MapMarker>();
@@ -73,7 +76,19 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
   const [mapCategory, setMapCategory] = useState<categoryType | undefined>(
     undefined,
   );
-  const { data: diarys } = useGetDiarys();
+  const [page, setPage] = useState(0);
+  const { data: diaryResponse } = useGetDiarys({ page, diaryCategory });
+  const [diarys, setDiarys] = useState<DiaryContent[]>([]);
+
+  useEffect(() => {
+    setDiarys([]);
+    setPage(0);
+  }, [diaryCategory]);
+
+  useEffect(() => {
+    console.log(diaryResponse);
+    setDiarys((prevPost) => [...prevPost, ...diaryResponse.content]);
+  }, [diaryResponse]);
 
   const handleInfo = useInfoToggle({ infoOpen, setInfoOpen, setInfo });
   const handleSideBar = useSideBar({ sideBarToggle, setSideBarToggle });
@@ -119,6 +134,8 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
         setSearchMode,
         sideBarToggle,
         setSideBarToggle,
+        page,
+        setPage,
         markers,
         setMarkers,
         diaryCategory,

@@ -4,11 +4,11 @@ import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
 import useDiaryToMarker from '~/pages/Diary/hooks/Diary/useDiarytoMarker';
 
 import useDiaryMap from '~/pages/Diary/hooks/DiaryMap/useDiaryMap';
-import useGetDiarys from '~/services/diary/useGetDiarys';
 
 /** @todo: 추후 내 위치 마커와 장소 표시 마커 분리시키기 */
 const DiaryMapMarker = ({ userPosition }: UserPosition) => {
   const {
+    diarys,
     searchKeyword,
     markers,
     methods: { handleMarkers, handleSearch },
@@ -16,11 +16,8 @@ const DiaryMapMarker = ({ userPosition }: UserPosition) => {
   const { useSearchLocation } = handleSearch;
   useSearchLocation(searchKeyword);
   const { handleMarker } = handleMarkers;
-  const { data: diarys, isSuccess } = useGetDiarys();
   const diaryMarkers = useDiaryToMarker({ diarys });
   const { yetMarkers, goneMarkers } = useDiaryMap();
-
-  if (!userPosition || !isSuccess || !diarys) return;
 
   return (
     <>
