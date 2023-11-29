@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import { paths } from '~/router';
 import { DiaryContent } from '~/types';
 import { DiaryContextProps } from '~/pages/Diary/contexts/DiaryContext';
-import useFilterMarker from '~/pages/Diary/hooks/Diary/useFilterMarker';
 
 interface useClickPreviewProps {
   map: DiaryContextProps['map'];
