@@ -13,8 +13,10 @@ interface useDiaryContentParams {
   setEditDiary: React.Dispatch<React.SetStateAction<DiaryResponse>>;
   editable: boolean;
   setEditable: React.Dispatch<React.SetStateAction<boolean>>;
-  images: string[];
-  setImages: React.Dispatch<React.SetStateAction<string[]>>;
+  imgUrl: string[];
+  setImgUrl: React.Dispatch<React.SetStateAction<string[]>>;
+  existedImg: string[];
+  setExistedImg: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const useDiaryContent = ({
@@ -22,8 +24,10 @@ const useDiaryContent = ({
   editDiary,
   setEditDiary,
   setEditable,
-  images,
-  setImages,
+  imgUrl,
+  setImgUrl,
+  existedImg,
+  setExistedImg,
 }: useDiaryContentParams) => {
   const navigate = useNavigate();
   const params = useParams();
@@ -74,8 +78,8 @@ const useDiaryContent = ({
     });
   };
 
-  const handleChangeImgaes = (images: string[]) => {
-    setImages(images);
+  const handleChangeImgaes = (imgUrl: string[]) => {
+    setImgUrl(imgUrl);
   };
 
   const handleChangeScore = (score: number) => {
@@ -87,7 +91,7 @@ const useDiaryContent = ({
 
   const handleAddImages = (event: ChangeEvent<HTMLInputElement>) => {
     const fileLists = event.target.files!;
-    const copyImages = [...images];
+    const copyImages = [...imgUrl];
 
     for (let i = 0; i < fileLists.length; i++) {
       if (copyImages.length === 5) {
@@ -104,10 +108,10 @@ const useDiaryContent = ({
   };
 
   const handleDeleteImage = (id: number) => {
-    if (editDiary.images === undefined) return;
-    const images = [...editDiary.images].filter((_, index) => index !== id);
-
-    handleChangeImgaes(images);
+    const nextImgUrl = imgUrl.filter((_, index) => index !== id);
+    const nextExistedImg = imgUrl.filter((_, index) => index !== id);
+    handleChangeImgaes(nextImgUrl);
+    setExistedImg(nextExistedImg);
   };
 
   const handleEditMode = () => {
@@ -146,9 +150,11 @@ const useDiaryContent = ({
       datingDay,
       category,
       myText,
-      opponentText,
+      opponentText: opponentText === null ? 'ㅎㅇ' : opponentText,
       score,
+      images: existedImg,
     };
+    console.log(texts);
     formData.append(
       'texts',
       new Blob([JSON.stringify(texts)], { type: 'application/json' }),

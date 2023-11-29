@@ -86,7 +86,6 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
   }, [diaryCategory]);
 
   useEffect(() => {
-    console.log(diaryResponse);
     setDiarys((prevPost) => [...prevPost, ...diaryResponse.content]);
   }, [diaryResponse]);
 

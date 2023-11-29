@@ -15,7 +15,7 @@ interface Diary {
   datingDay: string;
   category: categoryType;
   score: number;
-  images?: string[];
+  imgUrl?: string[];
   files?: FileList;
 }
 
@@ -39,6 +39,7 @@ interface DiaryCreateTextRequest extends Diary {
 interface DiaryEditTextRequest extends Diary {
   myText: null | string;
   opponentText: null | string;
+  images: string[];
 }
 
 interface DiaryContent {

@@ -10,7 +10,7 @@ interface DiaryContentContextProps {
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   diary: DiaryResponse;
-  images: string[];
+  imgUrl: string[];
   setDiary: React.Dispatch<React.SetStateAction<DiaryResponse>>;
   methods: ReturnType<typeof useDiaryContent>;
 }
@@ -41,7 +41,8 @@ const DiaryContentProvider = ({ mode, children }: DiaryContentProvider) => {
     kakaoMapId: '',
     placeName: '',
   });
-  const [images, setImages] = useState<string[]>([]);
+  const [existedImg, setExistedImg] = useState<string[]>([]);
+  const [imgUrl, setImgUrl] = useState<string[]>([]);
   const [editDiary, setEditDiary] = useState<DiaryResponse>({ ...originDiary });
 
   const diaryContent = useDiaryContent({
@@ -50,14 +51,22 @@ const DiaryContentProvider = ({ mode, children }: DiaryContentProvider) => {
     setEditDiary,
     editable,
     setEditable,
-    images,
-    setImages,
+    imgUrl,
+    setImgUrl,
+    existedImg,
+    setExistedImg,
   });
 
   useEffect(() => {
     setEditDiary({ ...originDiary });
-    setImages(changeImageType(originDiary.pictures));
+    const imgURL = changeImageType(originDiary.pictures);
+    setImgUrl(imgURL);
+    setExistedImg(imgURL);
   }, [originDiary]);
+
+  useEffect(() => {
+    console.log(imgUrl);
+  }, [imgUrl]);
 
   return (
     <DiaryContentContext.Provider
@@ -69,7 +78,7 @@ const DiaryContentProvider = ({ mode, children }: DiaryContentProvider) => {
         setDiary: setOriginDiary,
         diary: editable ? editDiary : originDiary,
         methods: diaryContent,
-        images,
+        imgUrl,
       }}
     >
       {children}
