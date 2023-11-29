@@ -29,6 +29,7 @@ const useDeleteDiaryDetail = (kakaoMapId: string | undefined) => {
       await queryClient.invalidateQueries([
         ['Diarys', 'createdDate'],
         ['Diarys', kakaoMapId],
+        ['diaryDetail', `${kakaoMapId}`],
       ] as InvalidateQueryFilters);
       navigate(`/diary/${kakaoMapId}`);
     },
