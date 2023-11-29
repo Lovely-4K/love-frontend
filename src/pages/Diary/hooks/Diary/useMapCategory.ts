@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { MapMarker } from '~/types';
 import categoryType from '~/components/common/CategoryButton/CategoryTypes';
 import { DiaryContextProps } from '~/pages/Diary/contexts/DiaryContext';
 
@@ -66,7 +67,7 @@ const useMapCategory = ({
   }, [searchKeyword, setSearchKeyword]);
 
   const useCategorySearch = () => {
-    const searchPlaces = () => {
+    const searchPlaces = (page: number, allMarkers: MapMarker[]) => {
       if (!map || !mapCategory) return;
 
       const bounds = new kakao.maps.LatLngBounds();
@@ -89,15 +90,18 @@ const useMapCategory = ({
 
       const position = new kakao.maps.services.Places(map);
 
+      // 기존 마커
+      const prevMarkers = [...allMarkers];
+
       // Bounds를 이용하여 카테고리 검색을 요청
       position.categorySearch(
         category,
         (data, status, _pagination) => {
           if (status === kakao.maps.services.Status.OK) {
-            const markers = [];
+            const newMarkers = [];
 
             for (let i = 0; i < data.length; i++) {
-              markers.push({
+              newMarkers.push({
                 position: {
                   lat: Number(data[i].y),
                   lng: Number(data[i].x),
@@ -109,31 +113,58 @@ const useMapCategory = ({
               });
             }
 
-            categorySearchMode();
-            setMarkers(markers);
+            // 이전 데이터와 새로운 데이터 비교
+            const updatedMarkers = [];
+
+            for (const newMarker of newMarkers) {
+              const existingMarkerIndex = prevMarkers.findIndex(
+                (prevMarker) =>
+                  prevMarker.position.lat === newMarker.position.lat &&
+                  prevMarker.position.lng === newMarker.position.lng,
+              );
+
+              // 이전 데이터에 있는 경우
+              if (existingMarkerIndex !== -1) {
+                updatedMarkers.push(prevMarkers[existingMarkerIndex]);
+                prevMarkers.splice(existingMarkerIndex, 1); // 이미 사용한 것은 제거
+              } else {
+                // 새로운 데이터
+                updatedMarkers.push(newMarker);
+              }
+            }
+
+            allMarkers.push(...updatedMarkers);
+
+            if (page < _pagination.last) {
+              searchPlaces(page + 1, allMarkers);
+            } else {
+              categorySearchMode();
+              setMarkers(allMarkers);
+            }
           } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
             // 검색 결과가 없는 경우
           } else if (status === kakao.maps.services.Status.ERROR) {
             // 에러로 인해 검색 결과가 나오지 않은 경우
           }
         },
-        { useMapBounds: true, bounds },
+        { useMapBounds: true, bounds, page },
       );
     };
 
     // category가 바뀔 때 (지도 이동 x)
     useEffect(() => {
-      searchPlaces();
+      searchPlaces(1, []);
     }, [mapCategory, map]);
 
     // idle 이벤트 (지도 이동)
     useEffect(() => {
       if (!map) return;
 
-      kakao.maps.event.addListener(map, 'idle', searchPlaces);
+      const handleIdle = () => searchPlaces(1, []);
+      kakao.maps.event.addListener(map, 'idle', handleIdle);
 
       return () => {
-        kakao.maps.event.removeListener(map, 'idle', searchPlaces);
+        kakao.maps.event.removeListener(map, 'idle', handleIdle);
       };
     }, [map, mapCategory]);
 

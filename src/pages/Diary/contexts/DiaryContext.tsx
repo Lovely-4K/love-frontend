@@ -26,6 +26,8 @@ export interface DiaryContextProps {
   setSideBarToggle: React.Dispatch<React.SetStateAction<boolean>>;
   markers: MapMarker[];
   setMarkers: React.Dispatch<React.SetStateAction<MapMarker[]>>;
+  diaryMarkers: MapMarker[];
+  setDiaryMarkers: React.Dispatch<React.SetStateAction<MapMarker[]>>;
   diaryCategory: categoryType | undefined;
   setDiaryCategory: React.Dispatch<
     React.SetStateAction<categoryType | undefined>
@@ -63,6 +65,7 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
   const [searchMode, setSearchMode] = useState(false);
   const [sideBarToggle, setSideBarToggle] = useState(true);
   const [markers, setMarkers] = useState<MapMarker[]>([]);
+  const [diaryMarkers, setDiaryMarkers] = useState<MapMarker[]>([]);
   const [diaryCategory, setDiaryCategory] = useState<categoryType | undefined>(
     undefined,
   );
@@ -122,6 +125,8 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
         setSideBarToggle,
         markers,
         setMarkers,
+        diaryMarkers,
+        setDiaryMarkers,
         diaryCategory,
         setDiaryCategory,
         selectSortMethod,
