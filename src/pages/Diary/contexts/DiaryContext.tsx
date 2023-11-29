@@ -101,7 +101,11 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
     map,
     mapCategory,
   });
-  const handleClickPreviews = useClickPreview({ map, handleInfo });
+  const handleClickPreviews = useClickPreview({
+    map,
+    handleInfo,
+    handleMapCategories,
+  });
   const handleLocation = useMapLocation({ map });
   const handleSearch = useSearch({
     map,

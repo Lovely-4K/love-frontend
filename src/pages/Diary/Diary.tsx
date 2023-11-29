@@ -8,10 +8,10 @@ const Diary = () => {
   return (
     <DiaryProvider>
       <div className="h-full w-full">
-        <DiarySideBar>
-          <Outlet />
-        </DiarySideBar>
         <DiaryMapProvider>
+          <DiarySideBar>
+            <Outlet />
+          </DiarySideBar>
           <DiaryMap />
         </DiaryMapProvider>
       </div>
