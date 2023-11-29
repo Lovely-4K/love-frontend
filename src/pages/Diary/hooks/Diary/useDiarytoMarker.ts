@@ -1,4 +1,3 @@
-
 import type { DiaryContent } from '~/types';
 
 interface useDiaryToMarkerProps {

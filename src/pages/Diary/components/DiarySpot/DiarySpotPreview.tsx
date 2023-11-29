@@ -15,6 +15,7 @@ const DiarySpotPreview = ({
   picture,
   id,
   date,
+  onClick,
   isChecked,
 }: DiarySpotPreviewProps) => {
   const diarySpotContext = useDiarySpotContext();
@@ -27,17 +28,18 @@ const DiarySpotPreview = ({
     }
   };
 
-  const handleDivClick = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  ) => {
-    if (
-      deleteMode &&
-      checkboxRef.current &&
-      !checkboxRef.current.contains(event.target as Node)
-    ) {
-      checkboxRef.current.click();
+  const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (deleteMode) {
+      if (
+        checkboxRef.current &&
+        !checkboxRef.current.contains(event.target as Node)
+      ) {
+        checkboxRef.current.click();
+      }
+      handleCheckboxChange(id, !isChecked); // 체크박스 상태 변경
+    } else {
+      onClick(); // deleteMode가 false일 때는 props로 받은 onClick 호출
     }
-    handleCheckboxChange(id, !isChecked); // 체크박스 상태 변경
   };
 
   useEffect(() => {
@@ -51,7 +53,7 @@ const DiarySpotPreview = ({
       key={id}
       id={`item_${id}`}
       className="group flex cursor-pointer flex-col items-center justify-center rounded-xl border border-grey-200"
-      onClick={handleDivClick}
+      onClick={handleClick} // 수정된 부분
     >
       <div className="h-32 ">
         <Img
