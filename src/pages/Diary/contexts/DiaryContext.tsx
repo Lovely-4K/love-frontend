@@ -84,7 +84,6 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
   const [diarys, setDiarys] = useState<DiaryContent[]>([]);
 
   useEffect(() => {
-    setDiarys([]);
     setPage(0);
   }, [diaryCategory]);
 
