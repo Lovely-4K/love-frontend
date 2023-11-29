@@ -12,7 +12,7 @@ const useFilterMarker = () => {
     yetMarkers,
     setYetMarkers,
   } = useDiaryMap();
-  
+
   const {
     markers,
     rootDiarys,

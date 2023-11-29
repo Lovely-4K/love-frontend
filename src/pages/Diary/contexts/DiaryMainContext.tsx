@@ -20,16 +20,21 @@ interface DiaryMainContextProps {
 const DiaryMainContext = createContext<DiaryMainContextProps | null>(null);
 
 const DiaryMainProvider = ({ children }: PropsWithChildren) => {
-  const { diaryCategory, setRootDiarys } = useDiaryContext();
+  const { diaryCategory, setRootDiarys, selectSortMethod } = useDiaryContext();
   const [selectCategory, setSelectCategory] = useState('');
   const [page, setPage] = useState(0);
   const [diarys, setDiarys] = useState<DiaryContent[]>([]);
-  const { data: diaryResponse } = useGetDiarys({ page, diaryCategory });
+  const { data: diaryResponse } = useGetDiarys({
+    page,
+    diaryCategory,
+    selectSortMethod,
+  });
   const { recordRef } = useDiaryMainObserver({ page, setPage, diarys });
 
   useEffect(() => {
+    console.log('hi');
     setPage(0);
-  }, [diaryCategory]);
+  }, [diaryCategory, selectSortMethod]);
 
   useEffect(() => {
     if (page === 0) {
