@@ -56,7 +56,9 @@ const useDiaryContent = ({
     const { diaryId } = params;
 
     if (diaryId) {
-      deleteMutate({ diaryId });
+      const diaryList = [parseInt(diaryId)];
+
+      deleteMutate({ diaryList: diaryList });
     }
   };
 

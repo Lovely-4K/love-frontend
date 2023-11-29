@@ -2,7 +2,6 @@ import { MapMarker } from 'react-kakao-maps-sdk';
 import { UserPosition } from '~/types';
 import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
 import useDiaryToMarker from '~/pages/Diary/hooks/Diary/useDiarytoMarker';
-
 import useDiaryMap from '~/pages/Diary/hooks/DiaryMap/useDiaryMap';
 
 /** @todo: 추후 내 위치 마커와 장소 표시 마커 분리시키기 */

@@ -13,8 +13,8 @@ const getDiarys = async ({
   diaryCategory,
   page,
 }: getDiarysParams): Promise<Diarys> => {
-  let apiUrl = `/diaries?page=${page}&size=10&direction=${selectSortMethod}`;
-
+  let apiUrl = `/diaries?page=${page}&size=10&direction=${selectSortMethod}, desc`;
+  
   if (diaryCategory) {
     apiUrl += `&category=${diaryCategory}`;
   }
