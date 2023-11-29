@@ -1,6 +1,8 @@
+import { DiaryContent } from '~/types';
 import useDiaryContext from '../../hooks/Diary/useDiaryContext';
 import useDiaryMainContext from '../../hooks/DiaryMain/useDiaryMainContext';
 import { DiaryPreviewItem } from '~/components/domain';
+import useFilterMarker from '~/pages/Diary/hooks/Diary/useFilterMarker';
 
 const DiaryRecordsPreviews = () => {
   const {
@@ -9,6 +11,12 @@ const DiaryRecordsPreviews = () => {
   } = useDiaryContext();
   const { recordRef } = useDiaryMainContext();
   const { handleClickPreview } = handleClickPreviews;
+  const { setMarkerFilter } = useFilterMarker();
+
+  const previewClick = (diary: DiaryContent) => {
+    setMarkerFilter('ALL');
+    handleClickPreview(diary);
+  };
 
   return (
     <div>
@@ -23,7 +31,7 @@ const DiaryRecordsPreviews = () => {
               date={diary.datingDay}
               location={diary.placeName}
               imgSrc={diary.imageUrl}
-              onClick={() => handleClickPreview(diary)}
+              onClick={() => previewClick(diary)}
             />
           </div>
         ))}

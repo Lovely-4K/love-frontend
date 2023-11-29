@@ -11,10 +11,10 @@ const Diary = () => {
     <React.Suspense fallback={<DiaryLoading />}>
       <DiaryProvider>
         <div className="h-full w-full">
-          <DiarySideBar>
-            <Outlet />
-          </DiarySideBar>
           <DiaryMapProvider>
+            <DiarySideBar>
+              <Outlet />
+            </DiarySideBar>
             <DiaryMap />
           </DiaryMapProvider>
         </div>
