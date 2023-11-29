@@ -12,13 +12,17 @@ const ActiveTempBar = styled.div<TemperatureBarProps>`
   height: 0.7rem;
   width: ${({ percent }) =>
     percent >= 97.5 ? 97.5 : percent <= 2.5 ? 2.5 : percent}%;
+  transition: width 700ms;
+  transition-duration: cubic-bezier(0.47, 0, 0.745, 0.715);
 
   @media screen and (min-width: ${screens.md}) {
+    transition: width 700ms;
     width: ${({ percent }) =>
       percent >= 98.5 ? 98.5 : percent <= 1.5 ? 1.5 : percent}%;
   }
 
   @media screen and (min-width: ${screens.lg}) {
+    transition: height 700ms;
     height: ${({ percent }) =>
       percent >= 99 ? 99 : percent <= 2 ? 2 : percent}%;
     width: 1rem;

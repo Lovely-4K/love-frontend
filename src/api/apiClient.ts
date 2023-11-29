@@ -24,7 +24,11 @@ apiClient.interceptors.response.use(
     const originalRequest = error.config;
     const refreshToken = getStoredData(REFRESH_TOKEN_KEY);
 
-    if (refreshToken && error.response.status === 400) {
+    if (
+      refreshToken &&
+      error.response.status === 400 &&
+      error.response.data['메시지']
+    ) {
       originalRequest.sent = true;
 
       try {
