@@ -12,7 +12,6 @@ import useMapCategory from '~/pages/Diary/hooks/Diary/useMapCategory';
 import useSearch from '~/pages/Diary/hooks/Diary/useMapLocation';
 import useSelectSortMethod from '~/pages/Diary/hooks/Diary/useSelectSortMethod';
 import useSideBar from '~/pages/Diary/hooks/Diary/useSideBar';
-import useGetDiarys from '~/services/diary/useGetDiarys';
 
 export interface DiaryContextProps {
   searchKeyword: string;
@@ -29,8 +28,6 @@ export interface DiaryContextProps {
   setDiaryCategory: React.Dispatch<
     React.SetStateAction<categoryType | undefined>
   >;
-  page: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
   selectSortMethod: string;
   setSelectSortMethod: React.Dispatch<React.SetStateAction<string>>;
   info: MapMarker | undefined;
@@ -39,7 +36,8 @@ export interface DiaryContextProps {
   setInfoOpen: React.Dispatch<React.SetStateAction<boolean>>;
   map: kakao.maps.Map | undefined;
   setMap: React.Dispatch<React.SetStateAction<kakao.maps.Map | undefined>>;
-  diarys: DiaryContent[];
+  rootDiarys: DiaryContent[];
+  setRootDiarys: React.Dispatch<React.SetStateAction<DiaryContent[]>>;
   mapCategory: categoryType | undefined;
   setMapCategory: React.Dispatch<
     React.SetStateAction<categoryType | undefined>
@@ -79,18 +77,7 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
   const [mapCategory, setMapCategory] = useState<categoryType | undefined>(
     undefined,
   );
-  const [page, setPage] = useState(0);
-  const { data: diaryResponse } = useGetDiarys({ page, diaryCategory });
-  const [diarys, setDiarys] = useState<DiaryContent[]>([]);
-
-  useEffect(() => {
-    setDiarys([]);
-    setPage(0);
-  }, [diaryCategory]);
-
-  useEffect(() => {
-    setDiarys((prevPost) => [...prevPost, ...diaryResponse.content]);
-  }, [diaryResponse]);
+  const [rootDiarys, setRootDiarys] = useState<DiaryContent[]>([]);
 
   const handleInfo = useInfoToggle({ infoOpen, setInfoOpen, setInfo });
   const handleSideBar = useSideBar({ sideBarToggle, setSideBarToggle });
@@ -140,8 +127,6 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
         setSearchMode,
         sideBarToggle,
         setSideBarToggle,
-        page,
-        setPage,
         markers,
         setMarkers,
         diaryMarkers,
@@ -156,7 +141,8 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
         setInfoOpen,
         map,
         setMap,
-        diarys,
+        rootDiarys,
+        setRootDiarys,
         mapCategory,
         setMapCategory,
 

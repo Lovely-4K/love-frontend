@@ -7,7 +7,7 @@ import useDiaryMap from '~/pages/Diary/hooks/DiaryMap/useDiaryMap';
 /** @todo: 추후 내 위치 마커와 장소 표시 마커 분리시키기 */
 const DiaryMapMarker = ({ userPosition }: UserPosition) => {
   const {
-    diarys,
+    rootDiarys,
     searchKeyword,
     markers,
     methods: { handleMarkers, handleSearch },
@@ -15,7 +15,7 @@ const DiaryMapMarker = ({ userPosition }: UserPosition) => {
   const { useSearchLocation } = handleSearch;
   useSearchLocation(searchKeyword);
   const { handleMarker } = handleMarkers;
-  const diaryMarkers = useDiaryToMarker({ diarys });
+  const diaryMarkers = useDiaryToMarker({ rootDiarys });
   const { yetMarkers, goneMarkers } = useDiaryMap();
 
   return (
@@ -33,9 +33,9 @@ const DiaryMapMarker = ({ userPosition }: UserPosition) => {
       />
       {/* 다이어리 목록 마커 */}
       {markers.length ||
-        diaryMarkers?.map((marker) => (
+        diaryMarkers?.map((marker, index) => (
           <MapMarker
-            key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}
+            key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}-${index}`}
             position={marker.position}
             onClick={() => handleMarker(marker)}
             image={{
