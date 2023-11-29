@@ -19,7 +19,10 @@ const createDiaryDetail = async ({ formData }: CreateDiaryDetailParams) => {
   return response.data;
 };
 
-const useCreateDiaryDetail = (kakaoMapId: string) => {
+const useCreateDiaryDetail = (
+  kakaoMapId: string,
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
@@ -27,20 +30,22 @@ const useCreateDiaryDetail = (kakaoMapId: string) => {
     mutationKey: ['diaryEdit'],
     mutationFn: ({ formData }: CreateDiaryDetailParams) =>
       createDiaryDetail({ formData }),
+    onMutate: () => {
+      setLoading(true);
+    },
     onSuccess: async () => {
       try {
         await queryClient.invalidateQueries([
           'Diarys',
           'createdDate',
         ] as InvalidateQueryFilters);
-        // await queryClient.refetchQueries([
-        //   'Diarys',
-        //   'createdDate',
-        // ] as InvalidateQueryFilters);
         navigate(`/diary/${kakaoMapId}`);
       } catch (error) {
         console.error('An error occurred while invalidating queries:', error);
       }
+    },
+    onSettled: () => {
+      setLoading(false);
     },
   });
 

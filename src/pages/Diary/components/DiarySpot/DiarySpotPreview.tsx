@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react';
 import useDiarySpotContext from '../../hooks/useDiarySpotContext';
+import defaultImg from '~/assets/images/couple.jpeg';
 import { Img } from '~/components/common';
 
 interface DiarySpotPreviewProps {
@@ -56,7 +57,7 @@ const DiarySpotPreview = ({
         <Img
           shape="rectangle"
           className="image-rectangle h-full"
-          src={picture}
+          src={picture || defaultImg}
           alt={`${picture}-${id}`}
         />
         {deleteMode && (

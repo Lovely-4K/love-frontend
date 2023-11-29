@@ -1,6 +1,6 @@
+import type categoryType from '~/components/common/CategoryButton/CategoryTypes';
 import { useEffect } from 'react';
 import { MapMarker } from '~/types';
-import categoryType from '~/components/common/CategoryButton/CategoryTypes';
 import { DiaryContextProps } from '~/pages/Diary/contexts/DiaryContext';
 
 interface useMapCategoryProps {
@@ -22,14 +22,29 @@ const useMapCategory = ({
   handleInput,
   handleMarkers,
 }: useMapCategoryProps) => {
-  const { startSearchMode, setSearchKeyword, categorySearchMode } = handleInput;
+  const {
+    startSearchMode,
+    setSearchKeyword,
+    categorySearchMode,
+    endSearchMode,
+  } = handleInput;
   const { closeInfo } = handleInfo;
   const { setMarkers } = handleMarkers;
 
-  const translateCategory = (
-    category: 'CAFE' | 'FOOD' | 'ACCOMODATION' | 'CULTURE' | '',
-  ) => {
-    let newCategory = '';
+  const handleMapCategory = (category: categoryType) => {
+    setMapCategory((currCategory) => {
+      currCategory = currCategory === category ? undefined : category;
+
+      return currCategory;
+    });
+  };
+
+  const resetMapCategory = () => {
+    setMapCategory(undefined);
+  };
+
+  const translateCategory = (category: categoryType | undefined) => {
+    let newCategory = undefined;
 
     switch (category) {
       case 'ACCOMODATION':
@@ -50,28 +65,12 @@ const useMapCategory = ({
     return newCategory;
   };
 
-  const handleMapCategory = (category: categoryType) => {
-    if (category === 'ETC') return;
-
-    setMapCategory(category);
-    startSearchMode();
-    closeInfo();
-  };
-
-  const resetMapCategory = () => {
-    setMapCategory('');
-  };
-
-  useEffect(() => {
-    if (searchKeyword) resetMapCategory();
-  }, [searchKeyword, setSearchKeyword]);
-
   const useCategorySearch = () => {
     const searchPlaces = (page: number, allMarkers: MapMarker[]) => {
       if (!map || !mapCategory) return;
 
       const bounds = new kakao.maps.LatLngBounds();
-      let category: 'CE7' | 'FD6' | 'AD5' | 'CT1' | '' = '';
+      let category: 'CE7' | 'FD6' | 'AD5' | 'CT1' | undefined = undefined;
 
       switch (mapCategory) {
         case 'CAFE':
@@ -90,7 +89,8 @@ const useMapCategory = ({
 
       const position = new kakao.maps.services.Places(map);
 
-      // 기존 마커
+      if (category === undefined) return;
+
       const prevMarkers = [...allMarkers];
 
       // Bounds를 이용하여 카테고리 검색을 요청
@@ -151,8 +151,16 @@ const useMapCategory = ({
       );
     };
 
-    // category가 바뀔 때 (지도 이동 x)
     useEffect(() => {
+      if (mapCategory === undefined) {
+        endSearchMode();
+        setMarkers([]);
+
+        return;
+      }
+
+      startSearchMode();
+      closeInfo();
       searchPlaces(1, []);
     }, [mapCategory, map]);
 
@@ -170,6 +178,10 @@ const useMapCategory = ({
 
     return { setMarkers, map, mapCategory };
   };
+
+  useEffect(() => {
+    if (searchKeyword) resetMapCategory();
+  }, [searchKeyword, setSearchKeyword]);
 
   return {
     setMapCategory,

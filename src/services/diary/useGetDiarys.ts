@@ -1,8 +1,9 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { Diarys } from '~/types';
 import apiClient from '~/api/apiClient';
 
 interface getDiarysParams {
+  page: number;
   selectSortMethod?: string;
   diaryCategory?: string;
 }
@@ -10,9 +11,10 @@ interface getDiarysParams {
 const getDiarys = async ({
   selectSortMethod = 'createdDate',
   diaryCategory,
+  page,
 }: getDiarysParams): Promise<Diarys> => {
-  let apiUrl = `/diaries?page=0&size=10&sort=${selectSortMethod},desc`;
-
+  let apiUrl = `/diaries?page=${page}&size=10&direction=${selectSortMethod}, desc`;
+  
   if (diaryCategory) {
     apiUrl += `&category=${diaryCategory}`;
   }
@@ -22,14 +24,14 @@ const getDiarys = async ({
   return response.data.body as Diarys;
 };
 
-const useGetDiarys = (
-  { selectSortMethod, diaryCategory }: getDiarysParams = {
-    selectSortMethod: 'createdDate',
-  },
-) => {
-  return useQuery({
-    queryKey: ['Diarys', selectSortMethod, diaryCategory],
-    queryFn: () => getDiarys({ selectSortMethod, diaryCategory }),
+const useGetDiarys = ({
+  selectSortMethod = 'createdData',
+  diaryCategory,
+  page,
+}: getDiarysParams) => {
+  return useSuspenseQuery({
+    queryKey: ['Diarys', selectSortMethod, diaryCategory, page],
+    queryFn: () => getDiarys({ selectSortMethod, diaryCategory, page }),
   });
 };
 

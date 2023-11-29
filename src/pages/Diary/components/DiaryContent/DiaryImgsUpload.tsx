@@ -3,10 +3,10 @@ import { IconImageGallery } from '~/assets/icons';
 
 const DiaryImgsUpload = () => {
   const diaryContentContext = useDiaryContentContext();
-  const { images, methods } = diaryContentContext;
+  const { imgUrl, methods } = diaryContentContext;
   const { handleAddImages, handleDeleteImage } = methods;
 
-  const imageLength = images === undefined ? 0 : images.length;
+  const imageLength = imgUrl === undefined ? 0 : imgUrl.length;
 
   return (
     <div className="flex h-[7rem] w-full gap-4 overflow-x-auto pt-2">
@@ -27,16 +27,16 @@ const DiaryImgsUpload = () => {
           </div>
         </label>
       </form>
-      {images?.map((image, id) => (
+      {imgUrl?.map((url, id) => (
         <div
           key={id}
           id={`item${id}`}
           className="h-20 w-20 flex-shrink-0 rounded-xl border border-grey-200"
         >
           <img
-            src={image}
+            src={url}
             className="h-20 w-20 rounded-xl"
-            alt={`${image}-${id}`}
+            alt={`${url}-${id}`}
           />
           <button
             className="relative -right-[90%] -top-[110%] flex h-4 w-4 items-center justify-center rounded-full border border-grey-300 bg-grey-300 text-base-white"

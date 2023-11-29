@@ -6,11 +6,11 @@ const DiaryImgsCarousel = () => {
   const diaryContentContext = useDiaryContentContext();
   const { diary } = diaryContentContext;
   const { pictures } = diary;
-  const images = changeImageType(pictures);
+  const imgUrl = changeImageType(pictures);
 
   return (
     <div className="h-[auto] max-h-[10rem]">
-      <Carousel pictures={images} />
+      <Carousel pictures={imgUrl} />
     </div>
   );
 };

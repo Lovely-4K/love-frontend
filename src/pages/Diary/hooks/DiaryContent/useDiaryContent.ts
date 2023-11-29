@@ -2,36 +2,46 @@ import type categoryType from '~/components/common/CategoryButton/CategoryTypes'
 import { ChangeEvent, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import type { DiaryResponse, DiaryCreateTextRequest } from '~/types';
-import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
+import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
 import useCreateDiaryDetail from '~/services/diary/useCreateDiaryDetail';
 import useDeleteDiaryDetail from '~/services/diary/useDeleteDiaryDetail';
 import useEditDiaryDetail from '~/services/diary/useEditDiaryDetail';
 
 interface useDiaryContentParams {
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   editDiary: DiaryResponse;
   setEditDiary: React.Dispatch<React.SetStateAction<DiaryResponse>>;
   editable: boolean;
   setEditable: React.Dispatch<React.SetStateAction<boolean>>;
-  images: string[];
-  setImages: React.Dispatch<React.SetStateAction<string[]>>;
+  imgUrl: string[];
+  setImgUrl: React.Dispatch<React.SetStateAction<string[]>>;
+  existedImg: string[];
+  setExistedImg: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const useDiaryContent = ({
+  setLoading,
   editDiary,
   setEditDiary,
   setEditable,
-  images,
-  setImages,
+  imgUrl,
+  setImgUrl,
+  existedImg,
+  setExistedImg,
 }: useDiaryContentParams) => {
   const navigate = useNavigate();
   const params = useParams();
-  const { mutate: createFormMutate } = useCreateDiaryDetail(
-    editDiary.kakaoMapId,
+  const { info } = useDiaryContext();
+  const { position, content, address, spotId } = info!;
+  const { mutate: createFormMutate } = useCreateDiaryDetail(spotId, setLoading);
+  const { mutate: editFormMutate } = useEditDiaryDetail(
+    spotId || editDiary.kakaoMapId,
+    setLoading,
   );
-  const { mutate: editFormMutate } = useEditDiaryDetail(editDiary.kakaoMapId);
-  const { mutate: deleteMutate } = useDeleteDiaryDetail(editDiary.kakaoMapId);
+  const { mutate: deleteMutate } = useDeleteDiaryDetail(
+    spotId || editDiary.kakaoMapId,
+  );
   const files = useRef<File[]>([]);
-  const { info } = useDiary();
 
   const handleChangeDatingDay = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
@@ -70,8 +80,8 @@ const useDiaryContent = ({
     });
   };
 
-  const handleChangeImgaes = (images: string[]) => {
-    setImages(images);
+  const handleChangeImgaes = (imgUrl: string[]) => {
+    setImgUrl(imgUrl);
   };
 
   const handleChangeScore = (score: number) => {
@@ -83,7 +93,7 @@ const useDiaryContent = ({
 
   const handleAddImages = (event: ChangeEvent<HTMLInputElement>) => {
     const fileLists = event.target.files!;
-    const copyImages = [...images];
+    const copyImages = [...imgUrl];
 
     for (let i = 0; i < fileLists.length; i++) {
       if (copyImages.length === 5) {
@@ -100,10 +110,10 @@ const useDiaryContent = ({
   };
 
   const handleDeleteImage = (id: number) => {
-    if (editDiary.images === undefined) return;
-    const images = [...editDiary.images].filter((_, index) => index !== id);
-
-    handleChangeImgaes(images);
+    const nextImgUrl = imgUrl.filter((_, index) => index !== id);
+    const nextExistedImg = imgUrl.filter((_, index) => index !== id);
+    handleChangeImgaes(nextImgUrl);
+    setExistedImg(nextExistedImg);
   };
 
   const handleEditMode = () => {
@@ -114,9 +124,6 @@ const useDiaryContent = ({
   const handleSubmitCreate = () => {
     const formData = new FormData();
     const { datingDay, category, score, myText } = editDiary;
-    // const { spotId } = params;
-    // const { latitude, longitude } = locate.state;
-    const { position, content, address, spotId } = info!;
     const texts: DiaryCreateTextRequest = {
       placeName: content,
       kakaoMapId: Number(spotId),
@@ -132,11 +139,9 @@ const useDiaryContent = ({
       'texts',
       new Blob([JSON.stringify(texts)], { type: 'application/json' }),
     );
-
-    for (const file of files.current) {
+    files.current.forEach((file) => {
       formData.append('images', file);
-    }
-
+    });
     createFormMutate({ formData });
   };
 
@@ -147,20 +152,17 @@ const useDiaryContent = ({
       datingDay,
       category,
       myText,
-      opponentText,
+      opponentText: opponentText === null ? 'ㅎㅇ' : opponentText,
       score,
+      images: existedImg,
     };
+    console.log(texts);
     formData.append(
       'texts',
       new Blob([JSON.stringify(texts)], { type: 'application/json' }),
     );
+    files.current.forEach((file) => formData.append('images', file));
 
-    // if (files.current) {
-    //   for (const file of files.current) {
-    //     formData.append('images', file);
-    //   }
-    // }
-    // formData.append('images', null);
     editFormMutate({ diaryId, formData });
   };
 

@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 import { MarkerFilter } from '~/pages/Diary/contexts/DiaryMapContext';
-import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
+import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
 import useDiaryMap from '~/pages/Diary/hooks/DiaryMap/useDiaryMap';
-import useGetDiarys from '~/services/diary/useGetDiarys';
 
 const useFilterMarker = () => {
   const {
@@ -13,14 +12,10 @@ const useFilterMarker = () => {
     yetMarkers,
     setYetMarkers,
   } = useDiaryMap();
-  const { markers } = useDiary();
-  const { data: diarys, isSuccess } = useGetDiarys();
+  const { markers, diarys } = useDiaryContext();
 
   const handleFilterMarker = () => {
-    if (!isSuccess) return;
-
-    const diaryContent = diarys.content;
-
+    const diaryContent = diarys;
     const gone = markers.filter((marker) => {
       return diaryContent.find(
         (diaryContent) => diaryContent.kakaoMapId === Number(marker.spotId),
@@ -61,7 +56,6 @@ const useFilterMarker = () => {
       }
     });
   };
-
   useEffect(() => {
     handleFilterMarker();
   }, [markerFilter, markers, diarys]);

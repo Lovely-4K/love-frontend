@@ -7,7 +7,11 @@ interface useDiaryCategoriesProps {
 
 const useDiaryCategories = ({ setDiaryCategory }: useDiaryCategoriesProps) => {
   const handleCategory = (category: categoryType) => {
-    setDiaryCategory(category);
+    setDiaryCategory((currCategory) => {
+      currCategory = currCategory === category ? undefined : category;
+
+      return currCategory;
+    });
   };
 
   return { setDiaryCategory, handleCategory };

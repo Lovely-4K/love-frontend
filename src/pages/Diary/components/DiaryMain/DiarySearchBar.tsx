@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react';
 import { IconSearch } from '~/assets/icons';
-import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
+import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
 
 const DiarySearchBar = () => {
   const {
     searchKeyword,
     methods: { handleInput },
-  } = useDiary();
+  } = useDiaryContext();
   const { handleKeyUp } = handleInput;
   const inputRef = useRef<HTMLInputElement>(null);
 

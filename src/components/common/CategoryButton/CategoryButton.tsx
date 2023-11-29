@@ -7,7 +7,7 @@ interface CategoryButtonProps extends HtmlHTMLAttributes<HTMLDivElement> {
   type: categoryType;
   active: boolean;
   editable: boolean;
-  handleClickButton: (categoryType: categoryType) => void;
+  handleClickButton: (category: categoryType) => void;
 }
 
 const titles: Record<categoryType, string> = {

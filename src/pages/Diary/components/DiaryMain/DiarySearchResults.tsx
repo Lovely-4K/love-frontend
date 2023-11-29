@@ -1,5 +1,5 @@
 import DiaryMarkerData from '~/pages/Diary/components/DiaryCommon/DiaryMarkerData';
-import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
+import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
 
 const DiarySearchResults = () => {
   const {
@@ -7,7 +7,7 @@ const DiarySearchResults = () => {
     markers,
     mapCategory,
     methods: { handleInput, handleMarkers, handleMapCategories },
-  } = useDiary();
+  } = useDiaryContext();
   const { endSearchMode } = handleInput;
   const { handleMarker } = handleMarkers;
   const { translateCategory } = handleMapCategories;

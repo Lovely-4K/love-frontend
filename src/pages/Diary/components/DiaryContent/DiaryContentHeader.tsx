@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { paths } from '~/router';
 import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
 import { DiaryHeader } from '~/pages/Diary/components/DiaryCommon';
-import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
+import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
 
 const DiaryContentHeader = memo(() => {
   const { editable, diary, methods } = useDiaryContentContext();
@@ -10,7 +10,7 @@ const DiaryContentHeader = memo(() => {
   const { handleEditMode, handleDeleteDiary } = methods;
   const { DIARY } = paths;
   const prevLink = `${DIARY.ROOT}/${kakaoMapId}`;
-  const { info } = useDiary();
+  const { info } = useDiaryContext();
 
   if (!info) return;
 

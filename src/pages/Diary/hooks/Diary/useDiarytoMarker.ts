@@ -1,18 +1,16 @@
-import { Diarys } from '~/types';
-// import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
+
+import type { DiaryContent } from '~/types';
 
 interface useDiaryToMarkerProps {
-  diarys: Diarys | undefined;
+  diarys: DiaryContent[] | undefined;
 }
 
 const useDiaryToMarker = ({ diarys }: useDiaryToMarkerProps) => {
-  // const { diaryMarkers, setDiaryMarkers } = useDiary();
-
   if (!diarys) return;
 
   const markers = [];
 
-  for (const diary of diarys.content) {
+  for (const diary of diarys) {
     const info = {
       position: {
         lat: diary.latitude,
@@ -25,8 +23,6 @@ const useDiaryToMarker = ({ diarys }: useDiaryToMarkerProps) => {
 
     markers.push(info);
   }
-
-  // setDiaryMarkers(markers);
 
   return markers;
 };

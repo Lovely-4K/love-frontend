@@ -12,11 +12,11 @@ const ReadProvider = ({ children }: ReadProviderProps) => {
   const params = useParams();
   const { diaryId } = params;
   const { data: diaryResponse } = useGetDiaryDetail({ diaryId });
-  const diaryContentModeContext = useContext(DiaryContentContext);
+  const diaryContentContext = useContext(DiaryContentContext);
 
-  if (diaryContentModeContext === null) throw new Error('');
+  if (diaryContentContext === null) throw new Error('');
 
-  const { setDiary } = diaryContentModeContext;
+  const { setDiary } = diaryContentContext;
 
   useEffect(() => {
     setDiary({ ...diaryResponse });
