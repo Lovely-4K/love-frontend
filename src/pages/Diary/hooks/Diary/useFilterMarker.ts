@@ -65,6 +65,7 @@ const useFilterMarker = () => {
     closeInfo();
   };
   useEffect(() => {
+    console.log(rootDiarys);
     handleFilterMarker();
   }, [markerFilter, markers, rootDiarys]);
 
