@@ -12,7 +12,12 @@ const useFilterMarker = () => {
     yetMarkers,
     setYetMarkers,
   } = useDiaryMap();
-  const { markers, diarys } = useDiaryContext();
+  const {
+    markers,
+    diarys,
+    methods: { handleInfo },
+  } = useDiaryContext();
+  const { closeInfo } = handleInfo;
 
   const handleFilterMarker = () => {
     const diaryContent = diarys;
@@ -55,6 +60,8 @@ const useFilterMarker = () => {
           return prevFilter;
       }
     });
+
+    closeInfo();
   };
   useEffect(() => {
     handleFilterMarker();
