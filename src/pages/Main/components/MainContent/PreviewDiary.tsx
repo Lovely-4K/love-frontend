@@ -1,20 +1,22 @@
+import { Link } from 'react-router-dom';
 import { paths } from '~/router';
 import { useMainContent } from '../../hooks';
 import PreviewNoneItem from './PreviewNoneItem';
 import { DiaryPreviewItem } from '~/components/domain';
-
 const PreviewDiary = () => {
   const { recentDiarys } = useMainContent();
 
   return recentDiarys.content.length > 0 ? (
     <div className="flex h-full gap-3 overflow-x-auto overflow-y-hidden lg:grid lg:grid-cols-2 lg:overflow-y-auto lg:overflow-x-hidden">
       {recentDiarys.content.map((diary) => (
-        <DiaryPreviewItem
-          key={diary.diaryId}
-          date={diary.datingDay}
-          location={diary.placeName}
-          imgSrc={diary.imageUrl}
-        />
+        <Link to={`${paths.DIARY.ROOT}/${diary.kakaoMapId}/${diary.diaryId}`}>
+          <DiaryPreviewItem
+            key={diary.diaryId}
+            date={diary.datingDay}
+            location={diary.placeName}
+            imgSrc={diary.imageUrl}
+          />
+        </Link>
       ))}
     </div>
   ) : (
@@ -25,5 +27,4 @@ const PreviewDiary = () => {
     />
   );
 };
-
 export default PreviewDiary;

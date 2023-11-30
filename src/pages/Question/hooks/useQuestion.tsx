@@ -21,15 +21,15 @@ const useQuestion = ({
   userAnswer,
   setUserAnswer,
 }: useQuestionParams) => {
-  const { questionId } = questionForm;
   const handleSubmitUserAnswer = useCallback(
     (userAnswer: number) => {
+      const { questionId } = questionForm;
       mutateUserAnswer({
         questionId,
         selectedItemIndex: userAnswer,
       });
     },
-    [mutateUserAnswer, questionId],
+    [questionForm, mutateUserAnswer],
   );
 
   const handleClickAnswer = (answerIndex: number) => {

@@ -1,7 +1,7 @@
-import useQuestion from '~/pages/Question/hooks/useQuestion';
+import useQuestionContext from '../../hooks/useQuestionContext';
 
 const FormQuestionnaire = () => {
-  const { questionForm } = useQuestion();
+  const { questionForm } = useQuestionContext();
   const { questionContent } = questionForm;
 
   return (
