@@ -20,7 +20,7 @@ const DiaryPreviewItemContainer = styled.div`
   aspect-ratio: 1 / 1;
 
   @media (min-width: ${screens.md}) {
-    min-width: 9rem;
+    min-width: auto;
   }
 
   &:hover {
