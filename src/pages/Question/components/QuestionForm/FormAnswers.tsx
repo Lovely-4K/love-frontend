@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { screens } from '~/theme';
 import useQuestionContext from '../../hooks/useQuestionContext';
 import FormAnswerItem from './FormAnswerItem';
-import { Button } from '~/components/common';
+import { Button, Loading } from '~/components/common';
 
 const FormAnswerItemContainer = styled.div<{ length: number }>`
   display: grid;
@@ -19,6 +19,10 @@ const FormAnswerItemContainer = styled.div<{ length: number }>`
 const FormAnswers = () => {
   const { questionForm, questionDetail, methods, userAnswer } =
     useQuestionContext();
+
+  if (questionDetail === undefined) {
+    return <Loading size="large" />;
+  }
   const { firstChoice, secondChoice, thirdChoice, fourthChoice } = questionForm;
   const { myChoiceIndex } = questionDetail;
   const { handleSubmitUserAnswer, handleClickAnswer } = methods;
