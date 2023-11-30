@@ -2,9 +2,18 @@ import { Link } from 'react-router-dom';
 import { paths } from '~/router';
 import { useMainContent } from '../../hooks';
 import PreviewNoneItem from './PreviewNoneItem';
+import { Loading } from '~/components/common';
 import { DiaryPreviewItem } from '~/components/domain';
 const PreviewDiary = () => {
   const { recentDiarys } = useMainContent();
+
+  if (!recentDiarys)
+    return (
+      <Loading
+        size="medium"
+        className="h-full self-center justify-self-center"
+      />
+    );
 
   return recentDiarys.content.length > 0 ? (
     <div className="flex h-full gap-3 overflow-x-auto overflow-y-hidden lg:grid lg:grid-cols-2 lg:overflow-y-auto lg:overflow-x-hidden">

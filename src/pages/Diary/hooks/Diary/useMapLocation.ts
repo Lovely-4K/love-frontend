@@ -9,6 +9,7 @@ interface useSearchLocationProps {
   handleMapCategories: DiaryContextProps['methods']['handleMapCategories'];
   handleLocation: DiaryContextProps['methods']['handleLocation'];
   handleMarkers: DiaryContextProps['methods']['handleMarkers'];
+  handleInfo: DiaryContextProps['methods']['handleInfo'];
 }
 
 const useSearch = ({
@@ -18,11 +19,13 @@ const useSearch = ({
   handleMapCategories,
   handleLocation,
   handleMarkers,
+  handleInfo,
 }: useSearchLocationProps) => {
   const { startSearchMode, setSearchKeyword } = handleInput;
   const { resetMapCategory } = handleMapCategories;
   const { useCurrentLocation } = handleLocation;
   const { setMarkers } = handleMarkers;
+  const { closeInfo } = handleInfo;
 
   const useSearchLocation = (keyword: string) => {
     const { userPosition } = useCurrentLocation();
@@ -70,6 +73,7 @@ const useSearch = ({
                 resetMapCategory();
                 setSearchKeyword(keyword);
                 setMarkers(allMarkers);
+                closeInfo();
                 map.setBounds(bounds);
                 startSearchMode();
               }

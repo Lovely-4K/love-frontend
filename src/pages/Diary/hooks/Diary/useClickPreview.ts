@@ -7,17 +7,23 @@ interface useClickPreviewProps {
   map: DiaryContextProps['map'];
   handleInfo: DiaryContextProps['methods']['handleInfo'];
   handleMapCategories: DiaryContextProps['methods']['handleMapCategories'];
+  handleMarkers: DiaryContextProps['methods']['handleMarkers'];
+  handleInput: DiaryContextProps['methods']['handleInput'];
 }
 
 const useClickPreview = ({
   map,
   handleInfo,
   handleMapCategories,
+  handleMarkers,
+  handleInput,
 }: useClickPreviewProps) => {
   const navigate = useNavigate();
 
   const { openInfo, setInfo } = handleInfo;
   const { resetMapCategory } = handleMapCategories;
+  const { setMarkers } = handleMarkers;
+  const { endSearchMode, setSearchKeyword } = handleInput;
 
   const handleClickPreview = (preview: DiaryContent) => {
     if (!map) return;
@@ -42,6 +48,9 @@ const useClickPreview = ({
     map.setCenter(newLatLng);
     setInfo(info);
     openInfo();
+    endSearchMode();
+    setMarkers([]);
+    setSearchKeyword('');
     navigate(`${paths.DIARY.ROOT}/${preview.kakaoMapId}/${preview.diaryId}`);
   };
 

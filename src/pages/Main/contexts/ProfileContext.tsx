@@ -60,6 +60,7 @@ const ProfileProvider = ({ children }: PropsWithChildren) => {
 
   const handleOpenProfileModal = useCallback(
     ({ birthday, calendarColor, imageUrl, mbti, nickname, id }: User) => {
+      console.log(birthday, calendarColor, imageUrl, mbti, nickname, id);
       setModalInfo({
         birthday,
         calendarColor,
