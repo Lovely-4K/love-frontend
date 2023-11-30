@@ -27,8 +27,10 @@ const Profile = memo(
           className="md:h-[9.375rem] md:w-[9.375rem]"
         />
         <div className="mt-2 flex flex-col items-center">
-          <span className="text-lg font-bold">{nickname}</span>
-          <span className="text-base font-medium text-grey-500">{mbti}</span>
+          <span className="text-base font-bold md:text-lg">{nickname}</span>
+          <span className="text-sm font-medium text-grey-500 md:text-base">
+            {mbti}
+          </span>
         </div>
       </div>
     );

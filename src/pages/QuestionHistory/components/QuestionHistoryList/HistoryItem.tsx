@@ -10,27 +10,32 @@ interface QuestionDropDown {
 const HistoryItem = ({ questionTitle, questionId }: QuestionDropDown) => {
   const { handleArcodianClick, questionDetail } = useHistoryItem(questionId);
   const QuestionChatContent = () => {
-    if (!questionDetail) return <Loading />;
+    if (!questionDetail)
+      return (
+        <div className="flex h-52 w-full justify-center">
+          <Loading />
+        </div>
+      );
     const { myAnswer, myProfile, opponentAnswer, opponentProfile } =
       questionDetail;
 
     return (
-      <>
+      <div className="pt-2 md:px-3">
         <QuestionChatItem
           type={'start'}
-          author={'정'}
+          author={'나의 답변'}
           message={myAnswer}
           picture={myProfile}
           answerStatus={true}
         />
         <QuestionChatItem
           type={'end'}
-          author={'호'}
+          author={'상대의 답변'}
           message={opponentAnswer}
           picture={opponentProfile}
           answerStatus={true}
         />
-      </>
+      </div>
     );
   };
 

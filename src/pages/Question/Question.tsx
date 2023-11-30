@@ -1,29 +1,17 @@
-import styled from '@emotion/styled';
-import { screens } from '~/theme';
 import { QuestionHeader, QuestionForm, QuestionChat } from './components';
 import { QuestionProvider } from '~/pages/Question/contexts/QuestionContext';
 
-export const QuestionContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  margin: 0 auto;
-  padding: 3rem 4rem;
-
-  @media screen and (min-width: ${screens.lg}) {
-    width: 70%;
-    padding: 4rem 10rem;
-  }
-`;
-
 const Question = () => {
   return (
-    <QuestionContainer>
+    <div className="flex flex-col px-7 py-8 md:px-10">
       <QuestionHeader />
       <QuestionProvider>
-        <QuestionForm />
-        <QuestionChat />
+        <div className="mx-auto h-full w-full max-w-4xl">
+          <QuestionForm />
+          <QuestionChat />
+        </div>
       </QuestionProvider>
-    </QuestionContainer>
+    </div>
   );
 };
 

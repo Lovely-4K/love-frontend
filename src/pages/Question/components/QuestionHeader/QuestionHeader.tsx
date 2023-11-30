@@ -4,18 +4,11 @@ import { CircleButton } from '~/components/common';
 
 const QuestionHeader = () => {
   return (
-    <div className="flex justify-between">
-      <div className="font-title lg:font-title-large">오늘의 질문</div>
-      <div>
-        <Link to={'/question/history'}>
-          <CircleButton
-            editable={true}
-            label="전체"
-            icon={IconMenu}
-            active={false}
-          />
-        </Link>
-      </div>
+    <div className="flex items-center justify-between">
+      <div className="text-xl md:text-2xl">오늘의 질문</div>
+      <Link to={'/question/history'}>
+        <CircleButton editable={true} icon={IconMenu} active={false} />
+      </Link>
     </div>
   );
 };
