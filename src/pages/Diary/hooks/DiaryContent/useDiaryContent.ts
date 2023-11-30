@@ -1,7 +1,7 @@
 import type categoryType from '~/components/common/CategoryButton/CategoryTypes';
 import { ChangeEvent, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import type { DiaryResponse, DiaryCreateTextRequest } from '~/types';
+import type { DiaryResponse, DiaryCreateTextRequest, MapMarker } from '~/types';
 import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
 import useCreateDiaryDetail from '~/services/diary/useCreateDiaryDetail';
 import useDeleteDiaryDetail from '~/services/diary/useDeleteDiaryDetail';
@@ -32,8 +32,11 @@ const useDiaryContent = ({
   const navigate = useNavigate();
   const params = useParams();
   const { info } = useDiaryContext();
-  const { position, content, address, spotId } = info!;
-  const { mutate: createFormMutate } = useCreateDiaryDetail(spotId, setLoading);
+  const { spotId, diaryId } = params;
+  const { mutate: createFormMutate } = useCreateDiaryDetail(
+    spotId as string,
+    setLoading,
+  );
   const { mutate: editFormMutate } = useEditDiaryDetail(
     spotId || editDiary.kakaoMapId,
     setLoading,
@@ -53,8 +56,6 @@ const useDiaryContent = ({
   };
 
   const handleDeleteDiary = () => {
-    const { diaryId, spotId } = params;
-
     if (diaryId) {
       navigate(`/diary/${spotId}`);
       const diaryList = [parseInt(diaryId)];
@@ -124,9 +125,15 @@ const useDiaryContent = ({
   const handleSubmitCreate = () => {
     const formData = new FormData();
     const { datingDay, category, score, myText } = editDiary;
+    const {
+      position,
+      content,
+      address,
+      spotId: kakaoMapId,
+    } = info as MapMarker;
     const texts: DiaryCreateTextRequest = {
       placeName: content,
-      kakaoMapId: Number(spotId),
+      kakaoMapId: Number(kakaoMapId),
       latitude: position.lat,
       longitude: position.lng,
       address: address,
@@ -167,7 +174,6 @@ const useDiaryContent = ({
   };
 
   const handleSubmitForm = () => {
-    const { diaryId } = params;
     if (diaryId === undefined) {
       handleSubmitCreate();
     } else {
@@ -176,7 +182,6 @@ const useDiaryContent = ({
   };
 
   const handleEditCancel = () => {
-    const { diaryId } = params;
     setEditable(false);
 
     if (diaryId === undefined) {

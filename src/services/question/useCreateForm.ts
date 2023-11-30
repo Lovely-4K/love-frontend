@@ -1,15 +1,19 @@
-import { useMutation } from '@tanstack/react-query';
-import type { QuestionForm, code, links } from '~/types';
+import {
+  useMutation,
+  QueryClient,
+  InvalidateQueryFilters,
+} from '@tanstack/react-query';
+import type { QuestionFormRequest, code, links } from '~/types';
 import apiClient from '~/api/apiClient';
 
 export interface createQuestionFromResponse {
-  body?: QuestionForm;
+  body?: QuestionFormRequest;
   code: code;
   links?: links;
 }
 
 export interface createFormParams {
-  questionForm: QuestionForm;
+  questionForm: QuestionFormRequest;
 }
 
 const createForm = async ({ questionForm }: createFormParams) => {
@@ -28,9 +32,16 @@ const createForm = async ({ questionForm }: createFormParams) => {
 };
 
 const useCreateForm = () => {
+  const queryClient = new QueryClient();
+
   return useMutation({
     mutationFn: async (createFormParams: createFormParams) => {
       return createForm(createFormParams);
+    },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries([
+        'temperature',
+      ] as InvalidateQueryFilters);
     },
   });
 };

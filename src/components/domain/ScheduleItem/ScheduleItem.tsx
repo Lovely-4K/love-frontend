@@ -3,17 +3,14 @@ import { colors, fontSize, screens } from '~/theme';
 import type { Schedule } from '~/types';
 import { IconTrash } from '~/assets/icons';
 import { useDeleteSchedule } from '~/services/calendar';
-
 interface ScheduleItemProps extends React.HTMLAttributes<HTMLDivElement> {
   customColor: string;
   schedule: Schedule;
   mySchedule?: boolean;
 }
-
 interface StyledProps {
   customColor: string;
 }
-
 const ScheduleItemContainer = styled.div<StyledProps>`
   display: flex;
   background-color: ${colors.base.white};
@@ -26,7 +23,6 @@ const ScheduleItemContainer = styled.div<StyledProps>`
   cursor: pointer;
   min-width: 13rem;
   gap: 0.3rem;
-
   &:hover {
     background-color: ${({ customColor }) => {
       if (!customColor) return colors.base.white;
@@ -39,25 +35,21 @@ const ScheduleItemContainer = styled.div<StyledProps>`
       return `rgba(${r}, ${g}, ${b}, ${opacity})`;
     }};
   }
-
   @media screen and (min-width: ${screens.lg}) {
     width: 100%;
   }
 `;
-
 const ScheduleDate = styled.span`
   white-space: nowrap;
   font-size: ${fontSize.sm};
   padding-right: 0.25rem;
   color: ${colors.grey[500]};
 `;
-
 const ScheduleTitle = styled.span<StyledProps>`
   width: 100%;
   font-size: ${fontSize.base};
   color: ${({ customColor }) => customColor};
 `;
-
 const ScheduleItem = ({
   customColor,
   schedule,
@@ -67,7 +59,6 @@ const ScheduleItem = ({
   const { mutate: deleteSchedule } = useDeleteSchedule();
   const { startDate, endDate, scheduleDetails } = schedule;
   const hasEndDate = startDate !== endDate;
-
   const handleDeleteSchedule = ({
     event,
     scheduleId,
@@ -107,5 +98,4 @@ const ScheduleItem = ({
     </ScheduleItemContainer>
   );
 };
-
 export default ScheduleItem;

@@ -1,42 +1,44 @@
-import { useCallback, useContext } from 'react';
-import { QuestionContext } from '../contexts/QuestionContext';
+import type { updateUserAnswerParams } from '~/services/question/useUpdateUserAnswer';
+import { UseMutateFunction } from '@tanstack/react-query';
+import { useCallback } from 'react';
+import { QuestionFormResponse } from '~/types';
 
-const useQuestion = () => {
-  const questionContext = useContext(QuestionContext);
+interface useQuestionParams {
+  mutateUserAnswer: UseMutateFunction<
+    any,
+    Error,
+    updateUserAnswerParams,
+    () => void
+  >;
+  questionForm: QuestionFormResponse;
+  userAnswer: number;
+  setUserAnswer: React.Dispatch<React.SetStateAction<number>>;
+}
 
-  if (!questionContext) {
-    throw new Error('questionContext is null');
-  }
-  const { questionForm, questionDetail, mutateUserAnswer } = questionContext;
-
-  const { questionId, firstChoice, secondChoice, thirdChoice, fourthChoice } =
-    questionForm;
-
+const useQuestion = ({
+  mutateUserAnswer,
+  questionForm,
+  userAnswer,
+  setUserAnswer,
+}: useQuestionParams) => {
   const handleSubmitUserAnswer = useCallback(
     (userAnswer: number) => {
-      if (questionId) {
-        mutateUserAnswer({
-          questionId,
-          selectedItemIndex: userAnswer,
-        });
-        mutateUserAnswer({
-          questionId,
-          selectedItemIndex: userAnswer,
-        });
-      }
+      const { questionId } = questionForm;
+      mutateUserAnswer({
+        questionId,
+        selectedItemIndex: userAnswer,
+      });
     },
-    [mutateUserAnswer, questionId],
+    [questionForm, mutateUserAnswer],
   );
 
+  const handleClickAnswer = (answerIndex: number) => {
+    setUserAnswer(answerIndex === userAnswer ? -1 : answerIndex);
+  };
+
   return {
-    questionForm: {
-      ...questionForm,
-      answers: [firstChoice, secondChoice, thirdChoice, fourthChoice],
-    },
-    questionDetail,
-    methods: {
-      handleSubmitUserAnswer,
-    },
+    handleSubmitUserAnswer,
+    handleClickAnswer,
   };
 };
 
