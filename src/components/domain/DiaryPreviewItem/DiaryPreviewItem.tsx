@@ -45,7 +45,7 @@ const PreviewTextItemContainer = styled.div`
   color: ${colors.base.white};
   z-index: 2;
   padding: 0.6rem;
-  white-space: break-spaces;
+  word-break: keep-all;
   text-align: center;
 
   @media (min-width: ${screens.lg}) {
