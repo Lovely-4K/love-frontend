@@ -18,8 +18,6 @@ const DiaryMapMarker = ({ userPosition }: UserPosition) => {
   const diaryMarkers = useDiaryToMarker({ rootDiarys });
   const { yetMarkers, goneMarkers } = useDiaryMap();
 
-  console.log(yetMarkers, goneMarkers, markers);
-
   return (
     <>
       {/* 내 위치 마커 */}

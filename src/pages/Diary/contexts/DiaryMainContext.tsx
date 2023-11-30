@@ -32,7 +32,6 @@ const DiaryMainProvider = ({ children }: PropsWithChildren) => {
   const { recordRef } = useDiaryMainObserver({ page, setPage, diarys });
 
   useEffect(() => {
-    console.log('hi');
     setPage(0);
   }, [diaryCategory, selectSortMethod]);
 

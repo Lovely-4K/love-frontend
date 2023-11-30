@@ -73,6 +73,9 @@ const useSearch = ({
                 map.setBounds(bounds);
                 startSearchMode();
               }
+            } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
+              setMarkers([]);
+            } else if (status === kakao.maps.services.Status.ERROR) {
             }
           },
           { page },

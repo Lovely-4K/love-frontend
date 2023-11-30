@@ -140,10 +140,11 @@ const useMapCategory = ({
             } else {
               categorySearchMode();
               setMarkers(allMarkers);
+              console.log(allMarkers);
             }
           } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
+            setMarkers([]);
           } else if (status === kakao.maps.services.Status.ERROR) {
-            // 에러로 인해 검색 결과가 나오지 않은 경우
           }
         },
         { useMapBounds: true, bounds, page },
