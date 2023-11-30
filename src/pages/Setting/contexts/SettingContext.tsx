@@ -30,7 +30,7 @@ const SettingProvider = ({ children }: PropsWithChildren) => {
   const handleLogout = useCallback(() => {
     logout();
     navigate('/login');
-  }, [navigate]);
+  }, [navigate, logout]);
 
   const value = useMemo(
     () => ({
