@@ -1,3 +1,4 @@
+import { useEffect, useMemo } from 'react';
 import { MapMarker } from 'react-kakao-maps-sdk';
 import { UserPosition } from '~/types';
 import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
@@ -10,13 +11,17 @@ const DiaryMapMarker = ({ userPosition }: UserPosition) => {
     rootDiarys,
     searchKeyword,
     markers,
+    searchMode,
+    mapCategory,
     methods: { handleMarkers, handleSearch },
   } = useDiaryContext();
   const { useSearchLocation } = handleSearch;
   useSearchLocation(searchKeyword);
-  const { handleMarker } = handleMarkers;
+  const { handleMarker, setMarkers } = handleMarkers;
   const diaryMarkers = useDiaryToMarker({ rootDiarys });
   const { yetMarkers, goneMarkers } = useDiaryMap();
+
+  console.log(mapCategory, diaryMarkers, searchMode);
 
   return (
     <>
@@ -32,10 +37,45 @@ const DiaryMapMarker = ({ userPosition }: UserPosition) => {
         }}
       />
       {/* 다이어리 목록 마커 */}
-      {markers.length ||
-        diaryMarkers?.map((marker, index) => (
+      {!mapCategory && !searchKeyword && (
+        <div>
+          {diaryMarkers?.map((marker, index) => (
+            <MapMarker
+              key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}-${index}`}
+              position={marker.position}
+              onClick={() => handleMarker(marker)}
+              image={{
+                src: '/src/assets/icons/mapMarkerGone.svg',
+                size: {
+                  width: 35,
+                  height: 40,
+                },
+              }}
+            />
+          ))}
+        </div>
+      )}
+      {/* 안 가본 곳 */}
+      {(searchKeyword || mapCategory) &&
+        yetMarkers.map((marker) => (
           <MapMarker
-            key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}-${index}`}
+            key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}
+            position={marker.position}
+            onClick={() => handleMarker(marker)}
+            image={{
+              src: '/src/assets/icons/mapMarkerYet.svg',
+              size: {
+                width: 35,
+                height: 40,
+              },
+            }}
+          />
+        ))}
+      {/* 가본 곳 */}
+      {(searchKeyword || mapCategory) &&
+        goneMarkers.map((marker) => (
+          <MapMarker
+            key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}
             position={marker.position}
             onClick={() => handleMarker(marker)}
             image={{
@@ -47,36 +87,6 @@ const DiaryMapMarker = ({ userPosition }: UserPosition) => {
             }}
           />
         ))}
-      {/* 안 가본 곳 */}
-      {yetMarkers.map((marker) => (
-        <MapMarker
-          key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}
-          position={marker.position}
-          onClick={() => handleMarker(marker)}
-          image={{
-            src: '/src/assets/icons/mapMarkerYet.svg',
-            size: {
-              width: 35,
-              height: 40,
-            },
-          }}
-        />
-      ))}
-      {/* 가본 곳 */}
-      {goneMarkers.map((marker) => (
-        <MapMarker
-          key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}
-          position={marker.position}
-          onClick={() => handleMarker(marker)}
-          image={{
-            src: '/src/assets/icons/mapMarkerGone.svg',
-            size: {
-              width: 35,
-              height: 40,
-            },
-          }}
-        />
-      ))}
     </>
   );
 };

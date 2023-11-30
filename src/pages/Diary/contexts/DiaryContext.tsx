@@ -104,6 +104,8 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
     map,
     handleInfo,
     handleMapCategories,
+    handleMarkers,
+    handleInput,
   });
   const handleLocation = useMapLocation({ map });
   const handleSearch = useSearch({
@@ -113,6 +115,7 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
     handleMapCategories,
     handleLocation,
     handleMarkers,
+    handleInfo,
   });
   const handleDiaryCategories = useDiaryCategories({ setDiaryCategory });
   const handleSortMethod = useSelectSortMethod({ setSelectSortMethod });
