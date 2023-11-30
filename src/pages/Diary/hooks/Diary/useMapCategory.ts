@@ -140,9 +140,9 @@ const useMapCategory = ({
             } else {
               categorySearchMode();
               setMarkers(allMarkers);
-              console.log(allMarkers);
             }
           } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
+            categorySearchMode();
             setMarkers([]);
           } else if (status === kakao.maps.services.Status.ERROR) {
           }
