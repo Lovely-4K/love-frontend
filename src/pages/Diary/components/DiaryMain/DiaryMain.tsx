@@ -9,7 +9,7 @@ const DiaryMain = () => {
 
   return (
     <DiaryMainProvider>
-      <div className="flex w-full flex-col gap-5 overflow-y-auto overflow-x-hidden">
+      <div className="flex h-full max-h-screen w-full flex-col gap-5 overflow-x-hidden overflow-y-hidden">
         <DiarySearchBar />
         {searchMode ? <DiarySearchResults /> : <DiaryRecords />}
       </div>
