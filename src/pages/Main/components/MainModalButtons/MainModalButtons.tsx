@@ -9,7 +9,7 @@ const MainModalButtons = () => {
   const { handleOpenProfileModal, openDdayModal } = useProfile();
 
   return (
-    <div className="mt-5 flex items-center justify-end gap-3 md:mt-0">
+    <div className="flex items-center justify-end gap-3">
       <Button
         onClick={() =>
           handleOpenProfileModal({

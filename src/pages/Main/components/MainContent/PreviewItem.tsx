@@ -7,12 +7,13 @@ const StyledContainer = styled.div`
   margin: 0 1rem;
   display: flex;
   flex-direction: column;
-  border-radius: 0.75rem;
 
   @media (min-width: ${screens.lg}) {
-    height: 22rem;
+    /* height: 32rem; */
+    /* height: 50%; */
     width: 33.333333%;
     border: 1px solid ${colors.grey[200]};
+    border-radius: 0.75rem;
     padding: 0.75rem 1.5rem;
   }
 `;
@@ -28,7 +29,7 @@ const PreviewItem = ({ title, pageLink, content }: MainPreviewItemProps) => {
     <StyledContainer>
       <Link
         to={pageLink}
-        className="font-title my-2 w-fit pl-1 font-bold lg:mb-4"
+        className="font-title my-2 mb-3 w-fit pl-1 font-bold lg:mb-5"
       >
         {title}
       </Link>

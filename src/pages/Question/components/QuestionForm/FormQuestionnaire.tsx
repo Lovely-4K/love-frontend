@@ -5,11 +5,11 @@ const FormQuestionnaire = () => {
   const { questionContent } = questionForm;
 
   return (
-    <div className="mt-3 flex flex-col gap-5">
-      <div className="font-title flex items-center justify-center px-3 py-5 text-base-primary">
+    <div className="mt-5 flex flex-col gap-2">
+      <div className="mb-2 text-center text-xl text-base-primary md:text-[1.7rem]">
         Q. {questionContent}
       </div>
-      <div>나의 답변은 무엇인가요?</div>
+      <div className="pl-2 text-sm md:text-base">나의 답변은 무엇인가요?</div>
     </div>
   );
 };

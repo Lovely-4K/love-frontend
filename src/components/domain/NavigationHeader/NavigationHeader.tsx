@@ -11,15 +11,15 @@ const NavigationHeader = ({ prevPageLink, pageTitle }: NavigationHeader) => {
 
   return (
     <header className="mb-5 flex w-full items-center gap-3">
-      <div className="box-content cursor-pointer rounded-full px-2 py-2 hover:bg-grey-100">
-        <IconLeftArrow
-          onClick={() => {
-            navigate(prevPageLink);
-          }}
-          className="h-5 w-5  fill-grey-400 "
-        />
-      </div>
-      <div className="font-title lg:font-title-large">{pageTitle}</div>
+      <button
+        className="group"
+        onClick={() => {
+          navigate(prevPageLink);
+        }}
+      >
+        <IconLeftArrow className="h-5 w-5 fill-grey-400 group-hover:fill-base-black" />
+      </button>
+      <div className="text-lg lg:text-xl">{pageTitle}</div>
     </header>
   );
 };

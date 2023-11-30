@@ -1,4 +1,4 @@
-import useDiaryContext from '../../hooks/useDiaryContext';
+import useDiaryContext from '../../hooks/Diary/useDiaryContext';
 import useDiarySpotContext from '../../hooks/useDiarySpotContext';
 import { Button } from '~/components/common';
 import { DiaryHeader } from '~/pages/Diary/components/DiaryCommon';

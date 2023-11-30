@@ -7,8 +7,10 @@ import { changeImageType } from '~/utils/Diary';
 interface DiaryContentContextProps {
   editable: boolean;
   setEditable: React.Dispatch<React.SetStateAction<boolean>>;
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   diary: DiaryResponse;
-  images: string[];
+  imgUrl: string[];
   setDiary: React.Dispatch<React.SetStateAction<DiaryResponse>>;
   methods: ReturnType<typeof useDiaryContent>;
 }
@@ -22,6 +24,7 @@ export const DiaryContentContext =
 
 const DiaryContentProvider = ({ mode, children }: DiaryContentProvider) => {
   const [editable, setEditable] = useState(mode === 'edit');
+  const [loading, setLoading] = useState(false);
   const [originDiary, setOriginDiary] = useState<DiaryResponse>({
     datingDay: getTodayDate(),
     category: 'CAFE',
@@ -38,32 +41,40 @@ const DiaryContentProvider = ({ mode, children }: DiaryContentProvider) => {
     kakaoMapId: '',
     placeName: '',
   });
-  const [images, setImages] = useState<string[]>([]);
+  const [existedImg, setExistedImg] = useState<string[]>([]);
+  const [imgUrl, setImgUrl] = useState<string[]>([]);
   const [editDiary, setEditDiary] = useState<DiaryResponse>({ ...originDiary });
 
   const diaryContent = useDiaryContent({
+    setLoading,
     editDiary,
     setEditDiary,
     editable,
     setEditable,
-    images,
-    setImages,
+    imgUrl,
+    setImgUrl,
+    existedImg,
+    setExistedImg,
   });
 
   useEffect(() => {
     setEditDiary({ ...originDiary });
-    setImages(changeImageType(originDiary.pictures));
+    const imgURL = changeImageType(originDiary.pictures);
+    setImgUrl(imgURL);
+    setExistedImg(imgURL);
   }, [originDiary]);
 
   return (
     <DiaryContentContext.Provider
       value={{
+        loading,
+        setLoading,
         editable,
         setEditable,
         setDiary: setOriginDiary,
         diary: editable ? editDiary : originDiary,
         methods: diaryContent,
-        images,
+        imgUrl,
       }}
     >
       {children}

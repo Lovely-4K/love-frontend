@@ -1,9 +1,9 @@
-import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
+import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
 
 const DiaryRecordsHeader = () => {
   const {
     methods: { handleSortMethod },
-  } = useDiary();
+  } = useDiaryContext();
   const { handleSortMethodClick } = handleSortMethod;
 
   return (
@@ -17,7 +17,7 @@ const DiaryRecordsHeader = () => {
           type="radio"
           name="options"
           aria-label="날짜 순"
-          onClick={() => handleSortMethodClick('createdDate')}
+          onClick={() => handleSortMethodClick('datingDay')}
           defaultChecked
         />
         <input

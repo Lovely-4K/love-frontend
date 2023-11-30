@@ -1,40 +1,44 @@
+import { DiaryContent } from '~/types';
+import useDiaryContext from '../../hooks/Diary/useDiaryContext';
+import useDiaryMainContext from '../../hooks/DiaryMain/useDiaryMainContext';
 import { DiaryPreviewItem } from '~/components/domain';
-import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
-
-import useGetDiarys from '~/services/diary/useGetDiarys';
+import useFilterMarker from '~/pages/Diary/hooks/Diary/useFilterMarker';
 
 const DiaryRecordsPreviews = () => {
   const {
-    diaryCategory,
-    selectSortMethod,
     methods: { handleClickPreviews },
-  } = useDiary();
+  } = useDiaryContext();
+  const { diarys } = useDiaryMainContext();
+  const { recordRef } = useDiaryMainContext();
   const { handleClickPreview } = handleClickPreviews;
-  const { data: diarys, isSuccess } = useGetDiarys({
-    selectSortMethod,
-    diaryCategory,
-  });
+  const { setMarkerFilter } = useFilterMarker();
 
-  if (!isSuccess) return;
+  const previewClick = (diary: DiaryContent) => {
+    setMarkerFilter('ALL');
+    handleClickPreview(diary);
+  };
 
   return (
     <div>
       <div className="grid grid-cols-3 md:grid-cols-2">
-        {diarys.content.map((diary) => (
-          <div className="m-2">
+        {diarys.map((diary, index) => (
+          <div
+            key={`${diary.diaryId}`}
+            className="m-2"
+            ref={diarys.length - 1 === index ? recordRef : null}
+          >
             <DiaryPreviewItem
-              key={diary.diaryId}
+              key={`${diary.diaryId}`}
               date={diary.datingDay}
               location={diary.placeName}
               imgSrc={diary.imageUrl}
-              onClick={() => handleClickPreview(diary)}
+              onClick={() => previewClick(diary)}
             />
           </div>
         ))}
       </div>
       <div className="flex w-full items-center justify-center py-3 text-sm text-grey-400">
-        {diarys.content.length === 0 &&
-          '아직 아무 다이어리도 작성하지 않았어요!'}
+        {diarys.length === 0 && '아직 아무 다이어리도 작성하지 않았어요!'}
       </div>
     </div>
   );

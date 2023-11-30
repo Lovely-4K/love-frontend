@@ -1,26 +1,22 @@
 import { MapMarker } from 'react-kakao-maps-sdk';
 import { UserPosition } from '~/types';
-import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
+import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
 import useDiaryToMarker from '~/pages/Diary/hooks/Diary/useDiarytoMarker';
-
 import useDiaryMap from '~/pages/Diary/hooks/DiaryMap/useDiaryMap';
-import useGetDiarys from '~/services/diary/useGetDiarys';
 
 /** @todo: 추후 내 위치 마커와 장소 표시 마커 분리시키기 */
 const DiaryMapMarker = ({ userPosition }: UserPosition) => {
   const {
+    rootDiarys,
     searchKeyword,
     markers,
     methods: { handleMarkers, handleSearch },
-  } = useDiary();
+  } = useDiaryContext();
   const { useSearchLocation } = handleSearch;
   useSearchLocation(searchKeyword);
   const { handleMarker } = handleMarkers;
-  const { data: diarys, isSuccess } = useGetDiarys();
-  const diaryMarkers = useDiaryToMarker({ diarys });
+  const diaryMarkers = useDiaryToMarker({ rootDiarys });
   const { yetMarkers, goneMarkers } = useDiaryMap();
-
-  if (!userPosition || !isSuccess || !diarys) return;
 
   return (
     <>
@@ -37,9 +33,9 @@ const DiaryMapMarker = ({ userPosition }: UserPosition) => {
       />
       {/* 다이어리 목록 마커 */}
       {markers.length ||
-        diaryMarkers?.map((marker) => (
+        diaryMarkers?.map((marker, index) => (
           <MapMarker
-            key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}
+            key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}-${index}`}
             position={marker.position}
             onClick={() => handleMarker(marker)}
             image={{

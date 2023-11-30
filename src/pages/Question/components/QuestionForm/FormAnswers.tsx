@@ -1,7 +1,21 @@
+import styled from '@emotion/styled';
+import { screens } from '~/theme';
 import useUserAnswer from '../../hooks/useUserAnswer';
 import FormAnswerItem from './FormAnswerItem';
 import { Button } from '~/components/common';
 import useQuestion from '~/pages/Question/hooks/useQuestion';
+
+const FormAnswerItemContainer = styled.div<{ length: number }>`
+  display: grid;
+  grid-template-columns: ${({ length }) =>
+    length <= 3 ? `repeat(1, 1fr)` : `repeat(2, 1fr)`};
+  grid-gap: 0.5rem;
+  padding: 0.5rem 0 1.25rem 0;
+
+  @media (min-width: ${screens.lg}) {
+    grid-template-columns: ${({ length }) => `repeat(${length}, 1fr)`};
+  }
+`;
 
 const FormAnswers = () => {
   const { questionForm, questionDetail, methods } = useQuestion();
@@ -12,9 +26,11 @@ const FormAnswers = () => {
   const { userAnswer, handleClickAnswer } = useUserAnswer(myChoiceIndex);
   const buttonContent = myChoiceIndex ? '수정' : '결정';
 
+  const answersLength = answers.filter((answer) => answer).length;
+
   return (
     <>
-      <div className="my-3 flex flex-col flex-wrap gap-3 lg:flex-row">
+      <FormAnswerItemContainer length={answersLength}>
         {answers.map((answer, index) => (
           <FormAnswerItem
             key={index}
@@ -25,13 +41,13 @@ const FormAnswers = () => {
             }}
           />
         ))}
-      </div>
+      </FormAnswerItemContainer>
       <div className="flex w-full justify-end">
         <Button
           disabled={userAnswer === -1}
           onClick={() => handleSubmitUserAnswer(userAnswer)}
           size="small"
-          className="btn-primary rounded-xl hover:border-none hover:bg-base-secondary disabled:cursor-not-allowed disabled:bg-grey-300"
+          className="btn-primary hover:border-none hover:bg-base-secondary disabled:cursor-not-allowed disabled:bg-grey-300"
         >
           {buttonContent}
         </Button>

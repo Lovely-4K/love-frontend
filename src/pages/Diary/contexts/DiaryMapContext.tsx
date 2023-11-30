@@ -1,7 +1,12 @@
 import { PropsWithChildren, createContext, useState } from 'react';
 import { MapMarker } from '~/types';
 
-export type MapCategory = 'CAFE' | 'FOOD' | 'ACCOMODATION' | 'CULTURE' | '';
+export type MapCategory =
+  | 'CAFE'
+  | 'FOOD'
+  | 'ACCOMODATION'
+  | 'CULTURE'
+  | undefined;
 export type MarkerFilter = 'ALL' | 'GONE' | 'YET' | '';
 
 export interface DiaryMapContextProps {

@@ -8,16 +8,16 @@ import PreviewQuestion from './PreviewQuestion';
 const PreviewsContainer = () => {
   return (
     <MainContentProvider>
-      <div className="flex h-full w-full flex-col gap-5 pt-2 lg:flex-row lg:justify-center lg:gap-0 lg:px-4">
-        <PreviewItem
-          pageLink={paths.CALENDAR}
-          title={'다가오는 일정'}
-          content={<PreviewCalendar />}
-        />
+      <div className="flex h-[58%] w-full flex-col gap-8 pt-2 lg:flex-row lg:justify-center lg:gap-0 lg:px-4">
         <PreviewItem
           pageLink={paths.DIARY.ROOT}
           title={'우리의 추억들'}
           content={<PreviewDiary />}
+        />
+        <PreviewItem
+          pageLink={paths.CALENDAR}
+          title={'다가오는 일정'}
+          content={<PreviewCalendar />}
         />
         <PreviewItem
           pageLink={paths.QUESTION}

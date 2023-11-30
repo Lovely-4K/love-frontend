@@ -1,5 +1,5 @@
 import { CategoryButton } from '~/components/common';
-import useDiary from '~/pages/Diary/hooks/Diary/useDiary';
+import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
 
 const categories = ['CAFE', 'FOOD', 'ACCOMODATION', 'CULTURE'] as const;
 
@@ -7,7 +7,7 @@ const DiaryMapCategoryList = () => {
   const {
     mapCategory,
     methods: { handleMapCategories },
-  } = useDiary();
+  } = useDiaryContext();
   const { handleMapCategory } = handleMapCategories;
 
   return (

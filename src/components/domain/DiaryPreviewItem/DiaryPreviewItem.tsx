@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { HTMLAttributes } from 'react';
 import { colors, fontSize, screens } from '~/theme';
+import defaultImg from '~/assets/images/couple.jpeg';
 import { Img } from '~/components/common';
 
 interface DiaryPreviewItemProps extends HTMLAttributes<HTMLDivElement> {
@@ -12,18 +13,14 @@ interface DiaryPreviewItemProps extends HTMLAttributes<HTMLDivElement> {
 const DiaryPreviewItemContainer = styled.div`
   position: relative;
   display: flex;
-  min-height: 3rem;
-  min-width: 3rem;
-  max-width: 8rem;
-  max-width: 8rem;
+  min-width: 7rem;
   cursor: pointer;
   align-items: center;
   justify-content: center;
   aspect-ratio: 1 / 1;
 
-  @media screen and (min-width: ${screens.lg}) {
-    max-width: 100%;
-    max-height: 100%;
+  @media (min-width: ${screens.md}) {
+    min-width: 9rem;
   }
 
   &:hover {
@@ -44,9 +41,16 @@ const PreviewTextItemContainer = styled.div`
   visibility: hidden;
   border-radius: 0.75rem;
   background-color: ${colors.base.deem};
-  font-size: ${fontSize.base};
+  font-size: ${fontSize.sm};
   color: ${colors.base.white};
   z-index: 2;
+  padding: 0.6rem;
+  white-space: break-spaces;
+  text-align: center;
+
+  @media (min-width: ${screens.lg}) {
+    font-size: ${fontSize.base};
+  }
 `;
 
 const DiaryPreviewItem = ({
@@ -59,7 +63,7 @@ const DiaryPreviewItem = ({
     <DiaryPreviewItemContainer onClick={onClick}>
       <Img
         shape="square"
-        src={imgSrc}
+        src={imgSrc || defaultImg}
         alt="다이어리 미리보기"
         className="h-full w-full"
       />

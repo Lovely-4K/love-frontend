@@ -6,12 +6,18 @@ import { DiaryContextProps } from '~/pages/Diary/contexts/DiaryContext';
 interface useClickPreviewProps {
   map: DiaryContextProps['map'];
   handleInfo: DiaryContextProps['methods']['handleInfo'];
+  handleMapCategories: DiaryContextProps['methods']['handleMapCategories'];
 }
 
-const useClickPreview = ({ map, handleInfo }: useClickPreviewProps) => {
+const useClickPreview = ({
+  map,
+  handleInfo,
+  handleMapCategories,
+}: useClickPreviewProps) => {
   const navigate = useNavigate();
 
   const { openInfo, setInfo } = handleInfo;
+  const { resetMapCategory } = handleMapCategories;
 
   const handleClickPreview = (preview: DiaryContent) => {
     if (!map) return;
@@ -32,6 +38,7 @@ const useClickPreview = ({ map, handleInfo }: useClickPreviewProps) => {
       info.position.lng,
     );
 
+    resetMapCategory();
     map.setCenter(newLatLng);
     setInfo(info);
     openInfo();

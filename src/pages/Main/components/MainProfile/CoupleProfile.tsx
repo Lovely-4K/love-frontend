@@ -22,8 +22,8 @@ const CoupleProfile = () => {
   } = coupleProfile;
 
   return (
-    <div className="flex h-full flex-col items-center justify-center gap-1">
-      <div className="relative flex gap-2">
+    <div className="flex flex-col items-center justify-center gap-1 pb-6 pt-8 md:py-5">
+      <div className="relative flex gap-3 md:gap-5">
         <Profile
           nickname={myNickname}
           mbti={myMbti}
@@ -32,7 +32,15 @@ const CoupleProfile = () => {
           calendarColor={myCalendarColor}
           id={myId}
         />
-        <IconHeart className="absolute left-1/2 top-1/3 z-10 h-9 w-9 -translate-x-1/2 -translate-y-1/2 fill-base-primary stroke-base-primary md:h-16 md:w-16 md:-translate-y-1/3" />
+        <div className="flex flex-col items-center justify-center">
+          <IconHeart className="h-9 w-9 fill-base-primary stroke-base-primary md:h-12 md:w-12" />
+          <span
+            onClick={openDdayModal}
+            className="text-base text-base-primary hover:cursor-pointer md:text-[1.5rem]"
+          >
+            {dDay}일째
+          </span>
+        </div>
         <Profile
           nickname={opponentNickname}
           mbti={opponentMbti}
@@ -42,12 +50,6 @@ const CoupleProfile = () => {
           id={opponentId}
         />
       </div>
-      <span
-        onClick={openDdayModal}
-        className="text-xl text-base-primary hover:cursor-pointer md:text-2xl"
-      >
-        D+{dDay}
-      </span>
     </div>
   );
 };

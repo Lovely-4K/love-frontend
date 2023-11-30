@@ -26,16 +26,16 @@ const FormAnswerInput = () => {
             maxLength={20}
             required
             placeholder="답변은 최대 20자까지 작성 가능해요!"
-            className="input input-bordered w-full border-dashed font-medium focus:outline-none active:border-none"
+            className="input input-bordered w-full border-dashed text-base font-medium focus:outline-none active:border-none"
           />
           <Button
-            className="btn btn-square relative"
+            className="btn w-fit"
             onClick={(event) => {
               handleAddAnswer(event, value);
               handleDeleteInputValue();
             }}
           >
-            <IconPlus className="absolute left-[50%] top-[50%] h-5 w-5 translate-x-[-50%] translate-y-[-50%] stroke-grey-400" />
+            <IconPlus className="h-5 w-5 stroke-grey-400" />
           </Button>
         </div>
       </div>

@@ -1,4 +1,8 @@
-import { useMutation } from '@tanstack/react-query';
+import {
+  InvalidateQueryFilters,
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import apiClient from '~/api/apiClient';
 
@@ -15,17 +19,32 @@ const createDiaryDetail = async ({ formData }: CreateDiaryDetailParams) => {
   return response.data;
 };
 
-const useCreateDiaryDetail = (kakaoMapId: string) => {
+const useCreateDiaryDetail = (
+  kakaoMapId: string,
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+) => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
-  return useMutation({
+  const mutation = useMutation({
     mutationKey: ['diaryEdit'],
     mutationFn: ({ formData }: CreateDiaryDetailParams) =>
       createDiaryDetail({ formData }),
-    onSuccess: () => {
+    onMutate: () => {
+      setLoading(true);
+    },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries([
+        ['Diarys'],
+      ] as InvalidateQueryFilters);
       navigate(`/diary/${kakaoMapId}`);
     },
+    onSettled: () => {
+      setLoading(false);
+    },
   });
+
+  return mutation;
 };
 
 export default useCreateDiaryDetail;

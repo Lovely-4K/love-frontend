@@ -38,7 +38,11 @@ const useMapLocation = ({ map }: useMapLocationProps) => {
       }
     };
 
-    return { userPosition: userPositionLatLng, setUserPosition, setCenter };
+    return {
+      userPosition: userPositionLatLng,
+      setUserPosition,
+      setCenter,
+    };
   };
 
   return { useCurrentLocation };

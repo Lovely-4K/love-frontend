@@ -1,10 +1,7 @@
-import { PropsWithChildren, createContext, useState } from 'react';
-import { Diarys, MapMarker } from '~/types';
+import { PropsWithChildren, createContext, useEffect, useState } from 'react';
+import { DiaryContent, MapMarker } from '~/types';
 import categoryType from '~/components/common/CategoryButton/CategoryTypes';
-import {
-  DiaryMapProvider,
-  MapCategory,
-} from '~/pages/Diary/contexts/DiaryMapContext';
+import { DiaryMapProvider } from '~/pages/Diary/contexts/DiaryMapContext';
 import useClickPreview from '~/pages/Diary/hooks/Diary/useClickPreview';
 import useMapLocation from '~/pages/Diary/hooks/Diary/useCurrentLocation';
 import useDiaryCategories from '~/pages/Diary/hooks/Diary/useDiaryCategories';
@@ -15,7 +12,6 @@ import useMapCategory from '~/pages/Diary/hooks/Diary/useMapCategory';
 import useSearch from '~/pages/Diary/hooks/Diary/useMapLocation';
 import useSelectSortMethod from '~/pages/Diary/hooks/Diary/useSelectSortMethod';
 import useSideBar from '~/pages/Diary/hooks/Diary/useSideBar';
-import useGetDiarys from '~/services/diary/useGetDiarys';
 
 export interface DiaryContextProps {
   searchKeyword: string;
@@ -26,6 +22,8 @@ export interface DiaryContextProps {
   setSideBarToggle: React.Dispatch<React.SetStateAction<boolean>>;
   markers: MapMarker[];
   setMarkers: React.Dispatch<React.SetStateAction<MapMarker[]>>;
+  diaryMarkers: MapMarker[];
+  setDiaryMarkers: React.Dispatch<React.SetStateAction<MapMarker[]>>;
   diaryCategory: categoryType | undefined;
   setDiaryCategory: React.Dispatch<
     React.SetStateAction<categoryType | undefined>
@@ -38,9 +36,12 @@ export interface DiaryContextProps {
   setInfoOpen: React.Dispatch<React.SetStateAction<boolean>>;
   map: kakao.maps.Map | undefined;
   setMap: React.Dispatch<React.SetStateAction<kakao.maps.Map | undefined>>;
-  diarys: Diarys;
-  mapCategory: MapCategory;
-  setMapCategory: React.Dispatch<React.SetStateAction<MapCategory>>;
+  rootDiarys: DiaryContent[];
+  setRootDiarys: React.Dispatch<React.SetStateAction<DiaryContent[]>>;
+  mapCategory: categoryType | undefined;
+  setMapCategory: React.Dispatch<
+    React.SetStateAction<categoryType | undefined>
+  >;
 
   methods: {
     handleInfo: ReturnType<typeof useInfoToggle>;
@@ -63,16 +64,19 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
   const [searchMode, setSearchMode] = useState(false);
   const [sideBarToggle, setSideBarToggle] = useState(true);
   const [markers, setMarkers] = useState<MapMarker[]>([]);
+  const [diaryMarkers, setDiaryMarkers] = useState<MapMarker[]>([]);
   const [diaryCategory, setDiaryCategory] = useState<categoryType | undefined>(
     undefined,
   );
-  const [selectSortMethod, setSelectSortMethod] =
-    useState<string>('createdDate');
+  useEffect(() => {}, [diaryCategory]);
+  const [selectSortMethod, setSelectSortMethod] = useState<string>('datingDay');
   const [info, setInfo] = useState<MapMarker>();
   const [infoOpen, setInfoOpen] = useState<boolean>(false);
   const [map, setMap] = useState<kakao.maps.Map>();
-  const [mapCategory, setMapCategory] = useState<MapCategory>('');
-  const { data: diarys, isSuccess } = useGetDiarys();
+  const [mapCategory, setMapCategory] = useState<categoryType | undefined>(
+    undefined,
+  );
+  const [rootDiarys, setRootDiarys] = useState<DiaryContent[]>([]);
 
   const handleInfo = useInfoToggle({ infoOpen, setInfoOpen, setInfo });
   const handleSideBar = useSideBar({ sideBarToggle, setSideBarToggle });
@@ -96,7 +100,11 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
     map,
     mapCategory,
   });
-  const handleClickPreviews = useClickPreview({ map, handleInfo });
+  const handleClickPreviews = useClickPreview({
+    map,
+    handleInfo,
+    handleMapCategories,
+  });
   const handleLocation = useMapLocation({ map });
   const handleSearch = useSearch({
     map,
@@ -109,8 +117,6 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
   const handleDiaryCategories = useDiaryCategories({ setDiaryCategory });
   const handleSortMethod = useSelectSortMethod({ setSelectSortMethod });
 
-  if (!isSuccess) return;
-
   return (
     <DiaryContext.Provider
       value={{
@@ -122,6 +128,8 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
         setSideBarToggle,
         markers,
         setMarkers,
+        diaryMarkers,
+        setDiaryMarkers,
         diaryCategory,
         setDiaryCategory,
         selectSortMethod,
@@ -132,7 +140,8 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
         setInfoOpen,
         map,
         setMap,
-        diarys,
+        rootDiarys,
+        setRootDiarys,
         mapCategory,
         setMapCategory,
 
