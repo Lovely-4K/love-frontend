@@ -1,4 +1,12 @@
-interface QuestionForm {
+interface QuestionFormRequest {
+  questionContent: string;
+  firstChoice: string;
+  secondChoice: string;
+  thirdChoice?: string | null;
+  fourthChoice?: string | null;
+}
+
+interface QuestionFormResponse {
   questionId: number;
   questionContent: string;
   firstChoice: string;
@@ -29,7 +37,8 @@ interface QuestionHistoryList {
 }
 
 export type {
-  QuestionForm,
+  QuestionFormRequest,
+  QuestionFormResponse,
   QuestionHistoryPreview,
   QuestionHistoryDetail,
   QuestionHistoryList,

@@ -3,17 +3,17 @@ import {
   QueryClient,
   InvalidateQueryFilters,
 } from '@tanstack/react-query';
-import type { QuestionForm, code, links } from '~/types';
+import type { QuestionFormRequest, code, links } from '~/types';
 import apiClient from '~/api/apiClient';
 
 export interface createQuestionFromResponse {
-  body?: QuestionForm;
+  body?: QuestionFormRequest;
   code: code;
   links?: links;
 }
 
 export interface createFormParams {
-  questionForm: QuestionForm;
+  questionForm: QuestionFormRequest;
 }
 
 const createForm = async ({ questionForm }: createFormParams) => {

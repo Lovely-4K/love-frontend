@@ -1,5 +1,5 @@
 import { PropsWithChildren, createContext, useState, useEffect } from 'react';
-import { QuestionHistoryDetail, QuestionForm } from '~/types';
+import { QuestionHistoryDetail, QuestionFormResponse } from '~/types';
 import useQuestion from '../hooks/useQuestion';
 import {
   useCreateTodayQuestion,
@@ -9,7 +9,7 @@ import {
 } from '~/services/question';
 
 interface QuestionContextProps {
-  questionForm: QuestionForm;
+  questionForm: QuestionFormResponse;
   questionDetail: QuestionHistoryDetail;
   userAnswer: number;
   methods: ReturnType<typeof useQuestion>;

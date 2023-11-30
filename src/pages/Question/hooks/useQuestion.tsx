@@ -1,7 +1,7 @@
 import type { updateUserAnswerParams } from '~/services/question/useUpdateUserAnswer';
 import { UseMutateFunction } from '@tanstack/react-query';
 import { useCallback } from 'react';
-import { QuestionForm } from '~/types';
+import { QuestionFormResponse } from '~/types';
 
 interface useQuestionParams {
   mutateUserAnswer: UseMutateFunction<
@@ -10,7 +10,7 @@ interface useQuestionParams {
     updateUserAnswerParams,
     () => void
   >;
-  questionForm: QuestionForm;
+  questionForm: QuestionFormResponse;
   userAnswer: number;
   setUserAnswer: React.Dispatch<React.SetStateAction<number>>;
 }
