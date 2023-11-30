@@ -6,7 +6,7 @@ const DiaryListArea = () => {
   const diarySpotContext = useDiarySpotContext();
   const { spotDiaries } = diarySpotContext;
 
-  return spotDiaries.diaries ? (
+  return spotDiaries ? (
     <DiarySpotPreviews spotDiaries={spotDiaries} />
   ) : (
     <DiaryNotContent />
