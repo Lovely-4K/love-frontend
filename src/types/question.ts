@@ -1,5 +1,5 @@
 interface QuestionForm {
-  questionId?: number;
+  questionId: number;
   questionContent: string;
   firstChoice: string;
   secondChoice: string;

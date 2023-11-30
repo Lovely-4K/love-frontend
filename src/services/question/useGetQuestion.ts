@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { QuestionForm } from '~/types';
 import apiClient from '~/api/apiClient';
 
@@ -9,7 +9,7 @@ const getQuestion = async (): Promise<QuestionForm> => {
 };
 
 const useGetQuestion = () => {
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: ['question'],
     queryFn: getQuestion,
   });

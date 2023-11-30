@@ -1,9 +1,8 @@
 import styled from '@emotion/styled';
 import { screens } from '~/theme';
-import useUserAnswer from '../../hooks/useUserAnswer';
+import useQuestionContext from '../../hooks/useQuestionContext';
 import FormAnswerItem from './FormAnswerItem';
 import { Button } from '~/components/common';
-import useQuestion from '~/pages/Question/hooks/useQuestion';
 
 const FormAnswerItemContainer = styled.div<{ length: number }>`
   display: grid;
@@ -18,14 +17,13 @@ const FormAnswerItemContainer = styled.div<{ length: number }>`
 `;
 
 const FormAnswers = () => {
-  const { questionForm, questionDetail, methods } = useQuestion();
-  const { answers } = questionForm;
+  const { questionForm, questionDetail, methods, userAnswer } =
+    useQuestionContext();
+  const { firstChoice, secondChoice, thirdChoice, fourthChoice } = questionForm;
   const { myChoiceIndex } = questionDetail;
-  const { handleSubmitUserAnswer } = methods;
-
-  const { userAnswer, handleClickAnswer } = useUserAnswer(myChoiceIndex);
+  const { handleSubmitUserAnswer, handleClickAnswer } = methods;
+  const answers = [firstChoice, secondChoice, thirdChoice, fourthChoice];
   const buttonContent = myChoiceIndex ? '수정' : '결정';
-
   const answersLength = answers.filter((answer) => answer).length;
 
   return (
