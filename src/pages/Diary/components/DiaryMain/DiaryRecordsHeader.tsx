@@ -17,7 +17,7 @@ const DiaryRecordsHeader = () => {
           type="radio"
           name="options"
           aria-label="날짜 순"
-          onClick={() => handleSortMethodClick('createdDate')}
+          onClick={() => handleSortMethodClick('datingDay')}
           defaultChecked
         />
         <input

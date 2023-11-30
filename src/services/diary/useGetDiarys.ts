@@ -9,7 +9,7 @@ interface getDiarysParams {
 }
 
 const getDiarys = async ({
-  selectSortMethod = 'createdDate',
+  selectSortMethod = 'datingDay',
   diaryCategory,
   page,
 }: getDiarysParams): Promise<Diarys> => {
@@ -25,7 +25,7 @@ const getDiarys = async ({
 };
 
 const useGetDiarys = ({
-  selectSortMethod = 'createdDate',
+  selectSortMethod = 'datingDay',
   diaryCategory,
   page,
 }: getDiarysParams) => {
