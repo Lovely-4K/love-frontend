@@ -5,3 +5,4 @@ export * from './Question';
 export * from './QuestionHistory';
 export * from './QuestionCreate';
 export * from './Diary';
+export { default as Setting } from './Setting/Setting';
