@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { QuestionHistoryDetail } from '~/types';
 import apiClient from '~/api/apiClient';
 
@@ -11,8 +11,12 @@ const getQuestionDetail = async (
   return response.data.body;
 };
 
-const useGetQuestionDetail = (questionId: number) => {
-  return useSuspenseQuery({
+const useGetQuestionDetail = (
+  questionId: number,
+  openedStatus: boolean = true,
+) => {
+  return useQuery({
+    enabled: questionId !== -1 && openedStatus,
     queryKey: ['questionDetail', questionId],
     queryFn: () => getQuestionDetail(questionId),
   });

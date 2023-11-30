@@ -10,7 +10,7 @@ import {
 
 interface QuestionContextProps {
   questionForm: QuestionFormResponse;
-  questionDetail: QuestionHistoryDetail;
+  questionDetail: QuestionHistoryDetail | undefined;
   userAnswer: number;
   methods: ReturnType<typeof useQuestion>;
 }
@@ -21,6 +21,7 @@ const QuestionProvider = ({ children }: PropsWithChildren) => {
   const { data: questionForm } = useGetQuestion();
   const { data: questionDetail } = useGetQuestionDetail(
     questionForm.questionId,
+    true,
   );
   const { mutate: mutateCreateTodayQuestion } = useCreateTodayQuestion();
   const { mutate: mutateUserAnswer } = useUpdateUserAnswer();

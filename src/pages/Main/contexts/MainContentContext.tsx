@@ -1,5 +1,5 @@
 import { PropsWithChildren, createContext, useEffect } from 'react';
-import type { CalendarSchedule, Diarys, QuestionForm } from '~/types';
+import type { CalendarSchedule, Diarys, QuestionFormResponse } from '~/types';
 import { useMain } from '../hooks';
 import { useGetRecentSchedule } from '~/services/calendar';
 import useGetDiarys from '~/services/diary/useGetDiarys';
@@ -7,7 +7,7 @@ import { useCreateTodayQuestion, useGetQuestion } from '~/services/question';
 
 interface MainContentContextProps {
   recentSchedule: CalendarSchedule;
-  todayQuestion: QuestionForm;
+  todayQuestion: QuestionFormResponse;
   recentDiarys: Diarys;
 }
 
