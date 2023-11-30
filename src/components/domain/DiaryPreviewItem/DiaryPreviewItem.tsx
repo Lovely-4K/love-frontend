@@ -20,7 +20,7 @@ const DiaryPreviewItemContainer = styled.div`
   aspect-ratio: 1 / 1;
 
   @media (min-width: ${screens.md}) {
-    min-width: 9rem;
+    min-width: auto;
   }
 
   &:hover {
@@ -45,7 +45,7 @@ const PreviewTextItemContainer = styled.div`
   color: ${colors.base.white};
   z-index: 2;
   padding: 0.6rem;
-  white-space: break-spaces;
+  word-break: keep-all;
   text-align: center;
 
   @media (min-width: ${screens.lg}) {

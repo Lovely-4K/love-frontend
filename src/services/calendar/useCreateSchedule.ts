@@ -17,6 +17,9 @@ const useCreateSchedule = () => {
       await queryClient.invalidateQueries({
         queryKey: ['monthSchedule'],
       });
+      await queryClient.invalidateQueries({
+        queryKey: ['temperature'],
+      });
     },
   });
 };

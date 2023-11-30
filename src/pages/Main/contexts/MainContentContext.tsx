@@ -6,9 +6,9 @@ import useGetDiarys from '~/services/diary/useGetDiarys';
 import { useCreateTodayQuestion, useGetQuestion } from '~/services/question';
 
 interface MainContentContextProps {
-  recentSchedule: CalendarSchedule;
-  todayQuestion: QuestionForm;
-  recentDiarys: Diarys;
+  recentSchedule: CalendarSchedule | undefined;
+  todayQuestion: QuestionForm | undefined;
+  recentDiarys: Diarys | undefined;
 }
 
 const MainContentContext = createContext<MainContentContextProps | null>(null);
@@ -26,13 +26,6 @@ const MainContentProvider = ({ children }: PropsWithChildren) => {
   useEffect(() => {
     createTodayQuestion();
   }, [createTodayQuestion]);
-
-  if (
-    !getRecentScheduleQuery.isSuccess ||
-    !getQuestionQuery.isSuccess ||
-    !getDiarysQuery.isSuccess
-  )
-    return;
 
   return (
     <MainContentContext.Provider

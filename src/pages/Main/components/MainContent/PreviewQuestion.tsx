@@ -1,8 +1,17 @@
 import { Link } from 'react-router-dom';
 import { useMainContent } from '../../hooks';
+import { Loading } from '~/components/common';
 
 const PreviewQuestion = () => {
   const { todayQuestion } = useMainContent();
+
+  if (!todayQuestion)
+    return (
+      <Loading
+        size="medium"
+        className="h-full self-center justify-self-center"
+      />
+    );
 
   return (
     <div className="flex flex-col items-center justify-center py-4 lg:h-3/4">

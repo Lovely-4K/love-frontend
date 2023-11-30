@@ -1,3 +1,5 @@
+import ImageCouple from '~/assets/images/couple.jpeg';
+
 interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   src: string | undefined;
   chatImage?: boolean;
@@ -25,7 +27,7 @@ const Avatar = ({
       <div
         className={`rounded-full border border-grey-100 bg-grey-100 ${avatarSizes[size]} ${className}`}
       >
-        <img src={src} />
+        <img src={src || ImageCouple} />
       </div>
     </div>
   );
