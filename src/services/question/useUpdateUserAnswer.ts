@@ -41,7 +41,9 @@ const useUpdateUserAnswer = () => {
     },
     onSuccess: async () => {
       alert('답변을 제출했습니다!');
-      await queryClient.invalidateQueries({ queryKey: ['questionDetail'] });
+      await queryClient.invalidateQueries({
+        queryKey: ['questionDetail', 'temperature'],
+      });
     },
     onError: (error, _, context) => {
       if (error && context) {

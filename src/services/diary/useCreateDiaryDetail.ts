@@ -35,7 +35,7 @@ const useCreateDiaryDetail = (
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries([
-        ['Diarys'],
+        ['Diarys', 'temperature'],
       ] as InvalidateQueryFilters);
       navigate(`/diary/${kakaoMapId}`);
     },
