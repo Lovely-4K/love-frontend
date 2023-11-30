@@ -6,6 +6,7 @@ import {
   useState,
 } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useLogin } from '~/hooks';
 import { SETTING_TAB } from '../constants';
 
 interface SettingContextProps {
@@ -20,12 +21,14 @@ const SettingProvider = ({ children }: PropsWithChildren) => {
   const [activeTab, setActiveTab] =
     useState<keyof typeof SETTING_TAB>('LOGOUT');
   const navigate = useNavigate();
+  const { logout } = useLogin();
 
   const handleTabChange = useCallback((tab: keyof typeof SETTING_TAB) => {
     setActiveTab(tab);
   }, []);
 
   const handleLogout = useCallback(() => {
+    logout();
     navigate('/login');
   }, [navigate]);
 
