@@ -154,12 +154,11 @@ const useDiaryContent = ({
 
   const handleSubmitEdit = (diaryId: string) => {
     const formData = new FormData();
-    const { datingDay, category, myText, opponentText, score } = editDiary;
+    const { datingDay, category, myText, score } = editDiary;
     const texts = {
       datingDay,
       category,
-      myText,
-      opponentText: opponentText === null ? 'ㅎㅇ' : opponentText,
+      text: myText,
       score,
       images: existedImg,
     };
