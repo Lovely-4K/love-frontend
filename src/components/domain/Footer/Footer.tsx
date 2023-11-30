@@ -8,9 +8,13 @@ import {
   IconSetting,
   IconQuestion,
 } from '~/assets/icons';
+import { useGetTemperature } from '~/services/couple';
 
 const Footer = () => {
   const { MAIN, DIARY, CALENDAR, QUESTION, SETTING } = paths;
+  const { data } = useGetTemperature();
+
+  const coupleTemp = data ? data.temperature : 0;
 
   return (
     <div className="fixed z-40 flex w-screen flex-col-reverse lg:h-screen lg:w-28 lg:flex-row">
@@ -21,7 +25,7 @@ const Footer = () => {
         <FooterItem url={QUESTION} svg={IconQuestion} label={'질문하기'} />
         <FooterItem url={SETTING} svg={IconSetting} label={'환경설정'} />
       </div>
-      <TemperatureBar percent={1} />
+      <TemperatureBar percent={coupleTemp} />
     </div>
   );
 };

@@ -1,13 +1,22 @@
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet, useSearchParams } from 'react-router-dom';
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '~/constants';
+import { paths } from '.';
 import useLogin from '~/hooks/useLogin';
-import checkParams from '~/utils/checkParams';
 
-/** @todo: 유저가 localStorage 토큰 값을 수정하는 경우 checkAuth 등으로 에러 표시 필요 */
 const PrivateRouter = () => {
-  const token = checkParams('accessToken');
-  const { isLoggedIn } = useLogin(token);
+  const { isLoggedIn, setLoginParams } = useLogin();
+  const [searchParams] = useSearchParams();
 
-  return isLoggedIn() ? <Outlet /> : <Navigate to={`login`} replace />;
+  const accessToken = searchParams.get(ACCESS_TOKEN_KEY);
+  const refreshToken = searchParams.get(REFRESH_TOKEN_KEY);
+
+  if (accessToken && refreshToken) {
+    setLoginParams({ accessToken, refreshToken });
+
+    return <Navigate to={paths.MAIN} replace />;
+  }
+
+  return isLoggedIn ? <Outlet /> : <Navigate to={paths.LOGIN} replace />;
 };
 
 export default PrivateRouter;

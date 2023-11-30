@@ -12,8 +12,8 @@ const PATHS = {
     DIARY_DETAIL: '/diary/:spotId/:diaryId',
   },
   SETTING: '/setting',
-  KAKAO: 'https://love-back.kro.kr/oauth2/authorization/kakao',
-  NAVER: 'https://love-back.kro.kr/oauth2/authorization/naver',
+  KAKAO: '/kakao',
+  NAVER: '/naver',
 } as const;
 
 export default PATHS;
