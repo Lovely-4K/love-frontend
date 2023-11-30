@@ -23,11 +23,12 @@ const DiaryRecordsPreviews = () => {
       <div className="grid grid-cols-3 md:grid-cols-2">
         {diarys.map((diary, index) => (
           <div
+            key={`${diary.diaryId}`}
             className="m-2"
             ref={diarys.length - 1 === index ? recordRef : null}
           >
             <DiaryPreviewItem
-              key={`${diary.diaryId}-${index}`}
+              key={`${diary.diaryId}`}
               date={diary.datingDay}
               location={diary.placeName}
               imgSrc={diary.imageUrl}

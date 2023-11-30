@@ -15,7 +15,7 @@ const getDiaryDetail = async (diaryId: string): Promise<DiaryResponse> => {
 
 const useGetDiaryDetail = ({ diaryId }: useGetDiaryDetailParams) => {
   return useSuspenseQuery({
-    queryKey: ['diaryDetail', diaryId],
+    queryKey: ['DiaryDetail', diaryId],
     queryFn: () => getDiaryDetail(diaryId as string),
   });
 };

@@ -50,7 +50,6 @@ const DiarySpotProvider = ({ children }: PropsWithChildren) => {
   const handleDeleteDiary = () => {
     const { spotId } = params;
 
-    console.log(selectedIds);
     if (spotId) {
       deleteMutate({ diaryList: selectedIds });
       setSelectedIds([]);

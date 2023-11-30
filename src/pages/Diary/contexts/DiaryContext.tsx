@@ -69,8 +69,7 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
     undefined,
   );
   useEffect(() => {}, [diaryCategory]);
-  const [selectSortMethod, setSelectSortMethod] =
-    useState<string>('createdDate');
+  const [selectSortMethod, setSelectSortMethod] = useState<string>('datingDay');
   const [info, setInfo] = useState<MapMarker>();
   const [infoOpen, setInfoOpen] = useState<boolean>(false);
   const [map, setMap] = useState<kakao.maps.Map>();

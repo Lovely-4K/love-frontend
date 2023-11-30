@@ -16,7 +16,7 @@ const getSpotDiarys = async ({
 
 const useGetSpotDiarys = ({ kakaoMapId }: getSpotDiarys) => {
   return useSuspenseQuery({
-    queryKey: ['Diarys', kakaoMapId],
+    queryKey: ['DiarySpot', kakaoMapId],
     queryFn: () => getSpotDiarys({ kakaoMapId }),
   });
 };

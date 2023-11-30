@@ -34,15 +34,10 @@ const useCreateDiaryDetail = (
       setLoading(true);
     },
     onSuccess: async () => {
-      try {
-        await queryClient.invalidateQueries([
-          'Diarys',
-          'createdDate',
-        ] as InvalidateQueryFilters);
-        navigate(`/diary/${kakaoMapId}`);
-      } catch (error) {
-        console.error('An error occurred while invalidating queries:', error);
-      }
+      await queryClient.invalidateQueries([
+        ['Diarys'],
+      ] as InvalidateQueryFilters);
+      navigate(`/diary/${kakaoMapId}`);
     },
     onSettled: () => {
       setLoading(false);

@@ -53,9 +53,10 @@ const useDiaryContent = ({
   };
 
   const handleDeleteDiary = () => {
-    const { diaryId } = params;
+    const { diaryId, spotId } = params;
 
     if (diaryId) {
+      navigate(`/diary/${spotId}`);
       const diaryList = [parseInt(diaryId)];
       deleteMutate({ diaryList: diaryList });
     }
