@@ -1,4 +1,3 @@
-import { useEffect, useMemo } from 'react';
 import { MapMarker } from 'react-kakao-maps-sdk';
 import { UserPosition } from '~/types';
 import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
@@ -10,18 +9,14 @@ const DiaryMapMarker = ({ userPosition }: UserPosition) => {
   const {
     rootDiarys,
     searchKeyword,
-    markers,
-    searchMode,
     mapCategory,
     methods: { handleMarkers, handleSearch },
   } = useDiaryContext();
   const { useSearchLocation } = handleSearch;
   useSearchLocation(searchKeyword);
-  const { handleMarker, setMarkers } = handleMarkers;
+  const { handleMarker } = handleMarkers;
   const diaryMarkers = useDiaryToMarker({ rootDiarys });
   const { yetMarkers, goneMarkers } = useDiaryMap();
-
-  console.log(mapCategory, diaryMarkers, searchMode);
 
   return (
     <>

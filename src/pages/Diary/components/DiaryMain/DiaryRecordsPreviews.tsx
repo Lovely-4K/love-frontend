@@ -6,13 +6,12 @@ import useFilterMarker from '~/pages/Diary/hooks/Diary/useFilterMarker';
 
 const DiaryRecordsPreviews = () => {
   const {
-    methods: { handleClickPreviews, handleInput },
+    methods: { handleClickPreviews },
   } = useDiaryContext();
   const { diarys } = useDiaryMainContext();
   const { recordRef } = useDiaryMainContext();
   const { handleClickPreview } = handleClickPreviews;
   const { setMarkerFilter } = useFilterMarker();
-  const { endSearchMode } = handleInput;
 
   const previewClick = (diary: DiaryContent) => {
     setMarkerFilter('ALL');
