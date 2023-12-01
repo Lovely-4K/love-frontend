@@ -126,7 +126,6 @@ const useDiaryContent = ({
     setEditable(true);
   };
 
-  // todo: 빈 문자열이면 오류 띄어야ㅏㅎㅁ
   const handleSubmitCreate = () => {
     const formData = new FormData();
     const { datingDay, category, score, myText } = editDiary;
@@ -168,7 +167,6 @@ const useDiaryContent = ({
       score,
       images: existedImg,
     };
-    console.log(texts);
     formData.append(
       'texts',
       new Blob([JSON.stringify(texts)], { type: 'application/json' }),

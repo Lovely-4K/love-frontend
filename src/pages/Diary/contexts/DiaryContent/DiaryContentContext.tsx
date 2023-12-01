@@ -40,6 +40,8 @@ const DiaryContentProvider = ({ mode, children }: DiaryContentProvider) => {
     },
     kakaoMapId: '',
     placeName: '',
+    latitude: 0,
+    longitude: 0,
   });
   const [existedImg, setExistedImg] = useState<string[]>([]);
   const [imgUrl, setImgUrl] = useState<string[]>([]);

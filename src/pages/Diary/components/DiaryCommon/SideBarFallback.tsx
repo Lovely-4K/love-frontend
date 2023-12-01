@@ -4,6 +4,8 @@ import { paths } from '~/router';
 import { Button } from '~/components/common';
 
 const SideBarFallBack = ({ error, resetErrorBoundary }: FallbackProps) => {
+  const { pathname } = location;
+
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="flex flex-col justify-center">
@@ -15,7 +17,12 @@ const SideBarFallBack = ({ error, resetErrorBoundary }: FallbackProps) => {
       <div>
         <Link to={paths.DIARY.ROOT}>
           <Button
-            onClick={resetErrorBoundary}
+            onClick={() => {
+              resetErrorBoundary();
+              if (pathname === paths.DIARY.ROOT) {
+                location.reload();
+              }
+            }}
             size="large"
             className="bg-base-primary text-base-white"
           >
