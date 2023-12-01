@@ -46,9 +46,9 @@
 
 우이삭은 데이트 장소에 대한 일기를 남길 수 있는 커플 다이어리 기능을 중심으로 하여, 공유 캘린더, 커플 질문 등의 기능을 제공해주는 어플리케이션이에요.
 
-<img width="290" alt="image" src="https://github.com/Lovely-4K/love-frontend/assets/80307321/4acbc222-db73-4725-bc80-9f1ada47df79">
-<img width="290" alt="image" src="https://github.com/Lovely-4K/love-frontend/assets/80307321/1708acc6-d7b6-483b-af57-b4e3eba301f3">
-<img width="290" alt="image" src="https://github.com/Lovely-4K/love-frontend/assets/80307321/b39b4a79-46d0-40e3-a042-731edaef3412">
+<img width="250" alt="image" src="https://github.com/Lovely-4K/love-frontend/assets/80307321/4acbc222-db73-4725-bc80-9f1ada47df79">
+<img width="250" alt="image" src="https://github.com/Lovely-4K/love-frontend/assets/80307321/1708acc6-d7b6-483b-af57-b4e3eba301f3">
+<img width="250" alt="image" src="https://github.com/Lovely-4K/love-frontend/assets/80307321/b39b4a79-46d0-40e3-a042-731edaef3412">
 
 ### 💖 기획의도
 
@@ -58,6 +58,11 @@
 <p>이렇게 추억을 쌓으면서도 서로를 더 잘 이해하기 위한 커플 어플리케이션을 만들자는 목적으로 우이삭이 만들어졌어요. 우리, 이거 삭제하면 안되겠죠? </p>
 
 ### 💖 타겟층
+
+<div align="center">
+<image width="400" src="https://github.com/Lovely-4K/love-frontend/assets/80307321/14ecfeea-a467-42e9-a414-53e5e1da17ef">
+
+</div>
 
 커플을 타겟으로 해서 만들었어요! 커플이 없어 사용하지 못하는 게 아쉽다면 단짝 친구와 사용해보는 것은 어떨까요? 
 
