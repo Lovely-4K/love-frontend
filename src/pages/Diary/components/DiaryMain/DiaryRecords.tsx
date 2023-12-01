@@ -1,11 +1,10 @@
 import { Suspense } from 'react';
+import useDiaryMainContext from '../../hooks/DiaryMain/useDiaryMainContext';
 import DiaryMainLoadingFallback from './DiaryMainLoadingFallback';
 import DiaryRecordsHeader from './DiaryRecordsHeader';
 import DiaryRecordsPreviews from './DiaryRecordsPreviews';
 import CategoryList from '~/components/domain/CategoryList/CategoryList';
 import { DiaryMainProvider } from '~/pages/Diary/contexts/DiaryMainContext';
-import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
-import useDiaryMainContext from '../../hooks/DiaryMain/useDiaryMainContext';
 
 const DiaryRecords = () => {
   const diaryMainContext = useDiaryMainContext();

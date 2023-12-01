@@ -1,3 +1,4 @@
+import { DiaryMainProvider } from '../../contexts/DiaryMainContext';
 import DiaryRecords from './DiaryRecords';
 import DiarySearchBar from './DiarySearchBar';
 import DiarySearchResults from '~/pages/Diary/components/DiaryMain/DiarySearchResults';
