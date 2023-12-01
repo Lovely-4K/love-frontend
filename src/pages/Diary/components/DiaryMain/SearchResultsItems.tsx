@@ -10,7 +10,7 @@ const SearchResultsItems = () => {
   const { handleMarker } = handleMarkers;
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 overflow-y-auto">
       {markers.length === 0 ? (
         <div className="flex justify-center py-10 text-grey-300">
           검색 결과가 없습니다.

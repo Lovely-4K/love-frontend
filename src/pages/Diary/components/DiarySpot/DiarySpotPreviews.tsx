@@ -15,22 +15,24 @@ const DiarySpotPreviews = ({ spotDiaries }: DiarySpotPreviewsProps) => {
   const { deleteMode, selectedIds } = diarySpotContext;
 
   return (
-    <div className="flex flex-col items-center justify-center gap-4">
+    <div className="flex h-full flex-col items-center justify-center overflow-y-hidden">
       <DiaryCreateButton />
-      {spotDiaries.diaries.map((diary) => (
-        <DiarySpotPreview
-          key={diary.diaryId}
-          picture={diary.imageUrl}
-          id={diary.diaryId}
-          date={diary.datingDay}
-          onClick={
-            deleteMode
-              ? () => {}
-              : () => navigate(`${pathname}/${diary.diaryId}`)
-          }
-          isChecked={selectedIds.includes(diary.diaryId)}
-        />
-      ))}
+      <div className="flex h-full flex-col items-center gap-4 overflow-y-auto">
+        {spotDiaries.diaries.map((diary) => (
+          <DiarySpotPreview
+            key={diary.diaryId}
+            picture={diary.imageUrl}
+            id={diary.diaryId}
+            date={diary.datingDay}
+            onClick={
+              deleteMode
+                ? () => {}
+                : () => navigate(`${pathname}/${diary.diaryId}`)
+            }
+            isChecked={selectedIds.includes(diary.diaryId)}
+          />
+        ))}
+      </div>
     </div>
   );
 };

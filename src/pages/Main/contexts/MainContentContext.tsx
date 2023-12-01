@@ -7,7 +7,7 @@ import { useCreateTodayQuestion, useGetQuestion } from '~/services/question';
 
 interface MainContentContextProps {
   recentSchedule: CalendarSchedule | undefined;
-  todayQuestion: QuestionForm | undefined;
+  todayQuestion: QuestionFormResponse | undefined;
   recentDiarys: Diarys | undefined;
 }
 

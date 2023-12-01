@@ -5,7 +5,7 @@ import DiarySpotProvider from '~/pages/Diary/contexts/DiarySpotContext';
 const DiarySpot = () => {
   return (
     <DiarySpotProvider>
-      <div className="flex h-full w-full flex-col gap-14 overflow-y-auto overflow-x-hidden">
+      <div className="flex h-full max-h-screen w-full flex-col gap-8">
         <DiarySpotHeader />
         <DiaryListArea />
       </div>
