@@ -37,9 +37,8 @@ interface DiaryCreateTextRequest extends Diary {
 }
 
 interface DiaryEditTextRequest extends Diary {
-  myText: null | string;
-  opponentText: null | string;
-  images: string[];
+  text: string;
+  images?: string[];
 }
 
 interface DiaryContent {
