@@ -7,7 +7,7 @@ const DiaryMapButtons = () => {
     methods: { handleLocation },
   } = useDiaryContext();
   const { useCurrentLocation } = handleLocation;
-  const { setCenter } = useCurrentLocation();
+  const { setCenter, isCurrentLocation } = useCurrentLocation();
   const { markerFilter, handleFilter } = useFilterMarker();
 
   return (
@@ -17,7 +17,7 @@ const DiaryMapButtons = () => {
         onClick={() => handleFilter(markerFilter)}
       />
       <MapCurPosButton
-        currentPosition={true}
+        currentPosition={isCurrentLocation}
         onClick={setCenter}
       ></MapCurPosButton>
     </div>

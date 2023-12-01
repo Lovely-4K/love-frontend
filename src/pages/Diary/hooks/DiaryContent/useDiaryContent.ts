@@ -31,8 +31,12 @@ const useDiaryContent = ({
 }: useDiaryContentParams) => {
   const navigate = useNavigate();
   const params = useParams();
-  const { info } = useDiaryContext();
+  const {
+    info,
+    methods: { handleInfo },
+  } = useDiaryContext();
   const { spotId, diaryId } = params;
+  const { closeInfo } = handleInfo;
   const { mutate: createFormMutate } = useCreateDiaryDetail(
     spotId as string,
     setLoading,
@@ -60,6 +64,7 @@ const useDiaryContent = ({
       navigate(`/diary/${spotId}`);
       const diaryList = [parseInt(diaryId)];
       deleteMutate({ diaryList: diaryList });
+      closeInfo();
     }
   };
 
