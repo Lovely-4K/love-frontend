@@ -1,12 +1,10 @@
-import { useMutation, QueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import apiClient from '~/api/apiClient';
 
 export interface updateUserAnswerParams {
   questionId: number;
   selectedItemIndex: number;
 }
-
-const queryClient = new QueryClient();
 
 const updateUserAnswer = async ({
   questionId,
@@ -27,6 +25,8 @@ const updateUserAnswer = async ({
 };
 
 const useUpdateUserAnswer = () => {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationKey: ['userAnswer'],
     mutationFn: updateUserAnswer,
@@ -40,9 +40,11 @@ const useUpdateUserAnswer = () => {
       };
     },
     onSuccess: async () => {
-      alert('답변을 제출했습니다!');
       await queryClient.invalidateQueries({
-        queryKey: ['questionDetail', 'temperature'],
+        queryKey: ['temperature'],
+      });
+      await queryClient.invalidateQueries({
+        queryKey: ['questionDetail'],
       });
     },
     onError: (error, _, context) => {

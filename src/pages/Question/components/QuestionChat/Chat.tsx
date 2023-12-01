@@ -1,13 +1,11 @@
 import useQuestionContext from '../../hooks/useQuestionContext';
 import QuestionChatItem from './ChatItem';
-import { Loading } from '~/components/common';
 
 const QuestionChat = () => {
   const { questionDetail } = useQuestionContext();
 
-  if (questionDetail === undefined) {
-    return <Loading size="large" />;
-  }
+  if (!questionDetail) return;
+
   const { myAnswer, myProfile, opponentAnswer, opponentProfile } =
     questionDetail;
 

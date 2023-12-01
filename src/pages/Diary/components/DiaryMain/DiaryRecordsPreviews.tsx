@@ -8,8 +8,7 @@ const DiaryRecordsPreviews = () => {
   const {
     methods: { handleClickPreviews },
   } = useDiaryContext();
-  const { diarys } = useDiaryMainContext();
-  const { recordRef } = useDiaryMainContext();
+  const { diarys, recordRef } = useDiaryMainContext();
   const { handleClickPreview } = handleClickPreviews;
   const { setMarkerFilter } = useFilterMarker();
 
@@ -19,16 +18,15 @@ const DiaryRecordsPreviews = () => {
   };
 
   return (
-    <div>
-      <div className="grid grid-cols-3 md:grid-cols-2">
+    <div className="h-full lg:overflow-hidden">
+      <div className="grid h-full grid-cols-3 lg:grid-cols-2 lg:overflow-y-auto ">
         {diarys.map((diary, index) => (
           <div
-            key={`${diary.diaryId}`}
+            key={`${diary.diaryId}-${index}`}
             className="m-2"
             ref={diarys.length - 1 === index ? recordRef : null}
           >
             <DiaryPreviewItem
-              key={`${diary.diaryId}`}
               date={diary.datingDay}
               location={diary.placeName}
               imgSrc={diary.imageUrl}

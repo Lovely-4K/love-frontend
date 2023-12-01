@@ -2,15 +2,12 @@ import useQuestionContext from '../../hooks/useQuestionContext';
 import FormAnswers from './FormAnswers';
 import FormCustomLink from './FormCustomLink';
 import FormQuestionnaire from './FormQuestionnaire';
-import { Loading } from '~/components/common';
 
 const QuestionForm = () => {
   const { questionDetail, questionForm } = useQuestionContext();
   const { questionFormType } = questionForm;
 
-  if (questionDetail === undefined) {
-    return <Loading size="large" />;
-  }
+  if (!questionDetail) return null;
 
   const { myAnswer, opponentAnswer } = questionDetail;
 

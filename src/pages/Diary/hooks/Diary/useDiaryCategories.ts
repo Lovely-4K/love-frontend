@@ -1,20 +1,24 @@
+import * as React from 'react';
 import categoryType from '~/components/common/CategoryButton/CategoryTypes';
-import { DiaryContextProps } from '~/pages/Diary/contexts/DiaryContext';
 
 interface useDiaryCategoriesProps {
-  setDiaryCategory: DiaryContextProps['setDiaryCategory'];
+  setDiaryCategory: React.Dispatch<
+    React.SetStateAction<categoryType | undefined>
+  >;
 }
 
 const useDiaryCategories = ({ setDiaryCategory }: useDiaryCategoriesProps) => {
-  const handleCategory = (category: categoryType) => {
-    setDiaryCategory((currCategory) => {
-      currCategory = currCategory === category ? undefined : category;
+  const handleCategory = (category: categoryType | undefined) => {
+    setDiaryCategory((prevCategory) => {
+      if (category === prevCategory) {
+        return undefined;
+      }
 
-      return currCategory;
+      return category;
     });
   };
 
-  return { setDiaryCategory, handleCategory };
+  return { handleCategory };
 };
 
 export default useDiaryCategories;

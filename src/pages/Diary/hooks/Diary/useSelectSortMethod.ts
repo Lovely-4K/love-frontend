@@ -1,7 +1,5 @@
-import { DiaryContextProps } from '~/pages/Diary/contexts/DiaryContext';
-
 interface useSelectSortMethodProps {
-  setSelectSortMethod: DiaryContextProps['setSelectSortMethod'];
+  setSelectSortMethod: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const useSelectSortMethod = ({
@@ -11,7 +9,7 @@ const useSelectSortMethod = ({
     setSelectSortMethod(sortMethod);
   };
 
-  return { setSelectSortMethod, handleSortMethodClick };
+  return { handleSortMethodClick };
 };
 
 export default useSelectSortMethod;

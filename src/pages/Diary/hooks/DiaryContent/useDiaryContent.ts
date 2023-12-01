@@ -36,8 +36,12 @@ const useDiaryContent = ({
 }: useDiaryContentParams) => {
   const navigate = useNavigate();
   const params = useParams();
-  const { info } = useDiaryContext();
+  const {
+    info,
+    methods: { handleInfo },
+  } = useDiaryContext();
   const { spotId, diaryId } = params;
+  const { closeInfo } = handleInfo;
   const { mutate: createFormMutate } = useCreateDiaryDetail(
     spotId as string,
     setLoading,
@@ -65,6 +69,7 @@ const useDiaryContent = ({
       navigate(`/diary/${spotId}`);
       const diaryList = [parseInt(diaryId)];
       deleteMutate({ diaryList: diaryList });
+      closeInfo();
     }
   };
 
@@ -126,7 +131,6 @@ const useDiaryContent = ({
     setEditable(true);
   };
 
-  // todo: 빈 문자열이면 오류 띄어야ㅏㅎㅁ
   const handleSubmitCreate = () => {
     const formData = new FormData();
     const { datingDay, category, score, myText } = editDiary;
@@ -169,7 +173,6 @@ const useDiaryContent = ({
     if (existedImg.length > 0) {
       texts.images = existedImg;
     }
-    console.log(texts);
     formData.append(
       'texts',
       new Blob([JSON.stringify(texts)], { type: 'application/json' }),

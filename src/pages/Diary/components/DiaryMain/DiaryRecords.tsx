@@ -5,16 +5,14 @@ import DiaryRecordsPreviews from './DiaryRecordsPreviews';
 import CategoryList from '~/components/domain/CategoryList/CategoryList';
 import { DiaryMainProvider } from '~/pages/Diary/contexts/DiaryMainContext';
 import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
+import useDiaryMainContext from '../../hooks/DiaryMain/useDiaryMainContext';
 
 const DiaryRecords = () => {
-  const {
-    diaryCategory,
-    methods: { handleDiaryCategories },
-  } = useDiaryContext();
-  const { handleCategory } = handleDiaryCategories;
+  const diaryMainContext = useDiaryMainContext();
+  const { handleCategory, diaryCategory } = diaryMainContext;
 
   return (
-    <div className="flex h-full flex-col gap-5">
+    <div className="flex h-full max-h-screen flex-col gap-5 lg:overflow-hidden">
       <DiaryRecordsHeader />
       <CategoryList
         handleChangeCategory={handleCategory}

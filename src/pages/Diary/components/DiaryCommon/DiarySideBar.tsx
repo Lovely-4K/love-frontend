@@ -10,7 +10,7 @@ import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
 
 const StyledDiarySideBar = styled.div`
   position: absolute;
-  bottom: 6rem;
+  bottom: -4rem;
   z-index: 30;
   display: flex;
   height: 23rem;
@@ -30,6 +30,10 @@ const StyledDiarySideBar = styled.div`
   &.closed {
     transform: translateY(100%);
     height: 0px;
+  }
+
+  @media (min-width: ${screens.md}) {
+    bottom: 3rem;
   }
 
   @media (min-width: ${screens.lg}) {

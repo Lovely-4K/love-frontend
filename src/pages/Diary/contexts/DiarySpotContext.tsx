@@ -19,10 +19,14 @@ export const DiarySpotContext = createContext<DiarySpotContextProps | null>(
 );
 
 const DiarySpotProvider = ({ children }: PropsWithChildren) => {
-  const { info } = useDiaryContext();
+  const {
+    info,
+    methods: { handleInfo },
+  } = useDiaryContext();
   const params = useParams();
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const [deleteMode, setDeleteMode] = useState(false);
+  const { closeInfo } = handleInfo;
   const { mutate: deleteMutate } = useDeleteDiaryDetail(params.spotId);
 
   if (info === undefined || info.spotId !== params.spotId) {
@@ -53,6 +57,7 @@ const DiarySpotProvider = ({ children }: PropsWithChildren) => {
     if (spotId) {
       deleteMutate({ diaryList: selectedIds });
       setSelectedIds([]);
+      closeInfo();
     }
   };
 

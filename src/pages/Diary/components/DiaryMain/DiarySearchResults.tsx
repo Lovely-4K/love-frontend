@@ -14,7 +14,7 @@ const DiarySearchResults = () => {
   const searchMessage = mapCategory ? `내 주변 ${category}` : searchKeyword;
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 overflow-y-hidden">
       <div className="flex gap-2">
         <button onClick={endSearchMode}>{'<'}</button>
         <span className="text-base-primary">{searchMessage} </span>
