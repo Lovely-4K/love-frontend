@@ -36,7 +36,13 @@ const QuestionProvider = ({ children }: PropsWithChildren) => {
 
   useEffect(() => {
     mutateCreateTodayQuestion();
-  }, []);
+  }, [mutateCreateTodayQuestion]);
+
+  useEffect(() => {
+    if (questionDetail && questionDetail.myChoiceIndex) {
+      setUserAnswer(questionDetail.myChoiceIndex);
+    }
+  }, [questionDetail]);
 
   return (
     <QuestionContext.Provider
