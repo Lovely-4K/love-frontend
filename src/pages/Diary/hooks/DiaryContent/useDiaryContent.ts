@@ -1,7 +1,12 @@
 import type categoryType from '~/components/common/CategoryButton/CategoryTypes';
 import { ChangeEvent, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import type { DiaryResponse, DiaryCreateTextRequest, MapMarker } from '~/types';
+import type {
+  DiaryResponse,
+  DiaryCreateTextRequest,
+  MapMarker,
+  DiaryEditTextRequest,
+} from '~/types';
 import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
 import useCreateDiaryDetail from '~/services/diary/useCreateDiaryDetail';
 import useDeleteDiaryDetail from '~/services/diary/useDeleteDiaryDetail';
@@ -158,15 +163,16 @@ const useDiaryContent = ({
 
   const handleSubmitEdit = (diaryId: string) => {
     const formData = new FormData();
-    const { datingDay, category, myText, opponentText, score } = editDiary;
-    const texts = {
+    const { datingDay, category, myText, score } = editDiary;
+    const texts: DiaryEditTextRequest = {
       datingDay,
       category,
-      myText,
-      opponentText: opponentText === null ? 'ㅎㅇ' : opponentText,
+      text: myText,
       score,
-      images: existedImg,
     };
+    if (existedImg.length > 0) {
+      texts.images = existedImg;
+    }
     formData.append(
       'texts',
       new Blob([JSON.stringify(texts)], { type: 'application/json' }),

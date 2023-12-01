@@ -1,7 +1,7 @@
+import { DiaryMainProvider } from '../../contexts/DiaryMainContext';
 import DiaryRecords from './DiaryRecords';
 import DiarySearchBar from './DiarySearchBar';
 import DiarySearchResults from '~/pages/Diary/components/DiaryMain/DiarySearchResults';
-import { DiaryMainProvider } from '~/pages/Diary/contexts/DiaryMainContext';
 import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
 
 const DiaryMain = () => {

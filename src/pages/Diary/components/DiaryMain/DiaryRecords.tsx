@@ -1,7 +1,10 @@
+import { Suspense } from 'react';
 import useDiaryMainContext from '../../hooks/DiaryMain/useDiaryMainContext';
+import DiaryMainLoadingFallback from './DiaryMainLoadingFallback';
 import DiaryRecordsHeader from './DiaryRecordsHeader';
 import DiaryRecordsPreviews from './DiaryRecordsPreviews';
 import CategoryList from '~/components/domain/CategoryList/CategoryList';
+import { DiaryMainProvider } from '~/pages/Diary/contexts/DiaryMainContext';
 
 const DiaryRecords = () => {
   const diaryMainContext = useDiaryMainContext();
@@ -15,7 +18,11 @@ const DiaryRecords = () => {
         editable={true}
         selectedCategory={diaryCategory}
       />
-      <DiaryRecordsPreviews />
+      <Suspense fallback={<DiaryMainLoadingFallback />}>
+        <DiaryMainProvider>
+          <DiaryRecordsPreviews />
+        </DiaryMainProvider>
+      </Suspense>
     </div>
   );
 };
