@@ -11,7 +11,7 @@ const DiaryRecords = () => {
   const { handleCategory } = handleDiaryCategories;
 
   return (
-    <div className="flex h-full max-h-screen flex-col gap-5 overflow-hidden">
+    <div className="flex h-full max-h-screen flex-col gap-5 lg:overflow-hidden">
       <DiaryRecordsHeader />
       <CategoryList
         handleChangeCategory={handleCategory}
