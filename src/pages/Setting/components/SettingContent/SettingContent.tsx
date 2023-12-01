@@ -2,7 +2,7 @@ import { useSetting } from '../../hooks';
 import ContentItem from './ContentItem';
 
 const SettingContent = () => {
-  const { activeTab, handleLogout } = useSetting();
+  const { activeTab, handleLogout, handleDeleteCouple } = useSetting();
 
   if (activeTab === 'LOGOUT') {
     return (
@@ -21,7 +21,7 @@ const SettingContent = () => {
         title="🔓"
         buttonName="비활성화"
         description={`커플을 비활성화 하시겠어요?\n최대 30일까지 커플의 기록이 보존돼요.`}
-        handleButtonClick={() => {}}
+        handleButtonClick={handleDeleteCouple}
       />
     );
   }

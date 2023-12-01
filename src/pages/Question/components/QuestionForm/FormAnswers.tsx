@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { useToast } from '~/hooks';
 import { screens } from '~/theme';
 import useQuestionContext from '../../hooks/useQuestionContext';
 import FormAnswerItem from './FormAnswerItem';
@@ -19,6 +20,7 @@ const FormAnswerItemContainer = styled.div<{ length: number }>`
 const FormAnswers = () => {
   const { questionForm, questionDetail, methods, userAnswer } =
     useQuestionContext();
+  const { showToast, handleShowToast } = useToast();
 
   if (questionDetail === undefined) {
     return <Loading size="large" />;
@@ -30,8 +32,20 @@ const FormAnswers = () => {
   const buttonContent = myChoiceIndex ? '수정' : '결정';
   const answersLength = answers.filter((answer) => answer).length;
 
+  const handleSubmitAnswer = (userAnswer: number) => {
+    handleShowToast();
+    handleSubmitUserAnswer(userAnswer);
+  };
+
   return (
     <>
+      {showToast && (
+        <div className="toast toast-center toast-top">
+          <div className="alert flex bg-base-secondary text-base-white">
+            <span>답변이 제출되었습니다!</span>
+          </div>
+        </div>
+      )}
       <FormAnswerItemContainer length={answersLength}>
         {answers.map((answer, index) => (
           <FormAnswerItem
@@ -46,8 +60,10 @@ const FormAnswers = () => {
       </FormAnswerItemContainer>
       <div className="flex w-full justify-end">
         <Button
-          disabled={userAnswer === -1}
-          onClick={() => handleSubmitUserAnswer(userAnswer)}
+          disabled={
+            userAnswer === -1 || questionDetail.myChoiceIndex === userAnswer
+          }
+          onClick={() => handleSubmitAnswer(userAnswer)}
           size="small"
           className="btn-primary hover:border-none hover:bg-base-secondary disabled:cursor-not-allowed disabled:bg-grey-300"
         >

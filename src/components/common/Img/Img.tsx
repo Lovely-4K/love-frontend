@@ -13,7 +13,7 @@ const Img = ({ shape = 'square', className, src, ...props }: ImgProps) => {
   return (
     <img
       src={src || ImageCouple}
-      className={`rounded-xl object-cover ${imgShapes[shape]} ${className}`}
+      className={`rounded-xl border border-grey-200 object-cover ${imgShapes[shape]} ${className}`}
       {...props}
     />
   );

@@ -19,7 +19,7 @@ const DiaryPreviewItemContainer = styled.div`
   justify-content: center;
   aspect-ratio: 1 / 1;
 
-  @media (min-width: ${screens.md}) {
+  @media (min-width: ${screens.lg}) {
     min-width: auto;
   }
 
