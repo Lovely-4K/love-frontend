@@ -135,7 +135,7 @@ const useDiaryContent = ({
       kakaoMapId: Number(kakaoMapId),
       latitude: position.lat,
       longitude: position.lng,
-      address: address as string,
+      address: address,
       datingDay,
       category,
       score,

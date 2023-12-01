@@ -40,7 +40,7 @@ const ReadProvider = ({ children }: ReadProviderProps) => {
         },
       });
     }
-  }, [diaryResponse, setDiary]);
+  }, [diaryResponse, setDiary, setInfo, locate.state]);
 
   useEffect(() => {
     if (locate.state && info) {
@@ -54,7 +54,7 @@ const ReadProvider = ({ children }: ReadProviderProps) => {
       setRootDiarys([diary]);
       setInfoOpen(true);
     }
-  }, [info, map]);
+  }, [info, map, setInfoOpen, setRootDiarys, locate.state]);
 
   return <ReadContext.Provider value={{}}>{children}</ReadContext.Provider>;
 };
