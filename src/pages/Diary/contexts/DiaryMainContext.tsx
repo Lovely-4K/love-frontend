@@ -25,11 +25,11 @@ interface DiaryMainContextProps {
 const DiaryMainContext = createContext<DiaryMainContextProps | null>(null);
 
 const DiaryMainProvider = ({ children }: PropsWithChildren) => {
+  const { setRootDiarys } = useDiaryContext();
   const [diaryCategory, setDiaryCategory] = useState<categoryType | undefined>(
     undefined,
   );
   const [selectSortMethod, setSelectSortMethod] = useState<string>('datingDay');
-  const { setRootDiarys } = useDiaryContext();
   const [page, setPage] = useState(0);
   const [diarys, setDiarys] = useState<DiaryContent[]>([]);
   const { data: diaryResponse } = useGetDiarys({

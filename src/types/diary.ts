@@ -25,6 +25,8 @@ interface DiaryResponse extends Diary {
   pictures: Pictures;
   myText: string;
   opponentText: string;
+  latitude: number;
+  longitude: number;
 }
 
 interface DiaryCreateTextRequest extends Diary {

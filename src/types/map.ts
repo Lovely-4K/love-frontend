@@ -22,8 +22,7 @@ interface MapMarker {
     lng: number;
   };
   content: string;
-  address: string;
-  phone?: string;
+  address?: string;
   spotId: string;
 }
 

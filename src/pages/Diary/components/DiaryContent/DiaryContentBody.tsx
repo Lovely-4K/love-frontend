@@ -13,7 +13,7 @@ const DiaryContentBody = () => {
 
   return (
     <div className="flex w-full flex-col gap-6 overflow-y-auto overflow-x-hidden">
-      {!editable && <DiaryContentHeader />}
+      <DiaryContentHeader />
       <div
         onSubmit={handleSubmitForm}
         className="flex flex-col gap-6 overflow-y-auto px-3"

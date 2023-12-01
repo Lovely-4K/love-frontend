@@ -145,6 +145,9 @@ const useMapCategory = ({
             categorySearchMode();
             setMarkers([]);
           } else if (status === kakao.maps.services.Status.ERROR) {
+            throw new Error(
+              '일시적인 네트워크 요류예요! 다시 시도해보시겠어요?',
+            );
           }
         },
         { useMapBounds: true, bounds, page },
