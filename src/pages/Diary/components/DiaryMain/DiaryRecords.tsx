@@ -4,7 +4,6 @@ import DiaryMainLoadingFallback from './DiaryMainLoadingFallback';
 import DiaryRecordsHeader from './DiaryRecordsHeader';
 import DiaryRecordsPreviews from './DiaryRecordsPreviews';
 import CategoryList from '~/components/domain/CategoryList/CategoryList';
-import { DiaryMainProvider } from '~/pages/Diary/contexts/DiaryMainContext';
 
 const DiaryRecords = () => {
   const diaryMainContext = useDiaryMainContext();
@@ -19,9 +18,7 @@ const DiaryRecords = () => {
         selectedCategory={diaryCategory}
       />
       <Suspense fallback={<DiaryMainLoadingFallback />}>
-        <DiaryMainProvider>
-          <DiaryRecordsPreviews />
-        </DiaryMainProvider>
+        <DiaryRecordsPreviews />
       </Suspense>
     </div>
   );

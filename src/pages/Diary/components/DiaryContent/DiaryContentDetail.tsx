@@ -11,7 +11,13 @@ const DiaryContentDetail = () => {
     <div className="flex flex-col gap-2">
       <span className="text-lg font-bold text-base-black">다이어리 내용</span>
       <div className="flex flex-col gap-4 py-2">
-        <DiaryContentImgs />
+        {!editable && diary.pictures.firstImage === null ? (
+          <span className="text-center text-sm text-grey-300">
+            함께 찍은 사진들을 공유하세요!
+          </span>
+        ) : (
+          <DiaryContentImgs />
+        )}
         <div>
           <div>
             <div className="text-lg font-bold">나의 기록</div>
