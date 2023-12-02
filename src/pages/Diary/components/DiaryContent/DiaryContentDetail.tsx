@@ -7,8 +7,6 @@ const DiaryContentDetail = () => {
   const { myText, opponentText } = diary;
   const { handleChangeMyText } = methods;
 
-  console.log(editable);
-
   return (
     <div className="flex flex-col gap-2">
       <span className="text-lg font-bold text-base-black">다이어리 내용</span>

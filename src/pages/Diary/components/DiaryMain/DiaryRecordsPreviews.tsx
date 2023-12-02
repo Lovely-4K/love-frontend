@@ -17,9 +17,13 @@ const DiaryRecordsPreviews = () => {
     handleClickPreview(diary);
   };
 
+  const diaryWrapStyle = diarys.length && 'h-full';
+
   return (
     <div className="h-full lg:overflow-hidden">
-      <div className="grid h-full auto-rows-min grid-cols-3 lg:grid-cols-2 lg:overflow-y-auto">
+      <div
+        className={`grid auto-rows-min grid-cols-3 lg:grid-cols-2 lg:overflow-y-auto ${diaryWrapStyle}`}
+      >
         {diarys.map((diary, index) => (
           <div
             key={`${diary.diaryId}-${index}`}
