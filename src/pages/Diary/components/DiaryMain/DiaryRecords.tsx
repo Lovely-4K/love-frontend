@@ -19,9 +19,9 @@ const DiaryRecords = () => {
         selectedCategory={diaryCategory}
       />
       <Suspense fallback={<DiaryMainLoadingFallback />}>
-        <DiaryMainProvider>
-          <DiaryRecordsPreviews />
-        </DiaryMainProvider>
+        {/* <DiaryMainProvider> */}
+        <DiaryRecordsPreviews />
+        {/* </DiaryMainProvider> */}
       </Suspense>
     </div>
   );
