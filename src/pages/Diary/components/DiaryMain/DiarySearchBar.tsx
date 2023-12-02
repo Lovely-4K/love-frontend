@@ -7,7 +7,7 @@ const DiarySearchBar = () => {
     searchKeyword,
     methods: { handleInput },
   } = useDiaryContext();
-  const { handleKeyUp } = handleInput;
+  const { handleKeyUp, setSearchKeyword } = handleInput;
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -25,7 +25,10 @@ const DiarySearchBar = () => {
         onKeyUp={handleKeyUp}
         ref={inputRef}
       />
-      <button className="btn join-item border-l-0 border-base-primary bg-base-white hover:border-base-primary hover:bg-base-white">
+      <button
+        className="btn join-item border-l-0 border-base-primary bg-base-white hover:border-base-primary hover:bg-base-white"
+        onClick={() => setSearchKeyword(inputRef.current?.value || '')}
+      >
         <IconSearch className="fill h-[1.25rem] w-[1.25rem] stroke-base-primary" />
       </button>
     </div>
