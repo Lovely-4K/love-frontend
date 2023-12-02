@@ -106,6 +106,15 @@ const ProfileModalProvider = ({ children }: PropsWithChildren) => {
 
       const { value } = event.target;
 
+      if (!modalInfo.mbti) {
+        setModalInfo((prev) => ({
+          ...prev,
+          mbti: value,
+        }));
+
+        return;
+      }
+
       if (modalInfo.mbti.includes(value)) return;
 
       const newMBTI = getNewMBTI(value);

@@ -1,3 +1,4 @@
+import { colors } from '~/theme';
 import ProfileAvatar from './ProfileAvatar';
 import ProfileBirthdayItem from './ProfileBirthdayItem';
 import ProfileColorItem from './ProfileColorItem';
@@ -12,7 +13,9 @@ const ProfileContainer = () => {
   const { handleActiveEdit, activeEdit } = useProfileModal();
 
   const buttonContent = activeEdit ? '프로필 저장' : '프로필 수정';
-  const backgroundColor = modalInfo.calendarColor;
+  const backgroundColor = modalInfo.calendarColor
+    ? modalInfo.calendarColor
+    : colors.personal.pink;
 
   return (
     <>

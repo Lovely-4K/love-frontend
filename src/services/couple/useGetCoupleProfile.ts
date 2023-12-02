@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import apiClient from '~/api/apiClient';
 import { CoupleProfile } from '~/types/couple';
 
@@ -9,7 +9,7 @@ const getCoupleProfile = async (): Promise<CoupleProfile> => {
 };
 
 const useGetCoupleProfile = () => {
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: ['coupleProfile'],
     queryFn: getCoupleProfile,
   });

@@ -17,6 +17,7 @@ interface CoupleProfile {
   opponentCalendarColor: string;
   opponentId: number;
   meetDay: string;
+  coupleStatus: 'SOLO' | 'RELATIONSHIP' | 'BREAKUP' | 'RECOUPLE';
 }
 
 export type { CoupleInviteLink, CoupleProfile };

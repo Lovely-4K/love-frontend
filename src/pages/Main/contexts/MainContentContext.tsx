@@ -1,6 +1,6 @@
 import { PropsWithChildren, createContext, useEffect } from 'react';
 import type { CalendarSchedule, Diarys, QuestionFormResponse } from '~/types';
-import { useMain } from '../hooks';
+import useLayoutContext from '~/hooks/useLayoutContext';
 import { useGetRecentSchedule } from '~/services/calendar';
 import useGetDiarys from '~/services/diary/useGetDiarys';
 import { useCreateTodayQuestion, useGetQuestion } from '~/services/question';
@@ -14,7 +14,7 @@ interface MainContentContextProps {
 const MainContentContext = createContext<MainContentContextProps | null>(null);
 
 const MainContentProvider = ({ children }: PropsWithChildren) => {
-  const { coupleMode } = useMain();
+  const { coupleMode } = useLayoutContext();
   const getRecentScheduleQuery = useGetRecentSchedule({
     limit: 10,
     coupleMode,

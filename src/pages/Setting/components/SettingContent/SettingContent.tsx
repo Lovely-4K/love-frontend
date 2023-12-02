@@ -26,12 +26,12 @@ const SettingContent = () => {
     );
   }
 
-  if (activeTab === 'CANCEL') {
+  if (activeTab === 'REACTIVE') {
     return (
       <ContentItem
-        title="😭"
-        buttonName="탈퇴"
-        description={`정말 계정을 탈퇴하시겠어요?\n 모든 기록이 삭제되어 복구할 수 없어요.`}
+        title="💖"
+        buttonName="재결합"
+        description={`이전의 상대와 재결합하시겠어요?\n 30일 이내에 재결합시 기록이 복구돼요.`}
         handleButtonClick={() => {}}
       />
     );
