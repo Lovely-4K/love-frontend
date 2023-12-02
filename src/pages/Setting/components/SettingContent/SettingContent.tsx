@@ -1,8 +1,10 @@
 import { useSetting } from '../../hooks';
 import ContentItem from './ContentItem';
+import useRecreateCouple from '~/services/couple/useRecreateCouple';
 
 const SettingContent = () => {
   const { activeTab, handleLogout, handleDeleteCouple } = useSetting();
+  const { mutate: recreateCouple } = useRecreateCouple();
 
   if (activeTab === 'LOGOUT') {
     return (
@@ -32,7 +34,7 @@ const SettingContent = () => {
         title="💖"
         buttonName="재결합"
         description={`이전의 상대와 재결합하시겠어요?\n 30일 이내에 재결합시 기록이 복구돼요.`}
-        handleButtonClick={() => {}}
+        handleButtonClick={recreateCouple}
       />
     );
   }
