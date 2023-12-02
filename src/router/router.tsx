@@ -10,6 +10,7 @@ import {
   Setting,
 } from '~/pages';
 import Layout from './Layout';
+import LayoutWithCouple from './LayoutWithCouple';
 import PATHS from './paths';
 import PrivateRouter from './PrivateRouter';
 import { DiaryContent } from '~/pages/Diary/components/DiaryContent';
@@ -28,42 +29,47 @@ const router = createBrowserRouter([
             element: <Main />,
           },
           {
-            path: PATHS.CALENDAR,
-            element: <Calendar />,
-          },
-          {
-            path: PATHS.DIARY.ROOT,
-            element: <Diary />,
+            element: <LayoutWithCouple />,
             children: [
               {
-                index: true,
-                element: <DiaryMain />,
+                path: PATHS.CALENDAR,
+                element: <Calendar />,
               },
               {
-                path: PATHS.DIARY.SPOT,
-                element: <DiarySpot />,
+                path: PATHS.DIARY.ROOT,
+                element: <Diary />,
+                children: [
+                  {
+                    index: true,
+                    element: <DiaryMain />,
+                  },
+                  {
+                    path: PATHS.DIARY.SPOT,
+                    element: <DiarySpot />,
+                  },
+                  {
+                    path: PATHS.DIARY.DIARY_DETAIL,
+                    element: <DiaryContent mode={'read'} />,
+                  },
+                  {
+                    path: PATHS.DIARY.DIARY_CREATE,
+                    element: <DiaryContent mode={'edit'} />,
+                  },
+                ],
               },
               {
-                path: PATHS.DIARY.DIARY_DETAIL,
-                element: <DiaryContent mode={'read'} />,
+                path: PATHS.QUESTION,
+                element: <Question />,
               },
               {
-                path: PATHS.DIARY.DIARY_CREATE,
-                element: <DiaryContent mode={'edit'} />,
+                path: PATHS.QUESTION_CREATE,
+                element: <QuestionCreate />,
+              },
+              {
+                path: PATHS.QUESTION_HISTORY,
+                element: <QuestionHistory />,
               },
             ],
-          },
-          {
-            path: PATHS.QUESTION,
-            element: <Question />,
-          },
-          {
-            path: PATHS.QUESTION_CREATE,
-            element: <QuestionCreate />,
-          },
-          {
-            path: PATHS.QUESTION_HISTORY,
-            element: <QuestionHistory />,
           },
           {
             path: PATHS.SETTING,

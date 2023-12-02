@@ -12,29 +12,31 @@ const ProfileMBTIItem = () => {
         topItem="E"
         bottomItem="I"
         position="left"
-        selected={modalInfo.mbti[0]}
+        selected={modalInfo.mbti && modalInfo.mbti[0]}
       />
       <MBTIButton
         topItem="N"
         bottomItem="S"
         position="center"
-        selected={modalInfo.mbti[1]}
+        selected={modalInfo.mbti && modalInfo.mbti[1]}
       />
       <MBTIButton
         topItem="F"
         bottomItem="T"
         position="center"
-        selected={modalInfo.mbti[2]}
+        selected={modalInfo.mbti && modalInfo.mbti[2]}
       />
       <MBTIButton
         topItem="J"
         bottomItem="P"
         position="right"
-        selected={modalInfo.mbti[3]}
+        selected={modalInfo.mbti && modalInfo.mbti[3]}
       />
     </div>
   ) : (
-    <div className="font-large input m-0 h-5 p-0 pl-1">{modalInfo.mbti}</div>
+    <div className="input m-0 h-5 p-0 text-sm">
+      {modalInfo.mbti || 'MBTI를 설정해주세요'}
+    </div>
   );
 
   return (

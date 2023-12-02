@@ -1,10 +1,10 @@
 import { memo } from 'react';
-import { useMain } from '../../hooks';
 import CoupleProfile from './CoupleProfile';
 import SoloProfile from './SoloProfile';
+import useLayoutContext from '~/hooks/useLayoutContext';
 
 const MainProfile = memo(() => {
-  const { coupleMode } = useMain();
+  const { coupleMode } = useLayoutContext();
 
   return coupleMode ? <CoupleProfile /> : <SoloProfile />;
 });

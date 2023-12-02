@@ -3,9 +3,11 @@ import { useMain, useProfile } from '../../hooks';
 import MainDdayModal from '../MainDdayModal/MainDdayModal';
 import MainProfileModal from '../MainProfileModal/MainProfileModal';
 import { Button } from '~/components/common';
+import useLayoutContext from '~/hooks/useLayoutContext';
 
 const MainModalButtons = () => {
-  const { coupleMode, coupleProfile } = useMain();
+  const { coupleMode } = useLayoutContext();
+  const { coupleProfile } = useMain();
   const { handleOpenProfileModal, openDdayModal } = useProfile();
 
   return (

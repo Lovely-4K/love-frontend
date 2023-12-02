@@ -4,7 +4,6 @@ import { useGetCoupleProfile } from '~/services/couple';
 
 interface MainContextProps {
   coupleProfile: CoupleProfile;
-  coupleMode: boolean;
 }
 
 const MainContext = createContext<MainContextProps | null>(null);
@@ -12,20 +11,11 @@ const MainContext = createContext<MainContextProps | null>(null);
 const MainProvider = ({ children }: PropsWithChildren) => {
   const getCoupleProfileQuery = useGetCoupleProfile();
 
-  const coupleMode = useMemo(() => {
-    if (!getCoupleProfileQuery.isSuccess) return false;
-
-    return getCoupleProfileQuery.data.opponentId !== null;
-  }, [getCoupleProfileQuery]);
-
   const value = useMemo(() => {
-    if (!getCoupleProfileQuery.isSuccess) return null;
-
     return {
       coupleProfile: getCoupleProfileQuery.data,
-      coupleMode,
     };
-  }, [getCoupleProfileQuery, coupleMode]);
+  }, [getCoupleProfileQuery]);
 
   if (!getCoupleProfileQuery.isSuccess) return null;
 

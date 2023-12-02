@@ -3,6 +3,7 @@ import { Fragment } from 'react';
 import { colors, fontSize, screens } from '~/theme';
 import { SETTING_TAB } from '../constants';
 import { useSetting } from '../hooks';
+import useLayoutContext from '~/hooks/useLayoutContext';
 
 const StyledTab = styled.label`
   font-size: ${() => fontSize.sm};
@@ -27,24 +28,30 @@ const StyledTab = styled.label`
 
 const SettingTab = () => {
   const { activeTab, handleTabChange } = useSetting();
+  const { coupleMode } = useLayoutContext();
 
   return (
     <div className="flex">
-      {Object.keys(SETTING_TAB).map((tab) => (
-        <Fragment key={tab}>
-          <input
-            type="radio"
-            id={tab}
-            name="setting_tab"
-            className="hidden"
-            checked={activeTab === tab}
-            onChange={() => handleTabChange(tab as keyof typeof SETTING_TAB)}
-          />
-          <StyledTab htmlFor={tab}>
-            {SETTING_TAB[tab as keyof typeof SETTING_TAB]}
-          </StyledTab>
-        </Fragment>
-      ))}
+      {Object.keys(SETTING_TAB).map((tab) => {
+        if (coupleMode && tab === 'REACTIVE') return null;
+        if (!coupleMode && tab === 'INACTIVE') return null;
+
+        return (
+          <Fragment key={tab}>
+            <input
+              type="radio"
+              id={tab}
+              name="setting_tab"
+              className="hidden"
+              checked={activeTab === tab}
+              onChange={() => handleTabChange(tab as keyof typeof SETTING_TAB)}
+            />
+            <StyledTab htmlFor={tab}>
+              {SETTING_TAB[tab as keyof typeof SETTING_TAB]}
+            </StyledTab>
+          </Fragment>
+        );
+      })}
     </div>
   );
 };
