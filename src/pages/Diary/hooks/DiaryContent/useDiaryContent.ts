@@ -22,6 +22,7 @@ interface useDiaryContentParams {
   setImgUrl: React.Dispatch<React.SetStateAction<string[]>>;
   existedImg: string[];
   setExistedImg: React.Dispatch<React.SetStateAction<string[]>>;
+  handleShowToast: () => void;
 }
 
 const useDiaryContent = ({
@@ -33,6 +34,7 @@ const useDiaryContent = ({
   setImgUrl,
   existedImg,
   setExistedImg,
+  handleShowToast,
 }: useDiaryContentParams) => {
   const navigate = useNavigate();
   const params = useParams();
@@ -183,6 +185,11 @@ const useDiaryContent = ({
   };
 
   const handleSubmitForm = () => {
+    if (editDiary.myText.trim().length <= 0) {
+      handleShowToast();
+
+      return;
+    }
     if (diaryId === undefined) {
       handleSubmitCreate();
     } else {

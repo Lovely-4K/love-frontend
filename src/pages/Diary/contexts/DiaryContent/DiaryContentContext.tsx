@@ -1,4 +1,5 @@
 import { PropsWithChildren, createContext, useEffect, useState } from 'react';
+import { useToast } from '~/hooks';
 import type { DiaryResponse } from '~/types';
 import useDiaryContent from '../../hooks/DiaryContent/useDiaryContent';
 import { getTodayDate } from '~/utils/Common';
@@ -10,6 +11,7 @@ interface DiaryContentContextProps {
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   diary: DiaryResponse;
+  showToast: boolean;
   imgUrl: string[];
   setDiary: React.Dispatch<React.SetStateAction<DiaryResponse>>;
   methods: ReturnType<typeof useDiaryContent>;
@@ -23,6 +25,7 @@ export const DiaryContentContext =
   createContext<null | DiaryContentContextProps>(null);
 
 const DiaryContentProvider = ({ mode, children }: DiaryContentProvider) => {
+  const { showToast, handleShowToast } = useToast();
   const [editable, setEditable] = useState(mode === 'edit');
   const [loading, setLoading] = useState(false);
   const [originDiary, setOriginDiary] = useState<DiaryResponse>({
@@ -57,6 +60,7 @@ const DiaryContentProvider = ({ mode, children }: DiaryContentProvider) => {
     setImgUrl,
     existedImg,
     setExistedImg,
+    handleShowToast,
   });
 
   useEffect(() => {
@@ -73,6 +77,7 @@ const DiaryContentProvider = ({ mode, children }: DiaryContentProvider) => {
         setLoading,
         editable,
         setEditable,
+        showToast,
         setDiary: setOriginDiary,
         diary: editable ? editDiary : originDiary,
         methods: diaryContent,
