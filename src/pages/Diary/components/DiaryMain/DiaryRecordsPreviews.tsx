@@ -19,7 +19,7 @@ const DiaryRecordsPreviews = () => {
 
   return (
     <div className="h-full lg:overflow-hidden">
-      <div className="grid h-full grid-cols-3 lg:grid-cols-2 lg:overflow-y-auto ">
+      <div className="grid h-full auto-rows-min grid-cols-3 lg:grid-cols-2 lg:overflow-y-auto">
         {diarys.map((diary, index) => (
           <div
             key={`${diary.diaryId}-${index}`}
