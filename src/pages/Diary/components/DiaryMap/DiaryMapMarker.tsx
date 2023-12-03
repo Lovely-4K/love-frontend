@@ -76,7 +76,7 @@ const DiaryMapMarker = ({ userPosition }: UserPosition) => {
             position={marker.position}
             onClick={() => handleMarker(marker)}
             image={{
-              src: '/src/assets/icons/mapMarkerGone.svg',
+              src: '/images/mapMarkerGone.svg',
               size: {
                 width: 35,
                 height: 40,
