@@ -25,7 +25,7 @@ const DiaryMapMarker = ({ userPosition }: UserPosition) => {
         <MapMarker
           position={userPosition}
           image={{
-            src: '/src/assets/icons/currentMarker.svg',
+            src: '/images/currentMarker.svg',
             size: {
               width: 55,
               height: 55,
@@ -42,7 +42,7 @@ const DiaryMapMarker = ({ userPosition }: UserPosition) => {
               position={marker.position}
               onClick={() => handleMarker(marker)}
               image={{
-                src: '/src/assets/icons/mapMarkerGone.svg',
+                src: '/images/mapMarkerGone.svg',
                 size: {
                   width: 35,
                   height: 40,
@@ -60,7 +60,7 @@ const DiaryMapMarker = ({ userPosition }: UserPosition) => {
             position={marker.position}
             onClick={() => handleMarker(marker)}
             image={{
-              src: '/src/assets/icons/mapMarkerYet.svg',
+              src: '/images/mapMarkerYet.svg',
               size: {
                 width: 35,
                 height: 40,
