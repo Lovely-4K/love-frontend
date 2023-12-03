@@ -86,14 +86,16 @@ const DiaryProvider = ({ children }: PropsWithChildren) => {
     map,
     mapCategory,
   });
+  const handleLocation = useMapLocation({ map });
   const handleClickPreviews = useClickPreview({
     map,
+    info,
     handleInfo,
     handleMapCategories,
     handleMarkers,
     handleInput,
+    handleLocation,
   });
-  const handleLocation = useMapLocation({ map });
   const handleSearch = useSearch({
     map,
     searchKeyword,

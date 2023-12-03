@@ -21,16 +21,18 @@ const DiaryMapMarker = ({ userPosition }: UserPosition) => {
   return (
     <>
       {/* 내 위치 마커 */}
-      <MapMarker
-        position={userPosition}
-        image={{
-          src: '/src/assets/icons/currentMarker.svg',
-          size: {
-            width: 55,
-            height: 55,
-          },
-        }}
-      />
+      {userPosition && (
+        <MapMarker
+          position={userPosition}
+          image={{
+            src: '/src/assets/icons/currentMarker.svg',
+            size: {
+              width: 55,
+              height: 55,
+            },
+          }}
+        />
+      )}
       {/* 다이어리 목록 마커 */}
       {!mapCategory && !searchKeyword && (
         <div>

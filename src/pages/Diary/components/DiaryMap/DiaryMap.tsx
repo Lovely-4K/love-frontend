@@ -41,8 +41,8 @@ const DiaryMap = () => {
       onCreate={setMap}
       onClick={closeInfo}
     >
-      {userPosition && <DiaryMapMarker userPosition={userPosition} />}
-      {infoOpen && info && userPosition && <DiaryCustomInfo info={info} />}
+      <DiaryMapMarker userPosition={userPosition} />
+      {infoOpen && info && <DiaryCustomInfo info={info} />}
       <DiaryMapButtons />
       <DiaryMapCategories />
     </Map>
