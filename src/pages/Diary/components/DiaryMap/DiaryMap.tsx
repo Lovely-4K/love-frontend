@@ -29,8 +29,6 @@ const DiaryMap = () => {
     libraries: ['clusterer', 'drawing', 'services'],
   });
 
-  // if (!userPosition) return;
-
   return (
     <Map
       id="map"
