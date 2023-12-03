@@ -19,11 +19,15 @@ const useHistoryList = () => {
 
   useEffect(() => {
     if (histoiresResponse === undefined) return;
-
     const { answeredQuestions } = histoiresResponse;
-    setHistories((currHistories) => {
-      return [...currHistories, ...answeredQuestions];
-    });
+
+    if (lastQuestionId === null) {
+      setHistories(answeredQuestions);
+    } else {
+      setHistories((currHistories) => {
+        return [...currHistories, ...answeredQuestions];
+      });
+    }
   }, [histoiresResponse]);
 
   useEffect(() => {
