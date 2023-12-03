@@ -18,7 +18,10 @@ const PreviewDiary = () => {
   return recentDiarys.content.length > 0 ? (
     <div className="flex h-full gap-3 overflow-x-auto overflow-y-hidden lg:grid lg:grid-cols-2 lg:overflow-y-auto lg:overflow-x-hidden">
       {recentDiarys.content.map((diary, index) => (
-        <div key={`${diary.diaryId}-${index}`}>
+        <div
+          className="max-h-[8rem] max-w-[8rem] md:max-h-full md:max-w-full"
+          key={`${diary.diaryId}-${index}`}
+        >
           <Link
             to={`${paths.DIARY.ROOT}/${diary.kakaoMapId}/${diary.diaryId}`}
             state={{
