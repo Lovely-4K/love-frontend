@@ -29,12 +29,10 @@ const DiaryMap = () => {
     libraries: ['clusterer', 'drawing', 'services'],
   });
 
-  if (!userPosition) return;
-
   return (
     <Map
       id="map"
-      center={userPosition || { lat: 33.450701, lng: 126.570667 }}
+      center={userPosition || { lat: 37.5759, lng: 126.9768 }}
       style={{
         width: '100%',
         height: '100%',
@@ -43,8 +41,8 @@ const DiaryMap = () => {
       onCreate={setMap}
       onClick={closeInfo}
     >
-      <DiaryMapMarker userPosition={userPosition} />
-      {infoOpen && info && <DiaryCustomInfo info={info} />}
+      {userPosition && <DiaryMapMarker userPosition={userPosition} />}
+      {infoOpen && info && userPosition && <DiaryCustomInfo info={info} />}
       <DiaryMapButtons />
       <DiaryMapCategories />
     </Map>
