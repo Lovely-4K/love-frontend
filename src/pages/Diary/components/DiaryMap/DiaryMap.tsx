@@ -25,7 +25,7 @@ const DiaryMap = () => {
   const { closeInfo } = handleInfo;
 
   useKakaoLoaderOrigin({
-    appkey: 'e047e874a0ead765d233c2ba0a20f17b',
+    appkey: '7a4be6748e8ae03e1c1fb309117bc067',
     libraries: ['clusterer', 'drawing', 'services'],
   });
 
