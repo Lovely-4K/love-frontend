@@ -6,7 +6,7 @@ import useLayoutContext from '~/hooks/useLayoutContext';
 const MainProfile = memo(() => {
   const { coupleMode } = useLayoutContext();
 
-  return coupleMode ? <CoupleProfile /> : <SoloProfile />;
+  return coupleMode === 'RELATIONSHIP' ? <CoupleProfile /> : <SoloProfile />;
 });
 
 export default MainProfile;

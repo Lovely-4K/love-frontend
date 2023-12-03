@@ -5,7 +5,11 @@ import useLayoutContext from '~/hooks/useLayoutContext';
 const MainContent = () => {
   const { coupleMode } = useLayoutContext();
 
-  return coupleMode ? <PreviewsContainer /> : <InviteContainer />;
+  return coupleMode === 'RELATIONSHIP' ? (
+    <PreviewsContainer />
+  ) : (
+    <InviteContainer />
+  );
 };
 
 export default MainContent;
