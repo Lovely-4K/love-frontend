@@ -34,7 +34,11 @@ const ProfileMBTIItem = () => {
       />
     </div>
   ) : (
-    <div className="input m-0 h-5 p-0 text-sm">
+    <div
+      className={`input m-0 h-5 p-0 ${
+        modalInfo.mbti ? 'pl-1 text-base' : 'text-sm'
+      }`}
+    >
       {modalInfo.mbti || 'MBTI를 설정해주세요'}
     </div>
   );

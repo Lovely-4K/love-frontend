@@ -10,7 +10,7 @@ import { useMain, useProfile, useProfileModal } from '~/pages/Main/hooks';
 const ProfileContainer = () => {
   const { coupleProfile } = useMain();
   const { modalInfo } = useProfile();
-  const { handleActiveEdit, activeEdit } = useProfileModal();
+  const { handleActiveEdit, activeEdit, showToast } = useProfileModal();
 
   const buttonContent = activeEdit ? '프로필 저장' : '프로필 수정';
   const backgroundColor = modalInfo.calendarColor
@@ -19,6 +19,13 @@ const ProfileContainer = () => {
 
   return (
     <>
+      {showToast && (
+        <div className="toast toast-bottom z-50">
+          <div className="alert bg-base-secondary text-base-white">
+            <span>MBTI를 선택해주세요.</span>
+          </div>
+        </div>
+      )}
       <div
         className="h-36 transition-colors"
         style={{
