@@ -33,8 +33,8 @@ const SettingTab = () => {
   return (
     <div className="flex">
       {Object.keys(SETTING_TAB).map((tab) => {
-        if (coupleMode && tab === 'REACTIVE') return null;
-        if (!coupleMode && tab === 'INACTIVE') return null;
+        if (coupleMode === 'RELATIONSHIP' && tab === 'REACTIVE') return null;
+        if (coupleMode !== 'RELATIONSHIP' && tab === 'INACTIVE') return null;
 
         return (
           <Fragment key={tab}>
