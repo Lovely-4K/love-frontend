@@ -37,7 +37,7 @@ const MainPage = () => {
   return (
     <div className="flex h-full w-full flex-col p-3 md:justify-between md:p-7">
       {showNotification && (
-        <div className="toast toast-center toast-top">
+        <div className="toast toast-center toast-top z-50">
           <div className="alert alert-info bg-base-secondary text-base-white">
             <span>커플인 상태에서 이용이 가능해요...</span>
           </div>
