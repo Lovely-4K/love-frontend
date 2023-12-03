@@ -22,7 +22,7 @@ const DiaryRecordsPreviews = () => {
   return (
     <div className="h-full lg:overflow-hidden">
       <div
-        className={`grid auto-rows-min grid-cols-3 lg:grid-cols-2 lg:overflow-y-auto ${diaryWrapStyle}`}
+        className={`grid auto-rows-min grid-cols-2 md:grid-cols-3 lg:grid-cols-2 lg:overflow-y-auto ${diaryWrapStyle}`}
       >
         {diarys.map((diary, index) => (
           <div
