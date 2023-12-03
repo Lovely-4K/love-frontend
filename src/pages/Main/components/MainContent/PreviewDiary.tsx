@@ -19,7 +19,7 @@ const PreviewDiary = () => {
     <div className="flex h-full gap-3 overflow-x-auto overflow-y-hidden lg:grid lg:grid-cols-2 lg:overflow-y-auto lg:overflow-x-hidden">
       {recentDiarys.content.map((diary, index) => (
         <div
-          className="max-h-[8rem] max-w-[8rem] md:max-h-full md:max-w-full"
+          className="max-h-[8rem] max-w-[8rem] lg:max-h-full lg:max-w-full"
           key={`${diary.diaryId}-${index}`}
         >
           <Link
