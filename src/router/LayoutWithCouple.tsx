@@ -5,7 +5,8 @@ import useLayoutContext from '~/hooks/useLayoutContext';
 const LayoutWithCouple = () => {
   const { coupleMode } = useLayoutContext();
 
-  if (!coupleMode) return <Navigate to={paths.MAIN} replace state={true} />;
+  if (coupleMode !== 'RELATIONSHIP')
+    return <Navigate to={paths.MAIN} replace state={true} />;
 
   return <Outlet />;
 };

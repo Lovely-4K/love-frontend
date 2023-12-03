@@ -9,7 +9,7 @@ const SettingContent = () => {
   if (activeTab === 'LOGOUT') {
     return (
       <ContentItem
-        title="💔"
+        title="🔓"
         buttonName="로그아웃"
         description={`정말 로그아웃 하시겠어요?\n로그아웃 후에도 커플은 유지돼요.`}
         handleButtonClick={handleLogout}
@@ -20,7 +20,7 @@ const SettingContent = () => {
   if (activeTab === 'INACTIVE') {
     return (
       <ContentItem
-        title="🔓"
+        title="💔"
         buttonName="비활성화"
         description={`커플을 비활성화 하시겠어요?\n최대 30일까지 커플의 기록이 보존돼요.`}
         handleButtonClick={handleDeleteCouple}

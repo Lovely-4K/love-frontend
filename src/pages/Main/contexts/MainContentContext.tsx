@@ -17,7 +17,7 @@ const MainContentProvider = ({ children }: PropsWithChildren) => {
   const { coupleMode } = useLayoutContext();
   const getRecentScheduleQuery = useGetRecentSchedule({
     limit: 10,
-    coupleMode,
+    coupleMode: coupleMode === 'RELATIONSHIP',
   });
   const { mutate: createTodayQuestion } = useCreateTodayQuestion();
   const getQuestionQuery = useGetQuestion();

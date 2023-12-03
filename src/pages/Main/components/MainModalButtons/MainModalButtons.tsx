@@ -29,7 +29,7 @@ const MainModalButtons = () => {
         프로필 수정
       </Button>
       <MainProfileModal />
-      {coupleMode && (
+      {coupleMode === 'RELATIONSHIP' && (
         <>
           <Button
             onClick={openDdayModal}
