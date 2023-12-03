@@ -43,7 +43,7 @@ const ReadProvider = ({ children }: ReadProviderProps) => {
   }, [diaryResponse, setDiary, setInfo, locate.state]);
 
   useEffect(() => {
-    if (locate.state && info) {
+    if (locate.state && info && map) {
       const diary = locate.state.diary as DiaryContent;
       const newLatLng = new kakao.maps.LatLng(
         info.position.lat,

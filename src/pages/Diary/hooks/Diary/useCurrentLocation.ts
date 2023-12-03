@@ -20,8 +20,8 @@ const useMapLocation = ({ map }: useMapLocationProps) => {
 
     useEffect(() => {
       const options = {
-        enableHighAccuracy: true,
-        timeout: 5000,
+        enableHighAccuracy: false,
+        timeout: Infinity,
         maximumAge: 0,
       };
 

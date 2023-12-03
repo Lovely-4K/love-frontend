@@ -9,6 +9,8 @@ import {
   useState,
 } from 'react';
 import { personalColors } from '~/constants';
+import { useToast } from '~/hooks';
+import { colors } from '~/theme';
 import { useProfile } from '../hooks';
 import { useEditProfile } from '~/services/user';
 
@@ -19,6 +21,7 @@ interface ProfileModalContextProps {
   handleAvatarChange: (file: File) => void;
   handleMBTIChange: MouseEventHandler<HTMLDivElement>;
   activeEdit: boolean;
+  showToast: boolean;
 }
 
 const ProfileModalContext = createContext<ProfileModalContextProps | null>(
@@ -29,6 +32,7 @@ const ProfileModalProvider = ({ children }: PropsWithChildren) => {
   const { mutate: editProfile } = useEditProfile();
   const { modalInfo, setModalInfo } = useProfile();
   const [activeEdit, setActiveEdit] = useState(false);
+  const { showToast, handleShowToast } = useToast();
 
   useEffect(() => {
     setActiveEdit(false);
@@ -41,9 +45,29 @@ const ProfileModalProvider = ({ children }: PropsWithChildren) => {
       return;
     }
 
-    editProfile({ data: modalInfo });
+    if (
+      modalInfo.mbti === null ||
+      modalInfo.mbti === '' ||
+      modalInfo.mbti.length !== 4
+    ) {
+      handleShowToast();
+
+      return;
+    }
+
+    editProfile({
+      data: {
+        ...modalInfo,
+        birthday: modalInfo.birthday
+          ? modalInfo.birthday
+          : new Date().toISOString().slice(0, 10),
+        calendarColor: modalInfo.calendarColor
+          ? modalInfo.calendarColor
+          : colors.personal.pink,
+      },
+    });
     setActiveEdit(false);
-  }, [activeEdit, editProfile, modalInfo]);
+  }, [activeEdit, editProfile, modalInfo, handleShowToast]);
 
   const handleInputChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -135,6 +159,7 @@ const ProfileModalProvider = ({ children }: PropsWithChildren) => {
       handleAvatarChange,
       handleMBTIChange,
       activeEdit,
+      showToast,
     }),
     [
       handleActiveEdit,
@@ -143,6 +168,7 @@ const ProfileModalProvider = ({ children }: PropsWithChildren) => {
       handleAvatarChange,
       handleMBTIChange,
       activeEdit,
+      showToast,
     ],
   );
 
