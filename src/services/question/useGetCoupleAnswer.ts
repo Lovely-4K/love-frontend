@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useSuspenseQuery, useQuery } from '@tanstack/react-query';
 import { QuestionHistoryDetail } from '~/types';
 import apiClient from '~/api/apiClient';
 
@@ -9,6 +9,17 @@ const getCoupleAnswer = async (
   const response = await apiClient.get(URL);
 
   return response.data.body;
+};
+
+export const useGetCoupleAnswerHistory = (
+  questionId: number,
+  opendStatus: boolean,
+) => {
+  return useQuery({
+    enabled: opendStatus,
+    queryKey: ['questionHistoryAnswer', questionId],
+    queryFn: () => getCoupleAnswer(questionId),
+  });
 };
 
 const useGetCoupleAnswer = (questionId: number) => {

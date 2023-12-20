@@ -5,7 +5,7 @@ import HistoryItem from './HistoryItem';
 const HistoryList = () => {
   const historyListRef = useRef(null);
   const { histories } = useHistoryList();
-  const noneItem = histories.length === 0 && (
+  const NoneItem = histories.length === 0 && (
     <div className="flex h-full w-full items-center justify-center">
       현재 작성된 기록이 없어요.
     </div>
@@ -23,7 +23,7 @@ const HistoryList = () => {
           key={questionId}
         />
       ))}
-      {noneItem}
+      {NoneItem}
     </div>
   );
 };
