@@ -3,7 +3,8 @@ import { QuestionFormResponse } from '~/types';
 import apiClient from '~/api/apiClient';
 
 const getQuestion = async (): Promise<QuestionFormResponse> => {
-  const response = await apiClient.get('/questions/daily');
+  const URL = '/questions/daily';
+  const response = await apiClient.get(URL);
 
   return response.data.body;
 };
