@@ -1,13 +1,9 @@
-import useQuestionContext from '../../hooks/useQuestionContext';
+import useQuestionData from '../../hooks/useQuestionData';
 import QuestionChatItem from './ChatItem';
 
 const QuestionChat = () => {
-  const { questionDetail } = useQuestionContext();
-
-  if (!questionDetail) return;
-
-  const { myAnswer, myProfile, opponentAnswer, opponentProfile } =
-    questionDetail;
+  const { coupleAnswer } = useQuestionData();
+  const { myAnswer, myProfile, opponentAnswer, opponentProfile } = coupleAnswer;
 
   return (
     <div className="mt-16">

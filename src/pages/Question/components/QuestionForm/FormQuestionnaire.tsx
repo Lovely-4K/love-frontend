@@ -1,8 +1,11 @@
-import useQuestionContext from '../../hooks/useQuestionContext';
+import { QuestionFormResponse } from '~/types';
 
-const FormQuestionnaire = () => {
-  const { questionForm } = useQuestionContext();
-  const { questionContent } = questionForm;
+interface FormQuestionnaireProps {
+  todayQuestion: QuestionFormResponse;
+}
+
+const FormQuestionnaire = ({ todayQuestion }: FormQuestionnaireProps) => {
+  const { questionContent } = todayQuestion;
 
   return (
     <div className="mt-5 flex flex-col gap-2">

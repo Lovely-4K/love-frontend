@@ -1,26 +1,21 @@
-import useQuestionContext from '../../hooks/useQuestionContext';
+import useQuestionData from '../../hooks/useQuestionData';
 import FormAnswers from './FormAnswers';
 import FormCustomLink from './FormCustomLink';
 import FormQuestionnaire from './FormQuestionnaire';
 
 const QuestionForm = () => {
-  const { questionDetail, questionForm } = useQuestionContext();
-  const { questionFormType } = questionForm;
+  const { todayQuestion, coupleAnswer } = useQuestionData();
+  const { questionFormType } = todayQuestion;
 
-  if (!questionDetail) return null;
-
-  const { myAnswer, opponentAnswer } = questionDetail;
-
-  const CreateForm = () =>
-    questionFormType === 'SERVER' &&
-    myAnswer &&
-    opponentAnswer && <FormCustomLink />;
+  const { myAnswer, opponentAnswer } = coupleAnswer;
 
   return (
     <div>
-      <FormQuestionnaire />
-      <FormAnswers />
-      <CreateForm />
+      <FormQuestionnaire todayQuestion={todayQuestion} />
+      <FormAnswers todayQuestion={todayQuestion} coupleAnswer={coupleAnswer} />
+      {questionFormType === 'SERVER' && myAnswer && opponentAnswer && (
+        <FormCustomLink />
+      )}
     </div>
   );
 };

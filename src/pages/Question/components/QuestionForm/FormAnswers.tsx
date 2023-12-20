@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
-import { useToast } from '~/hooks';
 import { screens } from '~/theme';
-import useQuestionContext from '../../hooks/useQuestionContext';
+import { QuestionFormResponse, QuestionHistoryDetail } from '~/types';
+import useFormAnswers from '../../hooks/useFormAnswers';
 import FormAnswerItem from './FormAnswerItem';
-import { Button, Loading } from '~/components/common';
+import { Button } from '~/components/common';
 
 const FormAnswerItemContainer = styled.div<{ length: number }>`
   display: grid;
@@ -17,25 +17,22 @@ const FormAnswerItemContainer = styled.div<{ length: number }>`
   }
 `;
 
-const FormAnswers = () => {
-  const { questionForm, questionDetail, methods, userAnswer } =
-    useQuestionContext();
-  const { showToast, handleShowToast } = useToast();
+interface FormAnswersProps {
+  todayQuestion: QuestionFormResponse;
+  coupleAnswer: QuestionHistoryDetail;
+}
 
-  if (questionDetail === undefined) {
-    return <Loading size="large" />;
-  }
-  const { firstChoice, secondChoice, thirdChoice, fourthChoice } = questionForm;
-  const { myChoiceIndex } = questionDetail;
-  const { handleSubmitUserAnswer, handleClickAnswer } = methods;
-  const answers = [firstChoice, secondChoice, thirdChoice, fourthChoice];
+const FormAnswers = ({ todayQuestion, coupleAnswer }: FormAnswersProps) => {
+  const {
+    selectedAnswer,
+    answers,
+    handleClickAnswer,
+    handleSubmitAnswer,
+    showToast,
+  } = useFormAnswers({ todayQuestion, coupleAnswer });
+  const { myChoiceIndex } = coupleAnswer;
   const buttonContent = myChoiceIndex ? '수정' : '결정';
   const answersLength = answers.filter((answer) => answer).length;
-
-  const handleSubmitAnswer = (userAnswer: number) => {
-    handleShowToast();
-    handleSubmitUserAnswer(userAnswer);
-  };
 
   return (
     <>
@@ -51,7 +48,7 @@ const FormAnswers = () => {
           <FormAnswerItem
             key={index}
             answer={answer}
-            activeStatus={userAnswer === index + 1}
+            activeStatus={selectedAnswer === index + 1}
             handleClickAnswer={() => {
               handleClickAnswer(index + 1);
             }}
@@ -61,9 +58,10 @@ const FormAnswers = () => {
       <div className="flex w-full justify-end">
         <Button
           disabled={
-            userAnswer === -1 || questionDetail.myChoiceIndex === userAnswer
+            selectedAnswer === -1 ||
+            coupleAnswer.myChoiceIndex === selectedAnswer
           }
-          onClick={() => handleSubmitAnswer(userAnswer)}
+          onClick={handleSubmitAnswer}
           size="small"
           className="btn-primary hover:border-none hover:bg-base-secondary disabled:cursor-not-allowed disabled:bg-grey-300"
         >
