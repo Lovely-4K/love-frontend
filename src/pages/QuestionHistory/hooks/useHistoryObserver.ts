@@ -4,19 +4,19 @@ import useObserve from '~/hooks/useObserve';
 
 interface useHistoryObserverParams {
   histories: QuestionHistoryPreview[];
-  handleObserveLastItem: (questionId: number) => void;
+  handleUpdateLastId: (questionId: number) => void;
   lastItemRef: MutableRefObject<null | HTMLDivElement>;
 }
 
 const useHistoryObserver = ({
   histories,
-  handleObserveLastItem,
+  handleUpdateLastId,
   lastItemRef,
 }: useHistoryObserverParams) => {
   const [observe] = useObserve(() => {
     const lastChild = histories[histories.length - 1];
     const { questionId } = lastChild;
-    handleObserveLastItem(questionId);
+    handleUpdateLastId(questionId);
   });
 
   useEffect(() => {

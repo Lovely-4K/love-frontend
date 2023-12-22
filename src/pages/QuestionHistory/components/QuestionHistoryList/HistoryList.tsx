@@ -6,11 +6,11 @@ import HistoryNoneItem from './HistoryNoneItem';
 
 const HistoryList = () => {
   const lastItemRef = useRef(null);
-  const { histories, handleObserveLastItem } = useHistoryList();
+  const { histories, handleUpdateLastId } = useHistoryList();
   useHistoryObserver({
     histories,
     lastItemRef,
-    handleObserveLastItem,
+    handleUpdateLastId,
   });
 
   return (

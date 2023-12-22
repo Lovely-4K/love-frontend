@@ -11,7 +11,7 @@ const useHistoryList = () => {
     lastQuestionId,
   });
 
-  const handleObserveLastItem = (questionId: number) => {
+  const handleUpdateLastId = (questionId: number) => {
     setLastQuestionId(questionId);
   };
 
@@ -28,7 +28,7 @@ const useHistoryList = () => {
 
   return {
     histories,
-    handleObserveLastItem,
+    handleUpdateLastId,
   };
 };
 
