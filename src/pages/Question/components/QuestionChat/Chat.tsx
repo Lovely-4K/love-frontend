@@ -1,4 +1,4 @@
-import useQuestionData from '../../hooks/useQuestionData';
+import useQuestionData from '../../hooks/common/useQuestionData';
 import QuestionChatItem from './ChatItem';
 
 const QuestionChat = () => {

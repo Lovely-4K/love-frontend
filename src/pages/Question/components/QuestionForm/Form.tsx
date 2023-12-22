@@ -1,4 +1,4 @@
-import useQuestionData from '../../hooks/useQuestionData';
+import useQuestionData from '../../hooks/common/useQuestionData';
 import FormAnswers from './FormAnswers';
 import FormCustomLink from './FormCustomLink';
 import FormQuestionnaire from './FormQuestionnaire';

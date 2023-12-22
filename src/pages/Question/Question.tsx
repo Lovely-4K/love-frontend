@@ -3,7 +3,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { QuestionHeader, QuestionForm, QuestionChat } from './components';
 import QuestionErrorFallback from './components/QuestionErrorFallback';
 import QuestionLoadingFallback from './components/QuestionLoadingFallback';
-import useLoadTodayQuestion from './hooks/useLoadTodayQuestion';
+import useLoadTodayQuestion from './hooks/common/useLoadTodayQuestion';
 
 const Question = () => {
   useLoadTodayQuestion();

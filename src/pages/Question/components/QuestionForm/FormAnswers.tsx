@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { screens } from '~/theme';
 import { QuestionFormResponse, QuestionHistoryDetail } from '~/types';
-import useFormAnswers from '../../hooks/useFormAnswers';
+import useFormAnswers from '../../hooks/QuestionForm/useFormAnswers';
 import FormAnswerItem from './FormAnswerItem';
 import FormAnswersToast from './FormAnswersToast';
 import { Button } from '~/components/common';
