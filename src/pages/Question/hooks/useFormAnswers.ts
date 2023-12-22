@@ -22,9 +22,14 @@ const useFormAnswers = ({
 
   const { firstChoice, secondChoice, thirdChoice, fourthChoice } =
     todayQuestion;
-  const answers = [firstChoice, secondChoice, thirdChoice, fourthChoice];
+  const formAnswers = [
+    firstChoice,
+    secondChoice,
+    thirdChoice,
+    fourthChoice,
+  ].filter((answer) => !!answer);
 
-  const handleSubmitAnswer = () => {
+  const handleUpdateUserAnswer = () => {
     const { questionId } = todayQuestion;
 
     mutateUserAnswer({
@@ -41,10 +46,10 @@ const useFormAnswers = ({
 
   return {
     showToast,
-    answers,
+    formAnswers,
     selectedAnswer,
     handleClickAnswer,
-    handleSubmitAnswer,
+    handleUpdateUserAnswer,
   };
 };
 

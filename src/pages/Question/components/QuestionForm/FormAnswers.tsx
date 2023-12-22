@@ -3,6 +3,7 @@ import { screens } from '~/theme';
 import { QuestionFormResponse, QuestionHistoryDetail } from '~/types';
 import useFormAnswers from '../../hooks/useFormAnswers';
 import FormAnswerItem from './FormAnswerItem';
+import FormAnswersToast from './FormAnswersToast';
 import { Button } from '~/components/common';
 
 const FormAnswerItemContainer = styled.div<{ length: number }>`
@@ -24,27 +25,20 @@ interface FormAnswersProps {
 
 const FormAnswers = ({ todayQuestion, coupleAnswer }: FormAnswersProps) => {
   const {
+    formAnswers,
     selectedAnswer,
-    answers,
     handleClickAnswer,
-    handleSubmitAnswer,
+    handleUpdateUserAnswer,
     showToast,
   } = useFormAnswers({ todayQuestion, coupleAnswer });
-  const { myChoiceIndex } = coupleAnswer;
-  const buttonContent = myChoiceIndex ? '수정' : '결정';
-  const answersLength = answers.filter((answer) => answer).length;
+  const buttonDisabledStatus =
+    selectedAnswer === -1 || coupleAnswer.myChoiceIndex === selectedAnswer;
 
   return (
-    <>
-      {showToast && (
-        <div className="toast toast-center toast-top">
-          <div className="alert flex bg-base-secondary text-base-white">
-            <span>답변이 제출되었습니다!</span>
-          </div>
-        </div>
-      )}
-      <FormAnswerItemContainer length={answersLength}>
-        {answers.map((answer, index) => (
+    <div>
+      {showToast && <FormAnswersToast />}
+      <FormAnswerItemContainer length={formAnswers.length}>
+        {formAnswers.map((answer, index) => (
           <FormAnswerItem
             key={index}
             answer={answer}
@@ -57,18 +51,15 @@ const FormAnswers = ({ todayQuestion, coupleAnswer }: FormAnswersProps) => {
       </FormAnswerItemContainer>
       <div className="flex w-full justify-end">
         <Button
-          disabled={
-            selectedAnswer === -1 ||
-            coupleAnswer.myChoiceIndex === selectedAnswer
-          }
-          onClick={handleSubmitAnswer}
+          disabled={buttonDisabledStatus}
+          onClick={handleUpdateUserAnswer}
           size="small"
           className="btn-primary hover:border-none hover:bg-base-secondary disabled:cursor-not-allowed disabled:bg-grey-300"
         >
-          {buttonContent}
+          결정
         </Button>
       </div>
-    </>
+    </div>
   );
 };
 
