@@ -1,15 +1,14 @@
+import { useAtom, useAtomValue } from 'jotai';
 import SearchResultsItems from '~/pages/Diary/components/DiaryMain/SearchResultsItems';
-import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
+import useInputRef from '~/pages/Diary/hooks/Diary/useInputRef';
+import useMapCategory from '~/pages/Diary/hooks/Diary/useMapCategory';
+import { mapCategoryAtom, searchKeywordAtom } from '~/stores/diaryAtoms';
 
 const DiarySearchResults = () => {
-  const {
-    searchKeyword,
-    mapCategory,
-    methods: { handleInput, handleMapCategories },
-  } = useDiaryContext();
-  const { endSearchMode } = handleInput;
-
-  const { translateCategory } = handleMapCategories;
+  const mapCategory = useAtomValue(mapCategoryAtom);
+  const searchKeyword = useAtomValue(searchKeywordAtom);
+  const { endSearchMode } = useInputRef();
+  const { translateCategory } = useMapCategory();
   const category = translateCategory(mapCategory);
   const searchMessage = mapCategory ? `내 주변 ${category}` : searchKeyword;
 

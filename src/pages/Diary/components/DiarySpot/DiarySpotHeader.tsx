@@ -1,13 +1,14 @@
-import useDiaryContext from '../../hooks/Diary/useDiaryContext';
+// import useDiaryContext from '../../hooks/Diary/useDiaryContext';
+import { useAtomValue } from 'jotai';
 import useDiarySpotContext from '../../hooks/useDiarySpotContext';
 import { Button } from '~/components/common';
 import { DiaryHeader } from '~/pages/Diary/components/DiaryCommon';
+import { infoAtom } from '~/stores/diaryAtoms';
 
 const DiarySpotHeader = () => {
-  const diaryContext = useDiaryContext();
   const diarySpotContext = useDiarySpotContext();
   const { spotDiaries, deleteMode, handleDeleteMode } = diarySpotContext;
-  const { info } = diaryContext;
+  const info = useAtomValue(infoAtom);
   const deleteButtonLabel = deleteMode ? '삭제하기' : '선택 삭제';
 
   const deleteButtonStyle = deleteMode

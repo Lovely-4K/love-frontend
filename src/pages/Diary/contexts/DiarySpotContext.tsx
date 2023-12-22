@@ -1,9 +1,11 @@
+import { useAtomValue } from 'jotai';
 import { PropsWithChildren, createContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { SpotDiaries } from '~/types';
-import useDiaryContext from '../hooks/Diary/useDiaryContext';
+import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
 import useDeleteDiaryDetail from '~/services/diary/useDeleteDiaryDetail';
 import useGetSpotDiarys from '~/services/diary/useGetSpotDiarys';
+import { infoAtom } from '~/stores/diaryAtoms';
 
 interface DiarySpotContextProps {
   deleteMode: boolean;
@@ -19,15 +21,12 @@ export const DiarySpotContext = createContext<DiarySpotContextProps | null>(
 );
 
 const DiarySpotProvider = ({ children }: PropsWithChildren) => {
-  const {
-    info,
-    methods: { handleInfo },
-  } = useDiaryContext();
   const params = useParams();
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const [deleteMode, setDeleteMode] = useState(false);
-  const { closeInfo } = handleInfo;
+  const { closeInfo } = useInfoToggle();
   const { mutate: deleteMutate } = useDeleteDiaryDetail(params.spotId);
+  const info = useAtomValue(infoAtom);
 
   if (info === undefined || info.spotId !== params.spotId) {
     throw new Error('앗! 유효하지 않은 접근이에요!');

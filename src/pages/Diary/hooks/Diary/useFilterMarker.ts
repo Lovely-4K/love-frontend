@@ -1,7 +1,9 @@
+import { useAtomValue } from 'jotai';
 import { useEffect } from 'react';
 import { MarkerFilter } from '~/pages/Diary/contexts/DiaryMapContext';
-import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
+import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
 import useDiaryMap from '~/pages/Diary/hooks/DiaryMap/useDiaryMap';
+import { markersAtom, rootDiarysAtom } from '~/stores/diaryAtoms';
 
 const useFilterMarker = () => {
   const {
@@ -13,15 +15,11 @@ const useFilterMarker = () => {
     setYetMarkers,
   } = useDiaryMap();
 
-  const {
-    markers,
-    rootDiarys,
-    methods: { handleInfo },
-  } = useDiaryContext();
-  const { closeInfo } = handleInfo;
+  const { closeInfo } = useInfoToggle();
+  const diaryContent = useAtomValue(rootDiarysAtom);
+  const markers = useAtomValue(markersAtom);
 
   const handleFilterMarker = () => {
-    const diaryContent = rootDiarys;
     const gone = markers.filter((marker) => {
       return diaryContent.find(
         (diaryContent) => diaryContent.kakaoMapId === Number(marker.spotId),
@@ -66,7 +64,7 @@ const useFilterMarker = () => {
   };
   useEffect(() => {
     handleFilterMarker();
-  }, [markerFilter, markers, rootDiarys]);
+  }, [markerFilter, markers, diaryContent]);
 
   return {
     markerFilter,

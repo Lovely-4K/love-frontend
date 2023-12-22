@@ -1,13 +1,11 @@
+import { useSetAtom } from 'jotai';
 import * as React from 'react';
 import categoryType from '~/components/common/CategoryButton/CategoryTypes';
+import { diaryCategoryAtom } from '~/stores/diaryMainAtoms';
 
-interface useDiaryCategoriesProps {
-  setDiaryCategory: React.Dispatch<
-    React.SetStateAction<categoryType | undefined>
-  >;
-}
+const useDiaryCategories = () => {
+  const setDiaryCategory = useSetAtom(diaryCategoryAtom);
 
-const useDiaryCategories = ({ setDiaryCategory }: useDiaryCategoriesProps) => {
   const handleCategory = (category: categoryType | undefined) => {
     setDiaryCategory((prevCategory) => {
       if (category === prevCategory) {

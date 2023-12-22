@@ -1,16 +1,38 @@
+import { useAtom, useAtomValue } from 'jotai';
 import { DiaryContent } from '~/types';
-import useDiaryContext from '../../hooks/Diary/useDiaryContext';
-import useDiaryMainContext from '../../hooks/DiaryMain/useDiaryMainContext';
 import { DiaryPreviewItem } from '~/components/domain';
+import useClickPreview from '~/pages/Diary/hooks/Diary/useClickPreview';
 import useFilterMarker from '~/pages/Diary/hooks/Diary/useFilterMarker';
+import useDiaryMainObserver from '~/pages/Diary/hooks/DiaryMain/useDiaryMainObserver';
+import useGetDiarys from '~/services/diary/useGetDiarys';
+import {
+  diaryCategoryAtom,
+  diarysAtom,
+  pageAtom,
+  selectSortMethodAtom,
+} from '~/stores/diaryMainAtoms';
 
 const DiaryRecordsPreviews = () => {
-  const {
-    methods: { handleClickPreviews },
-  } = useDiaryContext();
-  const { diarys, recordRef } = useDiaryMainContext();
-  const { handleClickPreview } = handleClickPreviews;
+  const diarys = useAtomValue(diarysAtom);
+  const [page, setPage] = useAtom(pageAtom);
+  const diaryCategory = useAtomValue(diaryCategoryAtom);
+  const selectSortMethod = useAtomValue(selectSortMethodAtom);
+
+  const { handleClickPreview } = useClickPreview();
   const { setMarkerFilter } = useFilterMarker();
+
+  const { data: diaryResponse } = useGetDiarys({
+    page,
+    diaryCategory,
+    selectSortMethod,
+  });
+
+  const { recordRef } = useDiaryMainObserver({
+    diaryResponse,
+    page,
+    setPage,
+    diarys,
+  });
 
   const previewClick = (diary: DiaryContent) => {
     setMarkerFilter('ALL');

@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { useAtom } from 'jotai';
 import * as React from 'react';
 import { PropsWithChildren } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
@@ -6,7 +7,8 @@ import { colors, fontSize, screens } from '~/theme';
 import SideBarFallBack from './SideBarFallback';
 import { IconTopArrow } from '~/assets/icons';
 import { Loading } from '~/components/common';
-import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
+import useSideBar from '~/pages/Diary/hooks/Diary/useSideBar';
+import { sideBarToggleAtom } from '~/stores/diaryAtoms';
 
 const StyledDiarySideBar = styled.div`
   position: absolute;
@@ -108,8 +110,8 @@ const StyledArrowIcon = styled(IconTopArrow)`
 `;
 
 const DiarySideBar = ({ children }: PropsWithChildren) => {
-  const { methods, sideBarToggle } = useDiaryContext();
-  const { toggleSideBar } = methods.handleSideBar;
+  const sideBarToggle = useAtom(sideBarToggleAtom);
+  const { toggleSideBar } = useSideBar();
 
   return (
     <StyledDiarySideBar className={sideBarToggle ? 'open' : 'closed'}>

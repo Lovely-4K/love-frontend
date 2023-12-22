@@ -1,20 +1,25 @@
+import { useAtom, useAtomValue } from 'jotai';
 import { MapMarker } from 'react-kakao-maps-sdk';
 import { UserPosition } from '~/types';
-import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
 import useDiaryToMarker from '~/pages/Diary/hooks/Diary/useDiarytoMarker';
+import useHandleMarker from '~/pages/Diary/hooks/Diary/useHandleMarker';
+import useSearch from '~/pages/Diary/hooks/Diary/useMapLocation';
 import useDiaryMap from '~/pages/Diary/hooks/DiaryMap/useDiaryMap';
+import {
+  mapCategoryAtom,
+  rootDiarysAtom,
+  searchKeywordAtom,
+} from '~/stores/diaryAtoms';
 
 /** @todo: 추후 내 위치 마커와 장소 표시 마커 분리시키기 */
 const DiaryMapMarker = ({ userPosition }: UserPosition) => {
-  const {
-    rootDiarys,
-    searchKeyword,
-    mapCategory,
-    methods: { handleMarkers, handleSearch },
-  } = useDiaryContext();
-  const { useSearchLocation } = handleSearch;
+  const searchKeyword = useAtomValue(searchKeywordAtom);
+  const rootDiarys = useAtomValue(rootDiarysAtom);
+  const mapCategory = useAtomValue(mapCategoryAtom);
+
+  const { useSearchLocation } = useSearch();
   useSearchLocation(searchKeyword);
-  const { handleMarker } = handleMarkers;
+  const { handleMarker } = useHandleMarker();
   const diaryMarkers = useDiaryToMarker({ rootDiarys });
   const { yetMarkers, goneMarkers } = useDiaryMap();
 

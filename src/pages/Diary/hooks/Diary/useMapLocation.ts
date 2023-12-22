@@ -1,31 +1,22 @@
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
 import { MapMarker } from '~/types';
-import { DiaryContextProps } from '~/pages/Diary/contexts/DiaryContext';
 
-interface useSearchLocationProps {
-  map: DiaryContextProps['map'];
-  searchKeyword: DiaryContextProps['searchKeyword'];
-  handleInput: DiaryContextProps['methods']['handleInput'];
-  handleMapCategories: DiaryContextProps['methods']['handleMapCategories'];
-  handleLocation: DiaryContextProps['methods']['handleLocation'];
-  handleMarkers: DiaryContextProps['methods']['handleMarkers'];
-  handleInfo: DiaryContextProps['methods']['handleInfo'];
-}
+import useMapLocation from '~/pages/Diary/hooks/Diary/useCurrentLocation';
+import useHandleMarker from '~/pages/Diary/hooks/Diary/useHandleMarker';
+import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
+import useInputRef from '~/pages/Diary/hooks/Diary/useInputRef';
+import useMapCategory from '~/pages/Diary/hooks/Diary/useMapCategory';
+import { mapAtom, markersAtom, searchKeywordAtom } from '~/stores/diaryAtoms';
 
-const useSearch = ({
-  map,
-  searchKeyword,
-  handleInput,
-  handleMapCategories,
-  handleLocation,
-  handleMarkers,
-  handleInfo,
-}: useSearchLocationProps) => {
-  const { startSearchMode, setSearchKeyword } = handleInput;
-  const { resetMapCategory } = handleMapCategories;
-  const { useCurrentLocation } = handleLocation;
-  const { setMarkers } = handleMarkers;
-  const { closeInfo } = handleInfo;
+const useSearch = () => {
+  const { startSearchMode } = useInputRef();
+  const { resetMapCategory } = useMapCategory();
+  const { useCurrentLocation } = useMapLocation();
+  const { closeInfo } = useInfoToggle();
+  const map = useAtomValue(mapAtom);
+  const setMarkers = useSetAtom(markersAtom);
+  const [searchKeyword, setSearchKeyword] = useAtom(searchKeywordAtom);
 
   const useSearchLocation = (keyword: string) => {
     const { userPosition } = useCurrentLocation();
