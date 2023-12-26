@@ -7,13 +7,11 @@ import useDiaryMainObserver from '~/pages/Diary/hooks/DiaryMain/useDiaryMainObse
 import useGetDiarys from '~/services/diary/useGetDiarys';
 import {
   diaryCategoryAtom,
-  diarysAtom,
   pageAtom,
   selectSortMethodAtom,
 } from '~/stores/diaryMainAtoms';
 
 const DiaryRecordsPreviews = () => {
-  const diarys = useAtomValue(diarysAtom);
   const [page, setPage] = useAtom(pageAtom);
   const diaryCategory = useAtomValue(diaryCategoryAtom);
   const selectSortMethod = useAtomValue(selectSortMethodAtom);
@@ -26,6 +24,8 @@ const DiaryRecordsPreviews = () => {
     diaryCategory,
     selectSortMethod,
   });
+
+  const diarys = diaryResponse.content;
 
   const { recordRef } = useDiaryMainObserver({
     diaryResponse,
