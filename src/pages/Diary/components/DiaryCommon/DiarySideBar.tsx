@@ -113,8 +113,6 @@ const DiarySideBar = ({ children }: PropsWithChildren) => {
   const sideBarToggle = useAtomValue(sideBarToggleAtom);
   const { toggleSideBar } = useSideBar();
 
-  console.log(sideBarToggle);
-
   return (
     <StyledDiarySideBar className={sideBarToggle ? 'open' : 'closed'}>
       <StyledToggleButton onClick={toggleSideBar}>
