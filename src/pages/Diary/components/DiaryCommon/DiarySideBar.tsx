@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import * as React from 'react';
 import { PropsWithChildren } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
@@ -110,8 +110,10 @@ const StyledArrowIcon = styled(IconTopArrow)`
 `;
 
 const DiarySideBar = ({ children }: PropsWithChildren) => {
-  const sideBarToggle = useAtom(sideBarToggleAtom);
+  const sideBarToggle = useAtomValue(sideBarToggleAtom);
   const { toggleSideBar } = useSideBar();
+
+  console.log(sideBarToggle);
 
   return (
     <StyledDiarySideBar className={sideBarToggle ? 'open' : 'closed'}>
