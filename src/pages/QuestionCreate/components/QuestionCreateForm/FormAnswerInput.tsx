@@ -1,27 +1,27 @@
-import { useFormAnswerInput, useQuestionCreateForm } from '../../hooks';
+import { useAnswerInput, useForm } from '../../hooks';
 import { IconPlus } from '~/assets/icons';
 import { Button, Input } from '~/components/common';
 
 const FormAnswerInput = () => {
-  const { answers, handleAddAnswer } = useQuestionCreateForm();
-  const { value, handleInputChange, handleDeleteInputValue } =
-    useFormAnswerInput();
+  const { answers, handleAddAnswer } = useForm();
+  const { optionValue, handleInputNewOption, handleDeleteOption } =
+    useAnswerInput();
   const inputHideStyle = answers.length >= 4 ? 'hidden' : 'block';
 
   return (
     <form
       className="flex flex-col gap-3"
       onSubmit={(event) => {
-        handleAddAnswer(event, value);
-        handleDeleteInputValue();
+        handleAddAnswer(event, optionValue);
+        handleDeleteOption();
       }}
     >
       <label className="font-bold">어떤 선택지가 있나요?</label>
       <div className={`form-control w-full ${inputHideStyle}`}>
         <div className={`input-group`}>
           <Input
-            value={value}
-            onChange={handleInputChange}
+            value={optionValue}
+            onChange={handleInputNewOption}
             type="text"
             maxLength={20}
             required
@@ -31,8 +31,8 @@ const FormAnswerInput = () => {
           <Button
             className="btn w-fit"
             onClick={(event) => {
-              handleAddAnswer(event, value);
-              handleDeleteInputValue();
+              handleAddAnswer(event, optionValue);
+              handleDeleteOption();
             }}
           >
             <IconPlus className="h-5 w-5 stroke-grey-400" />

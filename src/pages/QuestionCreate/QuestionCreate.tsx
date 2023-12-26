@@ -1,6 +1,5 @@
 import { paths } from '~/router';
 import { QuestionCreateForm } from './components';
-import { QuestionCreateFormProvider } from './contexts/QuestionCreateFormContext';
 import { NavigationHeader } from '~/components/domain';
 
 const QuestionCreate = () => {
@@ -10,9 +9,7 @@ const QuestionCreate = () => {
         prevPageLink={paths.QUESTION}
         pageTitle="우리만의 질문 작성"
       />
-      <QuestionCreateFormProvider>
-        <QuestionCreateForm />
-      </QuestionCreateFormProvider>
+      <QuestionCreateForm />
     </div>
   );
 };

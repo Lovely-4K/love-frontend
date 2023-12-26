@@ -1,8 +1,8 @@
-import useQuestionCreateForm from '../../hooks/useQuestionCreateForm';
 import { Input } from '~/components/common';
+import { useForm } from '~/pages/QuestionCreate/hooks';
 
 const FormQuestion = () => {
-  const { question, handleQuestionChange } = useQuestionCreateForm();
+  const { question, handleInputQuestion } = useForm();
 
   return (
     <div className="flex flex-col gap-3">
@@ -11,7 +11,7 @@ const FormQuestion = () => {
       </label>
       <Input
         value={question}
-        onChange={handleQuestionChange}
+        onChange={handleInputQuestion}
         maxLength={100}
         required
         className="input-bottom border-grey-200  p-3 font-medium focus:outline-none"

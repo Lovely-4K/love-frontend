@@ -1,14 +1,14 @@
-import useQuestionCreateForm from '../../hooks/useQuestionCreateForm';
+import { useForm } from '../../hooks';
 import { IconClose } from '~/assets/icons';
 import { CircleButton } from '~/components/common';
 
-interface FormAnswerCardProps {
+interface FormAnswerItemProps {
   answer: string;
   index: number;
 }
 
-const FormAnswerCard = ({ answer, index }: FormAnswerCardProps) => {
-  const { handleDeleteButton } = useQuestionCreateForm();
+const FormAnswerItem = ({ answer, index }: FormAnswerItemProps) => {
+  const { handleDeleteButton } = useForm();
 
   return (
     <div className="card bg-grey-100">
@@ -31,4 +31,4 @@ const FormAnswerCard = ({ answer, index }: FormAnswerCardProps) => {
   );
 };
 
-export default FormAnswerCard;
+export default FormAnswerItem;
