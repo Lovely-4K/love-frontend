@@ -1,8 +1,17 @@
-import useQuestionData from '../../hooks/common/useQuestionData';
+import useLoadTodayQuestion from '../../hooks/common/useLoadTodayQuestion';
 import QuestionChatItem from './ChatItem';
+import { Loading } from '~/components/common';
 
 const QuestionChat = () => {
-  const { coupleAnswer } = useQuestionData();
+  const { coupleAnswer } = useLoadTodayQuestion();
+
+  if (coupleAnswer === undefined) {
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
+  }
   const { myAnswer, myProfile, opponentAnswer, opponentProfile } = coupleAnswer;
 
   return (

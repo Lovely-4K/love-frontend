@@ -1,12 +1,24 @@
 import { useEffect } from 'react';
-import { useCreateTodayQuestion } from '~/services/question';
+import {
+  useCreateTodayQuestion,
+  useGetQuestion,
+  useGetCoupleAnswer,
+} from '~/services/question';
 
 const useLoadTodayQuestion = () => {
-  const { mutate: mutateCreateTodayQuestion } = useCreateTodayQuestion();
+  const {
+    mutate: mutateCreateTodayQuestion,
+    isSuccess,
+    isError,
+  } = useCreateTodayQuestion();
+  const { data: todayQuestion } = useGetQuestion(isSuccess || isError);
+  const { data: coupleAnswer } = useGetCoupleAnswer(todayQuestion);
 
   useEffect(() => {
     mutateCreateTodayQuestion();
   }, []);
+
+  return { todayQuestion, coupleAnswer };
 };
 
 export default useLoadTodayQuestion;

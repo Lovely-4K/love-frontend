@@ -4,8 +4,8 @@ import { QuestionFormResponse, QuestionHistoryDetail } from '~/types';
 import { useUpdateUserAnswer } from '~/services/question';
 
 interface useFormAnswersParams {
-  todayQuestion: QuestionFormResponse;
-  coupleAnswer: QuestionHistoryDetail;
+  todayQuestion: QuestionFormResponse | undefined;
+  coupleAnswer: QuestionHistoryDetail | undefined;
 }
 
 const useFormAnswers = ({
@@ -17,19 +17,19 @@ const useFormAnswers = ({
   const { mutate: mutateUserAnswer } = useUpdateUserAnswer();
 
   const [selectedAnswer, setSelectedAnswer] = useState(
-    coupleAnswer.myChoiceIndex ?? -1,
+    coupleAnswer?.myChoiceIndex ?? -1,
   );
 
-  const { firstChoice, secondChoice, thirdChoice, fourthChoice } =
-    todayQuestion;
   const formAnswers = [
-    firstChoice,
-    secondChoice,
-    thirdChoice,
-    fourthChoice,
+    todayQuestion?.firstChoice,
+    todayQuestion?.secondChoice,
+    todayQuestion?.thirdChoice,
+    todayQuestion?.fourthChoice,
   ].filter((answer) => !!answer);
 
   const handleUpdateUserAnswer = () => {
+    if (todayQuestion === undefined) return;
+
     const { questionId } = todayQuestion;
 
     mutateUserAnswer({

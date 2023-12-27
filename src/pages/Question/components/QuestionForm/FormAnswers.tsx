@@ -31,6 +31,7 @@ const FormAnswers = ({ todayQuestion, coupleAnswer }: FormAnswersProps) => {
     handleUpdateUserAnswer,
     showToast,
   } = useFormAnswers({ todayQuestion, coupleAnswer });
+
   const buttonDisabledStatus =
     selectedAnswer === -1 || coupleAnswer.myChoiceIndex === selectedAnswer;
 

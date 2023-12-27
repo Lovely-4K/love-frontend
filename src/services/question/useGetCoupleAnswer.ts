@@ -1,5 +1,5 @@
-import { useSuspenseQuery, useQuery } from '@tanstack/react-query';
-import { QuestionHistoryDetail } from '~/types';
+import { useQuery } from '@tanstack/react-query';
+import { QuestionHistoryDetail, QuestionFormResponse } from '~/types';
 import apiClient from '~/api/apiClient';
 
 const getCoupleAnswer = async (
@@ -17,15 +17,16 @@ export const useGetCoupleAnswerHistory = (
 ) => {
   return useQuery({
     enabled: opendStatus,
-    queryKey: ['questionHistoryAnswer', questionId],
+    queryKey: ['coupleAnswerHistory', questionId],
     queryFn: () => getCoupleAnswer(questionId),
   });
 };
 
-const useGetCoupleAnswer = (questionId: number) => {
-  return useSuspenseQuery({
-    queryKey: ['coupleAnswer', questionId],
-    queryFn: () => getCoupleAnswer(questionId),
+const useGetCoupleAnswer = (question: QuestionFormResponse | undefined) => {
+  return useQuery({
+    enabled: question !== undefined,
+    queryKey: ['coupleAnswer', question?.questionId],
+    queryFn: () => getCoupleAnswer(question?.questionId as number),
   });
 };
 
