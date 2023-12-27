@@ -1,10 +1,15 @@
+import { useAtomValue, useSetAtom } from 'jotai';
 import { Input } from '~/components/common';
-import { useCalendarSideBar } from '~/pages/Calendar/hooks';
+import {
+  editScheduleInfoAtom,
+  setEditScheduleInfoAtom,
+} from '~/pages/Calendar/stores/calendarAtom';
 
 const EditInput = () => {
-  const { scheduleInfo, handleEditInput } = useCalendarSideBar();
+  const editScheduleInfo = useAtomValue(editScheduleInfoAtom);
+  const setEditScheduleInfo = useSetAtom(setEditScheduleInfoAtom);
 
-  const { scheduleDetails } = scheduleInfo;
+  const { scheduleDetails } = editScheduleInfo;
 
   return (
     <Input
@@ -13,7 +18,7 @@ const EditInput = () => {
       placeholder="내용 입력"
       value={scheduleDetails}
       name="scheduleDetails"
-      onChange={handleEditInput}
+      onChange={setEditScheduleInfo}
     />
   );
 };

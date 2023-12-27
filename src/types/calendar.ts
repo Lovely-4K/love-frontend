@@ -21,6 +21,6 @@ interface CalendarSchedule {
   schedules: Schedule[];
 }
 
-type EditSchedule = Omit<Schedule, 'calendarId' | 'ownerId'>;
+type EditSchedule = Omit<Schedule, 'ownerId' | 'calendarId'>;
 
 export type { CalendarSchedule, Schedule, ColorInfo, EditSchedule };

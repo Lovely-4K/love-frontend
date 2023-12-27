@@ -1,11 +1,16 @@
 import styled from '@emotion/styled';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { colors, screens } from '~/theme';
-import { useCalendarSideBar } from '../../../hooks';
 import EditDate from './EditDate';
 import EditInput from './EditInput';
 import EditOwner from './EditOwner';
 import EditType from './EditType';
 import { Button } from '~/components/common';
+import {
+  closeScheduleEditAtom,
+  editScheduleInfoAtom,
+} from '~/pages/Calendar/stores/calendarAtom';
+import { useCreateSchedule, useEditSchedule } from '~/services/calendar';
 
 const StyledDivider = styled.div`
   display: flex;
@@ -30,7 +35,22 @@ const StyledDivider = styled.div`
 `;
 
 const SideBarEditSchedule = () => {
-  const { closeEditSchedule, saveEditSchedule } = useCalendarSideBar();
+  const closeScheduleEdit = useSetAtom(closeScheduleEditAtom);
+  const editScheduleInfo = useAtomValue(editScheduleInfoAtom);
+  const { mutate: createSchedule } = useCreateSchedule();
+  const { mutate: patchSchedule } = useEditSchedule();
+
+  const saveEditSchedule = () => {
+    if (editScheduleInfo.calendarId !== -1) {
+      patchSchedule({
+        schedule: editScheduleInfo,
+        scheduleId: editScheduleInfo.calendarId,
+      });
+    } else {
+      createSchedule({ schedule: editScheduleInfo });
+    }
+    closeScheduleEdit();
+  };
 
   return (
     <div>
@@ -44,7 +64,7 @@ const SideBarEditSchedule = () => {
       <StyledDivider />
       <div className="flex justify-end gap-2 px-2">
         <Button
-          onClick={closeEditSchedule}
+          onClick={closeScheduleEdit}
           size="small"
           className="border border-grey-200 bg-base-white"
         >

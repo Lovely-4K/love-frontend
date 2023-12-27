@@ -1,8 +1,12 @@
 import styled from '@emotion/styled';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { Fragment } from 'react';
 import { scheduleColors } from '~/constants';
 import { colors } from '~/theme';
-import { useCalendarSideBar } from '~/pages/Calendar/hooks';
+import {
+  editScheduleInfoAtom,
+  setEditScheduleInfoAtom,
+} from '~/pages/Calendar/stores/calendarAtom';
 
 const SCHEDULE_TYPE = {
   DATE: '데이트',
@@ -33,9 +37,10 @@ const StyledLabel = styled.label`
 `;
 
 const EditType = () => {
-  const { handleEditInput, scheduleInfo } = useCalendarSideBar();
+  const editScheduleInfo = useAtomValue(editScheduleInfoAtom);
+  const setEditScheduleInfo = useSetAtom(setEditScheduleInfoAtom);
 
-  const { scheduleType } = scheduleInfo;
+  const { scheduleType } = editScheduleInfo;
   const personalSchedule = scheduleType === 'PERSONAL';
 
   return (
@@ -49,7 +54,7 @@ const EditType = () => {
                 type="radio"
                 name="scheduleType"
                 id={type}
-                onChange={handleEditInput}
+                onChange={setEditScheduleInfo}
                 value={type}
                 checked={type === scheduleType}
                 disabled={personalSchedule}

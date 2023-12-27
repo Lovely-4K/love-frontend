@@ -1,6 +1,10 @@
 import styled from '@emotion/styled';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { colors } from '~/theme';
-import { useCalendarSideBar } from '~/pages/Calendar/hooks';
+import {
+  editScheduleInfoAtom,
+  setEditScheduleInfoAtom,
+} from '~/pages/Calendar/stores/calendarAtom';
 
 const StyledSelect = styled.div`
   display: flex;
@@ -27,9 +31,10 @@ const StyledSelect = styled.div`
 `;
 
 const EditOwner = () => {
-  const { handleEditInput, scheduleInfo } = useCalendarSideBar();
+  const editScheduleInfo = useAtomValue(editScheduleInfoAtom);
+  const setEditScheduleInfo = useSetAtom(setEditScheduleInfoAtom);
 
-  const { scheduleType } = scheduleInfo;
+  const { scheduleType } = editScheduleInfo;
 
   return (
     <>
@@ -40,7 +45,7 @@ const EditOwner = () => {
           name="ownerType"
           id="PERSONAL"
           value="PERSONAL"
-          onChange={handleEditInput}
+          onChange={setEditScheduleInfo}
           checked={scheduleType === 'PERSONAL'}
         />
         <label htmlFor="PERSONAL">나</label>
@@ -49,7 +54,7 @@ const EditOwner = () => {
           name="ownerType"
           id="COUPLE"
           value="COUPLE"
-          onChange={handleEditInput}
+          onChange={setEditScheduleInfo}
           checked={scheduleType !== 'PERSONAL'}
         />
         <label htmlFor="COUPLE">우리</label>
