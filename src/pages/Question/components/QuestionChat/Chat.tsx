@@ -7,7 +7,7 @@ const QuestionChat = () => {
 
   if (coupleAnswer === undefined) {
     return (
-      <div>
+      <div className="flex h-1/2 w-full items-center justify-center">
         <Loading />
       </div>
     );

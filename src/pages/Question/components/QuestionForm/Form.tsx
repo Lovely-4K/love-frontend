@@ -8,7 +8,7 @@ const QuestionForm = () => {
   const { todayQuestion, coupleAnswer } = useLoadTodayQuestion();
   if (todayQuestion === undefined || coupleAnswer === undefined) {
     return (
-      <div>
+      <div className="flex h-1/2 w-full items-center justify-center">
         <Loading />
       </div>
     );
