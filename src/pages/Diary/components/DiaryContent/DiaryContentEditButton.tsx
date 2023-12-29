@@ -1,13 +1,7 @@
-// import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
 import { useAtomValue } from 'jotai';
 import { Button } from '~/components/common';
 import useDiaryContents from '~/pages/Diary/hooks/DiaryContent/useDiaryContents';
-import {
-  editDiaryAtom,
-  editableAtom,
-  loadingAtom,
-  originDiaryAtom,
-} from '~/stores/diaryContentAtoms';
+import { editableAtom, loadingAtom } from '~/stores/diaryContentAtoms';
 const DiaryContentEditButton = () => {
   const editable = useAtomValue(editableAtom);
   const loading = useAtomValue(loadingAtom);

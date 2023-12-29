@@ -2,7 +2,6 @@ import type categoryType from '~/components/common/CategoryButton/CategoryTypes'
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
 import { MapMarker } from '~/types';
-import useHandleMarker from '~/pages/Diary/hooks/Diary/useHandleMarker';
 import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
 import useInputRef from '~/pages/Diary/hooks/Diary/useInputRef';
 import {

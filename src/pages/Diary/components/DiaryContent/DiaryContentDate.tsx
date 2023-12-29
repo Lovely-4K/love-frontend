@@ -6,7 +6,6 @@ import {
   editableAtom,
   originDiaryAtom,
 } from '~/stores/diaryContentAtoms';
-// import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
 
 const DiaryContentDate = memo(() => {
   const editable = useAtomValue(editableAtom);

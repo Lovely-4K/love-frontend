@@ -1,16 +1,12 @@
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { MapMarker } from 'react-kakao-maps-sdk';
 import { UserPosition } from '~/types';
 import useDiaryToMarker from '~/pages/Diary/hooks/Diary/useDiarytoMarker';
 import useHandleMarker from '~/pages/Diary/hooks/Diary/useHandleMarker';
 import useSearch from '~/pages/Diary/hooks/Diary/useMapLocation';
-// import useDiaryMap from '~/pages/Diary/hooks/DiaryMap/useDiaryMap';
+
 import useGetDiarys from '~/services/diary/useGetDiarys';
-import {
-  mapCategoryAtom,
-  rootDiarysAtom,
-  searchKeywordAtom,
-} from '~/stores/diaryAtoms';
+import { mapCategoryAtom, searchKeywordAtom } from '~/stores/diaryAtoms';
 import {
   diaryCategoryAtom,
   pageAtom,
@@ -32,7 +28,6 @@ const DiaryMapMarker = ({ userPosition }: UserPosition) => {
 
   const rootDiarys = diaryResponse.content;
   const mapCategory = useAtomValue(mapCategoryAtom);
-
   const { useSearchLocation } = useSearch();
   useSearchLocation(searchKeyword);
   const { handleMarker } = useHandleMarker();

@@ -1,4 +1,4 @@
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtomValue } from 'jotai';
 import SearchResultsItems from '~/pages/Diary/components/DiaryMain/SearchResultsItems';
 import useInputRef from '~/pages/Diary/hooks/Diary/useInputRef';
 import useMapCategory from '~/pages/Diary/hooks/Diary/useMapCategory';

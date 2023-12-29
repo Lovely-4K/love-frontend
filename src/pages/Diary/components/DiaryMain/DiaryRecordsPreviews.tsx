@@ -15,7 +15,6 @@ const DiaryRecordsPreviews = () => {
   const [page, setPage] = useAtom(pageAtom);
   const diaryCategory = useAtomValue(diaryCategoryAtom);
   const selectSortMethod = useAtomValue(selectSortMethodAtom);
-
   const { handleClickPreview } = useClickPreview();
   const { setMarkerFilter } = useFilterMarker();
 

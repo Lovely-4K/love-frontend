@@ -1,4 +1,3 @@
-// import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
 import { useAtomValue } from 'jotai';
 import { Rating } from '~/components/domain';
 import useDiaryContents from '~/pages/Diary/hooks/DiaryContent/useDiaryContents';

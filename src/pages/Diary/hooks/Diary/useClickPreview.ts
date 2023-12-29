@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { paths } from '~/router';
 import { DiaryContent } from '~/types';
 import useMapLocation from '~/pages/Diary/hooks/Diary/useCurrentLocation';
-import useHandleMarker from '~/pages/Diary/hooks/Diary/useHandleMarker';
 import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
 import useInputRef from '~/pages/Diary/hooks/Diary/useInputRef';
 import useMapCategory from '~/pages/Diary/hooks/Diary/useMapCategory';

@@ -1,5 +1,4 @@
 import { useSetAtom } from 'jotai';
-import * as React from 'react';
 import categoryType from '~/components/common/CategoryButton/CategoryTypes';
 import { diaryCategoryAtom } from '~/stores/diaryMainAtoms';
 

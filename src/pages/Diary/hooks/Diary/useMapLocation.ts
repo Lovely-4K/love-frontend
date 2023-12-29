@@ -1,9 +1,7 @@
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
 import { MapMarker } from '~/types';
-
 import useMapLocation from '~/pages/Diary/hooks/Diary/useCurrentLocation';
-import useHandleMarker from '~/pages/Diary/hooks/Diary/useHandleMarker';
 import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
 import useInputRef from '~/pages/Diary/hooks/Diary/useInputRef';
 import useMapCategory from '~/pages/Diary/hooks/Diary/useMapCategory';
@@ -71,7 +69,6 @@ const useSearch = () => {
             } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
               startSearchMode();
               setMarkers([]);
-            } else if (status === kakao.maps.services.Status.ERROR) {
             }
           },
           { page },

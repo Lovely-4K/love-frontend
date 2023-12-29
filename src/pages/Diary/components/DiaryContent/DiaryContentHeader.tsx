@@ -1,9 +1,7 @@
 import { useAtomValue } from 'jotai';
 import { memo } from 'react';
 import { paths } from '~/router';
-// import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
 import { DiaryHeader } from '~/pages/Diary/components/DiaryCommon';
-// import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
 import useDiaryContents from '~/pages/Diary/hooks/DiaryContent/useDiaryContents';
 import { infoAtom } from '~/stores/diaryAtoms';
 import {

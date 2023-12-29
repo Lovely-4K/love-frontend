@@ -7,8 +7,6 @@ interface DiaryContentProps {
 }
 
 const DiaryContent = ({ mode }: DiaryContentProps) => {
-  console.log(mode, 'hi');
-
   return (
     // <DiaryContentProvider mode={mode}>
     <>
