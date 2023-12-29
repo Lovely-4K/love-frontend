@@ -1,11 +1,21 @@
-import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
+// import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
+import { useAtomValue } from 'jotai';
 import DiaryContentImgs from './DiaryContentImgs';
 import DiaryContentText from './DiaryContentText';
+import useDiaryContents from '~/pages/Diary/hooks/DiaryContent/useDiaryContents';
+import {
+  editDiaryAtom,
+  editableAtom,
+  originDiaryAtom,
+} from '~/stores/diaryContentAtoms';
 
 const DiaryContentDetail = () => {
-  const { editable, diary, methods } = useDiaryContentContext();
+  const editable = useAtomValue(editableAtom);
+  const editDiary = useAtomValue(editDiaryAtom);
+  const originDiary = useAtomValue(originDiaryAtom);
+  const diary = editable ? editDiary : originDiary;
   const { myText, opponentText } = diary;
-  const { handleChangeMyText } = methods;
+  const { handleChangeMyText } = useDiaryContents();
 
   return (
     <div className="flex flex-col gap-2">

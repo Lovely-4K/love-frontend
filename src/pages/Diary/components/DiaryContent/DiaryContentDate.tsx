@@ -1,10 +1,20 @@
+import { useAtomValue } from 'jotai';
 import { memo } from 'react';
-import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
+import useDiaryContents from '~/pages/Diary/hooks/DiaryContent/useDiaryContents';
+import {
+  editDiaryAtom,
+  editableAtom,
+  originDiaryAtom,
+} from '~/stores/diaryContentAtoms';
+// import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
 
 const DiaryContentDate = memo(() => {
-  const { diary, editable, methods } = useDiaryContentContext();
+  const editable = useAtomValue(editableAtom);
+  const editDiary = useAtomValue(editDiaryAtom);
+  const originDiary = useAtomValue(originDiaryAtom);
+  const diary = editable ? editDiary : originDiary;
   const { datingDay } = diary;
-  const { handleChangeDatingDay } = methods;
+  const { handleChangeDatingDay } = useDiaryContents();
 
   return (
     <div className="flex flex-col gap-2">

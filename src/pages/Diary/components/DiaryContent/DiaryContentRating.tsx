@@ -1,10 +1,20 @@
-import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
+// import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
+import { useAtomValue } from 'jotai';
 import { Rating } from '~/components/domain';
+import useDiaryContents from '~/pages/Diary/hooks/DiaryContent/useDiaryContents';
+import {
+  editDiaryAtom,
+  editableAtom,
+  originDiaryAtom,
+} from '~/stores/diaryContentAtoms';
 
 const DiaryContentRating = () => {
-  const { diary, editable, methods } = useDiaryContentContext();
+  const editable = useAtomValue(editableAtom);
+  const editDiary = useAtomValue(editDiaryAtom);
+  const originDiary = useAtomValue(originDiaryAtom);
+  const diary = editable ? editDiary : originDiary;
   const { score } = diary;
-  const { handleChangeScore } = methods;
+  const { handleChangeScore } = useDiaryContents();
 
   return (
     <div className="flex flex-col gap-2">

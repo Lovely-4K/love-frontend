@@ -1,10 +1,12 @@
-import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
+// import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
+import { useAtomValue } from 'jotai';
 import { IconImageGallery } from '~/assets/icons';
+import useDiaryContents from '~/pages/Diary/hooks/DiaryContent/useDiaryContents';
+import { imgUrlAtom } from '~/stores/diaryContentAtoms';
 
 const DiaryImgsUpload = () => {
-  const diaryContentContext = useDiaryContentContext();
-  const { imgUrl, methods } = diaryContentContext;
-  const { handleAddImages, handleDeleteImage } = methods;
+  const imgUrl = useAtomValue(imgUrlAtom);
+  const { handleAddImages, handleDeleteImage } = useDiaryContents();
 
   const imageLength = imgUrl === undefined ? 0 : imgUrl.length;
 

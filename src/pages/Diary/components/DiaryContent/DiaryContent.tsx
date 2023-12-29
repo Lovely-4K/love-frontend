@@ -1,5 +1,5 @@
-import DiaryContentProvider from '../../contexts/DiaryContent/DiaryContentContext';
-import ReadProvider from '../../contexts/DiaryContent/ReadContext';
+// import DiaryContentProvider from '../../contexts/DiaryContent/DiaryContentContext';
+// import ReadProvider from '../../contexts/DiaryContent/ReadContext';
 import DiaryContentBody from './DiaryContentBody';
 
 interface DiaryContentProps {
@@ -7,16 +7,20 @@ interface DiaryContentProps {
 }
 
 const DiaryContent = ({ mode }: DiaryContentProps) => {
+  console.log(mode, 'hi');
+
   return (
-    <DiaryContentProvider mode={mode}>
+    // <DiaryContentProvider mode={mode}>
+    <>
       {mode === 'edit' ? (
         <DiaryContentBody />
       ) : (
-        <ReadProvider>
-          <DiaryContentBody />
-        </ReadProvider>
+        // <ReadProvider>
+        <DiaryContentBody />
+        // </ReadProvider>
       )}
-    </DiaryContentProvider>
+    </>
+    // </DiaryContentProvider>
   );
 };
 

@@ -1,10 +1,18 @@
-import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
+// import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
+import { useAtomValue } from 'jotai';
 import { Carousel } from '~/components/domain';
+import {
+  editDiaryAtom,
+  editableAtom,
+  originDiaryAtom,
+} from '~/stores/diaryContentAtoms';
 import { changeImageType } from '~/utils/Diary';
 
 const DiaryImgsCarousel = () => {
-  const diaryContentContext = useDiaryContentContext();
-  const { diary } = diaryContentContext;
+  const editable = useAtomValue(editableAtom);
+  const editDiary = useAtomValue(editDiaryAtom);
+  const originDiary = useAtomValue(originDiaryAtom);
+  const diary = editable ? editDiary : originDiary;
   const { pictures } = diary;
   const imgUrl = changeImageType(pictures);
 

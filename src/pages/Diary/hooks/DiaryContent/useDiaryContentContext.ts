@@ -1,14 +1,14 @@
-import { useContext } from 'react';
-import { DiaryContentContext } from '~/pages/Diary/contexts/DiaryContent/DiaryContentContext';
+// import { useContext } from 'react';
+// import { DiaryContentContext } from '~/pages/Diary/contexts/DiaryContent/DiaryContentContext';
 
-const useDiaryContentContext = () => {
-  const diaryContentContext = useContext(DiaryContentContext);
+// const useDiaryContentContext = () => {
+//   const diaryContentContext = useContext(DiaryContentContext);
 
-  if (diaryContentContext === null) {
-    throw new Error('not declared useDiaryContentContext');
-  }
+//   if (diaryContentContext === null) {
+//     throw new Error('not declared useDiaryContentContext');
+//   }
 
-  return diaryContentContext;
-};
+//   return diaryContentContext;
+// };
 
-export default useDiaryContentContext;
+// export default useDiaryContentContext;

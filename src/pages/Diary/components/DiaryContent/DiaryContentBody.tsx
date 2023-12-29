@@ -1,15 +1,27 @@
-import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
+// import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
+import { useAtomValue } from 'jotai';
+import { useToast } from '~/hooks';
 import DiaryContentDate from './DiaryContentDate';
 import DiaryContentDetail from './DiaryContentDetail';
 import DiaryContentEditButton from './DiaryContentEditButton';
 import DiaryContentHeader from './DiaryContentHeader';
 import DiaryContentRating from './DiaryContentRating';
 import { DiaryCategories } from '~/pages/Diary/components/DiaryCommon';
+import useDiaryContents from '~/pages/Diary/hooks/DiaryContent/useDiaryContents';
+import {
+  editDiaryAtom,
+  editableAtom,
+  originDiaryAtom,
+} from '~/stores/diaryContentAtoms';
 
 const DiaryContentBody = () => {
-  const { diary, editable, showToast, methods } = useDiaryContentContext();
+  const editable = useAtomValue(editableAtom);
+  const editDiary = useAtomValue(editDiaryAtom);
+  const originDiary = useAtomValue(originDiaryAtom);
+  const diary = editable ? editDiary : originDiary;
   const { category } = diary;
-  const { handleSubmitForm, handleChangeCategory } = methods;
+  const { showToast } = useToast();
+  const { handleSubmitForm, handleChangeCategory } = useDiaryContents();
 
   return (
     <div className="flex w-full flex-col gap-6 overflow-y-auto overflow-x-hidden">

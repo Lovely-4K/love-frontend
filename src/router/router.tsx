@@ -47,14 +47,14 @@ const router = createBrowserRouter([
                     path: PATHS.DIARY.SPOT,
                     element: <DiarySpot />,
                   },
-                  // {
-                  //   path: PATHS.DIARY.DIARY_DETAIL,
-                  //   element: <DiaryContent mode={'read'} />,
-                  // },
-                  // {
-                  //   path: PATHS.DIARY.DIARY_CREATE,
-                  //   element: <DiaryContent mode={'edit'} />,
-                  // },
+                  {
+                    path: PATHS.DIARY.DIARY_DETAIL,
+                    element: <DiaryContent mode={'read'} />,
+                  },
+                  {
+                    path: PATHS.DIARY.DIARY_CREATE,
+                    element: <DiaryContent mode={'edit'} />,
+                  },
                 ],
               },
               {
