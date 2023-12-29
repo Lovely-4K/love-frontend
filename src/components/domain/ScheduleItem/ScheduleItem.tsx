@@ -3,6 +3,7 @@ import { colors, fontSize, screens } from '~/theme';
 import type { Schedule } from '~/types';
 import { IconTrash } from '~/assets/icons';
 import { useDeleteSchedule } from '~/services/calendar';
+
 interface ScheduleItemProps extends React.HTMLAttributes<HTMLDivElement> {
   customColor: string;
   schedule: Schedule;
@@ -45,11 +46,13 @@ const ScheduleDate = styled.span`
   padding-right: 0.25rem;
   color: ${colors.grey[500]};
 `;
+
 const ScheduleTitle = styled.span<StyledProps>`
   width: 100%;
   font-size: ${fontSize.base};
   color: ${({ customColor }) => customColor};
 `;
+
 const ScheduleItem = ({
   customColor,
   schedule,
