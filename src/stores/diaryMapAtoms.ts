@@ -9,6 +9,6 @@ export type MapCategory =
   | undefined;
 export type MarkerFilter = 'ALL' | 'GONE' | 'YET' | '';
 
-export const markerFilter = atom<MarkerFilter>('ALL');
-export const goneMarkers = atom<MapMarker[]>([]);
-export const yetMarkers = atom<MapMarker[]>([]);
+export const markerFilterAtom = atom<MarkerFilter>('ALL');
+export const goneMarkersAtom = atom<MapMarker[]>([]);
+export const yetMarkersAtom = atom<MapMarker[]>([]);

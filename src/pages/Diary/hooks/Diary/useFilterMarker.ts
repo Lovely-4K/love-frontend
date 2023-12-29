@@ -1,19 +1,19 @@
-import { useAtomValue } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { useEffect } from 'react';
-import { MarkerFilter } from '~/pages/Diary/contexts/DiaryMapContext';
 import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
-import useDiaryMap from '~/pages/Diary/hooks/DiaryMap/useDiaryMap';
+
 import { markersAtom, rootDiarysAtom } from '~/stores/diaryAtoms';
+import {
+  MarkerFilter,
+  goneMarkersAtom,
+  markerFilterAtom,
+  yetMarkersAtom,
+} from '~/stores/diaryMapAtoms';
 
 const useFilterMarker = () => {
-  const {
-    markerFilter,
-    setMarkerFilter,
-    goneMarkers,
-    setGoneMarkers,
-    yetMarkers,
-    setYetMarkers,
-  } = useDiaryMap();
+  const [markerFilter, setMarkerFilter] = useAtom(markerFilterAtom);
+  const [goneMarkers, setGoneMarkers] = useAtom(goneMarkersAtom);
+  const [yetMarkers, setYetMarkers] = useAtom(yetMarkersAtom);
 
   const { closeInfo } = useInfoToggle();
   const diaryContent = useAtomValue(rootDiarysAtom);

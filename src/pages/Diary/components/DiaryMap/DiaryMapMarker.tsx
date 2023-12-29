@@ -4,12 +4,13 @@ import { UserPosition } from '~/types';
 import useDiaryToMarker from '~/pages/Diary/hooks/Diary/useDiarytoMarker';
 import useHandleMarker from '~/pages/Diary/hooks/Diary/useHandleMarker';
 import useSearch from '~/pages/Diary/hooks/Diary/useMapLocation';
-import useDiaryMap from '~/pages/Diary/hooks/DiaryMap/useDiaryMap';
+// import useDiaryMap from '~/pages/Diary/hooks/DiaryMap/useDiaryMap';
 import {
   mapCategoryAtom,
   rootDiarysAtom,
   searchKeywordAtom,
 } from '~/stores/diaryAtoms';
+import { goneMarkersAtom, yetMarkersAtom } from '~/stores/diaryMapAtoms';
 
 /** @todo: 추후 내 위치 마커와 장소 표시 마커 분리시키기 */
 const DiaryMapMarker = ({ userPosition }: UserPosition) => {
@@ -21,7 +22,8 @@ const DiaryMapMarker = ({ userPosition }: UserPosition) => {
   useSearchLocation(searchKeyword);
   const { handleMarker } = useHandleMarker();
   const diaryMarkers = useDiaryToMarker({ rootDiarys });
-  const { yetMarkers, goneMarkers } = useDiaryMap();
+  const yetMarkers = useAtomValue(yetMarkersAtom);
+  const goneMarkers = useAtomValue(goneMarkersAtom);
 
   return (
     <>
