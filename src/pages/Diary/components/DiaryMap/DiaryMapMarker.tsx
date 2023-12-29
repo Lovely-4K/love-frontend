@@ -5,17 +5,32 @@ import useDiaryToMarker from '~/pages/Diary/hooks/Diary/useDiarytoMarker';
 import useHandleMarker from '~/pages/Diary/hooks/Diary/useHandleMarker';
 import useSearch from '~/pages/Diary/hooks/Diary/useMapLocation';
 // import useDiaryMap from '~/pages/Diary/hooks/DiaryMap/useDiaryMap';
+import useGetDiarys from '~/services/diary/useGetDiarys';
 import {
   mapCategoryAtom,
   rootDiarysAtom,
   searchKeywordAtom,
 } from '~/stores/diaryAtoms';
+import {
+  diaryCategoryAtom,
+  pageAtom,
+  selectSortMethodAtom,
+} from '~/stores/diaryMainAtoms';
 import { goneMarkersAtom, yetMarkersAtom } from '~/stores/diaryMapAtoms';
 
 /** @todo: 추후 내 위치 마커와 장소 표시 마커 분리시키기 */
 const DiaryMapMarker = ({ userPosition }: UserPosition) => {
   const searchKeyword = useAtomValue(searchKeywordAtom);
-  const rootDiarys = useAtomValue(rootDiarysAtom);
+  const page = useAtomValue(pageAtom);
+  const diaryCategory = useAtomValue(diaryCategoryAtom);
+  const selectSortMethod = useAtomValue(selectSortMethodAtom);
+  const { data: diaryResponse } = useGetDiarys({
+    page,
+    diaryCategory,
+    selectSortMethod,
+  });
+
+  const rootDiarys = diaryResponse.content;
   const mapCategory = useAtomValue(mapCategoryAtom);
 
   const { useSearchLocation } = useSearch();
