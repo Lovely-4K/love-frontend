@@ -1,4 +1,5 @@
 import { useToast } from '~/hooks';
+import useDiaryContentData from '../../hooks/DiaryContent/useDiaryContentData';
 import DiaryContentDate from './DiaryContentDate';
 import DiaryContentDetail from './DiaryContentDetail';
 import DiaryContentEditButton from './DiaryContentEditButton';
@@ -6,8 +7,9 @@ import DiaryContentHeader from './DiaryContentHeader';
 import DiaryContentRating from './DiaryContentRating';
 import DiaryContentToast from './DiaryContentToast';
 
-const DiaryContentBody = () => {
+const DiaryContent = () => {
   const { showToast } = useToast();
+  useDiaryContentData();
 
   return (
     <div className="flex w-full flex-col gap-6 overflow-y-auto overflow-x-hidden">
@@ -18,7 +20,6 @@ const DiaryContentBody = () => {
           <DiaryContentDate />
           <DiaryContentRating />
         </div>
-        // t
         <DiaryContentDetail />
         <DiaryContentEditButton />
       </div>
@@ -26,4 +27,4 @@ const DiaryContentBody = () => {
   );
 };
 
-export default DiaryContentBody;
+export default DiaryContent;
