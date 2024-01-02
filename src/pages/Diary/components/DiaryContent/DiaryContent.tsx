@@ -1,25 +1,29 @@
-// import DiaryContentProvider from '../../contexts/DiaryContent/DiaryContentContext';
-// import ReadProvider from '../../contexts/DiaryContent/ReadContext';
-import DiaryContentBody from './DiaryContentBody';
+import { useToast } from '~/hooks';
+import DiaryContentDate from './DiaryContentDate';
+import DiaryContentDetail from './DiaryContentDetail';
+import DiaryContentEditButton from './DiaryContentEditButton';
+import DiaryContentHeader from './DiaryContentHeader';
+import DiaryContentRating from './DiaryContentRating';
+import DiaryContentToast from './DiaryContentToast';
 
-interface DiaryContentProps {
-  mode: 'edit' | 'read';
-}
+const DiaryContentBody = () => {
+  const { showToast } = useToast();
 
-const DiaryContent = ({ mode }: DiaryContentProps) => {
   return (
-    // <DiaryContentProvider mode={mode}>
-    <>
-      {mode === 'edit' ? (
-        <DiaryContentBody />
-      ) : (
-        // <ReadProvider>
-        <DiaryContentBody />
-        // </ReadProvider>
-      )}
-    </>
-    // </DiaryContentProvider>
+    <div className="flex w-full flex-col gap-6 overflow-y-auto overflow-x-hidden">
+      {showToast && <DiaryContentToast />}
+      <DiaryContentHeader />
+      <div className="flex flex-col gap-6 overflow-y-auto px-3">
+        <div className="flex items-center justify-between">
+          <DiaryContentDate />
+          <DiaryContentRating />
+        </div>
+        // t
+        <DiaryContentDetail />
+        <DiaryContentEditButton />
+      </div>
+    </div>
   );
 };
 
-export default DiaryContent;
+export default DiaryContentBody;
