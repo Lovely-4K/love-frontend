@@ -22,12 +22,12 @@ export const useGetCoupleAnswerHistory = (
   });
 };
 
-const useGetCoupleAnswer = (question: QuestionFormResponse | undefined) => {
+export const useGetCoupleAnswer = (
+  question: QuestionFormResponse | undefined,
+) => {
   return useQuery({
     enabled: question !== undefined,
     queryKey: ['coupleAnswer', question?.questionId],
     queryFn: () => getCoupleAnswer(question?.questionId as number),
   });
 };
-
-export default useGetCoupleAnswer;
