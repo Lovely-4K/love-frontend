@@ -1,6 +1,5 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router';
-import { LayoutProvider } from '~/contexts';
 import { Loading } from '~/components/common';
 import { Footer } from '~/components/domain';
 
@@ -16,9 +15,7 @@ const Layout = () => {
             </div>
           }
         >
-          <LayoutProvider>
-            <Outlet />
-          </LayoutProvider>
+          <Outlet />
         </Suspense>
       </div>
     </div>

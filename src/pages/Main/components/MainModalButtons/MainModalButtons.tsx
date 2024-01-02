@@ -1,14 +1,15 @@
 import { DdayModalProvider } from '../../contexts';
-import { useMain, useProfile } from '../../hooks';
+import { useProfile } from '../../hooks';
 import MainDdayModal from '../MainDdayModal/MainDdayModal';
 import MainProfileModal from '../MainProfileModal/MainProfileModal';
 import { Button } from '~/components/common';
-import useLayoutContext from '~/hooks/useLayoutContext';
+import { useGetCoupleProfile } from '~/services/couple';
 
 const MainModalButtons = () => {
-  const { coupleMode } = useLayoutContext();
-  const { coupleProfile } = useMain();
+  const { data: coupleProfile } = useGetCoupleProfile();
   const { handleOpenProfileModal, openDdayModal } = useProfile();
+
+  const coupleMode = coupleProfile.coupleStatus;
 
   return (
     <div className="flex items-center justify-end gap-3">

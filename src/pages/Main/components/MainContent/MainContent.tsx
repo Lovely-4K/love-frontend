@@ -1,9 +1,11 @@
 import InviteContainer from './InviteContainer';
 import PreviewsContainer from './PreviewsContainer';
-import useLayoutContext from '~/hooks/useLayoutContext';
+import { useGetCoupleProfile } from '~/services/couple';
 
 const MainContent = () => {
-  const { coupleMode } = useLayoutContext();
+  const { data: coupleProfile } = useGetCoupleProfile();
+
+  const coupleMode = coupleProfile.coupleStatus;
 
   return coupleMode === 'RELATIONSHIP' ? (
     <PreviewsContainer />

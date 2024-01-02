@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { colors, fontSize, screens } from '~/theme';
 import { SETTING_TAB } from '../constants';
 import { useSetting } from '../hooks';
-import useLayoutContext from '~/hooks/useLayoutContext';
+import { useGetCoupleProfile } from '~/services/couple';
 
 const StyledTab = styled.label`
   font-size: ${() => fontSize.sm};
@@ -28,7 +28,9 @@ const StyledTab = styled.label`
 
 const SettingTab = () => {
   const { activeTab, handleTabChange } = useSetting();
-  const { coupleMode } = useLayoutContext();
+  const { data: coupleProfile } = useGetCoupleProfile();
+
+  const coupleMode = coupleProfile.coupleStatus;
 
   return (
     <div className="flex">

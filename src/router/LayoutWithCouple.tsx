@@ -1,9 +1,11 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import paths from './paths';
-import useLayoutContext from '~/hooks/useLayoutContext';
+import { useGetCoupleProfile } from '~/services/couple';
 
 const LayoutWithCouple = () => {
-  const { coupleMode } = useLayoutContext();
+  const { data: coupleProfile } = useGetCoupleProfile();
+
+  const coupleMode = coupleProfile.coupleStatus;
 
   if (coupleMode !== 'RELATIONSHIP')
     return <Navigate to={paths.MAIN} replace state={true} />;

@@ -6,16 +6,18 @@ import { MainProvider, ProfileProvider } from './contexts';
 import MainContentErrorFallback from './MainContentErrorBoundary';
 import { Button, Loading } from '~/components/common';
 import { Modal } from '~/components/domain';
-import useLayoutContext from '~/hooks/useLayoutContext';
 import useModal from '~/hooks/useModal';
+import { useGetCoupleProfile } from '~/services/couple';
 import useRecreateCouple from '~/services/couple/useRecreateCouple';
 
 const MainPage = () => {
   const { state } = useLocation();
   const [showNotification, setShowNotification] = useState(state);
   const { closeModal, modalRef, openModal } = useModal();
-  const { coupleMode } = useLayoutContext();
+  const { data: coupleProfile } = useGetCoupleProfile();
   const { mutate: recreateCouple } = useRecreateCouple();
+
+  const coupleMode = coupleProfile.coupleStatus;
 
   useEffect(() => {
     if (state) {
