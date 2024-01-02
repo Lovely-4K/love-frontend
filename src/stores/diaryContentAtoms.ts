@@ -22,12 +22,18 @@ export const originDiaryAtom = atom<DiaryResponse>({
   latitude: 0,
   longitude: 0,
 });
-export const existedImgAtom = atom<string[]>([]);
-export const imgUrlAtom = atom<string[]>([]);
-export const editDiaryAtom = atom(
-  (get) => get(originDiaryAtom),
-  (_, set, arg: DiaryResponse) => set(originDiaryAtom, arg), // editDiaryAtom을 직접 변경하려면?
+export const editDiaryAtom = atom<DiaryResponse>((get) => get(originDiaryAtom));
+
+export const getSetEditableAtom = atom(
+  (get) => get(editableAtom),
+  (_, set, editable: boolean) => {
+    set(editableAtom, editable);
+  },
 );
+
+export const getCurrentModeDiaryAtom = atom((get) => {
+  return get(editableAtom) === true ? get(editDiaryAtom) : get(originDiaryAtom);
+});
 
 export const setOriginDiaryAtom = atom(null, (_, set, diary: DiaryResponse) => {
   if (diary) {

@@ -11,7 +11,6 @@ interface Pictures {
 interface Diary {
   diaryId?: string;
   kakaoMapId?: string | number;
-  placeName?: string;
   datingDay: string;
   category: categoryType;
   score: number;
