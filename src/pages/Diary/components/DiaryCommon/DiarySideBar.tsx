@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import { useAtomValue } from 'jotai';
-import * as React from 'react';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { colors, fontSize, screens } from '~/theme';
 import SideBarFallBack from './SideBarFallback';
@@ -119,9 +118,7 @@ const DiarySideBar = ({ children }: PropsWithChildren) => {
         <StyledArrowIcon className={sideBarToggle ? 'open' : 'closed'} />
       </StyledToggleButton>
       <ErrorBoundary FallbackComponent={SideBarFallBack}>
-        <React.Suspense fallback={<Loading size="large" />}>
-          {children}
-        </React.Suspense>
+        <Suspense fallback={<Loading size="large" />}>{children}</Suspense>
       </ErrorBoundary>
     </StyledDiarySideBar>
   );
