@@ -2,10 +2,7 @@ import { atom } from 'jotai';
 import { DiaryResponse } from '~/types';
 import { getTodayDate } from '~/utils/Common';
 
-type ModeAtomType = 'edit' | 'read';
-
-export const modeAtom = atom<ModeAtomType>('edit');
-export const editableAtom = atom<boolean>(false); // modeAtom 따라서 변경
+export const editableAtom = atom<boolean>(false);
 export const loadingAtom = atom<boolean>(false);
 export const originDiaryAtom = atom<DiaryResponse>({
   datingDay: getTodayDate(),
