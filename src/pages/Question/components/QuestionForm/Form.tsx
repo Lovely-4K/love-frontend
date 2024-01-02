@@ -1,26 +1,29 @@
-import useQuestionContext from '../../hooks/useQuestionContext';
+import useLoadTodayQuestion from '../../hooks/common/useLoadTodayQuestion';
 import FormAnswers from './FormAnswers';
 import FormCustomLink from './FormCustomLink';
 import FormQuestionnaire from './FormQuestionnaire';
+import { Loading } from '~/components/common';
 
 const QuestionForm = () => {
-  const { questionDetail, questionForm } = useQuestionContext();
-  const { questionFormType } = questionForm;
+  const { todayQuestion, coupleAnswer } = useLoadTodayQuestion();
+  if (todayQuestion === undefined || coupleAnswer === undefined) {
+    return (
+      <div className="flex h-1/2 w-full items-center justify-center">
+        <Loading />
+      </div>
+    );
+  }
 
-  if (!questionDetail) return null;
-
-  const { myAnswer, opponentAnswer } = questionDetail;
-
-  const CreateForm = () =>
-    questionFormType === 'SERVER' &&
-    myAnswer &&
-    opponentAnswer && <FormCustomLink />;
+  const { questionFormType } = todayQuestion;
+  const { myAnswer, opponentAnswer } = coupleAnswer;
 
   return (
     <div>
-      <FormQuestionnaire />
-      <FormAnswers />
-      <CreateForm />
+      <FormQuestionnaire todayQuestion={todayQuestion} />
+      <FormAnswers todayQuestion={todayQuestion} coupleAnswer={coupleAnswer} />
+      {questionFormType === 'SERVER' && myAnswer && opponentAnswer && (
+        <FormCustomLink />
+      )}
     </div>
   );
 };

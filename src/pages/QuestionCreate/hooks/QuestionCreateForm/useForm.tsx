@@ -1,18 +1,14 @@
-import { useContext } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '~/router';
-import { QuestionCreateFormContext } from '../contexts/QuestionCreateFormContext';
+import { useCreateForm } from '~/services/question';
 
-const useQuestionCreateForm = () => {
+const useForm = () => {
+  const [question, setQuestion] = useState<string>('');
+  const [answers, setAnswers] = useState<string[]>([]);
+
   const navigate = useNavigate();
-  const questionCreateFormContext = useContext(QuestionCreateFormContext);
-
-  if (!questionCreateFormContext) {
-    throw new Error('questionCreateContext is null');
-  }
-
-  const { question, setQuestion, answers, setAnswers, mutateAsync, isError } =
-    questionCreateFormContext;
+  const { mutateAsync, isError } = useCreateForm();
 
   const handleSubmitForm = async (
     event:
@@ -35,7 +31,7 @@ const useQuestionCreateForm = () => {
     }
   };
 
-  const handleQuestionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputQuestion = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuestion(event.target.value);
   };
 
@@ -66,10 +62,10 @@ const useQuestionCreateForm = () => {
     question,
     answers,
     handleSubmitForm,
-    handleQuestionChange,
+    handleInputQuestion,
     handleAddAnswer,
     handleDeleteButton,
   };
 };
 
-export default useQuestionCreateForm;
+export default useForm;

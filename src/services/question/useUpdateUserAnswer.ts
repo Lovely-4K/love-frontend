@@ -44,7 +44,7 @@ const useUpdateUserAnswer = () => {
         queryKey: ['temperature'],
       });
       await queryClient.invalidateQueries({
-        queryKey: ['questionDetail'],
+        queryKey: ['coupleAnswer'],
       });
     },
     onError: (error, _, context) => {

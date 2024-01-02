@@ -12,6 +12,7 @@ const createTodayQuestion = async () => {
 
 const useCreateTodayQuestion = () => {
   return useMutation({
+    mutationKey: ['createQuestion'],
     mutationFn: createTodayQuestion,
     onSettled: async () => {
       await queryClient.invalidateQueries({ queryKey: ['question'] });

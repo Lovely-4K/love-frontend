@@ -19,8 +19,12 @@ const MainContentProvider = ({ children }: PropsWithChildren) => {
     limit: 10,
     coupleMode: coupleMode === 'RELATIONSHIP',
   });
-  const { mutate: createTodayQuestion } = useCreateTodayQuestion();
-  const getQuestionQuery = useGetQuestion();
+  const {
+    mutate: createTodayQuestion,
+    isError,
+    isSuccess,
+  } = useCreateTodayQuestion();
+  const getQuestionQuery = useGetQuestion(isError || isSuccess);
   const getDiarysQuery = useGetDiarys({ page: 0 });
 
   useEffect(() => {

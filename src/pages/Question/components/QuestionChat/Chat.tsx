@@ -1,13 +1,18 @@
-import useQuestionContext from '../../hooks/useQuestionContext';
+import useLoadTodayQuestion from '../../hooks/common/useLoadTodayQuestion';
 import QuestionChatItem from './ChatItem';
+import { Loading } from '~/components/common';
 
 const QuestionChat = () => {
-  const { questionDetail } = useQuestionContext();
+  const { coupleAnswer } = useLoadTodayQuestion();
 
-  if (!questionDetail) return;
-
-  const { myAnswer, myProfile, opponentAnswer, opponentProfile } =
-    questionDetail;
+  if (coupleAnswer === undefined) {
+    return (
+      <div className="flex h-1/2 w-full items-center justify-center">
+        <Loading />
+      </div>
+    );
+  }
+  const { myAnswer, myProfile, opponentAnswer, opponentProfile } = coupleAnswer;
 
   return (
     <div className="mt-16">

@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { QuestionHistoryList } from '~/types';
 import apiClient from '~/api/apiClient';
 
@@ -20,7 +20,7 @@ const getQuestionHistory = async (
 const useGetQuestionHistory = ({
   lastQuestionId,
 }: useGetQuestionHistoryParams) => {
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: ['questions', lastQuestionId],
     queryFn: () => getQuestionHistory(lastQuestionId),
   });

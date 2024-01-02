@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { useGetQuestionDetail } from '~/services/question';
+import { useGetCoupleAnswerHistory } from '~/services/question/useGetCoupleAnswer';
 
 const useHistoryItem = (questionId: number) => {
   const [arcodianOpened, setArcodianOpened] = useState(false);
-  const { data: questionDetail } = useGetQuestionDetail(
+  const { data: questionDetail } = useGetCoupleAnswerHistory(
     questionId,
     arcodianOpened,
   );
