@@ -7,7 +7,6 @@ import {
   DiaryEditTextRequest,
   MapMarker,
 } from '~/types';
-import categoryType from '~/components/common/CategoryButton/CategoryTypes';
 import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
 import useCreateDiaryDetail from '~/services/diary/useCreateDiaryDetail';
 import useDeleteDiaryDetail from '~/services/diary/useDeleteDiaryDetail';
@@ -64,16 +63,16 @@ const useDiaryContents = () => {
     }
   };
 
-  const handleChangeMyText = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    if (event.target instanceof HTMLTextAreaElement) {
-      const { value } = event.target;
+  // const handleChangeMyText = (event: ChangeEvent<HTMLTextAreaElement>) => {
+  //   if (event.target instanceof HTMLTextAreaElement) {
+  //     const { value } = event.target;
 
-      setEditDiary({
-        ...editDiary,
-        myText: value,
-      });
-    }
-  };
+  //     setEditDiary({
+  //       ...editDiary,
+  //       myText: value,
+  //     });
+  //   }
+  // };
 
   // const handleChangeCategory = (category: categoryType) => {
   //   setEditDiary({
@@ -198,10 +197,6 @@ const useDiaryContents = () => {
     handleEditCancel,
     handleEditMode,
     handleSubmitForm,
-    handleChangeDatingDay,
-    handleChangeMyText,
-    handleChangeScore,
-    handleChangeCategory,
     handleChangeImgaes,
     handleAddImages,
     handleDeleteImage,

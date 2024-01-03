@@ -27,12 +27,21 @@ const useDiaryForm = () => {
     setEditDiaryProperty({ category });
   };
 
+  const handleChangeMyText = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    if (event.target instanceof HTMLTextAreaElement) {
+      const { value } = event.target;
+
+      setEditDiaryProperty({ myText: value });
+    }
+  };
+
   return {
     editable,
     diary,
     handleChangeDatingDay,
     handleChangeScore,
     handleChangeCategory,
+    handleChangeMyText,
   };
 };
 

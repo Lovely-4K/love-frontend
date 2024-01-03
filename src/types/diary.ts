@@ -12,7 +12,8 @@ interface Diary {
   datingDay: string;
   score: number;
   category: categoryType;
-  text: string;
+  myText: string;
+  opponentText: string;
 }
 
 interface DiaryResponse extends Omit<Diary, 'text'> {
@@ -25,7 +26,8 @@ interface DiaryResponse extends Omit<Diary, 'text'> {
   longitude: number;
 }
 
-interface DiaryContentRequest extends Diary {
+interface DiaryContentRequest extends Omit<Diary, 'myText' | 'opponentText'> {
+  text: string;
   kakaoMapId: number;
   address: string;
   placeName: string;

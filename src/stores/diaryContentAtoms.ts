@@ -9,7 +9,8 @@ export const editDiaryAtom = atom<Diary>({
   datingDay: getTodayDate(),
   category: 'CAFE',
   score: 5,
-  text: '',
+  myText: '',
+  opponentText: '',
 });
 
 export const getCurrentModeDiaryAtom = atom((get) => {
@@ -58,6 +59,13 @@ export const setOriginDiaryAtom = atom(null, (_, set, diary: DiaryResponse) => {
       latitude,
       longitude,
       pictures,
+    });
+    set(editDiaryAtom, {
+      datingDay,
+      category,
+      score,
+      myText,
+      opponentText,
     });
   } else {
     set(originDiaryAtom, undefined);

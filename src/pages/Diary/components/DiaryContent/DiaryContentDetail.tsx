@@ -1,7 +1,5 @@
 import { useAtomValue } from 'jotai';
 import DiaryContentImgs from './DiaryContentImgs';
-import DiaryContentText from './DiaryContentText';
-import useDiaryContents from '~/pages/Diary/hooks/DiaryContent/useDiaryContents';
 import {
   editDiaryAtom,
   editableAtom,
@@ -13,8 +11,6 @@ const DiaryContentDetail = () => {
   const editDiary = useAtomValue(editDiaryAtom);
   const originDiary = useAtomValue(originDiaryAtom);
   const diary = editable ? editDiary : originDiary;
-  const { myText, opponentText } = diary;
-  const { handleChangeMyText } = useDiaryContents();
 
   return (
     <div className="flex flex-col gap-2">
@@ -27,24 +23,6 @@ const DiaryContentDetail = () => {
         ) : (
           <DiaryContentImgs />
         )}
-        <div>
-          <div>
-            <div className="text-lg font-bold">나의 기록</div>
-            <DiaryContentText
-              editable={editable}
-              diaryText={myText}
-              handleChangeText={handleChangeMyText}
-            />
-          </div>
-          <div>
-            <div className="text-lg font-bold">상대방의 기록</div>
-            <DiaryContentText
-              editable={false}
-              diaryText={opponentText}
-              handleChangeText={() => {}}
-            />
-          </div>
-        </div>
       </div>
     </div>
   );
