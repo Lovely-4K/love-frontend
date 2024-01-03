@@ -1,10 +1,9 @@
 import { memo } from 'react';
-import { Diary } from '~/types';
 import useDiaryForm from '../../hooks/DiaryContent/useDiaryForm';
 
 const DiaryContentDate = memo(() => {
   const { diary, editable, handleChangeDatingDay } = useDiaryForm();
-  const { datingDay } = diary as Partial<Diary>;
+  const { datingDay } = diary;
 
   return (
     <div className="flex flex-col gap-2">

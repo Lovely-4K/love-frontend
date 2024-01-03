@@ -1,3 +1,4 @@
+import type categoryType from '~/components/common/CategoryButton/CategoryTypes';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { ChangeEvent } from 'react';
 import { setEditDiaryPropertyAtom } from '~/stores/diaryContentAtoms';
@@ -18,10 +19,15 @@ const useDiaryForm = () => {
     setEditDiaryProperty({ datingDay: value });
   };
 
+  const handleChangeCategory = (category: categoryType) => {
+    setEditDiaryProperty({ category });
+  };
+
   return {
     editable,
     diary,
     handleChangeDatingDay,
+    handleChangeCategory,
   };
 };
 
