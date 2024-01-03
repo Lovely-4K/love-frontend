@@ -49,7 +49,11 @@ const router = createBrowserRouter([
                   },
                   {
                     path: PATHS.DIARY.DIARY_DETAIL,
-                    element: <DiaryContent />,
+                    element: <DiaryContent editable={false} />,
+                  },
+                  {
+                    path: PATHS.DIARY.DIARY_CREATE,
+                    element: <DiaryContent editable={true} />,
                   },
                 ],
               },

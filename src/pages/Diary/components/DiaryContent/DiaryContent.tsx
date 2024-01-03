@@ -1,5 +1,5 @@
 import { useToast } from '~/hooks';
-import useDiaryContentData from '../../hooks/DiaryContent/useDiaryContentData';
+import useInitDiaryContent from '../../hooks/DiaryContent/useInitDiaryContent';
 import DiaryContentDate from './DiaryContentDate';
 import DiaryContentDetail from './DiaryContentDetail';
 import DiaryContentEditButton from './DiaryContentEditButton';
@@ -7,9 +7,13 @@ import DiaryContentHeader from './DiaryContentHeader';
 import DiaryContentRating from './DiaryContentRating';
 import DiaryContentToast from './DiaryContentToast';
 
-const DiaryContent = () => {
+interface DiaryContentProps {
+  editable: boolean;
+}
+
+const DiaryContent = ({ editable }: DiaryContentProps) => {
   const { showToast } = useToast();
-  useDiaryContentData();
+  useInitDiaryContent({ editable });
 
   return (
     <div className="flex w-full flex-col gap-6 overflow-y-auto overflow-x-hidden">
