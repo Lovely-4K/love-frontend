@@ -13,9 +13,14 @@ export const editDiaryAtom = atom<Diary>({
 });
 
 export const getCurrentModeDiaryAtom = atom((get) => {
-  return get(editableAtom) === true || get(originDiaryAtom) === undefined
-    ? get(editDiaryAtom)
-    : get(originDiaryAtom);
+  const diaryAtom =
+    get(editableAtom) === true ? get(editDiaryAtom) : get(originDiaryAtom);
+
+  if (diaryAtom === undefined) {
+    return get(editDiaryAtom);
+  }
+
+  return diaryAtom;
 });
 
 export const setEditDiaryPropertyAtom = atom(
