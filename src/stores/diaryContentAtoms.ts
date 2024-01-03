@@ -1,39 +1,32 @@
 import { atom } from 'jotai';
-import { DiaryResponse } from '~/types';
+import type { DiaryResponse, Diary } from '~/types';
 import { getTodayDate } from '~/utils/Common';
 
 export const editableAtom = atom<boolean>(false);
 export const loadingAtom = atom<boolean>(false);
-export const originDiaryAtom = atom<DiaryResponse>({
+export const originDiaryAtom = atom<DiaryResponse | undefined>(undefined);
+export const editDiaryAtom = atom<Diary>({
   datingDay: getTodayDate(),
   category: 'CAFE',
   score: 5,
-  myText: '',
-  opponentText: '',
-  pictures: {
-    firstImage: null,
-    secondImage: null,
-    thirdImage: null,
-    fourthImage: null,
-    fifthImage: null,
-  },
-  kakaoMapId: '',
-  placeName: '',
-  latitude: 0,
-  longitude: 0,
+  text: '',
 });
-export const editDiaryAtom = atom<DiaryResponse>((get) => get(originDiaryAtom));
-
-export const getSetEditableAtom = atom(
-  (get) => get(editableAtom),
-  (_, set, editable: boolean) => {
-    set(editableAtom, editable);
-  },
-);
 
 export const getCurrentModeDiaryAtom = atom((get) => {
-  return get(editableAtom) === true ? get(editDiaryAtom) : get(originDiaryAtom);
+  return get(editableAtom) === true || get(originDiaryAtom) === undefined
+    ? get(editDiaryAtom)
+    : get(originDiaryAtom);
 });
+
+export const setEditDiaryPropertyAtom = atom(
+  null,
+  (get, set, property: Partial<Diary>) => {
+    set(editDiaryAtom, {
+      ...get(editDiaryAtom),
+      ...property,
+    });
+  },
+);
 
 export const setOriginDiaryAtom = atom(null, (_, set, diary: DiaryResponse) => {
   if (diary) {
@@ -62,23 +55,6 @@ export const setOriginDiaryAtom = atom(null, (_, set, diary: DiaryResponse) => {
       pictures,
     });
   } else {
-    set(originDiaryAtom, {
-      datingDay: getTodayDate(),
-      category: 'CAFE',
-      score: 5,
-      myText: '',
-      opponentText: '',
-      pictures: {
-        firstImage: null,
-        secondImage: null,
-        thirdImage: null,
-        fourthImage: null,
-        fifthImage: null,
-      },
-      kakaoMapId: '',
-      placeName: '',
-      latitude: 0,
-      longitude: 0,
-    });
+    set(originDiaryAtom, undefined);
   }
 });

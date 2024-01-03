@@ -1,19 +1,10 @@
-import { useAtomValue } from 'jotai';
 import { memo } from 'react';
-import useDiaryContents from '~/pages/Diary/hooks/DiaryContent/useDiaryContents';
-import {
-  editDiaryAtom,
-  editableAtom,
-  originDiaryAtom,
-} from '~/stores/diaryContentAtoms';
+import { Diary } from '~/types';
+import useDiaryForm from '../../hooks/DiaryContent/useDiaryForm';
 
 const DiaryContentDate = memo(() => {
-  const editable = useAtomValue(editableAtom);
-  const editDiary = useAtomValue(editDiaryAtom);
-  const originDiary = useAtomValue(originDiaryAtom);
-  const diary = editable ? editDiary : originDiary;
-  const { datingDay } = diary;
-  const { handleChangeDatingDay } = useDiaryContents();
+  const { diary, editable, handleChangeDatingDay } = useDiaryForm();
+  const { datingDay } = diary as Partial<Diary>;
 
   return (
     <div className="flex flex-col gap-2">
