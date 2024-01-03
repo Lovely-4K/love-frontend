@@ -1,5 +1,6 @@
+import { useSetAtom } from 'jotai';
 import { memo } from 'react';
-import { useProfileModal } from '../../hooks';
+import { handleMBTIChangeAtom } from '../../stores/profileModalAtom';
 
 interface MBTIButtonProps {
   position: 'left' | 'center' | 'right';
@@ -22,7 +23,7 @@ const bottomItemStyle = {
 
 const MBTIButton = memo(
   ({ position, topItem, bottomItem, selected }: MBTIButtonProps) => {
-    const { handleMBTIChange } = useProfileModal();
+    const handleMBTIChange = useSetAtom(handleMBTIChangeAtom);
     const topItemTextColor =
       selected === topItem ? 'text-base-primary' : 'text-grey-400';
 

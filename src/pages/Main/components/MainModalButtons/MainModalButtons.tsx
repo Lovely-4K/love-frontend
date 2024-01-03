@@ -1,4 +1,3 @@
-import { DdayModalProvider } from '../../contexts';
 import { useProfile } from '../../hooks';
 import MainDdayModal from '../MainDdayModal/MainDdayModal';
 import MainProfileModal from '../MainProfileModal/MainProfileModal';
@@ -39,9 +38,7 @@ const MainModalButtons = () => {
           >
             디데이 수정
           </Button>
-          <DdayModalProvider>
-            <MainDdayModal />
-          </DdayModalProvider>
+          <MainDdayModal />
         </>
       )}
     </div>

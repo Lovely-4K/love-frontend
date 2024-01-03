@@ -1,10 +1,17 @@
-import { useDdayModal, useProfile } from '../../hooks';
+import { ChangeEvent, useState } from 'react';
+import { useProfile } from '../../hooks';
 import { Button } from '~/components/common';
 import { Modal } from '~/components/domain';
+import { useEditCoupleProfile, useGetCoupleProfile } from '~/services/couple';
 
 const MainDdayModal = () => {
-  const { dDayModalRef, closeDdayModal } = useProfile();
-  const { editDday, handleDdayChange, handleEditDday } = useDdayModal();
+  const { data: coupleProfile } = useGetCoupleProfile();
+  const [editDday, setEditDday] = useState(coupleProfile.meetDay);
+  const { closeDdayModal, dDayModalRef } = useProfile();
+
+  const handleDdayChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setEditDday(event.target.value);
+  };
 
   return (
     <Modal
@@ -30,7 +37,7 @@ const MainDdayModal = () => {
         </Button>
         <Button
           size="medium"
-          onClick={handleEditDday}
+          onClick={closeDdayModal}
           className="bg-base-primary text-base-white focus:outline-none"
         >
           저장하기

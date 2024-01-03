@@ -1,16 +1,57 @@
+import { useAtom, useAtomValue } from 'jotai';
+import { useToast } from '~/hooks';
 import { colors } from '~/theme';
+import {
+  profileActiveEditAtom,
+  profileModalInfoAtom,
+} from '../../stores/profileModalAtom';
 import ProfileAvatar from './ProfileAvatar';
 import ProfileBirthdayItem from './ProfileBirthdayItem';
 import ProfileColorItem from './ProfileColorItem';
 import ProfileMBTIItem from './ProfileMBTIItem';
 import ProfileNameItem from './ProfileNameItem';
 import { Button } from '~/components/common';
-import { useMain, useProfile, useProfileModal } from '~/pages/Main/hooks';
+import { useGetCoupleProfile } from '~/services/couple';
+import { useEditProfile } from '~/services/user';
 
 const ProfileContainer = () => {
-  const { coupleProfile } = useMain();
-  const { modalInfo } = useProfile();
-  const { handleActiveEdit, activeEdit, showToast } = useProfileModal();
+  const modalInfo = useAtomValue(profileModalInfoAtom);
+  const { showToast, handleShowToast } = useToast();
+  const [activeEdit, setActiveEdit] = useAtom(profileActiveEditAtom);
+
+  const { data: coupleProfile } = useGetCoupleProfile();
+  const { mutate: editProfile } = useEditProfile();
+
+  const handleActiveEdit = () => {
+    if (!activeEdit) {
+      setActiveEdit(true);
+
+      return;
+    }
+
+    if (
+      modalInfo.mbti === null ||
+      modalInfo.mbti === '' ||
+      modalInfo.mbti.length !== 4
+    ) {
+      handleShowToast();
+
+      return;
+    }
+
+    editProfile({
+      data: {
+        ...modalInfo,
+        birthday: modalInfo.birthday
+          ? modalInfo.birthday
+          : new Date().toISOString().slice(0, 10),
+        calendarColor: modalInfo.calendarColor
+          ? modalInfo.calendarColor
+          : colors.personal.pink,
+      },
+    });
+    setActiveEdit(false);
+  };
 
   const buttonContent = activeEdit ? '프로필 저장' : '프로필 수정';
   const backgroundColor = modalInfo.calendarColor

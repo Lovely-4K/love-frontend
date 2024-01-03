@@ -1,13 +1,4 @@
-import { differenceInDays } from 'date-fns';
-import {
-  PropsWithChildren,
-  createContext,
-  useCallback,
-  useMemo,
-  useState,
-} from 'react';
-import { User } from '~/types';
-import { useMain } from '../hooks';
+import { PropsWithChildren, createContext, useMemo } from 'react';
 import useModal from '~/hooks/useModal';
 
 interface MainModalContextProps {
@@ -17,23 +8,11 @@ interface MainModalContextProps {
   openProfileModal: () => void;
   closeProfileModal: () => void;
   profileModalRef: React.RefObject<HTMLDialogElement>;
-  modalInfo: User;
-  setModalInfo: React.Dispatch<React.SetStateAction<User>>;
-  dDay: number;
-  handleOpenProfileModal: ({
-    birthday,
-    calendarColor,
-    imageUrl,
-    mbti,
-    nickname,
-    id,
-  }: User) => void;
 }
 
 const ProfileContext = createContext<MainModalContextProps | null>(null);
 
 const ProfileProvider = ({ children }: PropsWithChildren) => {
-  const { coupleProfile } = useMain();
   const {
     openModal: openDdayModal,
     closeModal: closeDdayModal,
@@ -44,34 +23,6 @@ const ProfileProvider = ({ children }: PropsWithChildren) => {
     closeModal: closeProfileModal,
     modalRef: profileModalRef,
   } = useModal();
-  const [modalInfo, setModalInfo] = useState<User>({
-    birthday: '',
-    calendarColor: '',
-    imageUrl: '',
-    mbti: '',
-    nickname: '',
-    id: 0,
-  });
-
-  const dDay = useMemo(
-    () => differenceInDays(new Date(), new Date(coupleProfile.meetDay)),
-    [coupleProfile],
-  );
-
-  const handleOpenProfileModal = useCallback(
-    ({ birthday, calendarColor, imageUrl, mbti, nickname, id }: User) => {
-      setModalInfo({
-        birthday,
-        calendarColor,
-        imageUrl,
-        mbti,
-        nickname,
-        id,
-      });
-      openProfileModal();
-    },
-    [openProfileModal],
-  );
 
   const value = useMemo(
     () => ({
@@ -81,10 +32,6 @@ const ProfileProvider = ({ children }: PropsWithChildren) => {
       openProfileModal,
       closeProfileModal,
       profileModalRef,
-      handleOpenProfileModal,
-      modalInfo,
-      setModalInfo,
-      dDay,
     }),
     [
       openDdayModal,
@@ -93,10 +40,6 @@ const ProfileProvider = ({ children }: PropsWithChildren) => {
       openProfileModal,
       closeProfileModal,
       profileModalRef,
-      modalInfo,
-      setModalInfo,
-      dDay,
-      handleOpenProfileModal,
     ],
   );
 
