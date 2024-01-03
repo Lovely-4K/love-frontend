@@ -19,6 +19,10 @@ const useDiaryForm = () => {
     setEditDiaryProperty({ datingDay: value });
   };
 
+  const handleChangeScore = (score: number) => {
+    setEditDiaryProperty({ score });
+  };
+
   const handleChangeCategory = (category: categoryType) => {
     setEditDiaryProperty({ category });
   };
@@ -27,6 +31,7 @@ const useDiaryForm = () => {
     editable,
     diary,
     handleChangeDatingDay,
+    handleChangeScore,
     handleChangeCategory,
   };
 };

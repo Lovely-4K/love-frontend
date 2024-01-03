@@ -46,14 +46,14 @@ const useDiaryContents = () => {
   );
   const files = useRef<File[]>([]);
 
-  const handleChangeDatingDay = (event: ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
+  // const handleChangeDatingDay = (event: ChangeEvent<HTMLInputElement>) => {
+  //   const { value } = event.target;
 
-    setEditDiary({
-      ...editDiary,
-      datingDay: value,
-    });
-  };
+  //   setEditDiary({
+  //     ...editDiary,
+  //     datingDay: value,
+  //   });
+  // };
 
   const handleDeleteDiary = () => {
     if (diaryId) {
@@ -75,23 +75,23 @@ const useDiaryContents = () => {
     }
   };
 
-  const handleChangeCategory = (category: categoryType) => {
-    setEditDiary({
-      ...editDiary,
-      category,
-    });
-  };
+  // const handleChangeCategory = (category: categoryType) => {
+  //   setEditDiary({
+  //     ...editDiary,
+  //     category,
+  //   });
+  // };
 
   const handleChangeImgaes = (imgUrl: string[]) => {
     setImgUrl(imgUrl);
   };
 
-  const handleChangeScore = (score: number) => {
-    setEditDiary({
-      ...editDiary,
-      score,
-    });
-  };
+  // const handleChangeScore = (score: number) => {
+  //   setEditDiary({
+  //     ...editDiary,
+  //     score,
+  //   });
+  // };
 
   const handleAddImages = (event: ChangeEvent<HTMLInputElement>) => {
     const fileLists = event.target.files!;
