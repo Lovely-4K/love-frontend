@@ -9,16 +9,13 @@ interface Pictures {
 }
 
 interface Diary {
-  diaryId?: string;
-  kakaoMapId?: string | number;
   datingDay: string;
-  category: categoryType;
   score: number;
-  imgUrl?: string[];
-  files?: FileList;
+  category: categoryType;
+  text: string;
 }
 
-interface DiaryResponse extends Diary {
+interface DiaryResponse extends Omit<Diary, 'text'> {
   kakaoMapId: string;
   placeName: string;
   pictures: Pictures;
@@ -28,13 +25,14 @@ interface DiaryResponse extends Diary {
   longitude: number;
 }
 
-interface DiaryCreateTextRequest extends Diary {
+interface DiaryContentRequest extends Diary {
+  kakaoMapId: number;
+  address: string;
+  placeName: string;
   latitude: number;
   longitude: number;
-  placeName: string;
-  kakaoMapId: string | number;
-  address: string;
-  text: string;
+  imgUrl: string[];
+  files?: FileList;
 }
 
 interface DiaryEditTextRequest extends Diary {
@@ -95,7 +93,7 @@ export type {
   Pictures,
   Diary,
   DiaryResponse,
-  DiaryCreateTextRequest,
+  DiaryContentRequest,
   DiaryEditTextRequest,
   SpotDiaries,
   DiaryContent,
