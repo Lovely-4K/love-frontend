@@ -1,9 +1,11 @@
 import { atom } from 'jotai';
 import type { DiaryResponse, Diary } from '~/types';
+import { changeImageType } from './../utils/Diary';
 import { getTodayDate } from '~/utils/Common';
 
 export const editableAtom = atom<boolean>(false);
 export const loadingAtom = atom<boolean>(false);
+export const imgsUrlAtom = atom<string[]>([]);
 export const originDiaryAtom = atom<DiaryResponse | undefined>(undefined);
 export const editDiaryAtom = atom<Diary>({
   datingDay: getTodayDate(),
@@ -11,17 +13,18 @@ export const editDiaryAtom = atom<Diary>({
   score: 5,
   myText: '',
   opponentText: '',
+  imgURL: [],
 });
 
-export const getCurrentModeDiaryAtom = atom((get) => {
-  const diaryAtom =
+export const getCurrentModeDiaryAtom = atom<Diary | DiaryResponse>((get) => {
+  const currentModeDiary: Diary | DiaryResponse | undefined =
     get(editableAtom) === true ? get(editDiaryAtom) : get(originDiaryAtom);
 
-  if (diaryAtom === undefined) {
+  if (currentModeDiary === undefined) {
     return get(editDiaryAtom);
   }
 
-  return diaryAtom;
+  return currentModeDiary;
 });
 
 export const setEditDiaryPropertyAtom = atom(
@@ -34,40 +37,45 @@ export const setEditDiaryPropertyAtom = atom(
   },
 );
 
-export const setOriginDiaryAtom = atom(null, (_, set, diary: DiaryResponse) => {
-  if (diary) {
-    const {
-      datingDay,
-      category,
-      score,
-      myText,
-      opponentText,
-      pictures,
-      kakaoMapId,
-      placeName,
-      latitude,
-      longitude,
-    } = diary;
-    set(originDiaryAtom, {
-      datingDay,
-      category,
-      score,
-      myText,
-      opponentText,
-      kakaoMapId,
-      placeName,
-      latitude,
-      longitude,
-      pictures,
-    });
-    set(editDiaryAtom, {
-      datingDay,
-      category,
-      score,
-      myText,
-      opponentText,
-    });
-  } else {
-    set(originDiaryAtom, undefined);
-  }
-});
+export const setOriginDiaryAtom = atom(
+  null,
+  (_, set, diaryResponse: DiaryResponse) => {
+    if (diaryResponse) {
+      const {
+        datingDay,
+        category,
+        score,
+        myText,
+        opponentText,
+        pictures,
+        kakaoMapId,
+        placeName,
+        latitude,
+        longitude,
+      } = diaryResponse;
+      set(originDiaryAtom, {
+        datingDay,
+        category,
+        score,
+        myText,
+        opponentText,
+        kakaoMapId,
+        placeName,
+        latitude,
+        longitude,
+        pictures,
+        imgURL: changeImageType(pictures),
+      });
+      set(editDiaryAtom, {
+        datingDay,
+        category,
+        score,
+        myText,
+        opponentText,
+        imgURL: changeImageType(pictures),
+      });
+    } else {
+      set(originDiaryAtom, undefined);
+    }
+  },
+);

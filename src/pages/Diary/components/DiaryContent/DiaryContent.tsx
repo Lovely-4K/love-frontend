@@ -1,10 +1,11 @@
 import { useToast } from '~/hooks';
 import useInitDiaryContent from '../../hooks/DiaryContent/useInitDiaryContent';
 import DiaryContentDate from './DiaryContentDate';
-import DiaryContentDetail from './DiaryContentDetail';
 import DiaryContentEditButton from './DiaryContentEditButton';
 import DiaryContentHeader from './DiaryContentHeader';
-import DiaryContentRating from './DiaryContentRating';
+import DiaryContentImgsSection from './DiaryContentImgsSection';
+import DiaryContentScore from './DiaryContentScore';
+import DiaryContentTextSection from './DiaryContentTextSection';
 import DiaryContentToast from './DiaryContentToast';
 
 interface DiaryContentProps {
@@ -22,9 +23,12 @@ const DiaryContent = ({ editable }: DiaryContentProps) => {
       <div className="flex flex-col gap-6 overflow-y-auto px-3">
         <div className="flex items-center justify-between">
           <DiaryContentDate />
-          <DiaryContentRating />
+          <DiaryContentScore />
         </div>
-        <DiaryContentDetail />
+        <div className="flex flex-col gap-2">
+          <DiaryContentImgsSection />
+          <DiaryContentTextSection />
+        </div>
         <DiaryContentEditButton />
       </div>
     </div>

@@ -14,14 +14,13 @@ interface Diary {
   category: categoryType;
   myText: string;
   opponentText: string;
+  imgURL: string[];
 }
 
-interface DiaryResponse extends Omit<Diary, 'text'> {
+interface DiaryResponse extends Diary {
   kakaoMapId: string;
   placeName: string;
   pictures: Pictures;
-  myText: string;
-  opponentText: string;
   latitude: number;
   longitude: number;
 }

@@ -1,6 +1,6 @@
 import type categoryType from '~/components/common/CategoryButton/CategoryTypes';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useRef } from 'react';
 import { setEditDiaryPropertyAtom } from '~/stores/diaryContentAtoms';
 import {
   editableAtom,
@@ -10,8 +10,9 @@ import {
 const useDiaryForm = () => {
   const editable = useAtomValue(editableAtom);
   const diary = useAtomValue(getCurrentModeDiaryAtom);
-
   const setEditDiaryProperty = useSetAtom(setEditDiaryPropertyAtom);
+
+  const newFiles = useRef<File[]>([]);
 
   const handleChangeDatingDay = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
@@ -35,6 +36,41 @@ const useDiaryForm = () => {
     }
   };
 
+  const handleChangeImages = (imgURLs: string[]) => {
+    setEditDiaryProperty({ imgURL: imgURLs });
+  };
+
+  const handleUploadImg = (event: ChangeEvent<HTMLInputElement>) => {
+    const { files } = event.target;
+    const nextImgURL = [...diary.imgURL];
+
+    if (files === null) {
+      alert('하나 이상의 파일을 추가해주세요!');
+
+      return;
+    }
+
+    for (const file of files) {
+      if (nextImgURL.length === 5) {
+        alert('파일은 최대 5장까지 첨부가능해요!');
+
+        return;
+      }
+
+      newFiles.current.push(file);
+      nextImgURL.push(URL.createObjectURL(file));
+    }
+
+    handleChangeImages(nextImgURL);
+  };
+
+  const handleDeleteImg = (id: number) => {
+    const { imgURL } = diary;
+    const nextImgURL = imgURL.filter((_, index) => index !== id);
+
+    handleChangeImages(nextImgURL);
+  };
+
   return {
     editable,
     diary,
@@ -42,6 +78,8 @@ const useDiaryForm = () => {
     handleChangeScore,
     handleChangeCategory,
     handleChangeMyText,
+    handleUploadImg,
+    handleDeleteImg,
   };
 };
 

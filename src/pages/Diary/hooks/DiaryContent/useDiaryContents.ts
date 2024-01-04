@@ -43,7 +43,7 @@ const useDiaryContents = () => {
   const { mutate: deleteMutate } = useDeleteDiaryDetail(
     spotId || editDiary.kakaoMapId,
   );
-  const files = useRef<File[]>([]);
+  // const files = useRef<File[]>([]);
 
   // const handleChangeDatingDay = (event: ChangeEvent<HTMLInputElement>) => {
   //   const { value } = event.target;
@@ -81,9 +81,9 @@ const useDiaryContents = () => {
   //   });
   // };
 
-  const handleChangeImgaes = (imgUrl: string[]) => {
-    setImgUrl(imgUrl);
-  };
+  // const handleChangeImgaes = (imgUrl: string[]) => {
+  //   setImgUrl(imgUrl);
+  // };
 
   // const handleChangeScore = (score: number) => {
   //   setEditDiary({
