@@ -1,7 +1,7 @@
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useLocation } from 'react-router-dom';
-import { useModal } from '~/hooks';
+import { useModal, useToast } from '~/hooks';
 import { MainContent, MainModalButtons, MainProfile } from './components';
 import { MainModalProvider } from './contexts';
 import MainContentErrorFallback from './MainContentErrorBoundary';
@@ -12,7 +12,7 @@ import useRecreateCouple from '~/services/couple/useRecreateCouple';
 
 const MainPage = () => {
   const { state } = useLocation();
-  const [showNotification, setShowNotification] = useState(state);
+  const { showToast } = useToast();
   const { closeModal, modalRef, openModal } = useModal();
   const { data: coupleProfile } = useGetCoupleProfile();
   const { mutate: recreateCouple } = useRecreateCouple();
@@ -20,31 +20,12 @@ const MainPage = () => {
   const coupleMode = coupleProfile.coupleStatus;
 
   useEffect(() => {
-    if (state) {
-      setShowNotification(true);
-      setTimeout(() => {
-        setShowNotification(false);
-      }, 3000);
-    }
-
-    return () => {
-      setShowNotification(false);
-    };
-  }, [state]);
-
-  useEffect(() => {
     if (coupleMode === 'RECOUPLE') openModal();
   }, [coupleMode, openModal]);
 
   return (
     <div className="flex h-full w-full flex-col p-3 md:justify-between md:p-7">
-      {showNotification && (
-        <div className="toast toast-center toast-top z-50">
-          <div className="alert alert-info bg-base-secondary text-base-white">
-            <span>커플인 상태에서 이용이 가능해요...</span>
-          </div>
-        </div>
-      )}
+      {state && showToast({ content: '커플인 상태에서만 이용이 가능해요.' })}
       {coupleMode === 'RECOUPLE' && (
         <Modal
           ref={modalRef}

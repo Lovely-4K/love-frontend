@@ -16,7 +16,7 @@ import { useEditProfile } from '~/services/user';
 
 const ProfileContainer = () => {
   const modalInfo = useAtomValue(profileModalInfoAtom);
-  const { showToast, handleShowToast } = useToast();
+  const { showToast } = useToast();
   const [activeEdit, setActiveEdit] = useAtom(profileActiveEditAtom);
 
   const { data: coupleProfile } = useGetCoupleProfile();
@@ -34,7 +34,7 @@ const ProfileContainer = () => {
       modalInfo.mbti === '' ||
       modalInfo.mbti.length !== 4
     ) {
-      handleShowToast();
+      showToast({ content: 'MBTI를 선택해주세요.' });
 
       return;
     }
@@ -60,13 +60,6 @@ const ProfileContainer = () => {
 
   return (
     <>
-      {showToast && (
-        <div className="toast toast-bottom z-50">
-          <div className="alert bg-base-secondary text-base-white">
-            <span>MBTI를 선택해주세요.</span>
-          </div>
-        </div>
-      )}
       <div
         className="h-36 transition-colors"
         style={{

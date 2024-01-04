@@ -8,7 +8,14 @@ export default {
   theme: {
     colors,
     fontSize,
-    extend: {},
+    extend: {
+      keyframes: {
+        opacity: { '100%': { opacity: 0 } },
+      },
+      animation: {
+        opacity: 'opacity 2s linear 1',
+      },
+    },
   },
   plugins: [daisyui],
   daisyui: {
