@@ -1,5 +1,5 @@
 import { useSetAtom } from 'jotai';
-import { useProfile } from '../../hooks';
+import { useMainModal } from '../../hooks';
 import { changeProfileModalInfoAtom } from '../../stores/profileModalAtom';
 import MainDdayModal from '../MainDdayModal/MainDdayModal';
 import MainProfileModal from '../MainProfileModal/MainProfileModal';
@@ -8,7 +8,7 @@ import { useGetCoupleProfile } from '~/services/couple';
 
 const MainModalButtons = () => {
   const { data: coupleProfile } = useGetCoupleProfile();
-  const { openDdayModal, openProfileModal } = useProfile();
+  const { openDdayModal, openProfileModal } = useMainModal();
   const changeProfileModalInfo = useSetAtom(changeProfileModalInfoAtom);
 
   const coupleMode = coupleProfile.coupleStatus;

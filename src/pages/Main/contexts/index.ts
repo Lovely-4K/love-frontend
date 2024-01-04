@@ -1,1 +1,1 @@
-export { ProfileContext, ProfileProvider } from './ProfileContext';
+export * from './MainModalContext';

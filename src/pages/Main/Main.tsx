@@ -2,7 +2,7 @@ import { Suspense, useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useLocation } from 'react-router-dom';
 import { MainContent, MainModalButtons, MainProfile } from './components';
-import { ProfileProvider } from './contexts';
+import { MainModalProvider } from './contexts';
 import MainContentErrorFallback from './MainContentErrorBoundary';
 import { Button, Loading } from '~/components/common';
 import { Modal } from '~/components/domain';
@@ -79,10 +79,10 @@ const MainPage = () => {
             </div>
           }
         >
-          <ProfileProvider>
+          <MainModalProvider>
             <MainModalButtons />
             <MainProfile />
-          </ProfileProvider>
+          </MainModalProvider>
           <MainContent />
         </Suspense>
       </ErrorBoundary>

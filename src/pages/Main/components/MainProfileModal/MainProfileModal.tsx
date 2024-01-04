@@ -1,9 +1,9 @@
-import { useProfile } from '../../hooks';
+import { useMainModal } from '../../hooks';
 import ProfileContainer from './ProfileContainer';
 import { Modal } from '~/components/domain';
 
 const MainProfileModal = () => {
-  const { closeProfileModal, profileModalRef } = useProfile();
+  const { closeProfileModal, profileModalRef } = useMainModal();
 
   return (
     <Modal className="p-0" ref={profileModalRef}>

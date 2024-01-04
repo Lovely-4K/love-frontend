@@ -1,5 +1,5 @@
 import { differenceInDays } from 'date-fns';
-import { useProfile } from '../../hooks';
+import { useMainModal } from '../../hooks';
 import Profile from './Profile';
 import { IconHeart } from '~/assets/icons';
 import { useGetCoupleProfile } from '~/services/couple';
@@ -7,7 +7,7 @@ import { useGetCoupleProfile } from '~/services/couple';
 const CoupleProfile = () => {
   const { data: coupleProfile } = useGetCoupleProfile();
   const dDay = differenceInDays(new Date(), new Date(coupleProfile.meetDay));
-  const { openDdayModal } = useProfile();
+  const { openDdayModal } = useMainModal();
 
   const {
     myNickname,

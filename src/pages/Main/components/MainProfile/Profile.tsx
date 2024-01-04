@@ -1,13 +1,13 @@
 import { useSetAtom } from 'jotai';
 import { memo } from 'react';
 import { User } from '~/types';
-import { useProfile } from '../../hooks';
+import { useMainModal } from '../../hooks';
 import { changeProfileModalInfoAtom } from '../../stores/profileModalAtom';
 import { Avatar } from '~/components/common';
 
 const Profile = memo(
   ({ nickname, mbti, imageUrl, birthday, calendarColor, id }: User) => {
-    const { openProfileModal } = useProfile();
+    const { openProfileModal } = useMainModal();
     const changeProfileModalInfo = useSetAtom(changeProfileModalInfoAtom);
 
     const handleOpenProfileModal = () => {

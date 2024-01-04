@@ -1,1 +1,1 @@
-export { default as useProfile } from './useProfile';
+export { default as useMainModal } from './useMainModal';

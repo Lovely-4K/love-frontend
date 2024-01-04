@@ -10,9 +10,9 @@ interface MainModalContextProps {
   profileModalRef: React.RefObject<HTMLDialogElement>;
 }
 
-const ProfileContext = createContext<MainModalContextProps | null>(null);
+const MainModalContext = createContext<MainModalContextProps | null>(null);
 
-const ProfileProvider = ({ children }: PropsWithChildren) => {
+const MainModalProvider = ({ children }: PropsWithChildren) => {
   const {
     openModal: openDdayModal,
     closeModal: closeDdayModal,
@@ -44,8 +44,10 @@ const ProfileProvider = ({ children }: PropsWithChildren) => {
   );
 
   return (
-    <ProfileContext.Provider value={value}>{children}</ProfileContext.Provider>
+    <MainModalContext.Provider value={value}>
+      {children}
+    </MainModalContext.Provider>
   );
 };
 
-export { ProfileContext, ProfileProvider };
+export { MainModalContext, MainModalProvider };
