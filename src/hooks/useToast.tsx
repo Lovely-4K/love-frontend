@@ -1,19 +1,28 @@
-import { useState } from 'react';
+import { useSetAtom } from 'jotai';
+import { useCallback } from 'react';
+import { Toast, toastAtom } from '~/stores/toastAtom';
 
 const useToast = () => {
-  const [showToast, setShowToast] = useState(false);
+  const setToasts = useSetAtom(toastAtom);
 
-  const handleShowToast = () => {
-    setShowToast(true);
-    setTimeout(() => {
-      setShowToast(false);
-    }, 3000);
-  };
+  const hideToast = useCallback(
+    (toastId: Toast['id']) => {
+      setToasts((prev) => prev.filter((toast) => toast.id !== toastId));
+    },
+    [setToasts],
+  );
 
-  return {
-    showToast,
-    handleShowToast,
-  };
+  const showToast = useCallback(
+    (toast: Toast) => {
+      const toastId = Math.random();
+
+      setToasts((prev) => [...prev, { ...toast, id: toastId }]);
+      setTimeout(() => hideToast(toastId), 2000);
+    },
+    [setToasts, hideToast],
+  );
+
+  return { showToast };
 };
 
 export default useToast;

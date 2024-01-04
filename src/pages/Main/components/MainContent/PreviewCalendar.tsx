@@ -1,13 +1,20 @@
 import { Link } from 'react-router-dom';
 import { paths } from '~/router';
 import { getScheduleColor } from '~/utils';
-import { useMainContent } from '../../hooks';
 import PreviewNoneItem from './PreviewNoneItem';
 import { Loading } from '~/components/common';
 import { ScheduleItem } from '~/components/domain';
+import { useGetRecentSchedule } from '~/services/calendar';
+import { useGetCoupleProfile } from '~/services/couple';
 
 const PreviewCalendar = () => {
-  const { recentSchedule } = useMainContent();
+  const { data: coupleProfile } = useGetCoupleProfile();
+  const coupleMode = coupleProfile.coupleStatus;
+
+  const { data: recentSchedule } = useGetRecentSchedule({
+    limit: 10,
+    coupleMode: coupleMode === 'RELATIONSHIP',
+  });
 
   if (!recentSchedule)
     return (

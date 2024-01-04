@@ -1,10 +1,23 @@
-import { useDdayModal, useProfile } from '../../hooks';
+import { ChangeEvent, useState } from 'react';
+import { useMainModal } from '../../hooks';
 import { Button } from '~/components/common';
 import { Modal } from '~/components/domain';
+import { useEditCoupleProfile, useGetCoupleProfile } from '~/services/couple';
 
 const MainDdayModal = () => {
-  const { dDayModalRef, closeDdayModal } = useProfile();
-  const { editDday, handleDdayChange, handleEditDday } = useDdayModal();
+  const { data: coupleProfile } = useGetCoupleProfile();
+  const [editDday, setEditDday] = useState(coupleProfile.meetDay);
+  const { closeDdayModal, dDayModalRef } = useMainModal();
+  const { mutate: editCouple } = useEditCoupleProfile();
+
+  const handleDdayChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setEditDday(event.target.value);
+  };
+
+  const handleEditDday = () => {
+    editCouple(editDday);
+    closeDdayModal();
+  };
 
   return (
     <Modal

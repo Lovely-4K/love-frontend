@@ -1,11 +1,17 @@
+import { useAtomValue, useSetAtom } from 'jotai';
 import { colors } from '~/theme';
+import {
+  handleProfileColorChangeAtom,
+  profileActiveEditAtom,
+  profileModalInfoAtom,
+} from '../../stores/profileModalAtom';
 import ProfileItemWrapper from './ProfileItemWrapper';
 import personalColors from '~/constants/personalColor';
-import { useProfile, useProfileModal } from '~/pages/Main/hooks';
 
 const ProfileColorItem = () => {
-  const { activeEdit, handleColorChange } = useProfileModal();
-  const { modalInfo } = useProfile();
+  const modalInfo = useAtomValue(profileModalInfoAtom);
+  const activeEdit = useAtomValue(profileActiveEditAtom);
+  const handleColorChange = useSetAtom(handleProfileColorChangeAtom);
 
   return (
     <ProfileItemWrapper label="color" title="나의 색상">

@@ -1,8 +1,8 @@
-import { useMain } from '../../hooks';
 import Profile from './Profile';
+import { useGetCoupleProfile } from '~/services/couple';
 
 const SoloProfile = () => {
-  const { coupleProfile } = useMain();
+  const { data: coupleProfile } = useGetCoupleProfile();
 
   const { myNickname, myMbti, myImageUrl, myBirthday, myCalendarColor, myId } =
     coupleProfile;

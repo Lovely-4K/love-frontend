@@ -1,10 +1,14 @@
+import { useAtomValue } from 'jotai';
+import {
+  profileActiveEditAtom,
+  profileModalInfoAtom,
+} from '../../stores/profileModalAtom';
 import MBTIButton from './MBTIButton';
 import ProfileItemWrapper from './ProfileItemWrapper';
-import { useProfile, useProfileModal } from '~/pages/Main/hooks';
 
 const ProfileMBTIItem = () => {
-  const { activeEdit } = useProfileModal();
-  const { modalInfo } = useProfile();
+  const activeEdit = useAtomValue(profileActiveEditAtom);
+  const modalInfo = useAtomValue(profileModalInfoAtom);
 
   const itemContent = activeEdit ? (
     <div className="flex">

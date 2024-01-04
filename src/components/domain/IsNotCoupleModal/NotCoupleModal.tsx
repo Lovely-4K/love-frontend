@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
+import { useModal } from '~/hooks';
 import { Modal } from '../Modal';
-import useModal from '~/hooks/useModal';
 
 const NotCoupleModal = () => {
   const { openModal, closeModal, modalRef } = useModal();

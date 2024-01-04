@@ -1,9 +1,15 @@
+import { useAtomValue, useSetAtom } from 'jotai';
+import {
+  handleProfileInputChangeAtom,
+  profileActiveEditAtom,
+  profileModalInfoAtom,
+} from '../../stores/profileModalAtom';
 import ProfileItemWrapper from './ProfileItemWrapper';
-import { useProfile, useProfileModal } from '~/pages/Main/hooks';
 
 const ProfileNameItem = () => {
-  const { handleInputChange, activeEdit } = useProfileModal();
-  const { modalInfo } = useProfile();
+  const activeEdit = useAtomValue(profileActiveEditAtom);
+  const modalInfo = useAtomValue(profileModalInfoAtom);
+  const handleInputChange = useSetAtom(handleProfileInputChangeAtom);
 
   const nickname = modalInfo.nickname;
 

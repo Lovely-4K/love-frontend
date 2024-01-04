@@ -1,9 +1,19 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useMainContent } from '../../hooks';
 import { Loading } from '~/components/common';
+import { useCreateTodayQuestion, useGetQuestion } from '~/services/question';
 
 const PreviewQuestion = () => {
-  const { todayQuestion } = useMainContent();
+  const {
+    mutate: createTodayQuestion,
+    isError,
+    isSuccess,
+  } = useCreateTodayQuestion();
+  const { data: todayQuestion } = useGetQuestion(isError || isSuccess);
+
+  useEffect(() => {
+    createTodayQuestion();
+  }, [createTodayQuestion]);
 
   if (!todayQuestion)
     return (

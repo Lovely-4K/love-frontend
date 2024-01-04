@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 import { paths } from '~/router';
-import { useMainContent } from '../../hooks';
 import PreviewNoneItem from './PreviewNoneItem';
 import { Loading } from '~/components/common';
 import { DiaryPreviewItem } from '~/components/domain';
+import { useGetDiarys } from '~/services/diary';
+
 const PreviewDiary = () => {
-  const { recentDiarys } = useMainContent();
+  const { data: recentDiarys } = useGetDiarys({ page: 0 });
 
   if (!recentDiarys)
     return (

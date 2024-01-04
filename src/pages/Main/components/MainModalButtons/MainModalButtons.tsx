@@ -1,28 +1,34 @@
-import { DdayModalProvider } from '../../contexts';
-import { useMain, useProfile } from '../../hooks';
+import { useSetAtom } from 'jotai';
+import { useMainModal } from '../../hooks';
+import { changeProfileModalInfoAtom } from '../../stores/profileModalAtom';
 import MainDdayModal from '../MainDdayModal/MainDdayModal';
 import MainProfileModal from '../MainProfileModal/MainProfileModal';
 import { Button } from '~/components/common';
-import useLayoutContext from '~/hooks/useLayoutContext';
+import { useGetCoupleProfile } from '~/services/couple';
 
 const MainModalButtons = () => {
-  const { coupleMode } = useLayoutContext();
-  const { coupleProfile } = useMain();
-  const { handleOpenProfileModal, openDdayModal } = useProfile();
+  const { data: coupleProfile } = useGetCoupleProfile();
+  const { openDdayModal, openProfileModal } = useMainModal();
+  const changeProfileModalInfo = useSetAtom(changeProfileModalInfoAtom);
+
+  const coupleMode = coupleProfile.coupleStatus;
+
+  const handleOpenProfileModal = () => {
+    changeProfileModalInfo({
+      birthday: coupleProfile.myBirthday,
+      calendarColor: coupleProfile.myCalendarColor,
+      id: coupleProfile.myId,
+      imageUrl: coupleProfile.myImageUrl,
+      mbti: coupleProfile.myMbti,
+      nickname: coupleProfile.myNickname,
+    });
+    openProfileModal();
+  };
 
   return (
     <div className="flex items-center justify-end gap-3">
       <Button
-        onClick={() =>
-          handleOpenProfileModal({
-            birthday: coupleProfile.myBirthday,
-            calendarColor: coupleProfile.myCalendarColor,
-            id: coupleProfile.myId,
-            imageUrl: coupleProfile.myImageUrl,
-            mbti: coupleProfile.myMbti,
-            nickname: coupleProfile.myNickname,
-          })
-        }
+        onClick={handleOpenProfileModal}
         size="medium"
         className="hidden border border-grey-200 bg-base-white font-bold text-grey-400 md:block"
       >
@@ -38,9 +44,7 @@ const MainModalButtons = () => {
           >
             디데이 수정
           </Button>
-          <DdayModalProvider>
-            <MainDdayModal />
-          </DdayModalProvider>
+          <MainDdayModal />
         </>
       )}
     </div>

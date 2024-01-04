@@ -1,10 +1,12 @@
 import { memo } from 'react';
 import CoupleProfile from './CoupleProfile';
 import SoloProfile from './SoloProfile';
-import useLayoutContext from '~/hooks/useLayoutContext';
+import { useGetCoupleProfile } from '~/services/couple';
 
 const MainProfile = memo(() => {
-  const { coupleMode } = useLayoutContext();
+  const { data: coupleProfile } = useGetCoupleProfile();
+
+  const coupleMode = coupleProfile.coupleStatus;
 
   return coupleMode === 'RELATIONSHIP' ? <CoupleProfile /> : <SoloProfile />;
 });
