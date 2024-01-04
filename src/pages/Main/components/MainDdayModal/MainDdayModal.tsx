@@ -8,9 +8,15 @@ const MainDdayModal = () => {
   const { data: coupleProfile } = useGetCoupleProfile();
   const [editDday, setEditDday] = useState(coupleProfile.meetDay);
   const { closeDdayModal, dDayModalRef } = useProfile();
+  const { mutate: editCouple } = useEditCoupleProfile();
 
   const handleDdayChange = (event: ChangeEvent<HTMLInputElement>) => {
     setEditDday(event.target.value);
+  };
+
+  const handleEditDday = () => {
+    editCouple(editDday);
+    closeDdayModal();
   };
 
   return (
@@ -37,7 +43,7 @@ const MainDdayModal = () => {
         </Button>
         <Button
           size="medium"
-          onClick={closeDdayModal}
+          onClick={handleEditDday}
           className="bg-base-primary text-base-white focus:outline-none"
         >
           저장하기

@@ -1,4 +1,6 @@
+import { useSetAtom } from 'jotai';
 import { useProfile } from '../../hooks';
+import { changeProfileModalInfoAtom } from '../../stores/profileModalAtom';
 import MainDdayModal from '../MainDdayModal/MainDdayModal';
 import MainProfileModal from '../MainProfileModal/MainProfileModal';
 import { Button } from '~/components/common';
@@ -6,23 +8,27 @@ import { useGetCoupleProfile } from '~/services/couple';
 
 const MainModalButtons = () => {
   const { data: coupleProfile } = useGetCoupleProfile();
-  const { handleOpenProfileModal, openDdayModal } = useProfile();
+  const { openDdayModal, openProfileModal } = useProfile();
+  const changeProfileModalInfo = useSetAtom(changeProfileModalInfoAtom);
 
   const coupleMode = coupleProfile.coupleStatus;
+
+  const handleOpenProfileModal = () => {
+    changeProfileModalInfo({
+      birthday: coupleProfile.myBirthday,
+      calendarColor: coupleProfile.myCalendarColor,
+      id: coupleProfile.myId,
+      imageUrl: coupleProfile.myImageUrl,
+      mbti: coupleProfile.myMbti,
+      nickname: coupleProfile.myNickname,
+    });
+    openProfileModal();
+  };
 
   return (
     <div className="flex items-center justify-end gap-3">
       <Button
-        onClick={() =>
-          handleOpenProfileModal({
-            birthday: coupleProfile.myBirthday,
-            calendarColor: coupleProfile.myCalendarColor,
-            id: coupleProfile.myId,
-            imageUrl: coupleProfile.myImageUrl,
-            mbti: coupleProfile.myMbti,
-            nickname: coupleProfile.myNickname,
-          })
-        }
+        onClick={handleOpenProfileModal}
         size="medium"
         className="hidden border border-grey-200 bg-base-white font-bold text-grey-400 md:block"
       >

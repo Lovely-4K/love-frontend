@@ -3,6 +3,8 @@ import { ChangeEvent, MouseEvent } from 'react';
 import { personalColors } from '~/constants';
 import { User } from '~/types';
 
+export const profileActiveEditAtom = atom<boolean>(false);
+
 export const profileModalInfoAtom = atom<User>({
   birthday: '',
   calendarColor: '',
@@ -10,6 +12,11 @@ export const profileModalInfoAtom = atom<User>({
   mbti: '',
   nickname: '',
   id: 0,
+});
+
+export const changeProfileModalInfoAtom = atom(null, (_, set, user: User) => {
+  set(profileModalInfoAtom, user);
+  set(profileActiveEditAtom, false);
 });
 
 export const handleProfileInputChangeAtom = atom(
@@ -77,5 +84,3 @@ export const handleMBTIChangeAtom = atom(
     }));
   },
 );
-
-export const profileActiveEditAtom = atom<boolean>(false);
