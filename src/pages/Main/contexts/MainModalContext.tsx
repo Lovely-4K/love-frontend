@@ -1,5 +1,5 @@
 import { PropsWithChildren, createContext, useMemo } from 'react';
-import useModal from '~/hooks/useModal';
+import { useModal } from '~/hooks';
 
 interface MainModalContextProps {
   openDdayModal: () => void;

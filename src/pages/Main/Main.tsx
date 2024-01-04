@@ -1,12 +1,12 @@
 import { Suspense, useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useLocation } from 'react-router-dom';
+import { useModal } from '~/hooks';
 import { MainContent, MainModalButtons, MainProfile } from './components';
 import { MainModalProvider } from './contexts';
 import MainContentErrorFallback from './MainContentErrorBoundary';
 import { Button, Loading } from '~/components/common';
 import { Modal } from '~/components/domain';
-import useModal from '~/hooks/useModal';
 import { useGetCoupleProfile } from '~/services/couple';
 import useRecreateCouple from '~/services/couple/useRecreateCouple';
 
