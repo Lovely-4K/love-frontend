@@ -1,5 +1,6 @@
 import { useToast } from '~/hooks';
 import useInitDiaryContent from '../../hooks/DiaryContent/useInitDiaryContent';
+import DiaryContentCategories from './DiaryContentCategories';
 import DiaryContentDate from './DiaryContentDate';
 import DiaryContentEditButton from './DiaryContentEditButton';
 import DiaryContentHeader from './DiaryContentHeader';
@@ -25,7 +26,8 @@ const DiaryContent = ({ editable }: DiaryContentProps) => {
           <DiaryContentDate />
           <DiaryContentScore />
         </div>
-        <div className="flex flex-col gap-2">
+        <DiaryContentCategories />
+        <div className="flex flex-col gap-4 py-2">
           <DiaryContentImgsSection />
           <DiaryContentTextSection />
         </div>

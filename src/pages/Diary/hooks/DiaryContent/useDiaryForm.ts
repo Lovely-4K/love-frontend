@@ -1,6 +1,6 @@
 import type categoryType from '~/components/common/CategoryButton/CategoryTypes';
 import { useAtom, useAtomValue } from 'jotai';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useToast } from '~/hooks';
 import {
@@ -15,6 +15,7 @@ import useGetDiaryDetail from '~/services/diary/useGetDiaryDetail';
 import { infoAtom } from '~/stores/diaryAtoms';
 import { editableAtom } from '~/stores/diaryContentAtoms';
 import { getTodayDate } from '~/utils/Common';
+import { changeImageType } from '~/utils/Diary';
 
 const useDiaryForm = () => {
   const navigate = useNavigate();
@@ -45,6 +46,29 @@ const useDiaryForm = () => {
     params.spotId || info!.spotId || originDiary!.kakaoMapId,
     setLoading,
   );
+
+  useEffect(() => {
+    const {
+      datingDay,
+      category,
+      score,
+      myText,
+      opponentText,
+      imgURL,
+      pictures,
+    } = originDiary;
+    const imageURL = changeImageType(pictures);
+    setEditDiary({
+      datingDay,
+      category,
+      score,
+      myText,
+      opponentText,
+      imgURL,
+      existedImgURL: imageURL,
+      newFile: [],
+    });
+  }, [originDiary]);
 
   const handleEditCancel = () => {
     setEditable(false);

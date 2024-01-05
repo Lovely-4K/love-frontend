@@ -9,7 +9,7 @@ const DiaryImgsUpload = () => {
   const imageLength = imgURL === undefined ? 0 : imgURL.length;
 
   return (
-    <div className="flex h-[7rem] w-full gap-4 overflow-x-auto pt-2">
+    <section className="flex h-[7rem] w-full gap-4 overflow-x-auto pt-2">
       <form method="post" encType="multipart/form-data">
         <label htmlFor="input-file">
           <input
@@ -46,7 +46,7 @@ const DiaryImgsUpload = () => {
           </button>
         </div>
       ))}
-    </div>
+    </section>
   );
 };
 

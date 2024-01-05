@@ -6,7 +6,7 @@ const DiaryContentTextSection = () => {
   const { myText, opponentText } = diary;
 
   return (
-    <section>
+    <div>
       <DiaryContentText
         label={'나의 기록'}
         editable={editable}
@@ -19,7 +19,7 @@ const DiaryContentTextSection = () => {
         diaryText={opponentText}
         handleChangeText={() => {}}
       />
-    </section>
+    </div>
   );
 };
 
