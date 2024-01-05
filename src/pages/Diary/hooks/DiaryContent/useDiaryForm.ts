@@ -8,13 +8,11 @@ import {
   DiaryCreateTextRequest,
   MapMarker,
 } from '~/types';
-import type { EditDiary } from '~/types';
 import useCreateDiaryDetail from '~/services/diary/useCreateDiaryDetail';
 import useEditDiaryDetail from '~/services/diary/useEditDiaryDetail';
 import useGetDiaryDetail from '~/services/diary/useGetDiaryDetail';
 import { infoAtom } from '~/stores/diaryAtoms';
-import { editableAtom } from '~/stores/diaryContentAtoms';
-import { getTodayDate } from '~/utils/Common';
+import { editableAtom, editDiaryAtom } from '~/stores/diaryContentAtoms';
 import { changeImageType } from '~/utils/Diary';
 
 const useDiaryForm = () => {
@@ -23,20 +21,11 @@ const useDiaryForm = () => {
   const info = useAtomValue(infoAtom);
 
   const { data: originDiary } = useGetDiaryDetail({ diaryId: params.diaryId });
+  const [editDiary, setEditDiary] = useAtom(editDiaryAtom);
 
   const { handleShowToast } = useToast();
   const [loading, setLoading] = useState(false);
   const [editable, setEditable] = useAtom(editableAtom);
-  const [editDiary, setEditDiary] = useState<EditDiary>({
-    datingDay: getTodayDate(),
-    category: 'CAFE',
-    score: 5,
-    myText: '',
-    opponentText: '',
-    imgURL: [],
-    existedImgURL: [],
-    newFile: [],
-  });
 
   const { mutate: createFormMutate } = useCreateDiaryDetail(
     params.spotId as string,
@@ -48,27 +37,20 @@ const useDiaryForm = () => {
   );
 
   useEffect(() => {
-    const {
-      datingDay,
-      category,
-      score,
-      myText,
-      opponentText,
-      imgURL,
-      pictures,
-    } = originDiary;
-    const imageURL = changeImageType(pictures);
+    const { datingDay, category, score, myText, opponentText, pictures } =
+      originDiary;
+    const changedImgURL = changeImageType(pictures);
     setEditDiary({
       datingDay,
       category,
       score,
       myText,
       opponentText,
-      imgURL,
-      existedImgURL: imageURL,
+      imgURL: changedImgURL,
+      existedImgURL: changedImgURL,
       newFile: [],
     });
-  }, [originDiary]);
+  }, [originDiary, editable]);
 
   const handleEditCancel = () => {
     setEditable(false);
