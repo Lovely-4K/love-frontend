@@ -11,7 +11,7 @@ const DiaryContentHeader = memo(() => {
       <DiaryHeader prevLink={prevLink} spotName={placeName} />
       {!editable && (
         <div className="flex gap-2 text-sm text-grey-400">
-          <button onClick={() => handleStartEdit}>수정</button>
+          <button onClick={handleStartEdit}>수정</button>
           <button onClick={handleDeleteDiary}>삭제</button>
         </div>
       )}
