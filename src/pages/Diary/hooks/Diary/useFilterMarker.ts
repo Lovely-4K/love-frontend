@@ -1,27 +1,25 @@
+import { useAtom, useAtomValue } from 'jotai';
 import { useEffect } from 'react';
-import { MarkerFilter } from '~/pages/Diary/contexts/DiaryMapContext';
-import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
-import useDiaryMap from '~/pages/Diary/hooks/DiaryMap/useDiaryMap';
+import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
+
+import { markersAtom, rootDiarysAtom } from '~/stores/diaryAtoms';
+import {
+  MarkerFilter,
+  goneMarkersAtom,
+  markerFilterAtom,
+  yetMarkersAtom,
+} from '~/stores/diaryMapAtoms';
 
 const useFilterMarker = () => {
-  const {
-    markerFilter,
-    setMarkerFilter,
-    goneMarkers,
-    setGoneMarkers,
-    yetMarkers,
-    setYetMarkers,
-  } = useDiaryMap();
+  const [markerFilter, setMarkerFilter] = useAtom(markerFilterAtom);
+  const [goneMarkers, setGoneMarkers] = useAtom(goneMarkersAtom);
+  const [yetMarkers, setYetMarkers] = useAtom(yetMarkersAtom);
 
-  const {
-    markers,
-    rootDiarys,
-    methods: { handleInfo },
-  } = useDiaryContext();
-  const { closeInfo } = handleInfo;
+  const { closeInfo } = useInfoToggle();
+  const diaryContent = useAtomValue(rootDiarysAtom);
+  const markers = useAtomValue(markersAtom);
 
   const handleFilterMarker = () => {
-    const diaryContent = rootDiarys;
     const gone = markers.filter((marker) => {
       return diaryContent.find(
         (diaryContent) => diaryContent.kakaoMapId === Number(marker.spotId),
@@ -66,7 +64,7 @@ const useFilterMarker = () => {
   };
   useEffect(() => {
     handleFilterMarker();
-  }, [markerFilter, markers, rootDiarys]);
+  }, [markerFilter, markers, diaryContent]);
 
   return {
     markerFilter,

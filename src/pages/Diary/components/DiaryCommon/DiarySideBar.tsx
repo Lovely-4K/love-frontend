@@ -1,12 +1,13 @@
 import styled from '@emotion/styled';
-import * as React from 'react';
-import { PropsWithChildren } from 'react';
+import { useAtomValue } from 'jotai';
+import { PropsWithChildren, Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { colors, fontSize, screens } from '~/theme';
 import SideBarFallBack from './SideBarFallback';
 import { IconTopArrow } from '~/assets/icons';
 import { Loading } from '~/components/common';
-import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
+import useSideBar from '~/pages/Diary/hooks/Diary/useSideBar';
+import { sideBarToggleAtom } from '~/stores/diaryAtoms';
 
 const StyledDiarySideBar = styled.div`
   position: absolute;
@@ -108,8 +109,8 @@ const StyledArrowIcon = styled(IconTopArrow)`
 `;
 
 const DiarySideBar = ({ children }: PropsWithChildren) => {
-  const { methods, sideBarToggle } = useDiaryContext();
-  const { toggleSideBar } = methods.handleSideBar;
+  const sideBarToggle = useAtomValue(sideBarToggleAtom);
+  const { toggleSideBar } = useSideBar();
 
   return (
     <StyledDiarySideBar className={sideBarToggle ? 'open' : 'closed'}>
@@ -117,9 +118,7 @@ const DiarySideBar = ({ children }: PropsWithChildren) => {
         <StyledArrowIcon className={sideBarToggle ? 'open' : 'closed'} />
       </StyledToggleButton>
       <ErrorBoundary FallbackComponent={SideBarFallBack}>
-        <React.Suspense fallback={<Loading size="large" />}>
-          {children}
-        </React.Suspense>
+        <Suspense fallback={<Loading size="large" />}>{children}</Suspense>
       </ErrorBoundary>
     </StyledDiarySideBar>
   );

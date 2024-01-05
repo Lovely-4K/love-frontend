@@ -1,22 +1,16 @@
+import { useSetAtom } from 'jotai';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '~/router';
-import { DiaryContextProps } from '~/pages/Diary/contexts/DiaryContext';
+import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
+import useSideBar from '~/pages/Diary/hooks/Diary/useSideBar';
+import { infoAtom } from '~/stores/diaryAtoms';
 import { MapMarker } from '~/types/map';
 
-interface useHandleMarkerProps {
-  handleInfo: DiaryContextProps['methods']['handleInfo'];
-  handleSideBar: DiaryContextProps['methods']['handleSideBar'];
-  setMarkers: DiaryContextProps['setMarkers'];
-}
-
-const useHandleMarker = ({
-  handleInfo,
-  handleSideBar,
-  setMarkers,
-}: useHandleMarkerProps) => {
+const useHandleMarker = () => {
   const navigate = useNavigate();
-  const { openInfo, setInfo } = handleInfo;
-  const { openSideBar } = handleSideBar;
+  const { openInfo } = useInfoToggle();
+  const { openSideBar } = useSideBar();
+  const setInfo = useSetAtom(infoAtom);
 
   const handleMarker = (marker: MapMarker) => {
     const { spotId, position, content } = marker;
@@ -30,7 +24,7 @@ const useHandleMarker = ({
     });
   };
 
-  return { handleMarker, setMarkers };
+  return { handleMarker };
 };
 
 export default useHandleMarker;

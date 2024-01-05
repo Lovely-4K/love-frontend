@@ -1,3 +1,4 @@
+import { useAtomValue, useSetAtom } from 'jotai';
 import {
   Map,
   useKakaoLoader as useKakaoLoaderOrigin,
@@ -6,23 +7,30 @@ import DiaryCustomInfo from './DiaryCustomInfo';
 import DiaryMapButtons from './DiaryMapButtons';
 import DiaryMapMarker from './DiaryMapMarker';
 import DiaryMapCategories from '~/pages/Diary/components/DiaryMap/DiaryMapCategories';
-import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
+import useMapLocation from '~/pages/Diary/hooks/Diary/useCurrentLocation';
+import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
+import useMapCategory from '~/pages/Diary/hooks/Diary/useMapCategory';
+import useSearch from '~/pages/Diary/hooks/Diary/useMapLocation';
+import {
+  infoAtom,
+  infoOpenAtom,
+  mapAtom,
+  searchKeywordAtom,
+} from '~/stores/diaryAtoms';
 
 const DiaryMap = () => {
-  const {
-    infoOpen,
-    searchKeyword,
-    info,
-    setMap,
-    methods: { handleMapCategories, handleInfo, handleLocation, handleSearch },
-  } = useDiaryContext();
-  const { useCurrentLocation } = handleLocation;
+  const searchKeyword = useAtomValue(searchKeywordAtom);
+  const info = useAtomValue(infoAtom);
+  const infoOpen = useAtomValue(infoOpenAtom);
+  const setMap = useSetAtom(mapAtom);
+
+  const { useCurrentLocation } = useMapLocation();
   const { userPosition } = useCurrentLocation();
-  const { useCategorySearch } = handleMapCategories;
+  const { useCategorySearch } = useMapCategory();
   useCategorySearch();
-  const { useSearchLocation } = handleSearch;
+  const { useSearchLocation } = useSearch();
   useSearchLocation(searchKeyword);
-  const { closeInfo } = handleInfo;
+  const { closeInfo } = useInfoToggle();
 
   useKakaoLoaderOrigin({
     appkey: '7a4be6748e8ae03e1c1fb309117bc067',

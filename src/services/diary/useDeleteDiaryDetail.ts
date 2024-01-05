@@ -13,7 +13,7 @@ const deleteDiaryDetail = async ({ diaryList }: DeleteDiaryDetailParams) => {
   return response.data;
 };
 
-const useDeleteDiaryDetail = (kakaoMapId: string | undefined) => {
+const useDeleteDiaryDetail = (kakaoMapId: string | number | undefined) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 

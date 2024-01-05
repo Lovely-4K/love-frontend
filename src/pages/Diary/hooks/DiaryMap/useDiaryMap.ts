@@ -1,12 +1,12 @@
-import { useContext } from 'react';
-import { DiaryMapContext } from '~/pages/Diary/contexts/DiaryMapContext';
+// import { useContext } from 'react';
+// import { DiaryMapContext } from '~/pages/Diary/contexts/DiaryMapContext';
 
-const useDiaryMap = () => {
-  const diaryMapContext = useContext(DiaryMapContext);
+// const useDiaryMap = () => {
+//   const diaryMapContext = useContext(DiaryMapContext);
 
-  if (!diaryMapContext) throw new Error('Cannot find DiaryMapProvider');
+//   if (!diaryMapContext) throw new Error('Cannot find DiaryMapProvider');
 
-  return diaryMapContext;
-};
+//   return diaryMapContext;
+// };
 
-export default useDiaryMap;
+// export default useDiaryMap;

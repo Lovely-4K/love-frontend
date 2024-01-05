@@ -1,35 +1,23 @@
 import type categoryType from '~/components/common/CategoryButton/CategoryTypes';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
 import { MapMarker } from '~/types';
-import { DiaryContextProps } from '~/pages/Diary/contexts/DiaryContext';
+import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
+import useInputRef from '~/pages/Diary/hooks/Diary/useInputRef';
+import {
+  mapAtom,
+  mapCategoryAtom,
+  markersAtom,
+  searchKeywordAtom,
+} from '~/stores/diaryAtoms';
 
-interface useMapCategoryProps {
-  setMapCategory: DiaryContextProps['setMapCategory'];
-  searchKeyword: DiaryContextProps['searchKeyword'];
-  map: DiaryContextProps['map'];
-  mapCategory: DiaryContextProps['mapCategory'];
-  handleInfo: DiaryContextProps['methods']['handleInfo'];
-  handleInput: DiaryContextProps['methods']['handleInput'];
-  handleMarkers: DiaryContextProps['methods']['handleMarkers'];
-}
-
-const useMapCategory = ({
-  setMapCategory,
-  searchKeyword,
-  map,
-  mapCategory,
-  handleInfo,
-  handleInput,
-  handleMarkers,
-}: useMapCategoryProps) => {
-  const {
-    startSearchMode,
-    setSearchKeyword,
-    categorySearchMode,
-    endSearchMode,
-  } = handleInput;
-  const { closeInfo } = handleInfo;
-  const { setMarkers } = handleMarkers;
+const useMapCategory = () => {
+  const { startSearchMode, categorySearchMode, endSearchMode } = useInputRef();
+  const { closeInfo } = useInfoToggle();
+  const [mapCategory, setMapCategory] = useAtom(mapCategoryAtom);
+  const [searchKeyword, setSearchKeyword] = useAtom(searchKeywordAtom);
+  const map = useAtomValue(mapAtom);
+  const setMarkers = useSetAtom(markersAtom);
 
   const handleMapCategory = (category: categoryType) => {
     setMapCategory((currCategory) => {

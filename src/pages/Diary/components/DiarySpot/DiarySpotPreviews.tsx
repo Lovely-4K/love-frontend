@@ -1,8 +1,9 @@
+import { useAtomValue } from 'jotai';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { SpotDiaries } from '~/types';
 import DiarySpotPreview from './DiarySpotPreview';
 import DiaryCreateButton from '~/pages/Diary/components/DiarySpot/DiaryCreateButton';
-import useDiarySpotContext from '~/pages/Diary/hooks/useDiarySpotContext';
+import { deleteModeAtom, selectedIdsAtom } from '~/stores/diarySpotAtoms';
 
 interface DiarySpotPreviewsProps {
   spotDiaries: SpotDiaries;
@@ -11,8 +12,8 @@ interface DiarySpotPreviewsProps {
 const DiarySpotPreviews = ({ spotDiaries }: DiarySpotPreviewsProps) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const diarySpotContext = useDiarySpotContext();
-  const { deleteMode, selectedIds } = diarySpotContext;
+  const deleteMode = useAtomValue(deleteModeAtom);
+  const selectedIds = useAtomValue(selectedIdsAtom);
 
   return (
     <div className="flex h-full flex-col items-center justify-center overflow-y-hidden">

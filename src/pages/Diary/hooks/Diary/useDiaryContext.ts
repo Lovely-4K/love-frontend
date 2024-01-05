@@ -1,14 +1,14 @@
-import { useContext } from 'react';
-import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
+// import { useContext } from 'react';
+// import { DiaryContext } from '~/pages/Diary/contexts/DiaryContext';
 
-const useDiaryContext = () => {
-  const diaryContext = useContext(DiaryContext);
+// const useDiaryContext = () => {
+//   const diaryContext = useContext(DiaryContext);
 
-  if (diaryContext === null) {
-    throw new Error('Diary Context is null');
-  }
+//   if (diaryContext === null) {
+//     throw new Error('Diary Context is null');
+//   }
 
-  return diaryContext;
-};
+//   return diaryContext;
+// };
 
-export default useDiaryContext;
+// export default useDiaryContext;

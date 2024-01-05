@@ -1,14 +1,13 @@
+import { useAtomValue } from 'jotai';
 import { CategoryButton } from '~/components/common';
-import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
+import useMapCategory from '~/pages/Diary/hooks/Diary/useMapCategory';
+import { mapCategoryAtom } from '~/stores/diaryAtoms';
 
 const categories = ['CAFE', 'FOOD', 'ACCOMODATION', 'CULTURE'] as const;
 
 const DiaryMapCategoryList = () => {
-  const {
-    mapCategory,
-    methods: { handleMapCategories },
-  } = useDiaryContext();
-  const { handleMapCategory } = handleMapCategories;
+  const mapCategory = useAtomValue(mapCategoryAtom);
+  const { handleMapCategory } = useMapCategory();
 
   return (
     <ul className="flex w-full items-center justify-center gap-5">

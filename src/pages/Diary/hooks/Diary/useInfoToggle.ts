@@ -1,18 +1,13 @@
-import { DiaryContextProps } from '~/pages/Diary/contexts/DiaryContext';
+// import { DiaryContextProps } from '~/pages/Diary/contexts/DiaryContext';
 
-interface useInfoToggleProps {
-  infoOpen: DiaryContextProps['infoOpen'];
-  setInfoOpen: DiaryContextProps['setInfoOpen'];
-  setInfo: DiaryContextProps['setInfo'];
-}
+import { useSetAtom } from 'jotai';
+import { infoOpenAtom } from '~/stores/diaryAtoms';
 
-const useInfoToggle = ({
-  infoOpen,
-  setInfoOpen,
-  setInfo,
-}: useInfoToggleProps) => {
+const useInfoToggle = () => {
+  const setInfoOpen = useSetAtom(infoOpenAtom);
+
   const toggleInfo = () => {
-    setInfoOpen(!infoOpen);
+    setInfoOpen(!infoOpenAtom);
   };
 
   const closeInfo = () => {
@@ -23,7 +18,7 @@ const useInfoToggle = ({
     setInfoOpen(true);
   };
 
-  return { toggleInfo, closeInfo, openInfo, setInfo };
+  return { toggleInfo, closeInfo, openInfo };
 };
 
 export default useInfoToggle;

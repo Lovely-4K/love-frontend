@@ -1,12 +1,10 @@
 import { MapCurPosButton, MapFilterButton } from '~/components/common';
-import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
+import useMapLocation from '~/pages/Diary/hooks/Diary/useCurrentLocation';
+
 import useFilterMarker from '~/pages/Diary/hooks/Diary/useFilterMarker';
 
 const DiaryMapButtons = () => {
-  const {
-    methods: { handleLocation },
-  } = useDiaryContext();
-  const { useCurrentLocation } = handleLocation;
+  const { useCurrentLocation } = useMapLocation();
   const { setCenter, isCurrentLocation } = useCurrentLocation();
   const { markerFilter, handleFilter } = useFilterMarker();
 

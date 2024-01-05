@@ -1,11 +1,9 @@
-import { DiaryContextProps } from '~/pages/Diary/contexts/DiaryContext';
+import { useAtom } from 'jotai';
+import { sideBarToggleAtom } from '~/stores/diaryAtoms';
 
-interface useSideBarProps {
-  sideBarToggle: DiaryContextProps['sideBarToggle'];
-  setSideBarToggle: DiaryContextProps['setSideBarToggle'];
-}
+const useSideBar = () => {
+  const [sideBarToggle, setSideBarToggle] = useAtom(sideBarToggleAtom);
 
-const useSideBar = ({ sideBarToggle, setSideBarToggle }: useSideBarProps) => {
   const toggleSideBar = () => {
     setSideBarToggle(!sideBarToggle);
   };

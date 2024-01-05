@@ -1,13 +1,11 @@
+import { useAtomValue } from 'jotai';
 import DiaryMarkerData from '~/pages/Diary/components/DiaryCommon/DiaryMarkerData';
-import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
+import useHandleMarker from '~/pages/Diary/hooks/Diary/useHandleMarker';
+import { markersAtom } from '~/stores/diaryAtoms';
 
 const SearchResultsItems = () => {
-  const {
-    markers,
-    methods: { handleMarkers },
-  } = useDiaryContext();
-
-  const { handleMarker } = handleMarkers;
+  const markers = useAtomValue(markersAtom);
+  const { handleMarker } = useHandleMarker();
 
   return (
     <div className="flex flex-col gap-2 overflow-y-auto">

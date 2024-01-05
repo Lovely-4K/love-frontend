@@ -1,14 +1,14 @@
-import { useContext } from 'react';
-import { DiarySpotContext } from '~/pages/Diary/contexts/DiarySpotContext';
+// import { useContext } from 'react';
+// import { DiarySpotContext } from '~/pages/Diary/contexts/DiarySpotContext';
 
-const useDiarySpotContext = () => {
-  const diarySpotContext = useContext(DiarySpotContext);
+// const useDiarySpotContext = () => {
+//   const diarySpotContext = useContext(DiarySpotContext);
 
-  if (diarySpotContext === null) {
-    throw new Error('diarySpotContext is null');
-  }
+//   if (diarySpotContext === null) {
+//     throw new Error('diarySpotContext is null');
+//   }
 
-  return diarySpotContext;
-};
+//   return diarySpotContext;
+// };
 
-export default useDiarySpotContext;
+// export default useDiarySpotContext;

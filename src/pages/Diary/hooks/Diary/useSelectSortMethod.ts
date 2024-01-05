@@ -1,10 +1,9 @@
-interface useSelectSortMethodProps {
-  setSelectSortMethod: React.Dispatch<React.SetStateAction<string>>;
-}
+import { useSetAtom } from 'jotai';
+import { selectSortMethodAtom } from '~/stores/diaryMainAtoms';
 
-const useSelectSortMethod = ({
-  setSelectSortMethod,
-}: useSelectSortMethodProps) => {
+const useSelectSortMethod = () => {
+  const setSelectSortMethod = useSetAtom(selectSortMethodAtom);
+
   const handleSortMethodClick = (sortMethod: string) => {
     setSelectSortMethod(sortMethod);
   };
