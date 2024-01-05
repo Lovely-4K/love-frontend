@@ -17,12 +17,17 @@ interface Diary {
   imgURL: string[];
 }
 
-interface DiaryResponse extends Diary {
+interface ReadDiary extends Diary {
   kakaoMapId: string;
   placeName: string;
   pictures: Pictures;
   latitude: number;
   longitude: number;
+}
+
+interface EditDiary extends Diary {
+  existedImgURL: string[];
+  newFile: File[];
 }
 
 interface DiaryContentRequest extends Omit<Diary, 'myText' | 'opponentText'> {
@@ -36,9 +41,9 @@ interface DiaryContentRequest extends Omit<Diary, 'myText' | 'opponentText'> {
   files?: FileList;
 }
 
-interface DiaryEditTextRequest extends Diary {
+interface DiaryEditTextRequest
+  extends Omit<Diary, 'imgURL' | 'myText' | 'opponentText'> {
   text: string;
-  images?: string[];
 }
 
 interface DiaryContent {
@@ -93,7 +98,8 @@ export type {
   Diarys,
   Pictures,
   Diary,
-  DiaryResponse,
+  ReadDiary,
+  EditDiary,
   DiaryContentRequest,
   DiaryEditTextRequest,
   SpotDiaries,
