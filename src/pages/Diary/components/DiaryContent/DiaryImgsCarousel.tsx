@@ -1,10 +1,10 @@
-import type { DiaryResponse } from '~/types';
+import type { ReadDiary } from '~/types';
 import useDiaryForm from '../../hooks/DiaryContent/useDiaryForm';
 import { Carousel } from '~/components/domain';
 
 const DiaryImgsCarousel = () => {
   const { diary } = useDiaryForm();
-  const { imgURL } = diary as DiaryResponse;
+  const { imgURL } = diary as ReadDiary;
 
   return (
     <div>
