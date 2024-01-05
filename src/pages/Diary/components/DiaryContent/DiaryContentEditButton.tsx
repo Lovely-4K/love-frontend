@@ -1,19 +1,15 @@
-import { useAtomValue } from 'jotai';
+import useDiaryForm from '../../hooks/DiaryContent/useDiaryForm';
 import { Button } from '~/components/common';
-import useDiaryContents from '~/pages/Diary/hooks/DiaryContent/useDiaryContents';
-import { editableAtom, loadingAtom } from '~/stores/diaryContentAtoms';
+
 const DiaryContentEditButton = () => {
-  const editable = useAtomValue(editableAtom);
-  const loading = useAtomValue(loadingAtom);
-  const { handleEditCancel, handleSubmitForm } = useDiaryContents();
+  const { loading, editable, handleEditCancel, handleSubmitDiary } =
+    useDiaryForm();
 
   return (
     editable && (
       <div className="flex justify-end gap-2">
         <Button
-          onClick={() => {
-            handleEditCancel();
-          }}
+          onClick={handleEditCancel}
           disabled={loading}
           size="small"
           className="rounded-xl border border-grey-200 text-grey-400"
@@ -21,9 +17,7 @@ const DiaryContentEditButton = () => {
           취소
         </Button>
         <Button
-          onClick={() => {
-            handleSubmitForm();
-          }}
+          onClick={handleSubmitDiary}
           disabled={loading}
           size="small"
           className="rounded-xl border bg-base-primary text-base-white disabled:bg-grey-300"

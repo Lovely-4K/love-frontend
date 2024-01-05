@@ -1,25 +1,25 @@
 import { useAtom, useAtomValue } from 'jotai';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { paths } from '~/router';
 import useDeleteDiaryDetail from '~/services/diary/useDeleteDiaryDetail';
+import useGetDiaryDetail from '~/services/diary/useGetDiaryDetail';
 import { infoAtom } from '~/stores/diaryAtoms';
-import {
-  getSetEditableAtom,
-  getCurrentModeDiaryAtom,
-} from '~/stores/diaryContentAtoms';
+import { editableAtom } from '~/stores/diaryContentAtoms';
 
 const useDiaryContentHeader = () => {
   const navigate = useNavigate();
+  const params = useParams();
 
-  const [editable, setEditable] = useAtom(getSetEditableAtom);
-  const [diary] = useAtom(getCurrentModeDiaryAtom);
+  const { data: originDiary } = useGetDiaryDetail({ diaryId: params.diaryId });
+  const { diaryId, kakaoMapId, placeName } = originDiary;
+
+  const [editable, setEditable] = useAtom(editableAtom);
   const info = useAtomValue(infoAtom);
 
-  const { diaryId, kakaoMapId, placeName } = diary;
-  const { DIARY } = paths;
-  const prevLink = info ? `${DIARY.ROOT}/${kakaoMapId}` : `${DIARY.ROOT}`;
-
   const { mutate: deleteMutate } = useDeleteDiaryDetail(kakaoMapId);
+
+  const { DIARY } = paths;
+  const prevLink = info ? `${DIARY.ROOT}/${info.spotId}` : `${DIARY.ROOT}`;
 
   const handleStartEdit = () => {
     setEditable(true);

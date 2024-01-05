@@ -1,48 +1,100 @@
 import type categoryType from '~/components/common/CategoryButton/CategoryTypes';
-import { useAtomValue, useSetAtom } from 'jotai';
-import { ChangeEvent, useRef } from 'react';
-import { setEditDiaryPropertyAtom } from '~/stores/diaryContentAtoms';
+import { useAtom, useAtomValue } from 'jotai';
+import { ChangeEvent, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useToast } from '~/hooks';
 import {
-  editableAtom,
-  getCurrentModeDiaryAtom,
-} from '~/stores/diaryContentAtoms';
+  DiaryEditTextRequest,
+  DiaryCreateTextRequest,
+  MapMarker,
+} from '~/types';
+import type { EditDiary } from '~/types';
+import useCreateDiaryDetail from '~/services/diary/useCreateDiaryDetail';
+import useEditDiaryDetail from '~/services/diary/useEditDiaryDetail';
+import useGetDiaryDetail from '~/services/diary/useGetDiaryDetail';
+import { infoAtom } from '~/stores/diaryAtoms';
+import { editableAtom } from '~/stores/diaryContentAtoms';
+import { getTodayDate } from '~/utils/Common';
 
 const useDiaryForm = () => {
-  const editable = useAtomValue(editableAtom);
-  const diary = useAtomValue(getCurrentModeDiaryAtom);
-  const setEditDiaryProperty = useSetAtom(setEditDiaryPropertyAtom);
+  const navigate = useNavigate();
+  const params = useParams();
+  const info = useAtomValue(infoAtom);
 
-  const newFiles = useRef<File[]>([]);
+  const { data: originDiary } = useGetDiaryDetail({ diaryId: params.diaryId });
+
+  const { handleShowToast } = useToast();
+  const [loading, setLoading] = useState(false);
+  const [editable, setEditable] = useAtom(editableAtom);
+  const [editDiary, setEditDiary] = useState<EditDiary>({
+    datingDay: getTodayDate(),
+    category: 'CAFE',
+    score: 5,
+    myText: '',
+    opponentText: '',
+    imgURL: [],
+    existedImgURL: [],
+    newFile: [],
+  });
+
+  const { mutate: createFormMutate } = useCreateDiaryDetail(
+    params.spotId as string,
+    setLoading,
+  );
+  const { mutate: editFormMutate } = useEditDiaryDetail(
+    params.spotId || info!.spotId || originDiary!.kakaoMapId,
+    setLoading,
+  );
+
+  const handleEditCancel = () => {
+    setEditable(false);
+
+    if (params.diaryId === undefined) {
+      navigate(-1);
+    }
+  };
 
   const handleChangeDatingDay = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
 
-    setEditDiaryProperty({ datingDay: value });
+    setEditDiary({ ...editDiary, datingDay: value });
   };
 
   const handleChangeScore = (score: number) => {
-    setEditDiaryProperty({ score });
+    setEditDiary({ ...editDiary, score });
   };
 
   const handleChangeCategory = (category: categoryType) => {
-    setEditDiaryProperty({ category });
+    setEditDiary({ ...editDiary, category });
   };
 
   const handleChangeMyText = (event: ChangeEvent<HTMLTextAreaElement>) => {
     if (event.target instanceof HTMLTextAreaElement) {
       const { value } = event.target;
 
-      setEditDiaryProperty({ myText: value });
+      setEditDiary({ ...editDiary, myText: value });
     }
   };
 
-  const handleChangeImages = (imgURLs: string[]) => {
-    setEditDiaryProperty({ imgURL: imgURLs });
+  const handleChangeImages = (
+    imgURLs: string[],
+    existedImgURL?: string[],
+    newFile?: File[],
+  ) => {
+    setEditDiary({ ...editDiary, imgURL: imgURLs });
+
+    if (existedImgURL) {
+      setEditDiary({ ...editDiary, existedImgURL });
+    }
+    if (newFile) {
+      setEditDiary({ ...editDiary, newFile });
+    }
   };
 
   const handleUploadImg = (event: ChangeEvent<HTMLInputElement>) => {
     const { files } = event.target;
-    const nextImgURL = [...diary.imgURL];
+    const nextImgURL = [...editDiary.imgURL];
+    const newFile = [...editDiary.newFile];
 
     if (files === null) {
       alert('하나 이상의 파일을 추가해주세요!');
@@ -57,29 +109,94 @@ const useDiaryForm = () => {
         return;
       }
 
-      newFiles.current.push(file);
-      nextImgURL.push(URL.createObjectURL(file));
+      const fileURL = URL.createObjectURL(file);
+      nextImgURL.push(fileURL);
+      newFile.push(file);
     }
 
-    handleChangeImages(nextImgURL);
+    handleChangeImages(nextImgURL, undefined, newFile);
   };
 
   const handleDeleteImg = (id: number) => {
-    const { imgURL } = diary;
+    const { imgURL, newFile, existedImgURL } = editDiary;
     const nextImgURL = imgURL.filter((_, index) => index !== id);
+    const nextExistedImgURL = existedImgURL.filter((_, index) => index !== id);
+    const nextNewFile = newFile.filter(
+      (_, index) => index !== id - existedImgURL.length,
+    );
 
-    handleChangeImages(nextImgURL);
+    handleChangeImages(nextImgURL, nextExistedImgURL, nextNewFile);
+  };
+
+  const fillFormData = (formData: FormData, type: 'create' | 'edit') => {
+    const { datingDay, category, myText, score, existedImgURL, newFile } =
+      editDiary;
+    const {
+      position,
+      content,
+      address,
+      spotId: kakaoMapId,
+    } = info as MapMarker;
+    const texts: DiaryEditTextRequest | DiaryCreateTextRequest =
+      type === 'create'
+        ? {
+            placeName: content,
+            kakaoMapId: Number(kakaoMapId),
+            latitude: position.lat,
+            longitude: position.lng,
+            address,
+            datingDay,
+            category,
+            score,
+            text: myText,
+          }
+        : {
+            datingDay,
+            category,
+            text: myText,
+            score,
+            images: existedImgURL,
+          };
+
+    formData.append(
+      'texts',
+      new Blob([JSON.stringify(texts)], { type: 'application/json' }),
+    );
+    newFile.forEach((file) => formData.append('images', file));
+
+    return formData;
+  };
+
+  const handleSubmitDiary = () => {
+    if (editDiary.myText.trim().length <= 0) {
+      handleShowToast();
+
+      return;
+    }
+
+    const formData = new FormData();
+
+    if (params.diaryId) {
+      const filledFormData = fillFormData(formData, 'edit');
+      editFormMutate({ diaryId: params.diaryId, formData: filledFormData });
+    } else {
+      const filledFormData = fillFormData(formData, 'create');
+      createFormMutate({ formData: filledFormData });
+    }
   };
 
   return {
     editable,
-    diary,
+    diary: editable ? editDiary : originDiary,
+    loading,
     handleChangeDatingDay,
     handleChangeScore,
     handleChangeCategory,
     handleChangeMyText,
     handleUploadImg,
     handleDeleteImg,
+    handleEditCancel,
+    handleSubmitDiary,
   };
 };
 
