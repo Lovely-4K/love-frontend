@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
+import { useAtom } from 'jotai';
 import { Fragment } from 'react';
 import { colors, fontSize, screens } from '~/theme';
 import { SETTING_TAB } from '../constants';
-import { useSetting } from '../hooks';
+import { activeTabAtom } from '../stores/settingAtom';
 import useLayoutContext from '~/hooks/useLayoutContext';
 
 const StyledTab = styled.label`
@@ -27,7 +28,7 @@ const StyledTab = styled.label`
 `;
 
 const SettingTab = () => {
-  const { activeTab, handleTabChange } = useSetting();
+  const [activeTab, setActiveTab] = useAtom(activeTabAtom);
   const { coupleMode } = useLayoutContext();
 
   return (
@@ -44,7 +45,7 @@ const SettingTab = () => {
               name="setting_tab"
               className="hidden"
               checked={activeTab === tab}
-              onChange={() => handleTabChange(tab as keyof typeof SETTING_TAB)}
+              onChange={() => setActiveTab(tab as keyof typeof SETTING_TAB)}
             />
             <StyledTab htmlFor={tab}>
               {SETTING_TAB[tab as keyof typeof SETTING_TAB]}
