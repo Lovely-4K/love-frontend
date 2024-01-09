@@ -37,6 +37,8 @@ const useDiaryForm = () => {
   );
 
   useEffect(() => {
+    if (originDiary === undefined) return;
+
     const { datingDay, category, score, myText, opponentText, pictures } =
       originDiary;
     const changedImgURL = changeImageType(pictures);
@@ -50,7 +52,7 @@ const useDiaryForm = () => {
       existedImgURL: changedImgURL,
       newFile: [],
     });
-  }, [originDiary, editable]);
+  }, [originDiary, editable, setEditDiary]);
 
   const handleEditCancel = () => {
     setEditable(false);
@@ -193,7 +195,11 @@ const useDiaryForm = () => {
 
   return {
     editable,
-    diary: editable ? editDiary : originDiary,
+    diary: editable
+      ? editDiary
+      : originDiary === undefined
+      ? editDiary
+      : originDiary,
     loading,
     handleChangeDatingDay,
     handleChangeScore,

@@ -9,12 +9,14 @@ import { editableAtom } from '~/stores/diaryContentAtoms';
 const useDiaryContentHeader = () => {
   const navigate = useNavigate();
   const params = useParams();
+  const { diaryId } = params;
 
   const { data: originDiary } = useGetDiaryDetail({ diaryId: params.diaryId });
-  const { diaryId, kakaoMapId, placeName } = originDiary;
 
   const [editable, setEditable] = useAtom(editableAtom);
   const info = useAtomValue(infoAtom);
+  const kakaoMapId = originDiary?.kakaoMapId || info?.spotId || undefined;
+  const placeName = originDiary?.placeName || info?.content || '';
 
   const { mutate: deleteMutate } = useDeleteDiaryDetail(kakaoMapId);
 
