@@ -13,6 +13,7 @@ import useEditDiaryDetail from '~/services/diary/useEditDiaryDetail';
 import useGetDiaryDetail from '~/services/diary/useGetDiaryDetail';
 import { infoAtom } from '~/stores/diaryAtoms';
 import { editableAtom, editDiaryAtom } from '~/stores/diaryContentAtoms';
+import { checkImageValidate } from '~/utils/checkImageValidation';
 import { changeImageType } from '~/utils/Diary';
 
 const useDiaryForm = () => {
@@ -48,11 +49,11 @@ const useDiaryForm = () => {
       score,
       myText,
       opponentText,
-      imgURL: changedImgURL,
-      existedImgURL: changedImgURL,
+      imgURL: [...changedImgURL],
+      existedImgURL: [...changedImgURL],
       newFile: [],
     });
-  }, [originDiary, editable, setEditDiary]);
+  }, [originDiary, setEditDiary]);
 
   const handleEditCancel = () => {
     setEditable(false);
@@ -89,14 +90,17 @@ const useDiaryForm = () => {
     existedImgURL?: string[],
     newFile?: File[],
   ) => {
-    setEditDiary({ ...editDiary, imgURL: imgURLs });
-
+    const nextEditDiary = {
+      ...editDiary,
+      imgURL: imgURLs,
+    };
     if (existedImgURL) {
-      setEditDiary({ ...editDiary, existedImgURL });
+      nextEditDiary.existedImgURL = existedImgURL;
     }
     if (newFile) {
-      setEditDiary({ ...editDiary, newFile });
+      nextEditDiary.newFile = newFile;
     }
+    setEditDiary(nextEditDiary);
   };
 
   const handleUploadImg = (event: ChangeEvent<HTMLInputElement>) => {
@@ -111,8 +115,9 @@ const useDiaryForm = () => {
     }
 
     for (const file of files) {
-      if (nextImgURL.length === 5) {
-        alert('파일은 최대 5장까지 첨부가능해요!');
+      const [validation, message] = checkImageValidate(file, nextImgURL);
+      if (!validation) {
+        alert(message);
 
         return;
       }
