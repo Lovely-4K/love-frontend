@@ -8,6 +8,7 @@ const FormCustomLink = () => {
         <Link
           className="font-small font-bold text-grey-400"
           to="/question/create"
+          state={{ accessFlag: true }}
         >
           새 질문 작성하러 가기 →
         </Link>

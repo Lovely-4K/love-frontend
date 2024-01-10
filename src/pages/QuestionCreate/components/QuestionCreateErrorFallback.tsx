@@ -1,10 +1,13 @@
 import { FallbackProps } from 'react-error-boundary';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '~/components/common';
+import PATHS from '~/router/paths';
 
-const QuestionErrorFallback = ({
+const QuestionCreateErrorFallback = ({
   error,
   resetErrorBoundary,
 }: FallbackProps) => {
+  const navigate = useNavigate();
   console.error(error.message);
 
   return (
@@ -12,23 +15,23 @@ const QuestionErrorFallback = ({
       <div className="flex flex-col justify-center">
         <div className="w-full text-center text-2xl">😢</div>
         <div className="w-full p-4 text-center text-grey-400">
-          질문을 받아오지 못했어요. 다시 시도해보시겠어요?
+          앗! 유효한 접근이 아니에요! 올바른 경로로 접근해주세요!
         </div>
       </div>
       <div>
         <Button
           onClick={() => {
             resetErrorBoundary();
-            location.reload();
+            navigate(PATHS.QUESTION);
           }}
           size="large"
           className="bg-base-primary text-base-white"
         >
-          새로 고침
+          질문 페이지로 이동
         </Button>
       </div>
     </div>
   );
 };
 
-export default QuestionErrorFallback;
+export default QuestionCreateErrorFallback;
