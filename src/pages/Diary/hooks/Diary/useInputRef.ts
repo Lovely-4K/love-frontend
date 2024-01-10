@@ -1,18 +1,15 @@
-import { DiaryContextProps } from '~/pages/Diary/contexts/DiaryContext';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
+import {
+  mapCategoryAtom,
+  searchKeywordAtom,
+  searchModeAtom,
+} from '~/stores/diaryAtoms';
 
-interface useInputRefProps {
-  setSearchKeyword: DiaryContextProps['setSearchKeyword'];
-  searchMode: DiaryContextProps['searchMode'];
-  setSearchMode: DiaryContextProps['setSearchMode'];
-  mapCategory: DiaryContextProps['mapCategory'];
-}
+const useInputRef = () => {
+  const setSearchKeyword = useSetAtom(searchKeywordAtom);
+  const [searchMode, setSearchMode] = useAtom(searchModeAtom);
+  const mapCategory = useAtomValue(mapCategoryAtom);
 
-const useInputRef = ({
-  setSearchKeyword,
-  searchMode,
-  setSearchMode,
-  mapCategory,
-}: useInputRefProps) => {
   const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       setSearchKeyword(event.currentTarget.value);

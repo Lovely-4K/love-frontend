@@ -1,12 +1,10 @@
+import { useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
 import { Coordinates, Position } from '~/types';
-import { DiaryContextProps } from '~/pages/Diary/contexts/DiaryContext';
+import { mapAtom } from '~/stores/diaryAtoms';
 
-interface useMapLocationProps {
-  map: DiaryContextProps['map'];
-}
-
-const useMapLocation = ({ map }: useMapLocationProps) => {
+const useMapLocation = () => {
+  const map = useAtomValue(mapAtom);
   const useCurrentLocation = () => {
     const [userPosition, setUserPosition] = useState<Coordinates | null>(null);
     const [isCurrentLocation, setIsCurrentLocation] = useState<boolean>(true);

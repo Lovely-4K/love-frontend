@@ -1,13 +1,15 @@
+import { useAtomValue } from 'jotai';
 import { Suspense } from 'react';
-import useDiaryMainContext from '../../hooks/DiaryMain/useDiaryMainContext';
 import DiaryMainLoadingFallback from './DiaryMainLoadingFallback';
 import DiaryRecordsHeader from './DiaryRecordsHeader';
 import DiaryRecordsPreviews from './DiaryRecordsPreviews';
 import CategoryList from '~/components/domain/CategoryList/CategoryList';
+import useDiaryCategories from '~/pages/Diary/hooks/Diary/useDiaryCategories';
+import { diaryCategoryAtom } from '~/stores/diaryMainAtoms';
 
 const DiaryRecords = () => {
-  const diaryMainContext = useDiaryMainContext();
-  const { handleCategory, diaryCategory } = diaryMainContext;
+  const { handleCategory } = useDiaryCategories();
+  const diaryCategory = useAtomValue(diaryCategoryAtom);
 
   return (
     <div className="flex h-full max-h-screen flex-col gap-5 lg:overflow-hidden">

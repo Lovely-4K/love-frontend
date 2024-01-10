@@ -1,10 +1,9 @@
-import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
+import useDiaryForm from '../../hooks/DiaryContent/useDiaryForm';
 import { Rating } from '~/components/domain';
 
-const DiaryContentRating = () => {
-  const { diary, editable, methods } = useDiaryContentContext();
+const DiaryContentScore = () => {
+  const { editable, diary, handleChangeScore } = useDiaryForm();
   const { score } = diary;
-  const { handleChangeScore } = methods;
 
   return (
     <div className="flex flex-col gap-2">
@@ -20,4 +19,4 @@ const DiaryContentRating = () => {
   );
 };
 
-export default DiaryContentRating;
+export default DiaryContentScore;

@@ -1,13 +1,12 @@
+import { useAtom } from 'jotai';
 import { useEffect, useRef } from 'react';
 import { IconSearch } from '~/assets/icons';
-import useDiaryContext from '~/pages/Diary/hooks/Diary/useDiaryContext';
+import useInputRef from '~/pages/Diary/hooks/Diary/useInputRef';
+import { searchKeywordAtom } from '~/stores/diaryAtoms';
 
 const DiarySearchBar = () => {
-  const {
-    searchKeyword,
-    methods: { handleInput },
-  } = useDiaryContext();
-  const { handleKeyUp, setSearchKeyword } = handleInput;
+  const [searchKeyword, setSearchKeyword] = useAtom(searchKeywordAtom);
+  const { handleKeyUp } = useInputRef();
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
