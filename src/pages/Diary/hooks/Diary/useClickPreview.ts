@@ -53,6 +53,7 @@ const useClickPreview = () => {
   };
 
   useEffect(() => {
+    console.log(userPosition, info, hasEffectApplied);
     if (userPosition && map && info && !hasEffectApplied) {
       const newLatLng = new kakao.maps.LatLng(
         info.position.lat,
@@ -61,7 +62,7 @@ const useClickPreview = () => {
       map.setCenter(newLatLng);
       setHasEffectApplied(true);
     }
-  }, [info, userPosition, map, hasEffectApplied]);
+  }, [info, map, hasEffectApplied]);
 
   return { handleClickPreview };
 };

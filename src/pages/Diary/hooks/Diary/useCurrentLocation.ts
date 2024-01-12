@@ -13,6 +13,7 @@ const useMapLocation = () => {
 
     const onSuccess = (position: Position) => {
       const { latitude, longitude } = position.coords;
+      console.log(latitude, longitude);
       setUserPosition({ latitude, longitude });
     };
 
