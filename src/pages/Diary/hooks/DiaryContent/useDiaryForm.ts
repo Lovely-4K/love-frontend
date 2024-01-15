@@ -13,7 +13,7 @@ import useEditDiaryDetail from '~/services/diary/useEditDiaryDetail';
 import useGetDiaryDetail from '~/services/diary/useGetDiaryDetail';
 import { infoAtom } from '~/stores/diaryAtoms';
 import { editableAtom, editDiaryAtom } from '~/stores/diaryContentAtoms';
-import { checkImageValidate } from '~/utils/checkImageValidation';
+import { checkImageLength, checkImageType } from '~/utils/checkImageValidation';
 import { changeImageType } from '~/utils/Diary';
 
 const useDiaryForm = () => {
@@ -92,7 +92,7 @@ const useDiaryForm = () => {
   ) => {
     const nextEditDiary = {
       ...editDiary,
-      imgURL: imgURLs,
+      imgURL: [...imgURLs],
     };
     if (existedImgURL) {
       nextEditDiary.existedImgURL = existedImgURL;
@@ -114,8 +114,16 @@ const useDiaryForm = () => {
       return;
     }
 
+    const [validation, message] = checkImageLength(nextImgURL, files);
+
+    if (!validation) {
+      alert(message);
+
+      return;
+    }
+
     for (const file of files) {
-      const [validation, message] = checkImageValidate(file, nextImgURL);
+      const [validation, message] = checkImageType(file);
       if (!validation) {
         alert(message);
 
