@@ -25,8 +25,6 @@ const useClickPreview = () => {
   const handleClickPreview = (preview: DiaryContent) => {
     if (!map || !userPosition) return;
 
-    console.log(userPosition);
-
     const info = {
       position: {
         lat: preview.latitude,

@@ -107,7 +107,6 @@ const useDiaryForm = () => {
     const { files } = event.target;
     const nextImgURL = [...editDiary.imgURL];
     const newFile = [...editDiary.newFile];
-    console.log(nextImgURL);
 
     if (files === null) {
       alert('하나 이상의 파일을 추가해주세요!');
