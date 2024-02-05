@@ -7,4 +7,9 @@ interface User {
   id?: number;
 }
 
-export type { User };
+interface TrialUser {
+  accessToken: string;
+  refreshToken: string;
+}
+
+export type { User, TrialUser };

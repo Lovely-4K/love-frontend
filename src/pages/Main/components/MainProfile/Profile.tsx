@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import { User } from '~/types';
 import { useProfile } from '../../hooks';
+import couple from '~/assets/images/couple.jpeg';
 import { Avatar } from '~/components/common';
 
 const Profile = memo(
@@ -22,7 +23,11 @@ const Profile = memo(
         className="flex cursor-pointer flex-col items-center justify-center"
       >
         <Avatar
-          src={imageUrl as string}
+          src={
+            (imageUrl as string).includes('http')
+              ? (imageUrl as string)
+              : couple
+          }
           size="large"
           className="md:h-[9.375rem] md:w-[9.375rem]"
         />
