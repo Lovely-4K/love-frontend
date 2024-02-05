@@ -2,7 +2,7 @@ import { Button } from '~/components/common';
 
 const MainContentErrorFallback = () => {
   return (
-    <div>
+    <div className="flex h-full w-full flex-col items-center justify-center">
       <div>무언가 오류가 생겼어요! 다시 시도해주세요!</div>
       <div>
         <Button size="medium" onClick={() => location.reload()}>

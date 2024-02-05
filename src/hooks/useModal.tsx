@@ -15,7 +15,11 @@ const useModal = () => {
     modalRef.current.close();
   }, []);
 
-  return { openModal, closeModal, modalRef } as const;
+  return {
+    openModal,
+    closeModal,
+    modalRef,
+  };
 };
 
 export default useModal;

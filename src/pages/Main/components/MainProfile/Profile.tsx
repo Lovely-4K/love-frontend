@@ -1,25 +1,31 @@
+import { useSetAtom } from 'jotai';
 import { memo } from 'react';
 import { User } from '~/types';
-import { useProfile } from '../../hooks';
+import { useMainModal } from '../../hooks';
+import { changeProfileModalInfoAtom } from '../../stores/profileModalAtom';
 import couple from '~/assets/images/couple.jpeg';
 import { Avatar } from '~/components/common';
 
 const Profile = memo(
   ({ nickname, mbti, imageUrl, birthday, calendarColor, id }: User) => {
-    const { handleOpenProfileModal } = useProfile();
+    const { openProfileModal } = useMainModal();
+    const changeProfileModalInfo = useSetAtom(changeProfileModalInfoAtom);
+
+    const handleOpenProfileModal = () => {
+      changeProfileModalInfo({
+        nickname,
+        mbti,
+        imageUrl,
+        birthday,
+        calendarColor,
+        id,
+      });
+      openProfileModal();
+    };
 
     return (
       <div
-        onClick={() =>
-          handleOpenProfileModal({
-            nickname,
-            mbti,
-            imageUrl,
-            birthday,
-            calendarColor,
-            id,
-          })
-        }
+        onClick={handleOpenProfileModal}
         className="flex cursor-pointer flex-col items-center justify-center"
       >
         <Avatar

@@ -1,13 +1,18 @@
+import { useAtomValue, useSetAtom } from 'jotai';
 import { useRef } from 'react';
+import {
+  handleProfileAvatarChangeAtom,
+  profileActiveEditAtom,
+  profileModalInfoAtom,
+} from '../../stores/profileModalAtom';
 import { IconCamera } from '~/assets/icons';
 import couple from '~/assets/images/couple.jpeg';
-import { useProfile, useProfileModal } from '~/pages/Main/hooks';
 
 const ProfileAvatar = () => {
-  const { activeEdit, handleAvatarChange } = useProfileModal();
-  const { modalInfo } = useProfile();
+  const activeEdit = useAtomValue(profileActiveEditAtom);
+  const modalInfo = useAtomValue(profileModalInfoAtom);
+  const handleAvatarChange = useSetAtom(handleProfileAvatarChangeAtom);
   const inputRef = useRef<HTMLInputElement>(null);
-  const imageRef = useRef<HTMLImageElement>(null);
 
   const handleAvatarClick = () => {
     if (!inputRef.current) return;
@@ -39,7 +44,6 @@ const ProfileAvatar = () => {
     >
       <div className="w-28 rounded-full border border-grey-100 bg-grey-100 shadow-lg lg:w-32">
         <img
-          ref={imageRef}
           src={imageURL.includes('http') ? imageURL : couple}
           alt="user avatar"
         />
