@@ -27,7 +27,7 @@ const Avatar = ({
       <div
         className={`rounded-full border border-grey-100 bg-grey-100 ${avatarSizes[size]} ${className}`}
       >
-        <img src={src || ImageCouple} />
+        <img src={src?.includes('http') ? src : ImageCouple} />
       </div>
     </div>
   );
