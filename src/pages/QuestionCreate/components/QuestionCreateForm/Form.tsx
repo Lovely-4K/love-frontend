@@ -1,9 +1,12 @@
+import useCheckValidateAccess from '../../hooks/QuestionCreateForm/useCheckValidateAccess';
 import FormAnswers from './FormAnswers';
 import FormQuestion from './FormQuestion';
 import { Button } from '~/components/common';
-import { useForm } from '~/pages/QuestionCreate/hooks';
 
+import { useForm } from '~/pages/QuestionCreate/hooks';
 const Form = () => {
+  useCheckValidateAccess();
+
   const { question, answers, handleSubmitForm } = useForm();
   const buttonInvalidate = question.length === 0 || answers.length < 2;
 

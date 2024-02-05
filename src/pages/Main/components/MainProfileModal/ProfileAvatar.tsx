@@ -6,6 +6,7 @@ import {
   profileModalInfoAtom,
 } from '../../stores/profileModalAtom';
 import { IconCamera } from '~/assets/icons';
+import couple from '~/assets/images/couple.jpeg';
 
 const ProfileAvatar = () => {
   const activeEdit = useAtomValue(profileActiveEditAtom);
@@ -42,7 +43,10 @@ const ProfileAvatar = () => {
       className={`avatar z-10 ml-6 -translate-y-1/2 ${activeStyle}`}
     >
       <div className="w-28 rounded-full border border-grey-100 bg-grey-100 shadow-lg lg:w-32">
-        <img src={imageURL} alt="user avatar" />
+        <img
+          src={imageURL.includes('http') ? imageURL : couple}
+          alt="user avatar"
+        />
       </div>
       {activeEdit && (
         <>

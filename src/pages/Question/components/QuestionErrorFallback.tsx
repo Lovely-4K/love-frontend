@@ -1,7 +1,10 @@
 import { FallbackProps } from 'react-error-boundary';
 import { Button } from '~/components/common';
 
-const SideBarFallBack = ({ error, resetErrorBoundary }: FallbackProps) => {
+const QuestionErrorFallback = ({
+  error,
+  resetErrorBoundary,
+}: FallbackProps) => {
   console.error(error.message);
 
   return (
@@ -28,4 +31,4 @@ const SideBarFallBack = ({ error, resetErrorBoundary }: FallbackProps) => {
   );
 };
 
-export default SideBarFallBack;
+export default QuestionErrorFallback;

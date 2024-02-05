@@ -1,10 +1,9 @@
 import { memo } from 'react';
-import useDiaryContentContext from '../../hooks/DiaryContent/useDiaryContentContext';
+import useDiaryForm from '../../hooks/DiaryContent/useDiaryForm';
 
 const DiaryContentDate = memo(() => {
-  const { diary, editable, methods } = useDiaryContentContext();
+  const { diary, editable, handleChangeDatingDay } = useDiaryForm();
   const { datingDay } = diary;
-  const { handleChangeDatingDay } = methods;
 
   return (
     <div className="flex flex-col gap-2">

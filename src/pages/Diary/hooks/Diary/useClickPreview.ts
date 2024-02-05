@@ -1,43 +1,29 @@
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '~/router';
 import { DiaryContent } from '~/types';
-import { DiaryContextProps } from '~/pages/Diary/contexts/DiaryContext';
+import useMapLocation from '~/pages/Diary/hooks/Diary/useCurrentLocation';
+import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
+import useInputRef from '~/pages/Diary/hooks/Diary/useInputRef';
+import useMapCategory from '~/pages/Diary/hooks/Diary/useMapCategory';
+import { infoAtom, mapAtom, markersAtom } from '~/stores/diaryAtoms';
 
-interface useClickPreviewProps {
-  map: DiaryContextProps['map'];
-  info: DiaryContextProps['info'];
-  handleInfo: DiaryContextProps['methods']['handleInfo'];
-  handleMapCategories: DiaryContextProps['methods']['handleMapCategories'];
-  handleMarkers: DiaryContextProps['methods']['handleMarkers'];
-  handleInput: DiaryContextProps['methods']['handleInput'];
-  handleLocation: DiaryContextProps['methods']['handleLocation'];
-}
-
-const useClickPreview = ({
-  map,
-  info,
-  handleInfo,
-  handleMapCategories,
-  handleMarkers,
-  handleInput,
-  handleLocation,
-}: useClickPreviewProps) => {
+const useClickPreview = () => {
+  const map = useAtomValue(mapAtom);
+  const setMarkers = useSetAtom(markersAtom);
+  const [info, setInfo] = useAtom(infoAtom);
   const navigate = useNavigate();
-
-  const { openInfo, setInfo } = handleInfo;
-  const { resetMapCategory } = handleMapCategories;
-  const { setMarkers } = handleMarkers;
-  const { endSearchMode, setSearchKeyword } = handleInput;
-  const { useCurrentLocation } = handleLocation;
+  const { openInfo } = useInfoToggle();
+  const { resetMapCategory } = useMapCategory();
+  const { endSearchMode, setSearchKeyword } = useInputRef();
+  const { useCurrentLocation } = useMapLocation();
   const { userPosition } = useCurrentLocation();
 
   const [hasEffectApplied, setHasEffectApplied] = useState(false);
 
   const handleClickPreview = (preview: DiaryContent) => {
     if (!map || !userPosition) return;
-
-    console.log(userPosition);
 
     const info = {
       position: {

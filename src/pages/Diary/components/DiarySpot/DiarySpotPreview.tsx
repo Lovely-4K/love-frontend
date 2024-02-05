@@ -1,7 +1,9 @@
+import { useAtomValue } from 'jotai';
 import { useRef, useEffect } from 'react';
-import useDiarySpotContext from '../../hooks/useDiarySpotContext';
 import defaultImg from '~/assets/images/couple.jpeg';
 import { Img } from '~/components/common';
+import useDiarySpot from '~/pages/Diary/hooks/DiarySpot/useDiarySpot';
+import { deleteModeAtom } from '~/stores/diarySpotAtoms';
 
 interface DiarySpotPreviewProps {
   picture: string;
@@ -18,9 +20,9 @@ const DiarySpotPreview = ({
   onClick,
   isChecked,
 }: DiarySpotPreviewProps) => {
-  const diarySpotContext = useDiarySpotContext();
   const checkboxRef = useRef<HTMLInputElement>(null);
-  const { deleteMode, handleCheckboxChange } = diarySpotContext;
+  const deleteMode = useAtomValue(deleteModeAtom);
+  const { handleCheckboxChange } = useDiarySpot();
 
   const checkboxChange = (id: number) => {
     if (checkboxRef.current) {

@@ -1,10 +1,28 @@
-import { useSetting } from '../../hooks';
+import { useAtomValue } from 'jotai';
+import { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useLogin } from '~/hooks';
+import { activeTabAtom } from '../../stores/settingAtom';
 import ContentItem from './ContentItem';
+import useDeleteCouple from '~/services/couple/useDeleteCouple';
 import useRecreateCouple from '~/services/couple/useRecreateCouple';
 
 const SettingContent = () => {
-  const { activeTab, handleLogout, handleDeleteCouple } = useSetting();
+  const activeTab = useAtomValue(activeTabAtom);
+  const navigate = useNavigate();
+  const { logout } = useLogin();
+  const { mutate: deleteCouple } = useDeleteCouple();
   const { mutate: recreateCouple } = useRecreateCouple();
+
+  const handleLogout = useCallback(() => {
+    logout();
+    navigate('/login');
+  }, [navigate, logout]);
+
+  const handleDeleteCouple = useCallback(() => {
+    deleteCouple();
+    navigate('/');
+  }, [deleteCouple, navigate]);
 
   if (activeTab === 'LOGOUT') {
     return (
