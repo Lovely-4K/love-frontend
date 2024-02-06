@@ -1,5 +1,5 @@
 import { atom } from 'jotai';
-import { MapMarker } from '~/types';
+import { Coordinates, MapMarker } from '~/types';
 
 export type MapCategory =
   | 'CAFE'
@@ -12,3 +12,5 @@ export type MarkerFilter = 'ALL' | 'GONE' | 'YET' | '';
 export const markerFilterAtom = atom<MarkerFilter>('ALL');
 export const goneMarkersAtom = atom<MapMarker[]>([]);
 export const yetMarkersAtom = atom<MapMarker[]>([]);
+export const userPositionAtom = atom<Coordinates | null>(null);
+export const hasEffectAppliedAtom = atom<boolean>(false);

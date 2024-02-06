@@ -1,5 +1,5 @@
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '~/router';
 import { DiaryContent } from '~/types';
@@ -8,6 +8,7 @@ import useInfoToggle from '~/pages/Diary/hooks/Diary/useInfoToggle';
 import useInputRef from '~/pages/Diary/hooks/Diary/useInputRef';
 import useMapCategory from '~/pages/Diary/hooks/Diary/useMapCategory';
 import { infoAtom, mapAtom, markersAtom } from '~/stores/diaryAtoms';
+import { hasEffectAppliedAtom } from '~/stores/diaryMapAtoms';
 
 const useClickPreview = () => {
   const map = useAtomValue(mapAtom);
@@ -20,7 +21,7 @@ const useClickPreview = () => {
   const { useCurrentLocation } = useMapLocation();
   const { userPosition } = useCurrentLocation();
 
-  const [hasEffectApplied, setHasEffectApplied] = useState(false);
+  const [hasEffectApplied, setHasEffectApplied] = useAtom(hasEffectAppliedAtom);
 
   const handleClickPreview = (preview: DiaryContent) => {
     if (!map || !userPosition) return;
@@ -56,10 +57,11 @@ const useClickPreview = () => {
         info.position.lat,
         info.position.lng,
       );
+
       map.setCenter(newLatLng);
       setHasEffectApplied(true);
     }
-  }, [info, userPosition, map, hasEffectApplied]);
+  }, [info]);
 
   return { handleClickPreview };
 };

@@ -1,30 +1,38 @@
-import { useAtomValue } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
-import { Coordinates, Position } from '~/types';
+import { Position } from '~/types';
 import { mapAtom } from '~/stores/diaryAtoms';
+import { hasEffectAppliedAtom, userPositionAtom } from '~/stores/diaryMapAtoms';
 
 const useMapLocation = () => {
   const map = useAtomValue(mapAtom);
+  const [hasEffectApplied, setHasEffectApplied] = useAtom(hasEffectAppliedAtom);
+
   const useCurrentLocation = () => {
-    const [userPosition, setUserPosition] = useState<Coordinates | null>(null);
+    const [userPosition, setUserPosition] = useAtom(userPositionAtom);
     const [isCurrentLocation, setIsCurrentLocation] = useState<boolean>(true);
     const [curMapCenterPosition, setCurMapCenterPosition] =
       useState<kakao.maps.LatLng>();
 
     const onSuccess = (position: Position) => {
       const { latitude, longitude } = position.coords;
+
       setUserPosition({ latitude, longitude });
     };
 
     useEffect(() => {
-      const options = {
-        enableHighAccuracy: false,
-        timeout: Infinity,
-        maximumAge: 0,
-      };
+      if (!hasEffectApplied) {
+        const options = {
+          enableHighAccuracy: false,
+          timeout: Infinity,
+          maximumAge: 0,
+        };
 
-      navigator.geolocation.getCurrentPosition(onSuccess, null, options);
-    }, []);
+        navigator.geolocation.getCurrentPosition(onSuccess, null, options);
+
+        setHasEffectApplied(true);
+      }
+    }, [hasEffectApplied]);
 
     const userPositionLatLng = userPosition && {
       lat: userPosition.latitude,
